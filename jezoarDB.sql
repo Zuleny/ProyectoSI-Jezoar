@@ -1,5 +1,7 @@
 -- Database: jezoar
 
+-- DROP DATABASE jezoar;
+
 CREATE DATABASE jezoar
     WITH 
     OWNER = jezoar
@@ -59,3 +61,9 @@ create table Rol (
 	id_rol int not null primary key,
 	descripcion varchar(100) not null
 );
+
+create function suma(integer, integer) returns interger
+as $$
+select $1+$2;
+$$
+languaje sql

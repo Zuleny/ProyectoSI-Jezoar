@@ -1,0 +1,20 @@
+/*********************************************/
+carpeta "documentation": Contiene la parte de la documentación 
+"documentation/database": Contiene la parte del diagrama de la BD
+"documentation/system": Contiene el archivo 'jezoar.docx' (Documento Word)
+
+NOTA: Se podra crear carpetas para los diagramas u otros que vienen en adelante
+/*********************************************/
+***************USO DE GIT*********************
+Git es un controlador de versiones de un software, y es organizado por 3 niveles:
+1. add (listo para subir al nivel commit)
+2. commit (listo para subir al repo)
+3. push (sube al repositorio github)
+
+--  git clone "http del proyecto" --                                        //cada un colaborador lo Contiene
+--  git status  --                                                          //para ver el estado del proyecto
+--  git add --all   --                                                      //adicionar los cambios al sgte nivel
+--  git commit -m "comentario del commit(referencia del trabajo a subir)"   //subir al sgte nivel con un mensaje de referencia (listo para push)
+--  git diff "archivo"  --                                                  //vista de la diferencia del archivo de antes y despues
+--  git log --                                                              //ver la bitacora del proyecto
+--  git push origin master  --                                              //subir el proyecto con las modificaciones al repositorio

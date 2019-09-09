@@ -5,7 +5,7 @@
         private $conexion;
         
         public function __construct(){
-            $this->conexion = new Conexion('localhost','root','','ventas',3307,'TCP');
+            $this->conexion = new Conexion('localhost','5432','jezoar','jezoar','123456');
         }
 
         public function getProductos() {
