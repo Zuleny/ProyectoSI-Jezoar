@@ -13,12 +13,17 @@ CREATE DATABASE jezoar
 
 COMMENT ON DATABASE jezoar
     IS 'database php-postgresql for clean service "jezoar"';
-	
+
+/*alter table Cliente add tipo tinyint not null;
+alter table Presentacion  add tipo tinyint not null;
+alter table Insumo add tipo tinyint not null
+*/
 create table Cliente (
 	cod_cliente int not null primary key,
 	nombre varchar(100) not null,
 	direccion varchar(200) null,
-	email varchar(50) null
+	email varchar(50) null,
+	tipo tinyint not null
 );
 
 create table Telefono (
@@ -32,7 +37,7 @@ create table Telefono (
 create table Presentacion (
 	cod_presentacion int not null primary key,
 	fecha date not null,
-	estado varchar(10) not null,
+	estado varchar(10) not null,	--Aceptado,Denegado,Rechazado
 	precio_total decimal not null,
 	cod_cliente_presentacion int not null,
 	foreign key (cod_cliente_presentacion) references Cliente (cod_cliente)
@@ -65,13 +70,13 @@ create table Bitacora (
 create table Servicio(
   id_servicio int not null primary key,
   nombre varchar(100),
-  descripcion varchar(50)
+  descripcion varchar(500)
 );
 
 create table Presentacion_Servicio(
    cod_presentacion int not null,
    id_servicio int not null ,
-   area_trabajo varchar(10),
+   area_trabajo varchar(100),	--lugar a trabajar
    cant_personal int not null,
    precio_unitario decimal(12,2) not null,
    foreign key(cod_presentacion) references Presentacion(cod_presentacion)
@@ -84,7 +89,7 @@ create table Presentacion_Servicio(
 create table Detalle_Servicio(
    id_servicio int not null,
    id_detalle int not null,
-   detalle varchar(50) not null,
+   detalle varchar(500) not null,	--descripcion de servicions que solicita el cliente
    foreign key (id_servicio) references Servicio(id_servicio)
    on update cascade  on delete cascade,
    primary key(id_servicio,id_detalle)
@@ -100,7 +105,7 @@ create table Propuesta(
 create table Cotizacion(
    cod_presentacion_cotizacion int not null primary key,
    cant_dias int not null,
-   tipo_servicio varchar(25) not null,
+   tipo_servicio varchar(25) not null,	--Profunda, Post-Obra, Oficinas
    material char(1) not null, 
    foreign key (cod_presentacion_cotizacion) references Presentacion(cod_presentacion)
 );
@@ -108,7 +113,8 @@ create table Cotizacion(
 create table Insumo(
    cod_insumo int not null primary key,
    nombre varchar(30) not null,
-   descripcion varchar(200) 
+   descripcion varchar(200) --descripcion del insumo
+   tipo tinyint not null
 );
 
 create table Propuesta_Insumo(
@@ -222,7 +228,7 @@ create table Personal
 	id_personal int not null,
 	nombre varchar(100) not null,
 	tipo varchar(20) not null,
-	cargo varchar(20) not null,
+	cargo varchar(200) not null,
 	primary key (id_personal)
 );
 
@@ -316,3 +322,129 @@ create table Contrato (
 	on update cascade
 	on delete cascade
 );
+
+insert into Rol(cod_rol,descripcion) values (1,'Admininstrador'),
+											(2,'Inventario'),
+											(3,'Supervisor');
+											
+insert into Permiso(id_permiso,descripcion) values (1,'Gestion de Servicios'),
+												   (2,'Gestion de Clientes'),
+												   (3,'Administracion de Bitacora'),
+												   (4,'Gestion de Presentacion'),
+												   (5,'Gestion de Notas de Almacen'),
+												   (6,'Gestion de Insumos (Productos y Almacen)'),
+												   (7,'Gestion de Personal'),
+												   (8,'Gestion de Usuarios');
+
+insert into Rol_Permiso(cod_rol,id_permiso) values (1,1),
+												   (1,2),
+												   (1,3),
+												   (1,4),
+												   (1,5),
+												   (1,6),
+												   (1,7),
+												   (1,8),
+												   (2,5),
+												   (2,6),
+												   (3,5);
+
+insert into Nota(nro_nota,fecha,tipo,cod_almacen,id_personal) values (1,'2019/06/06','E',1,1),
+																	 (2,'2019/06/20','E',2,1),
+																	 (3,'2019/06/30','E',1,1),
+																	 (4,'2019/07/05','D',2,1),
+																	 (5,'2019/07/20','E',1,1),
+																	 (6,'2019/07/30','E',2,1);
+
+insert into Detalle_Nota(nro_nota,id_detalle,nombre_insumo,cantidad_insumo) values (1,1,'Pastilla de Baño',100),
+																				   (1,2,'Mocha',3),
+																				   (1,3,'Trapeador',2),
+																				   (1,4,'Casco',10),
+																				   (2,1,'Ambientador',500),
+																				   (2,2,'Jabon Liquido',10),
+																				   (2,3,'Antisarro',50),
+																				   (2,4,'Cera Liquida',20),
+																				   (2,5,'Lustra Mueble',10),
+																				   (2,6,'Paño de Piso',100),
+																				   (3,1,'',50),
+																				   (3,2,'',45),
+																				   (3,3,'Mopa',1),
+																				   (3,4,'',10),
+																				   (4,1,'',5),
+																				   (4,2,'',3),
+																				   (4,3,'',50),
+																				   (4,4,'',150),
+																				   (5,1,'',45),
+																				   (5,2,'',15),
+																				   (5,3,'',20),
+																				   (5,4,'',10),
+																				   (6,1,'',40),
+																				   (6,2,'',20),
+																				   (6,3,'',30),
+																				   (6,4,'',1);
+																				   
+insert into Informe(cod_informe,fecha,descripcion,cod_presentacion_cotizacion) values 
+(1,'2019/08/08','De mi consideración:Me dirijo a ustedes, a tiempo de saludarlos, hago llegar a su persona mis más sinceros deseos de éxitos en sus funciones laborales.
+Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DEL Edificio Bloque 4, así mismo confirmarles que el bloque bloque 4 está totalmente en buenas condiciones de limpieza de acuerdo al contrato, adjunto las fotos del trabajo concluido.
+',1),
+(2,'2019/08/31','De mi consideración:Me dirijo a ustedes, a tiempo de saludarlos, hago llegar a su persona mis más sinceros deseos de éxitos en sus funciones laborales.
+Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA EN EL PISO 10, así mismo confirmarles que el piso 10 está totalmente en buenas condiciones de limpieza de acuerdo al contrato, adjunto las fotos del trabajo concluido.
+',2),
+(3,'2019/09/10','De mi consideración:
+Me dirijo a ustedes, a tiempo de saludarlos, hago llegar a su persona mis más sinceros deseos de éxitos en sus funciones laborales.
+Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA DEL BLOQUE 1, así mismo confirmarles que el bloque 1 está totalmente en buenas condiciones de limpieza de acuerdo al contrato, adjunto las fotos del trabajo concluido.
+',3);
+
+insert into Contrato(cod_contrato,fecha_inicio,fecha_fin,cod_presentacion) values 
+(1,'2018/08/10','2019/08/11',1),
+(2,'2018/01/11','2019/06/11'.2),
+(3,'2019/01/10','2019/06/10',3),
+(4,'2019/04/20','2019/12/20',4),
+(5,'2019/02/01','2020/02/01',5);
+
+--30. mostrar las nota de Devolucion
+
+select nro_nota,fecha,tipo, almacen.nombre, personal.nombre
+from nota,almacen,personal
+where nota.cod_almacen=almacen.cod_almacen and 
+	  nota.id_personal=personal.personal.id_personal and
+	  nota.tipo='D';
+	  
+--31. mostrar las nota de Egreso
+select nro_nota,fecha,tipo, almacen.nombre, personal.nombre
+from nota,almacen,personal
+where nota.cod_almacen=almacen.cod_almacen and 
+	  nota.id_personal=personal.personal.id_personal and
+	  nota.tipo='E';
+
+--32. Mostrar los informes de las cotizaciones del ultimo mes
+select informe.cod_informe,informe.fecha,cotizacion.tipo_servicio,presentacion.precio_total,cliente.nombre
+from informe,cotizacion,presentacion,cliente
+where informe.cod_presentacion_cotizacion=cotizacion.cod_presentacion_cotizacion and
+	  cotizacion.cod_presentacion_cotizacion=presentacion.cod_presentacion and
+	  presentacion.cod_cliente_presentacion=cliente.cod_cliente 
+order by informe.cod_informe desc
+limit 5;
+
+--33. Mostrar los contratos que finalizaron
+select contrato.cod_contrato,contrato.fecha_inicio,contrato.fecha_fin,presentacion.cod_presentacion,cliente.nombre
+from contrato, presentacion, cliente
+where contrato.cod_presentacion=presentacion.cod_presentacion and 
+	  presentacion.cod_cliente_presentacion=cliente.cod_cliente and 
+	  contrato.fecha_fin<now();
+	  
+--34. Mostrar los contratos que finalizaran este mes
+select contrato.cod_contrato,contrato.fecha_inicio,contrato.fecha_fin,presentacion.cod_presentacion,cliente.nombre
+from contrato, presentacion, cliente
+where contrato.cod_presentacion=presentacion.cod_presentacion and 
+	  presentacion.cod_cliente_presentacion=cliente.cod_cliente and 
+	  contrato.fecha_fin=now();
+	  
+--35. Mostrar las notas de un almacen oragizados por Egreso y Devolucion
+select Nota.nro_nota,Nota.tipo
+from Nota
+where Nota.cod_almacen=1
+order by Nota.tipo desc;
+
+
+
+
