@@ -8,16 +8,15 @@
             $this->conexion = new Conexion('localhost','5432','jezoar','jezoar','123456');
         }
 
-        public function getProductos() {
-            $listaDeProductos = array();    //creo nua nueva lista
-            $query = "select * from producto;";    //consulta
+        public function getClientes() {
+            $listaDeProductos = array();           //creo una nueva lista
+            $query = "select * from clientes;";    //consulta
             $resultado = $this->conexion->execute($query);  //ejecutamos la consulta en la BD
             while ($registro = mysqli_fetch_array($resultado)) { //mientras $registro no este vacio
-                $producto = new Producto($registro[0], $registro[1], $registro[2], $registro[3]);
-                array_push($listaDeProductos, $producto);   //agrego al arreglo el producto
+                $cliente = new Cliente($registro[0], $registro[1], $registro[2], $registro[3], $registro[4]);
+                array_push($listaDeProductos, $cliente);   //agrego al arreglo el producto
             }
             return $listaDeProductos;  
         }
-        //
     }
 ?>

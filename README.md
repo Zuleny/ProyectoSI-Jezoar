@@ -1,7 +1,17 @@
-<<<<<<< HEAD
+    ____     ___  ___   ____
+   /    \   /  / /  /  /    \
+  /  D  |  /  /_/  /  /  D  |
+ /  ___/  /  __   /  /  ___/
+/__/     /_ / /__/  /__/
+    ___________   _______   _________         ______   ________   ______
+   /____   ___/  /  ____/  /_____   /        / __  /  /  __   /  /  _   \
+       /  /     /  /___         /  /        / / / /  /  / /  /  /  /_\  /
+ ___  /  /     /  ____/        /  /        / / / /  /  /_/  /  /     __/
+ \  \/  /     /  /____        /  /_____   / /_/ /  /  __   /  /  __  \
+  \____/     /_______/       /________/  /_____/  /__/ /__/  /__/  \__\
 # ProyectoSI-Jezoar
 Proyecto SI1 Sistema de Información para Gestionar Servicios de Limpieza e Inventarios para la empresa Jezoar
-Desarrollo en PHP 7.* 
+Desarrollo en PHP 7.3 
 Arquitectura de desarrollo: MVC
 Motor de BD: Postresql
 Grupo #3
