@@ -319,7 +319,7 @@ create table Contrato (
 	on update cascade
 	on delete cascade
 );
-
+/*************************Poblacion**********************************************************************************/
 insert into Cliente values(1,'SERVITODO ','San Martin,2do Anillo','servitodo_100@gmail.com','E');
 insert into Cliente values(2,'Yerba Buena','Av. Roca y Coronado,3er Anillo','yerba.buena@gmail.bo','E');
 insert into Cliente values(3,'MBI ','Av. La Salle, 4to anillo','mbi.santacruz@gmail.com','E');
@@ -1233,7 +1233,7 @@ insert into Detalle_Nota(nro_nota,id_detalle,nombre_insumo,cantidad_insumo) valu
 (46,3,'Trapeador',2),
 (46,4,'Escoba',2),
 (46,5,'Avion',1);
-
+/******************************Funciones y Procedimientos Almacenados y Triggers*****************/
 /*1. Funcion que Devuelve el stock de un insumo en un Almacen especifico
 	 (cantidad Disponible del Insumo)*/
 create or replace function getStockInsumo(nombreInsumo varchar(35), codAlmacen integer)returns int as $$
@@ -1300,13 +1300,13 @@ begin
 			raise notice 'Devolucion realizada correctamente :3';
 		else
 			raise notice 'Error... No existe el insumo a Devolver, registre el nuevo insumo';
-			delete from detalle_nota where nro_nota=new.nro_nota and id_detalle=new.id_detalle;
 			raise notice 'No se registro el insumo % en la nota %',new.nombre_insumo,new.nro_nota;
+			rollback;
 		end if;
 	end if;
 	return new;
 end; $BODY$ 
-language plpgsql;
+language 'plpgsql';
 
 /*7. Trigger para Incrementar el stock de insumos en la Nota de Devolucion*/
 create trigger detalleNotaDevolucion after insert
@@ -1337,8 +1337,8 @@ begin
 				raise notice 'Egreso realizado correctamente :3 Insumo: % en el NroNota: %',new.nombre_insumo,new.nro_nota;
 			else 
 				raise notice 'No se realizo el registro, Stock insuficiente en el almacen Nro %',codAlmacen;
-				delete from detalle_nota where nro_nota=new.nro_nota and id_detalle=new.id_detalle;
 				raise notice 'No se registro el insumo: % en el nro de Nota: %',new.nombre_insumo,new.nro_nota;
+				rollback;
 			end if;
 		else 
 			raise notice 'No se realizo el registro, Insumo % no registrado',new.nombre_insumo;
@@ -1378,34 +1378,7 @@ create trigger detalleNotaEgresoAnulacion before delete
 on detalle_nota
 for each row
 	execute procedure detalleEgresoAnulacion();
-	
-/*12. Funcion Trigger del proceso insertar detalle de la nota de ingreso*/
-create or replace function ingresoDetalle() returns trigger as 
-$$
-    declare codInsumo integer;
-            codAlmacen integer;
-    begin
-		codInsumo:=getCodInsumo(new.nombre_insumo);
-		if(existeInsumo(codInsumo)) then 
-		   codAlmacen:=getCodAlmacen(new.nro_ingreso);
-		   update Insumo_Almacen set stock=stock+new.cantidad
-		   where cod_insumo=codInsumo and cod_almacen=codAlmacen;
-		   raise notice 'Insumo registrado exitosamente: insumo: % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
-		else 
-		   raise notice 'Error: Insumo no encontrado, Registre el insumo';
-  		   raise notice 'Error: No se registro el detalle % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
-		   rollback;
-		end if;
-		return new;
-	end;
-$$
-language plpgsql;
 
-/*13. Trigger al insertar un detalle de la nota de ingreso aumenta el stock del insumo en un especifico almacen*/
-create trigger iDetalleIngreso 
-after insert on Detalle_Ingreso
-for each row 
-	execute procedure ingresoDetalle();
 
 /*14. Funcion que obtiene la fecha realizada de una nota especifica*/
 create or replace function getFechaNota(nroNota INTEGER)returns date as 
@@ -1445,8 +1418,256 @@ begin
 end;
 $BODY$ language plpgsql;
 
-/*16. Trigger para el proceso de Anulacion de un registro de una Nota de Devolucion*/
+/*16. */
 create trigger detalleNotaDevolucionAnulacion after delete
 on detalle_nota
 for each row
 	execute procedure detalleDevolucionAnulacion();
+
+
+/*17. Trigger para el proceso de Anulacion de un registro de una Nota de Devolucion*/
+create or replace function ingresoDetalle() returns trigger as 
+$$
+    declare codInsumo integer;
+            codAlmacen integer;
+    begin 
+		codInsumo:=getCodInsumo(new.nombre_insumo);
+		if(existeInsumo(codInsumo)) then 
+		   codAlmacen:=getCodAlmacen(new.nro_ingreso);
+		   update Insumo_Almacen set stock=stock+new.cantidad
+		   where cod_insumo=codInsumo and cod_almacen=codAlmacen;
+		   raise notice 'Insumo registrado exitosamente: insumo: % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
+	
+		else 
+		   raise notice 'Error: Insumo no encontrado, Registre el insumo';
+  		   --delete from detalle_ingreso where nro_ingreso=new.nro_ingreso and id_ingreso=new.id_ingreso;
+		   RAISE EXCEPTION 'Error: No se registro el detalle % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
+		end if;
+		return new;
+	end;
+$$
+language plpgsql;
+
+/*18. Trigger para actualizar el stock de un determinado insumo y almacen al momento de insertar una fila en la tabla Detalle_Ingreso */
+create trigger iDetalleIngreso 
+before insert on Detalle_Ingreso
+for each row 
+	execute procedure ingresoDetalle();
+
+/*19. */	
+create or replace function dIngresoDetalle() returns trigger as 
+$$
+declare codInsumo integer;
+		codAlmacen integer;
+		stocki integer;
+begin
+	codInsumo:=getCodInsumo(old.nombre_insumo);
+	codAlmacen:=getCodAlmacen(old.nro_ingreso);
+	stocki:=getstockinsumo(old.nombre_insumo,codAlmacen);
+	if(old.cantidad<=stocki) then
+	   update Insumo_Almacen set stock=stock-old.cantidad
+	   where cod_insumo=codInsumo and cod_almacen=codAlmacen;
+	   raise notice 'El Insumo % se ha eliminado correctamente del Nro de Ingreso: % ',old.nombre_insumo,old.nro_ingreso;
+	else
+	   raise exception 'Error: El stock del insumo % es % y la cantidad a eliminar es % del Nro de Ingreso: % ',old.nombre_insumo,stocki,old.cantidad,old.nro_ingreso;
+	end if;
+return old;
+end;
+$$
+language plpgsql;
+
+/*20. Trigger para actualizar el stock de un determinado insumo y almacen al momento de 
+eliminar una fila en la tabla Detalle_Ingreso*/
+create trigger dDetalleIngreso 
+before delete on Detalle_Ingreso
+for each row 
+	execute procedure dIngresoDetalle();
+
+create or replace function ingresoDetalle() returns trigger as 
+$$
+    declare codInsumo integer;
+            codAlmacen integer;
+    begin 
+		codInsumo:=getCodInsumo(new.nombre_insumo);
+		if(existeInsumo(codInsumo)) then 
+		   codAlmacen:=getCodAlmacen(new.nro_ingreso);
+		   update Insumo_Almacen set stock=stock+new.cantidad
+		   where cod_insumo=codInsumo and cod_almacen=codAlmacen;
+		   raise notice 'Insumo registrado exitosamente: insumo: % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
+	
+		else 
+		   raise notice 'Error: Insumo no encontrado, Registre el insumo';
+  		   --delete from detalle_ingreso where nro_ingreso=new.nro_ingreso and id_ingreso=new.id_ingreso;
+		   RAISE EXCEPTION 'Error: No se registro el detalle % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
+		end if;
+		return new;
+	end;
+$$
+language plpgsql;
+
+/*12. Trigger para actualizar el stock de un determinado insumo y almacen al momento de insertar una fila en la tabla Detalle_Ingreso */
+create trigger iDetalleIngreso 
+before insert on Detalle_Ingreso
+for each row 
+	execute procedure ingresoDetalle();
+
+create or replace function dIngresoDetalle() returns trigger as 
+$$
+    declare codInsumo integer;
+            codAlmacen integer;
+			stocki integer;
+    begin
+		codInsumo:=getCodInsumo(old.nombre_insumo);
+	    codAlmacen:=getCodAlmacen(old.nro_ingreso);
+		stocki:=getstockinsumo(old.nombre_insumo,codAlmacen);
+		if(old.cantidad<=stocki) then
+	       update Insumo_Almacen set stock=stock-old.cantidad
+		   where cod_insumo=codInsumo and cod_almacen=codAlmacen;
+		   raise notice 'El Insumo % se ha eliminado correctamente del Nro de Ingreso: % ',old.nombre_insumo,old.nro_ingreso;
+		else
+		   raise exception 'Error: El stock del insumo % es % y la cantidad a eliminar es % del Nro de Ingreso: % ',old.nombre_insumo,stocki,old.cantidad,old.nro_ingreso;
+		end if;
+	return old;
+	end;
+$$
+language plpgsql;
+
+/*12. Trigger para actualizar el stock de un determinado insumo y almacen al momento de 
+eliminar una fila en la tabla Detalle_Ingreso*/
+create trigger dDetalleIngreso 
+before delete on Detalle_Ingreso
+for each row 
+	execute procedure dIngresoDetalle();
+ /*PROCEDIMIENTOS */
+	
+	
+/*21. Funcion que devuleve el inventario de un especifico almacen a traves de su nombre*/
+create or replace function getInventarioDeProductos(nombreAlmacen varchar(20))
+returns table (nombre varchar,InsumoNombre varchar,ProductoMarca varchar,stockInsumo DECIMAL(12,2)) 
+as $$
+begin
+	return query select categoria.nombre,Insumo.nombre,Producto.marca,Sum(Insumo_Almacen.stock)as stockInsumo
+	 from Producto,Insumo,Categoria,Producto_Categoria,Insumo_Almacen,Almacen
+	 where Producto.cod_insumo_producto=Insumo.cod_insumo and 
+	 	   Producto.cod_insumo_producto=Producto_Categoria.cod_insumo_producto and 
+		   Categoria.cod_categoria= Producto_Categoria.cod_categoria and 
+		   Insumo.cod_insumo=Insumo_Almacen.cod_insumo and 
+		   Almacen.cod_almacen=Insumo_Almacen.cod_almacen and almacen.nombre=nombreAlmacen
+	 group by categoria.nombre,Insumo.nombre,Producto.marca;
+end; $$
+language 'plpgsql';
+
+/*22. Funcion que devuelve el inventario de herramientas de un especifico almacen a traves de su nombre*/
+create or Replace function getHerramientaStock(nombreAlmacen varchar(20)) returns table (codigo integer,nombre varchar, estado char,stock decimal(12,2))
+as $$
+begin
+	return query select Insumo.cod_insumo,Insumo.nombre,Herramienta.estado,sum(Insumo_Almacen.stock)
+			from Herramienta,Insumo,Insumo_Almacen,Almacen
+			where Herramienta.cod_insumo_herramienta=Insumo.cod_insumo and Insumo.cod_insumo=Insumo_Almacen.cod_insumo and 
+				  Almacen.cod_almacen=Insumo_Almacen.cod_almacen and Almacen.nombre=nombreAlmacen
+			group by Insumo.cod_insumo,Insumo.nombre,Herramienta.estado;
+		end; 
+$$
+language'plpgsql';
+select *from getHerramientaStocks('Almacen1');
+select * from Insumo,herramienta
+where Insumo.cod_insumo=Herramienta.cod_insumo_herramienta;
+
+/*23. Funcion que devuelve el precio Total de una sola nota*/
+create or replace function getPrecioTotalUnaNota(cod_nota integer) returns decimal(12,2) as $$
+begin
+	return (select coalesce(cast(sum(cantidad*precio_unitario))as decimal(12,2),0)
+			from Detalle_Ingreso
+			where cod_nota=nro_ingreso
+			);
+end;
+$$
+language plpgsql;
+/*24. Funcion que devuelve una tabla con los precios totales de una nota en el almacen */ 
+--select * from getListaPrecioTotales('Almacen1');
+
+create or replace function getListaPrecioTotales(nombre_almacen varchar(25))
+returns table (codigo_nota integer, fecha_de_Ingreso date,nombre_del_receptor varchar,nombre_del_proveedor varchar,
+			   nombreDelAlmacen varchar, cantidad decimal(12,2)) as $$	
+begin
+	return query select nro_ingreso, fecha_ingreso, nombre_recibe,nombre_proveedor,Almacen.nombre ,getPrecioTotalUnaNota(nro_ingreso)
+				 from Almacen, Proveedor,nota_ingreso
+				 where Almacen.cod_almacen = nota_ingreso.cod_almacen and Proveedor.cod_proveedor = nota_ingreso.cod_proveedor 
+				 		and Almacen.nombre=nombre_almacen;
+end;  
+$$ language 'plpgsql';
+
+/********************************Funcione Nina**********************************/
+/* 25.Trigger para eliminar un detalle_ingreso*/
+create trigger Eliminar_Ingreso after delete
+on Detalle_Ingreso
+for each row 
+    execute procedure Eliminar_DetalleI();
+
+/* 26.Funcion Auxiliar para el trigger*/
+drop function Eliminar_DetalleI cascade;
+create function Eliminar_DetalleI() returns trigger as $$
+begin
+    if(contarDetalle(old.nro_ingreso)=0) then
+	    delete from Nota_Ingreso where Nota_Ingreso.nro_ingreso=old.nro_ingreso;
+	end if;
+  return new;
+end; $$
+language plpgsql;
+
+/* 27.Funcion para contar la cantidad de detalles que tiene una nota de ingreso*/
+create or replace function contarDetalle(nroIngreso integer) returns integer as $$
+begin
+     return (select count(*) from Detalle_Ingreso where Detalle_Ingreso.nro_ingreso=nroIngreso);
+end; $$
+language plpgsql;
+
+
+
+/* 28.Trigger que actualiza el precio total de la presentacion al insertar un servicio*/
+create trigger PresentacionServicioInsertar after insert
+on Presentacion_Servicio
+for each row
+    execute procedure Insertar_PrecioT();
+	
+/* 29.Funcion Auxiliar para el trigger de insercion*/		
+create or replace function Insertar_PrecioT() returns trigger as $$
+   declare
+         precioT decimal(12,2);
+		 codPresentacion integer;
+begin 
+    codPresentacion:=new.cod_presentacion;
+    precioT:=Suma_Precio(codPresentacion);
+    update Presentacion set precio_total=precioT where cod_presentacion=codPresentacion;
+  return new;
+end; $$
+language plpgsql;
+
+/* 30.Funcion que suma los precios unitarios de la tabla Presentacion_Servicio*/
+create or replace FUNCTION Suma_Precio(codPresentacion integer) returns decimal(12,2) as $$
+begin
+    return (select coalesce(sum(precio_unitario),0) from Presentacion_Servicio,Presentacion 
+	        where Presentacion.cod_presentacion=Presentacion_Servicio.cod_presentacion and Presentacion_Servicio.cod_presentacion=codPresentacion);
+end; $$
+language plpgsql;
+
+/* 31.Funcion Trigger para eliminar un servicio de una presentacion*/
+create or replace function Eliminar_PrecioT() returns trigger as $$
+   declare
+         precioT decimal(12,2);
+		 codPresentacion integer;
+begin 
+	raise notice 'Prcesando Eliminacion de Servicio en la Presentacion %',old.cod_presentacion;
+    codPresentacion:=old.cod_presentacion;
+    precioT:=Suma_Precio(codPresentacion);
+    update Presentacion set precio_total=precioT where cod_presentacion=codPresentacion;
+	raise notice 'La eliminacion fue un exito';
+  return old;
+end; $$
+language plpgsql;
+
+/* 32.Trigger para Eliminar un servicio de una Presentacion*/
+create trigger PresentacionServicioEliminar after delete
+on presentacion_servicio
+for each row
+	execute procedure Eliminar_PrecioT();
