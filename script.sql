@@ -1597,7 +1597,7 @@ begin
 end;  
 $$ language 'plpgsql';
 
-/********************************Funcione Nina**********************************/
+
 /* 25.Trigger para eliminar un detalle_ingreso*/
 create trigger Eliminar_Ingreso after delete
 on Detalle_Ingreso
