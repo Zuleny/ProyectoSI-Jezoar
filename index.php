@@ -25,10 +25,10 @@
             <section class="content">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Title</h3>
+                        <h3 class="box-title">Titulo</h3>
                         <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                            <i class="fa fa-minus"></i></button>
+                            <button type="button" class="btn btn-primary" title="Volver Pag. Atras">
+                            <i class="fa fa-fw fa-arrow-circle-left"></i></button>
                         </div>
                     </div>
                    <!-- Inicia tu codigo aqui -->
@@ -43,31 +43,6 @@
                                 <th>Añadir a Venta</th>
                             </thead>
                             <tbody>
-                                <?php
-                                    require_once "model/Data.php";
-                                    $data = new Data();
-                                    $listaProductos = $data->getProductos();
-                                    foreach ($listaProductos as $producto) {
-                                        echo '<tr>';
-                                            echo '<td>'.$producto->id.'</td>';
-                                            echo '<td>'.$producto->nombre.'</td>';
-                                            echo '<td>$'.$producto->precio.'</td>';
-                                            echo '<td>'.$producto->stock.'</td>';
-                                            echo '<td>';
-                                                echo "<form action='controller/agregar.php' method='post'>";
-                                                    echo "<input type='number' name='txtCantidad'>";//editText numerico
-                                                    //type=hidden (no se muestra en el formulario)
-                                                    echo "<input type='hidden' name='txtId' value=".$producto->id.">";
-                                                    echo "<input type='hidden' name='txtNombre' value=".$producto->nombre.">";
-                                                    echo "<input type='hidden' name='txtPrecio' value=".$producto->precio.">";
-                                                    echo "<input type='hidden' name='txtStock' value=".$producto->stock.">";
-                                                    
-                                                    echo "<input type='submit' name='btnAniadir' value='Añadir'>"; //botonAñadir
-                                                echo '</form>';
-                                            echo '</td>';
-                                        echo '</tr>';
-                                    }
-                                ?>
                             </tbody>
                         </table>
                         <?php

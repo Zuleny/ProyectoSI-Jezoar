@@ -4,8 +4,7 @@ class Conexion {
     public $conexionDB;
     //metodos
     public function __construct($host,$port,$nameDB,$user,$passwd){
-        $this->conexionDB=pg_connect("host='$host' port='$port' user='$user' password='$passwd'") 
-        or die("error de conexion".pg_last_error());
+        $this->conexionDB=pg_connect("host=$host dbname=$nameDB port=$port user=$user password=$passwd") or die("Error de conexion Equipo_Jezoar ".pg_last_error());
     }
     //error var $conexionDB no definifda en class
     public function execute($query) {
@@ -21,13 +20,14 @@ class Conexion {
     }
 }  
 /******************Prueba Conexion *****************/ 
-// try {
-//     $conexion=new Conexion('localhost','5432','jezoar','jezoar','123456');
-//     echo "conexion exitosa \n";
-//     $result=$conexion->execute("select nombre from cliente where cod_cliente=1;");
-//     echo pg_result($result,0,0);
-// } catch (\Throwable $th) {
-//     echo pg_last_error();
-// }
+/*
+     $conexion=new Conexion('localhost','5432','postgres','postgres','216042021');
+     if (!$conexion) {
+         die("Error ".pg_last_error());
+     }
+     echo "conexion exitosa \n";
+*/
+     //$result=$conexion->execute("select nombre from cliente where cod_cliente=1;");
+     //echo pg_result($result,0,0);
     
 ?>
