@@ -20,13 +20,13 @@ class Conexion {
     }
 }  
 /******************Prueba Conexion *****************/ 
-/*
-     $conexion=new Conexion('localhost','5432','postgres','postgres','216042021');
+
+     $conexion=new Conexion('localhost','5432','jezoar','jezoar','123456');
      if (!$conexion) {
          die("Error ".pg_last_error());
      }
      echo "conexion exitosa \n";
-*/
+
      //$result=$conexion->execute("select nombre from cliente where cod_cliente=1;");
      //echo pg_result($result,0,0);
     

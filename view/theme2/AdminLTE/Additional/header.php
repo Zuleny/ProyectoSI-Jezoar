@@ -22,7 +22,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- Aqui va la Imagen del Usuario -->
-              <img src="view/assets/AdminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="assets/AdminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">Leonor Claros Torrico</span>
             </a>
           </li>
