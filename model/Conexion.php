@@ -8,7 +8,7 @@ class Conexion {
     }
     //error var $conexionDB no definifda en class
     public function execute($query) {
-        $result=pg_query($this->conexionDB,$sql);
+        $result=pg_query($this->conexionDB,$query);
         if (!$result) {
             die("error en la consulta");
         }
@@ -25,7 +25,7 @@ class Conexion {
      if (!$conexion) {
          die("Error ".pg_last_error());
      }
-     echo "conexion exitosa \n";
+    // echo "conexion exitosa \n";
 
      //$result=$conexion->execute("select nombre from cliente where cod_cliente=1;");
      //echo pg_result($result,0,0);

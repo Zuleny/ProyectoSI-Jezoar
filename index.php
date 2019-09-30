@@ -2,15 +2,15 @@
 <html>
 <head>
     <?php
-        include "view/theme/AdminLTE/Additional/head.php";
+        include "view/theme2/AdminLTE/Additional/head.php";
     ?>
 </head>
 <!-- the fixed layout is not compatible with sidebar-mini -->
 <body class="hold-transition skin-blue fixed sidebar-mini">
     <div class="wrapper">
         <?php
-            include "view/theme/AdminLTE/Additional/header.php";
-            include "view/theme/AdminLTE/Additional/aside.php";
+            include "view/theme2/AdminLTE/Additional/header.php";
+            include "view/theme2/AdminLTE/Additional/aside.php";
         ?>
         <div class="content-wrapper">
             <!-- Titulo de la cabecera -->
@@ -63,6 +63,6 @@
         </div>
     </div>
     <?php
-        include "view/theme/AdminLTE/Additional/scripts.php";
+        include "view/theme2/AdminLTE/Additional/scripts.php";
     ?>
 </body>

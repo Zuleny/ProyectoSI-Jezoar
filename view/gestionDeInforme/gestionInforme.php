@@ -2,15 +2,15 @@
 <html>
 <head>
     <?php
-        include "theme2/AdminLTE/Additional/head.php";
+        include "../../view/theme/AdminLTE/Additional/head.php";
     ?>
 </head>
 <!-- the fixed layout is not compatible with sidebar-mini -->
 <body class="hold-transition skin-blue fixed sidebar-mini">
     <div class="wrapper">
         <?php
-            include "theme2/AdminLTE/Additional/header.php";
-            include "theme2/AdminLTE/Additional/aside.php";
+            include "../../view/theme/AdminLTE/Additional/header.php";
+            include "../../view/theme/AdminLTE/Additional/aside.php";
         ?>
         <div class="content-wrapper">
             <!-- Titulo de la cabecera -->
@@ -72,11 +72,11 @@
                             <div class="row">  
                                 <div class="col-xs-5">
                                     <h3>Antes: </h3> 
-                                    <img src="img/AntesDespues/Cotoca.png " class="img-responsive">
+                                   <!-- <img src="img/AntesDespues/Cotoca.png " class="img-responsive"> -->
                                 </div>
                                 <div class="col-xs-4 ">
                                     <h3> Despues:</h3> 
-                                    <img src="img/AntesDespues/Cotoca1.png " class="pull-right img-responsive">
+                                   <!-- <img src="img/AntesDespues/Cotoca1.png " class="pull-right img-responsive"> -->
                                 </div>
                             </div>
                         </div>
@@ -92,6 +92,6 @@
         </div>
     </div>
     <?php
-        include "theme2/AdminLTE/Additional/scripts.php";
+        include "../../view/theme/AdminLTE/Additional/scripts.php";
     ?>
 </body>

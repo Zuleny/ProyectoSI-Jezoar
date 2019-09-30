@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="assets/Login/style.css">
+    <link rel="stylesheet" href="../public/assets/Login/style.css">
     <title>Login</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
             <i class="fa fa-fw fa-lock" aria-hidden="true"></i>
             <input type="password" placeholder="Password" >
         </div>
-        <input type="button" class="btn" value="Sig in">
+        <input type="button" class="btn" value="Entrar">
     </div>
 </body>
 </html>

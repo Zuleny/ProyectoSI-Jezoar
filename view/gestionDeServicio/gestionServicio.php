@@ -2,15 +2,15 @@
 <html>
 <head>
     <?php
-        include "theme2/AdminLTE/Additional/head.php";
+        include "../../view/theme/AdminLTE/Additional/head.php";
     ?>
 </head>
 <!-- the fixed layout is not compatible with sidebar-mini -->
 <body class="hold-transition skin-blue fixed sidebar-mini">
     <div class="wrapper">
         <?php
-            include "theme2/AdminLTE/Additional/header.php";
-            include "theme2/AdminLTE/Additional/aside.php";
+            include "../../view/theme/AdminLTE/Additional/header.php";
+            include "../../view/theme/AdminLTE/Additional/aside.php";
         ?>
         <div class="content-wrapper">
             <!-- Titulo de la cabecera -->
@@ -69,9 +69,9 @@
                                             <th>Actualizar</th>
                                         </tr>
                                     </thead>
-                                    <!--<tbody>
+                                    <tbody>
                                         <?php
-                                            include "Conexion.php";
+                                            include "../../model/Conexion.php";
                                             $conexion=new Conexion("localhost",5432,"jezoar","jezoar","123456");
                                             $result=$conexion->execute("SELECT servicio.id_servicio,nombre,detalle_servicio.detalle from servicio,detalle_servicio where servicio.id_servicio=detalle_servicio.id_servicio;");
                                             if (!$result) {
@@ -91,7 +91,7 @@
                                                 }
                                             }
                                         ?>
-                                    </tbody>-->
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -108,6 +108,6 @@
         </div>
     </div>
     <?php
-        include "theme2/AdminLTE/Additional/scripts.php";
+        include "../../view/theme/AdminLTE/Additional/scripts.php";
     ?>
 </body>
