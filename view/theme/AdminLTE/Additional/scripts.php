@@ -10,3 +10,4 @@
 <script src="../../public/assets/AdminLTE/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../public/assets/AdminLTE/dist/js/demo.js"></script>
+</body>
