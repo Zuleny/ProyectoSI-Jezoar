@@ -1,3 +1,4 @@
+</div>
 <!-- jQuery 3 -->
 <script src="../../public/assets/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->

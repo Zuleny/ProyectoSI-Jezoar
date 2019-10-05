@@ -1671,3 +1671,19 @@ create trigger PresentacionServicioEliminar after delete
 on presentacion_servicio
 for each row
 	execute procedure Eliminar_PrecioT();
+
+/* 33.Funcion que devuelva el nombre de Persona a traves de su codigo*/
+create or replace function getNombrePersona(codigoPersonal integer)returns text
+as $$ begin
+	return(select nombre
+			from personal
+			where id_personal=codigoPersonal);
+end; $$ 
+language plpgsql;
+/* 34. Funcion que devuelve el id Persona de una persona llevando como parametro su nombre*/
+create or replace function getIdPersonal(nombrePersonal text)returns integer 
+as $$ begin
+	return (select id_personal
+			from personal
+			where nombre=nombrePersonal );
+end $$ language plpgsql;

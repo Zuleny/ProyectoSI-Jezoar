@@ -10,7 +10,7 @@
             </h1>
         </section>
         <!-- Fin de la cabecera -->
-        <!-- contenido -->
+        <!-- contenido de mi Vista -->
         <section class="content">
             <div class="box box-info">
                 <div class="box-header">
@@ -22,26 +22,26 @@
                     </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->                    
-                <form role="form">
+                <form role="form" action="../../controller/servicioController.php" method="post">
                     <!--  Lugar de butons y label y textbox  -->
                     <div class="box-body">
                         <div class="col-lg-6">
                             <label>Id Servicio</label>
-                            <input type="text" class="form-control" placeholder="número">
+                            <input type="number" class="form-control" placeholder="número" name="id_servicio">
                         </div>
                         <div class="col-lg-6">
                             <label>Nombre del Servicio</label>
-                            <input type="text" class="form-control" placeholder="Limpieza general de oficinas">
+                            <input type="text" class="form-control" placeholder="Limpieza general de oficinas" name="nombre_servicio">
                         </div>
                     </div>
                     <div class="box-body">
                         <div class="col-lg-8">
                             <label>Descripcion</label>
-                            <input type="text" class="form-control" placeholder="Descripcion del servicio">
+                            <input type="text" class="form-control" placeholder="Descripcion del servicio" name="descricion">
                         </div>
                         <div class="col-lg-4">
                             <br>
-                            <button type="button" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Registro
+                            <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Registro
                                 <i class="fa fa-fw fa-check"></i>
                             </button>
                         </div>
@@ -73,11 +73,15 @@
                                         if ($nroFilas>0) {
                                             for ($nroTupla=0; $nroTupla < $nroFilas; $nroTupla++){ 
                                                 echo "<tr><td>".'<div contentEditable="false">'. pg_result($result,$nroTupla,0)."</div></td>";
-                                                echo "<td>".'<div contentEditable="true">'.pg_result($result,$nroTupla,1)."</div> </td>";
+                                                echo "<td>".'<div contentEditable="false">'.pg_result($result,$nroTupla,1)."</div> </td>";
                                                 echo "<td>".'<div contentEditable="true">'.pg_result($result,$nroTupla,2)."</td>";
                                                 echo '<td> <div class="btn-group">
                                                                 <button type="button" class="btn btn-warning btn-sm" title="Actualizar">
                                                                     <i class="fa fa-fw fa-refresh"></i>
+                                                                </button>
+                                                                &nbsp
+                                                                <button type="button" class="btn bg-maroon btn-sm" title="Editar">
+                                                                    <i class="fa fa-edit"></i>
                                                                 </button>
                                                             </div>
                                                       </td> </tr>';
@@ -98,7 +102,11 @@
                 <!-- Termina tu codigo aqui -->
             </div>
         </section>
+        <!-- fin de contenido de mi Vista -->
     </div>
 <?php
     include "../../view/theme/AdminLTE/Additional/scripts.php";
 ?>
+<script>
+    
+</script>
