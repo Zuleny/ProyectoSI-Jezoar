@@ -113,15 +113,21 @@
                                             if ($nroFilas>0) {
                                                 for ($nroTupla=0; $nroTupla < $nroFilas; $nroTupla++){ 
 
-                                                    echo "<tr> <td>". pg_result($result,$nroTupla,0)."</td>";
-                                                    echo "<td>".'<div contentEditable="true">'. pg_result($result,$nroTupla,1)."</div></td>";
-                                                    echo "<td>".'<div contentEditable="true">'. pg_result($result,$nroTupla,2)."</div></td>";
+                                                    echo "<tr> <td> ". pg_result($result,$nroTupla,0)."</td>";
+                                                    echo "<td>".'<div contentEditable="false">'. pg_result($result,$nroTupla,1)."</div></td>";
+                                                    echo "<td>".'<div contentEditable="false">'. pg_result($result,$nroTupla,2)."</div></td>";
                                                     echo "<td>". pg_result($result,$nroTupla,3)."</td>";
                                                     echo "<td>". pg_result($result,$nroTupla,4)."</td>";
                                                     echo "<td>". pg_result($result,$nroTupla,5)."</td>";
                                                     echo '<td>  <div class="btn-group">
-                                                                    <button type="button" class="btn btn-success btn-sm" title="Actualizar">
+                                                                    <button type="button" class="btn bg-purple btn-sm" title="Editar">
                                                                         <i class="fa fa-fw fa-edit"></i>
+                                                                    </button>
+                                                                </div></td>';
+
+                                                    echo '<td>  <div class="btn-group">
+                                                                    <button type="button" class="btn btn-warning btn-sm" title="Actualizar">
+                                                                        <i class="fa fa-fw fa-refresh"></i>
                                                                     </button>
                                                                 </div></td> </tr>';
                                                 }
