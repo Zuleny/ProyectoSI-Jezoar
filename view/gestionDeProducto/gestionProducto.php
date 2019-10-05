@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
+
     <?php
         include "../../view/theme/AdminLTE/Additional/head.php";
     ?>
-</head>
+
 <!-- the fixed layout is not compatible with sidebar-mini -->
-<body class="hold-transition skin-blue fixed sidebar-mini">
-    <div class="wrapper">
-        <?php
-            include "../../view/theme/AdminLTE/Additional/header.php";
-            include "../../view/theme/AdminLTE/Additional/aside.php";
-        ?>
+        
         <div class="content-wrapper">
             <!-- Titulo de la cabecera -->
             <section class="content-header">
@@ -32,12 +25,12 @@
                         </div>
                     </div>
                    <!-- Inicia tu codigo aqui -->                    
-                    <form role="form">
+                    <form role="form" method="post" action="../../controller/productoController.php">
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box-body">
                             <div class="col-lg-2">
                                 <label>Codigo de Producto</label>
-                                <input type="text" class="form-control" placeholder="50" name="txtCodProd">
+                                <input type="number" class="form-control" placeholder="50" name="txtCodProd">
                             </div>
                             <div class="col-lg-5">
                                 <label>Nombre de Producto</label>
@@ -49,13 +42,13 @@
                             </div>
                             <div class="col-lg-2">
                                 <label>Precio Unitario</label>
-                                <input type="text" class="form-control" placeholder="7.50" name="txtPrecioUnitario">
+                                <input type="number" class="form-control" placeholder="7.50" name="txtPrecioUnitario">
                             </div>
                         </div>
                         <div class="box-body">
                             <div class="col-lg-12">
                                 <label>Descripcion de Producto</label>
-                                <textarea class="form-control" id="formControlTextarea1" rows="3" placeholder="Escriba una breve descripcion del la utilidad del producto"></textarea>
+                                <textarea class="form-control" name="txtDescripcion" rows="3" placeholder="Escriba una breve descripcion del la utilidad del producto"></textarea>
                             </div>
                             
                         </div>
@@ -63,7 +56,7 @@
                           <div class="col-lg-5">
                            <div class="form-group" data-select2-id="13">
                                <label>Categoria</label>
-                               <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                               <select class="form-control select2 select2-hidden-accessible" name="listaDeCategoria">
                                <?php
                                             include "../../model/Conexion.php";
                                             $conexion=new Conexion("localhost",5432,"jezoar","jezoar","123456");
@@ -75,17 +68,18 @@
                                             $nroFilas=pg_num_rows($result);
                                             if ($nroFilas>0) {
                                                 for ($nroTupla=0; $nroTupla < $nroFilas; $nroTupla++){ 
-                                                    echo '<option  value="">'.pg_result($result,$nroTupla,0).'</option>';
+                                                    echo '<option>'.pg_result($result,$nroTupla,0).'</option>';
                                                 }
                                             }
                                         ?>
                                     
                                </select>
+
                            </div>
                           </div> 
-                        <div class="col-lg-5">
+                        <div class="col-lg-5" method="post" action="../../controller/productoController.php">
                                 <br>
-                                <button type="button" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
+                                <button type="submit" class="btn btn-block btn-success" name="btnInsertarProducto" title="Agregar Servicio">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
                             </div> 
                         </div>
                         <!--  Lugar de butons y label y textbox  -->
@@ -148,8 +142,6 @@
                 </div>
             </section>
         </div>
-    </div>
     <?php
         include "../../view/theme/AdminLTE/Additional/scripts.php";
     ?>
-</body>
