@@ -12,10 +12,6 @@ class Conexion {
         if (!$result) {
             die("error en la consulta");
         }
-<<<<<<< HEAD
-=======
-        
->>>>>>> b12648466318fbda5b460e7e48bf5083ac448eae
         return $result;
     }
 }
