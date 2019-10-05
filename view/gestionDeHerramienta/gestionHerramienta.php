@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
     <?php
         include "../../view/theme/AdminLTE/Additional/head.php";
     ?>
-</head>
-<!-- the fixed layout is not compatible with sidebar-mini -->
-<body class="hold-transition skin-blue fixed sidebar-mini">
-    <div class="wrapper">
-        <?php
-            include "../../view/theme/AdminLTE/Additional/header.php";
-            include "../../view/theme/AdminLTE/Additional/aside.php";
-        ?>
         <div class="content-wrapper">
             <!-- Titulo de la cabecera -->
             <section class="content-header">
@@ -127,4 +116,3 @@
     <?php
         include "../../view/theme/AdminLTE/Additional/scripts.php";
     ?>
-</body>
