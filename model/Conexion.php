@@ -12,10 +12,6 @@ class Conexion {
         if (!$result) {
             die("error en la consulta");
         }
-        if (pg_num_rows($result)===0) {
-            echo "empty query \n";
-            return $result;
-        }
         return $result;
     }
 }
