@@ -20,7 +20,8 @@
                             <i class="fa fa-fw fa-arrow-circle-left"></i></button>
                         </div>
                     </div>
-                   <!-- Inicia tu codigo aqui -->                    
+                   <!-- Inicia tu codigo aqui -->   
+                                    
                     <form role="form"action="../../controller/herramientaController.php" method="get">
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box-body">
