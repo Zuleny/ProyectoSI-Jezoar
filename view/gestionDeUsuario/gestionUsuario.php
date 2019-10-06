@@ -85,7 +85,7 @@
                                                                 <i class="fa fa-fw fa-refresh"></i>
                                                             </button>
                                                             &nbsp
-                                                            <button type="button" class="btn bg-maroon btn-sm" title="Editar">
+                                                            <button type="button" class="btn bg-purple btn-sm" title="Editar">
                                                                 <i class="fa fa-edit"></i>
                                                             </button>
                                                         </div>
@@ -99,9 +99,9 @@
                 </div>
             </form>
             <div class="box-footer">
-                <a href="hola" class="btn btn-block btn-social btn-facebook">
-                    <i class="fa fa-facebook"></i>
-                    Página de Facebook de Jezoar
+                <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">
+                        <i class="fa fa-facebook"></i>
+                            Página de Facebook de Jezoar
                 </a>
             </div>
             <!-- Termina tu codigo aqui -->

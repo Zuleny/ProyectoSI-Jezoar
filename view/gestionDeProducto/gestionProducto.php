@@ -97,6 +97,7 @@
                                             <th>Marca</th>
                                             <th>Categoria</th>
                                             <th>Precio</th>
+                                            <th>Actualizar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -119,17 +120,17 @@
                                                     echo "<td>". pg_result($result,$nroTupla,3)."</td>";
                                                     echo "<td>". pg_result($result,$nroTupla,4)."</td>";
                                                     echo "<td>". pg_result($result,$nroTupla,5)."</td>";
-                                                    echo '<td>  <div class="btn-group">
-                                                                    <button type="button" class="btn bg-purple btn-sm" title="Editar">
-                                                                        <i class="fa fa-fw fa-edit"></i>
-                                                                    </button>
-                                                                </div></td>';
-
-                                                    echo '<td>  <div class="btn-group">
-                                                                    <button type="button" class="btn btn-warning btn-sm" title="Actualizar">
+                                                    echo '<td>  
+                                                                <div class="btn-group">
+                                                                    <button type="button" class="btn btn-warning btn-xs" title="Actualizar">
                                                                         <i class="fa fa-fw fa-refresh"></i>
                                                                     </button>
-                                                                </div></td> </tr>';
+                                                                    <button type="button" class="btn bg-purple btn-xs" title="Editar">
+                                                                        <i class="fa fa-edit"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </td> 
+                                                        </tr>';
                                                 }
                                             }
                                         ?>
@@ -139,7 +140,7 @@
                         </div>
                     </form>
                     <div>
-                        <a href="hola" class="btn btn-block btn-social btn-facebook">
+                        <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">
                             <i class="fa fa-facebook"></i>
                             Página de Facebook de Jezoar
                         </a>

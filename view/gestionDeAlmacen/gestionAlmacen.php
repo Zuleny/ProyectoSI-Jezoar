@@ -87,19 +87,16 @@
                                                     echo "<td>".'<div contentEditable="false">'. pg_result($result,$nroTupla,1)."</div></td>";
                                                     echo "<td>".'<div contentEditable="false">'. pg_result($result,$nroTupla,2)."</div></td>";
                                                     echo '<td> 
-                                                                 <div class="btn-group">                                               
+                                                                <div class="btn-group">                                               
                                                                     <button type="button" class="btn btn-warning btn-xs" title="Actualizar">
                                                                         <i class="fa fa-fw fa-refresh"></i>
                                                                     </button>
-                                                                        <button type="button" class="btn bg-purple btn-xs" title="Editar">
-                                                                        <onclick= document.getElementById("Ed").contentEditable = "true";>
+                                                                    <button type="button" class="btn bg-purple btn-xs" title="Editar">
                                                                         <i class="fa fa-edit"></i>
-                                                                
                                                                     </button>
                                                                 </div>
-                                                         </td> 
-                                                    </tr>';
-                                                                    
+                                                            </td> 
+                                                        </tr>';            
                                                 }
                                             }
                                             
