@@ -29,6 +29,7 @@
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-primary" title="Volver Atras">
                             <i class="fa fa-fw fa-arrow-circle-left"></i></button>
+                            
                         </div>
                     </div>
                    <!-- Inicia tu codigo aqui -->                    
@@ -113,11 +114,7 @@
                                 </div>
 
                             </div>
-                        </div>                         
-                        <div class="box-body">
-                            <div class="col-lg-2" >                                
-                                <button type="button" class="btn btn-block btn-primary" title="Agregar Servicio">Agregar cliente <i class="fa fa-fw fa-user-plus"></i></button>
-                            </div>
+                        </div>                   
             <!--            <div class="col-lg-2">                                
                                 <button type="button" class="btn btn-block btn-primary" title="Agregar Servicio">Editar cliente <i class="fa fa-fw fa-edit"></i></button>
                              </div>

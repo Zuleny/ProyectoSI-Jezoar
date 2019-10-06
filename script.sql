@@ -22,11 +22,10 @@ create table Cliente (
 	tipo char(1) not null	--E:Empresa; P:Persona
 );
 
-create table telefono (
-	cod_telefono int not null,
+create table telefono (	
 	cod_cliente_telefono int not null,
 	telefono varchar(10) not null,
-	primary key(cod_telefono,cod_cliente_telefono),
+	primary key(cod_cliente_telefono,telefono),
 	foreign key (cod_cliente_telefono) references cliente(cod_cliente)
 	on update cascade on delete cascade
 );
@@ -327,15 +326,15 @@ insert into Cliente values(4,'FONPLATA ','San Martin,2do Anillo','fonplataSC@gma
 insert into Cliente values(5,'Maria Leon Perez','Av. Centenario,1er anillo',null,'P');
 insert into Cliente values(6,'Michael Espada Lopez','Av. Noel Kempff Mercado','espada_michael@hotmail.com','P');
 
-insert into Telefono(cod_cliente_telefono,cod_telefono,telefono) values(1,1,'65646261');
-insert into Telefono(cod_cliente_telefono,cod_telefono,telefono) values(1,2,'78451296');
-insert into Telefono(cod_cliente_telefono,cod_telefono,telefono) values(2,3,'75124587');
-insert into Telefono(cod_cliente_telefono,cod_telefono,telefono) values(3,4,'65646261');
-insert into Telefono(cod_cliente_telefono,cod_telefono,telefono) values(3,5,'68451232');
-insert into Telefono(cod_cliente_telefono,cod_telefono,telefono) values(4,6,'70002145');
-insert into Telefono(cod_cliente_telefono,cod_telefono,telefono) values(5,7,'70784515');
-insert into Telefono(cod_cliente_telefono,cod_telefono,telefono) values(6,8,'62155489');
-insert into Telefono(cod_cliente_telefono,cod_telefono,telefono) values(6,9,'78964546');
+insert into Telefono(cod_cliente_telefono,telefono) values(1,'65646261');
+insert into Telefono(cod_cliente_telefono,telefono) values(1,'78451296');
+insert into Telefono(cod_cliente_telefono,telefono) values(2,'75124587');
+insert into Telefono(cod_cliente_telefono,telefono) values(3,'65646261');
+insert into Telefono(cod_cliente_telefono,telefono) values(3,'68451232');
+insert into Telefono(cod_cliente_telefono,telefono) values(4,'70002145');
+insert into Telefono(cod_cliente_telefono,telefono) values(5,'70784515');
+insert into Telefono(cod_cliente_telefono,telefono) values(6,'62155489');
+insert into Telefono(cod_cliente_telefono,telefono) values(6,'78964546');
 
 insert  into Empresa values (1,'2031215562');
 insert  into Empresa values (2,'3265412017');
