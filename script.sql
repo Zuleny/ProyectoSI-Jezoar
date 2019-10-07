@@ -1380,7 +1380,7 @@ for each row
 	execute procedure detalleEgresoAnulacion();
 
 
-/*14. Funcion que obtiene la fecha realizada de una nota especifica*/
+/*12. Funcion que obtiene la fecha realizada de una nota especifica*/
 create or replace function getFechaNota(nroNota INTEGER)returns date as 
 $$
 begin
@@ -1390,7 +1390,7 @@ begin
 end;
 $$ language plpgsql;
 
-/*15. Funcion Trigger que Elimina una registro de una nota de Devolucion*/
+/*13. Funcion Trigger que Elimina una registro de una nota de Devolucion*/
 create or replace function detalleDevolucionAnulacion()returns trigger as $BODY$ 
 declare codAlmacen INTEGER;
 		codInsumo INTEGER;
@@ -1418,14 +1418,14 @@ begin
 end;
 $BODY$ language plpgsql;
 
-/*16. */
+/*14. */
 create trigger detalleNotaDevolucionAnulacion after delete
 on detalle_nota
 for each row
 	execute procedure detalleDevolucionAnulacion();
 
 
-/*17. Trigger para el proceso de Anulacion de un registro de una Nota de Devolucion*/
+/*15. Trigger para el proceso de Anulacion de un registro de una Nota de Devolucion*/
 create or replace function ingresoDetalle() returns trigger as 
 $$
     declare codInsumo integer;
@@ -1569,14 +1569,11 @@ begin
 		end; 
 $$
 language'plpgsql';
-select *from getHerramientaStocks('Almacen1');
-select * from Insumo,herramienta
-where Insumo.cod_insumo=Herramienta.cod_insumo_herramienta;
 
 /*23. Funcion que devuelve el precio Total de una sola nota*/
 create or replace function getPrecioTotalUnaNota(cod_nota integer) returns decimal(12,2) as $$
 begin
-	return (select coalesce(cast(sum(cantidad*precio_unitario))as decimal(12,2),0)
+	return (select coalesce(cast(sum(cantidad*precio_unitario)as decimal(12,2)),0)
 			from Detalle_Ingreso
 			where cod_nota=nro_ingreso
 			);
@@ -1597,15 +1594,7 @@ begin
 end;  
 $$ language 'plpgsql';
 
-
-/* 25.Trigger para eliminar un detalle_ingreso*/
-create trigger Eliminar_Ingreso after delete
-on Detalle_Ingreso
-for each row 
-    execute procedure Eliminar_DetalleI();
-
-/* 26.Funcion Auxiliar para el trigger*/
-drop function Eliminar_DetalleI cascade;
+/* 25.Funcion Auxiliar para el trigger*/
 create function Eliminar_DetalleI() returns trigger as $$
 begin
     if(contarDetalle(old.nro_ingreso)=0) then
@@ -1615,6 +1604,13 @@ begin
 end; $$
 language plpgsql;
 
+
+/* 26.Trigger para eliminar un detalle_ingreso*/
+create trigger Eliminar_Ingreso after delete
+on Detalle_Ingreso
+for each row 
+    execute procedure Eliminar_DetalleI();
+
 /* 27.Funcion para contar la cantidad de detalles que tiene una nota de ingreso*/
 create or replace function contarDetalle(nroIngreso integer) returns integer as $$
 begin
@@ -1622,15 +1618,7 @@ begin
 end; $$
 language plpgsql;
 
-
-
-/* 28.Trigger que actualiza el precio total de la presentacion al insertar un servicio*/
-create trigger PresentacionServicioInsertar after insert
-on Presentacion_Servicio
-for each row
-    execute procedure Insertar_PrecioT();
-	
-/* 29.Funcion Auxiliar para el trigger de insercion*/		
+/* 28.Funcion Auxiliar para el trigger de insercion*/		
 create or replace function Insertar_PrecioT() returns trigger as $$
    declare
          precioT decimal(12,2);
@@ -1642,6 +1630,14 @@ begin
   return new;
 end; $$
 language plpgsql;
+
+
+/* 29.Trigger que actualiza el precio total de la presentacion al insertar un servicio*/
+create trigger PresentacionServicioInsertar after insert
+on Presentacion_Servicio
+for each row
+    execute procedure Insertar_PrecioT();
+	
 
 /* 30.Funcion que suma los precios unitarios de la tabla Presentacion_Servicio*/
 create or replace FUNCTION Suma_Precio(codPresentacion integer) returns decimal(12,2) as $$
