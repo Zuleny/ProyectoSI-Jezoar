@@ -16,9 +16,9 @@
             <input type="password" placeholder="Password" name="password">
         </div>
         <input type="submit" class="btn" value="Sign In">
-        <a href="hola" class="btn btn-block btn-social btn-facebook">
+        <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">
             <i class="fa fa-facebook"></i>
-              Página de Facebook de Jezoar
+            Página de Facebook de Jezoar
         </a>
     </form>
 </body>
