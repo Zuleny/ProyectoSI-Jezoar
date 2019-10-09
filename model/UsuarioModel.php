@@ -47,6 +47,10 @@ class Usuario {
         return $this->conexion->execute("SELECT cod_usuario,nombre,getNombrePersona(id_personal_usuario) FROM usuario;");
     }
 
+    public function getListPersonal(){
+        return $this->conexion->execute("SELECT nombre FROM personal;");
+    }
+
     /**
      * Retorna la cantidad de usuarios registrados en el sistema (BD)
      */
@@ -54,6 +58,8 @@ class Usuario {
         $result = $this->conexion->execute("select count(*) from usuario;");
         return pg_result($result,0,0);
     }
+
+    
 }
 
 ?>
