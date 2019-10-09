@@ -336,6 +336,7 @@ insert into Telefono(cod_cliente_telefono,telefono) values(5,'70784515');
 insert into Telefono(cod_cliente_telefono,telefono) values(6,'62155489');
 insert into Telefono(cod_cliente_telefono,telefono) values(6,'78964546');
 
+
 insert  into Empresa values (1,'2031215562');
 insert  into Empresa values (2,'3265412017');
 insert  into Empresa values (3,'3265412017');
@@ -1417,14 +1418,13 @@ begin
 end;
 $BODY$ language plpgsql;
 
-/*14. */
+/*14. Trigger para anular un detalle de una nota de devolucion*/
 create trigger detalleNotaDevolucionAnulacion after delete
 on detalle_nota
 for each row
 	execute procedure detalleDevolucionAnulacion();
 
-
-/*15. Trigger para el proceso de Anulacion de un registro de una Nota de Devolucion*/
+/*15. Funcion auxiliar para el trigger iDetalleIngreso*/	
 create or replace function ingresoDetalle() returns trigger as 
 $$
     declare codInsumo integer;
@@ -1439,7 +1439,6 @@ $$
 	
 		else 
 		   raise notice 'Error: Insumo no encontrado, Registre el insumo';
-  		   --delete from detalle_ingreso where nro_ingreso=new.nro_ingreso and id_ingreso=new.id_ingreso;
 		   RAISE EXCEPTION 'Error: No se registro el detalle % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
 		end if;
 		return new;
@@ -1447,69 +1446,12 @@ $$
 $$
 language plpgsql;
 
-/*18. Trigger para actualizar el stock de un determinado insumo y almacen al momento de insertar una fila en la tabla Detalle_Ingreso */
+/*16. Trigger para actualizar el stock de un determinado insumo y almacen al momento de insertar una fila en la tabla Detalle_Ingreso */
 create trigger iDetalleIngreso 
 before insert on Detalle_Ingreso
 for each row 
 	execute procedure ingresoDetalle();
-
-/*19. */	
-create or replace function dIngresoDetalle() returns trigger as 
-$$
-declare codInsumo integer;
-		codAlmacen integer;
-		stocki integer;
-begin
-	codInsumo:=getCodInsumo(old.nombre_insumo);
-	codAlmacen:=getCodAlmacen(old.nro_ingreso);
-	stocki:=getstockinsumo(old.nombre_insumo,codAlmacen);
-	if(old.cantidad<=stocki) then
-	   update Insumo_Almacen set stock=stock-old.cantidad
-	   where cod_insumo=codInsumo and cod_almacen=codAlmacen;
-	   raise notice 'El Insumo % se ha eliminado correctamente del Nro de Ingreso: % ',old.nombre_insumo,old.nro_ingreso;
-	else
-	   raise exception 'Error: El stock del insumo % es % y la cantidad a eliminar es % del Nro de Ingreso: % ',old.nombre_insumo,stocki,old.cantidad,old.nro_ingreso;
-	end if;
-return old;
-end;
-$$
-language plpgsql;
-
-/*20. Trigger para actualizar el stock de un determinado insumo y almacen al momento de 
-eliminar una fila en la tabla Detalle_Ingreso*/
-create trigger dDetalleIngreso 
-before delete on Detalle_Ingreso
-for each row 
-	execute procedure dIngresoDetalle();
-
-create or replace function ingresoDetalle() returns trigger as 
-$$
-    declare codInsumo integer;
-            codAlmacen integer;
-    begin 
-		codInsumo:=getCodInsumo(new.nombre_insumo);
-		if(existeInsumo(codInsumo)) then 
-		   codAlmacen:=getCodAlmacen(new.nro_ingreso);
-		   update Insumo_Almacen set stock=stock+new.cantidad
-		   where cod_insumo=codInsumo and cod_almacen=codAlmacen;
-		   raise notice 'Insumo registrado exitosamente: insumo: % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
-	
-		else 
-		   raise notice 'Error: Insumo no encontrado, Registre el insumo';
-  		   --delete from detalle_ingreso where nro_ingreso=new.nro_ingreso and id_ingreso=new.id_ingreso;
-		   RAISE EXCEPTION 'Error: No se registro el detalle % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
-		end if;
-		return new;
-	end;
-$$
-language plpgsql;
-
-/*12. Trigger para actualizar el stock de un determinado insumo y almacen al momento de insertar una fila en la tabla Detalle_Ingreso */
-create trigger iDetalleIngreso 
-before insert on Detalle_Ingreso
-for each row 
-	execute procedure ingresoDetalle();
-
+/*17. Funcion Auxiliar para el trigger dDetalleIngreso*/
 create or replace function dIngresoDetalle() returns trigger as 
 $$
     declare codInsumo integer;
@@ -1530,13 +1472,13 @@ $$
 	end;
 $$
 language plpgsql;
-
-/*12. Trigger para actualizar el stock de un determinado insumo y almacen al momento de 
+/*18. Trigger para actualizar el stock de un determinado insumo y almacen al momento de 
 eliminar una fila en la tabla Detalle_Ingreso*/
 create trigger dDetalleIngreso 
 before delete on Detalle_Ingreso
 for each row 
 	execute procedure dIngresoDetalle();
+
  /*PROCEDIMIENTOS */
 	
 	
@@ -1568,11 +1510,14 @@ begin
 		end; 
 $$
 language'plpgsql';
+select *from getHerramientaStocks('Almacen1');
+select * from Insumo,herramienta
+where Insumo.cod_insumo=Herramienta.cod_insumo_herramienta;
 
 /*23. Funcion que devuelve el precio Total de una sola nota*/
 create or replace function getPrecioTotalUnaNota(cod_nota integer) returns decimal(12,2) as $$
 begin
-	return (select coalesce(cast(sum(cantidad*precio_unitario)as decimal(12,2)),0)
+	return (select coalesce(cast(sum(cantidad*precio_unitario))as decimal(12,2),0)
 			from Detalle_Ingreso
 			where cod_nota=nro_ingreso
 			);
@@ -1593,7 +1538,15 @@ begin
 end;  
 $$ language 'plpgsql';
 
-/* 25.Funcion Auxiliar para el trigger*/
+
+/* 25.Trigger para eliminar un detalle_ingreso*/
+create trigger Eliminar_Ingreso after delete
+on Detalle_Ingreso
+for each row 
+    execute procedure Eliminar_DetalleI();
+
+/* 26.Funcion Auxiliar para el trigger*/
+drop function Eliminar_DetalleI cascade;
 create function Eliminar_DetalleI() returns trigger as $$
 begin
     if(contarDetalle(old.nro_ingreso)=0) then
@@ -1603,13 +1556,6 @@ begin
 end; $$
 language plpgsql;
 
-
-/* 26.Trigger para eliminar un detalle_ingreso*/
-create trigger Eliminar_Ingreso after delete
-on Detalle_Ingreso
-for each row 
-    execute procedure Eliminar_DetalleI();
-
 /* 27.Funcion para contar la cantidad de detalles que tiene una nota de ingreso*/
 create or replace function contarDetalle(nroIngreso integer) returns integer as $$
 begin
@@ -1617,7 +1563,15 @@ begin
 end; $$
 language plpgsql;
 
-/* 28.Funcion Auxiliar para el trigger de insercion*/		
+
+
+/* 28.Trigger que actualiza el precio total de la presentacion al insertar un servicio*/
+create trigger PresentacionServicioInsertar after insert
+on Presentacion_Servicio
+for each row
+    execute procedure Insertar_PrecioT();
+	
+/* 29.Funcion Auxiliar para el trigger de insercion*/		
 create or replace function Insertar_PrecioT() returns trigger as $$
    declare
          precioT decimal(12,2);
@@ -1629,14 +1583,6 @@ begin
   return new;
 end; $$
 language plpgsql;
-
-
-/* 29.Trigger que actualiza el precio total de la presentacion al insertar un servicio*/
-create trigger PresentacionServicioInsertar after insert
-on Presentacion_Servicio
-for each row
-    execute procedure Insertar_PrecioT();
-	
 
 /* 30.Funcion que suma los precios unitarios de la tabla Presentacion_Servicio*/
 create or replace FUNCTION Suma_Precio(codPresentacion integer) returns decimal(12,2) as $$
