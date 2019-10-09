@@ -6,7 +6,7 @@ class Categoria {
     public $nombreCategoria;
     public $conexion;
 
-    public function __construct($codigoCat,$nombreCat){
+    public function __construct($codigoCat=0,$nombreCat=""){
         $this->codCategoria=$codigoCat;
         $this->nombreCategoria=$nombreCat;
         $this->conexion=new Conexion();
@@ -26,5 +26,13 @@ class Categoria {
             return false;
         }
     } 
+
+    public function getCantidadCategorias(){
+        $result=$this->conexion->execute("select count(*) from categoria;");
+        return pg_result($result,0,0);
+    }
+    public function getNewCodigoCategoria(){
+        return $this->getCantidadCategorias()+1;
+    }
 }
 ?>

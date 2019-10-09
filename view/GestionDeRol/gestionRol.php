@@ -22,7 +22,7 @@
                     <form class="box-body" action="../../controller/rolController.php" method="post">
                         <div class="col-lg-5">
                             <div class="form-group col-md-12">
-                                <h4><br>Nota: </b></h4>
+                                <h4><b>Nota: </b></h4>
                                 <p>
                                 Los Usuarios al registrarse tendran que tener algun rol 
                                 para poder navegar por el sistema, es importante tener a sus usuarios
@@ -31,7 +31,7 @@
                                 <label>Descripcion de Rol</label>
                                 <input type="text" class="form-control" placeholder="Descripcion de Rol de Usuario" name="descripcionRol">
                                 <br>
-                                <button type="submit" class="btn btn-block btn-success" title="Agregar Rol">Agregar Rol de Usuario
+                                <button type="submit" class="btn btn-block btn-success" title="Agregar Rol">Agregar Rol
                                     <i class="fa fa-fw fa-floppy-o"></i>
                                 </button>
                                 <button type="submit" class="btn btn-block btn-primary" title="Asignar Permisos">Asignar Roles a Usuarios

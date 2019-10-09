@@ -12,7 +12,7 @@
         <!-- Fin de la cabecera -->
         <!-- contenido de mi Vista -->
         <section class="content">
-            <div class="box box-info">
+            <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">Gestion de Servicios</h3>
                     <div class="box-tools pull-right">
@@ -25,11 +25,7 @@
                 <form role="form" action="../../controller/servicioController.php" method="post">
                     <!--  Lugar de butons y label y textbox  -->
                     <div class="box-body">
-                        <div class="col-lg-6">
-                            <label>Id Servicio</label>
-                            <input type="number" class="form-control" placeholder="número" name="id_servicio">
-                        </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-8">
                             <label>Nombre del Servicio</label>
                             <input type="text" class="form-control" placeholder="Limpieza general de oficinas" name="nombre_servicio">
                         </div>
@@ -37,11 +33,11 @@
                     <div class="box-body">
                         <div class="col-lg-8">
                             <label>Descripcion</label>
-                            <input type="text" class="form-control" placeholder="Descripcion del servicio" name="descricion">
+                            <input type="text" class="form-control" placeholder="Descripcion del servicio" name="descripcion">
                         </div>
                         <div class="col-lg-4">
                             <br>
-                            <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Registro
+                            <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Servicio
                                 <i class="fa fa-fw fa-check"></i>
                             </button>
                         </div>
@@ -58,35 +54,14 @@
                                         <th>Id Servicio</th>
                                         <th>Nombre</th>
                                         <th>Descripcion</th>
-                                        <th>Actualizar</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                        include "../../model/Conexion.php";
-                                        $conexion=new Conexion("localhost",5432,"jezoar","jezoar","123456");
-                                        $result=$conexion->execute("SELECT servicio.id_servicio,nombre,detalle_servicio.detalle from servicio,detalle_servicio where servicio.id_servicio=detalle_servicio.id_servicio;");
-                                        if (!$result) {
-                                            die("Error en la consulta");
-                                        }
-                                        $nroFilas=pg_num_rows($result);
-                                        if ($nroFilas>0) {
-                                            for ($nroTupla=0; $nroTupla < $nroFilas; $nroTupla++){ 
-                                                echo "<tr><td>".'<div contentEditable="false">'. pg_result($result,$nroTupla,0)."</div></td>";
-                                                echo "<td>".'<div contentEditable="false">'.pg_result($result,$nroTupla,1)."</div> </td>";
-                                                echo "<td>".'<div contentEditable="true">'.pg_result($result,$nroTupla,2)."</td>";
-                                                echo '<td> <div class="btn-group">
-                                                                <button type="button" class="btn btn-warning btn-sm" title="Actualizar">
-                                                                    <i class="fa fa-fw fa-refresh"></i>
-                                                                </button>
-                                                                &nbsp
-                                                                <button type="button" class="btn bg-purple btn-sm" title="Editar">
-                                                                    <i class="fa fa-edit"></i>
-                                                                </button>
-                                                            </div>
-                                                      </td> </tr>';
-                                            }
-                                        }
+                                        require '../../controller/servicioController.php';
+                                        $printer=getListaServicios();
+                                        echo $printer;
                                     ?>
                                 </tbody>
                             </table>

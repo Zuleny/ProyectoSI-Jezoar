@@ -1,36 +1,20 @@
-    require "../model/RolModel.php";
+gestionInforme      -> Magui
+gestionCliente      -> Magui
+gestionContrato     -> Magui
+gestionProducto     -> Zuleny
+gestionPropuesta    -> Stephani / Zuleny
+gestionAlmacen      -> Stephani
+gestionCotizacion   -> Nina
+gestionHearramienta -> Nina
+gestionCategoria    -> Ruddy
+gestionRol          -> Ruddy
+gestionServicio     -> Ruddy
+gestionUsuario      -> Ruddy
 
-    $descripcion=$_POST['descripcionRol'];
-
-    if (isset($descripcion)) {
-        $rol = new Rol(0,$descripcion);
-        $rol->codRol=$rol->getNewCodigoRol();
-        if ($rol->insertNewRol()) {
-            header('Location: ../view/GestionDeRol/gestionRol.php');
-        }else{
-            echo "Error al insertar";
-        }
-    }
-
-    function getListaRolesAVista(){
-        $printer="";
-        $rol=new Rol(0,$descripcion);
-        $result=$rol->getListaRoles();
-        $countTuplas=pg_num_rows($result);
-        for ($tupla=0; $tupla < $countTuplas; $tupla++) { 
-            $printer+='<tr> <td>'.pg_result($result,$tupla,0).'</td>';
-            $printer+='     <td>'.pg_result($result,$tupla,1).'</td>';
-            $printer+='     <td> <div class="btn-group">
-                                    <button type="button" class="btn btn-warning btn-sm" title="Actualizar">
-                                        <i class="fa fa-fw fa-refresh"></i>
-                                    </button>
-                                    &nbsp
-                                    <button type="button" class="btn bg-purple btn-sm" title="Editar">
-                                        <i class="fa fa-edit"></i>
-                                    </button>
-                                 </div>
-                            </td>
-                       </tr>';
-        }
-        return $printer;
-    }
+Magui:      3 
+Zuleny:     1.5
+Stephani:   1.5
+Nina:       2
+Ruddy:      4
+---------------
+Total       12

@@ -13,6 +13,7 @@ class Servicio {
         $this->descripcion=$descripcion;
         $this->conexion=new Conexion();
     }
+
     public function insertarServicio(){
         try {
             $this->conexion->execute("insert into servicio(id_servicio,nombre) values ($this->id_servicio,'$this->nombre');");
@@ -21,6 +22,20 @@ class Servicio {
         } catch (\Throwable $th) {
             return false;
         }
+    }
+
+    public function getCantidadServicios(){
+        $result=$this->conexion->execute("select count(*) from servicio;");
+        return pg_result($result,0,0);
+    }
+
+    public function getNewIdServicio(){
+        return $this->getCantidadServicios()+1;
+    }
+ 
+    public function getListDeServicios(){
+        $result=$this->conexion->execute("select servicio.id_servicio, nombre, detalle from servicio,detalle_servicio where servicio.id_servicio=detalle_servicio.id_servicio;");
+        return $result;
     }
 }
 ?>
