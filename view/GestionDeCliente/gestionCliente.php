@@ -80,14 +80,7 @@
                                     <span class="input-group-addon"><i class="fa fa-phone fa-fw" aria-hidden="true"></i></span>
                                         <input type="text" name = "telefono2_cliente" class="form-control">
                                 </div>
-                            </div>
-
-                            
-                            <div class="col-lg-2" >                                
-                                <button type="submit" name ="agregar_cliente" class="btn btn-block btn-primary" title="Agregar Servicio">Agregar cliente <i class="fa fa-fw fa-user-plus"></i></button>
-                            </div>
-                        
-
+                            </div>    
 
                         </div>
 
@@ -103,34 +96,19 @@
                         </div>
 
                         <div class="box-body">
-                            <div class="col-lg-5">  
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tipo" value="E">
-                                    <label class="form-check-label" for="inlineRadio1">Empresa</label>
-                                </div>  
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tipo" value="P">
-                                    <label class="form-check-label" for="inlineRadio1">Persona</label>
-                                </div>
-
+                            <div class="col-lg-2">  
+                            <label>Tipo de cliente:</label>
+                            <br>
+                                <p><input type="radio" name="tipo" value="P">Persona</p>
+                                <p><input type="radio" name="tipo" value="E">Empresa</p>
                             </div>
-                        </div>                   
-            <!--            <div class="col-lg-2">                                
-                                <button type="button" class="btn btn-block btn-primary" title="Agregar Servicio">Editar cliente <i class="fa fa-fw fa-edit"></i></button>
-                             </div>
-                            <div class="col-lg-2">                                
-                                    <button type="button" class="btn btn-block btn-primary" title="Agregar Servicio">Guardar cambios <i class="fa fa-fw fa-save"></i></button>
+                        </div>                
+                        <div class="box-body">   
+                            <div class="col-lg-2" >                                
+                                <button type="submit" name ="agregar_cliente" class="btn btn-block btn-primary" title="Agregar Servicio">Agregar cliente <i class="fa fa-fw fa-user-plus"></i></button>
                             </div>
-                            <div class="col-lg-3">                                
-                                <div class="input-group margin-bottom-sm" > 
-                                    <span class="input-group-addon " style="color: #00a3e8"><i class="fa fa-search fa-fw fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" placeholder="Buscar cliente" >
-                                </div>
-                            </div>          -->
-                            
-                        </div>                        
-
-
+                        </div>
+                    </div>  
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box box-info">
                             <div class="box-header">
