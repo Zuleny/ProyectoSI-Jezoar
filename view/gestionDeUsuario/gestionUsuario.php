@@ -36,13 +36,9 @@
                         <label>Nombre Personal</label>
                         <select class="form-control" name="nombrePersonal" >
                             <?php
-                                include "../../model/Conexion.php";
-                                $conexion=new Conexion();
-                                $result=$conexion->execute("select nombre from Personal;");
-                                $nroFilas=pg_num_rows($result);
-                                for ($tupla=0; $tupla < $nroFilas ; $tupla++) { 
-                                    echo '<option value="'.pg_result($result,$tupla,0).'">'.pg_result($result,$tupla,0).'</option>';
-                                }
+                                require "../../controller/usuarioController.php";
+                                $lista=getListaPersonal();
+                                echo $lista;
                             ?>
                         </select>
                     </div>
@@ -70,28 +66,8 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $result=$conexion->execute("SELECT cod_usuario,nombre,getNombrePersona(id_personal_usuario) FROM usuario;");
-                                    if (!$result) {
-                                        die("Error en la consulta");
-                                    }
-                                    $nroFilas=pg_num_rows($result);
-                                    if ($nroFilas>0) {
-                                        for ($nroTupla=0; $nroTupla < $nroFilas; $nroTupla++){ 
-                                            echo "<tr><td>".'<div contentEditable="false">'. pg_result($result,$nroTupla,0)."</div></td>";
-                                            echo "<td>".'<div contentEditable="false">'.pg_result($result,$nroTupla,1)."</div> </td>";
-                                            echo "<td>".'<div contentEditable="true">'.pg_result($result,$nroTupla,2)."</td>";
-                                            echo '<td> <div class="btn-group">
-                                                            <button type="button" class="btn btn-warning btn-sm" title="Actualizar">
-                                                                <i class="fa fa-fw fa-refresh"></i>
-                                                            </button>
-                                                            &nbsp
-                                                            <button type="button" class="btn bg-purple btn-sm" title="Editar">
-                                                                <i class="fa fa-edit"></i>
-                                                            </button>
-                                                        </div>
-                                                    </td> </tr>';
-                                        }
-                                    }
+                                    $lista=getListaDeUsuarios();
+                                    echo $lista;
                                 ?>
                             </tbody>
                         </table>

@@ -16,9 +16,6 @@ create or replace function ingresoDetalle
 create trigger iDetalleIngreso 
 create or replace function dIngresoDetalle
 create trigger dDetalleIngreso 
-create or replace function ingresoDetalle
-create trigger iDetalleIngreso 
-create trigger dDetalleIngreso 
 create or replace function getInventarioDeProductos
 create or Replace function getHerramientaStock
 create or replace function getPrecioTotalUnaNota
