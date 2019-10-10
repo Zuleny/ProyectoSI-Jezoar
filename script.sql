@@ -1479,6 +1479,38 @@ before delete on Detalle_Ingreso
 for each row 
 	execute procedure dIngresoDetalle();
 
+/*19. Devuelve el nombre de la categoria a la que pertenece un determinado codigo producto*/
+CREATE OR REPLACE FUNCTION getcategoriadeproducto(cod_prod integer)RETURNS varchar(200)
+AS $BODY$
+   begin
+   return(select Categoria.nombre from Categoria,Producto_Categoria 
+		  where Categoria.cod_categoria=Producto_categoria.cod_categoria and Producto_Categoria.cod_insumo_producto=cod_prod);
+   end;
+$BODY$
+LANGUAGE 'plpgsql';
+
+/*20. Devuelve el codigo de categoria de undeterminado nombre de categoria*/
+CREATE OR REPLACE FUNCTION getcodcategoriadeproducto(nombrecategoria varchar(200))RETURNS integer
+as
+$BODY$
+   begin
+   return(select cod_categoria from Categoria where nombre=nombreCategoria); 		  
+   end;
+$BODY$
+LANGUAGE 'plpgsql';
+/*21. Devuelve una tabla con el codigo de producto,nombre del insumo,la descripcion,la marca del producto,
+la categoria a la que pertenece un producto, y el precio*/
+create or replace function getListaDeProductos()
+returns table (codProducto integer,nombreInsumo varchar,descripcionInsumo varchar,marcaProducto varchar,categoriaProducto varchar,precioProducto decimal(12,2)) 
+as $$
+begin
+	return query SELECT Producto.cod_insumo_producto,Insumo.nombre,Insumo.descripcion,Producto.marca,getCategoriaDeProducto(Producto.cod_insumo_producto),Producto.precio_unitario 
+                 from Insumo,Producto,Producto_Categoria
+                 where Insumo.cod_insumo=Producto.cod_insumo_producto and Producto.cod_insumo_producto=Producto_Categoria.cod_insumo_producto;
+				 
+end; $$
+language 'plpgsql';
+
  /*PROCEDIMIENTOS */
 	
 	
