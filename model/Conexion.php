@@ -2,14 +2,14 @@
 
 class Conexion {
     //atributo
-    public $conexionDB;
+    public $ConexionDB;
     //metodos
     public function __construct($host="localhost",$port="5432",$nameDB="jezoar",$user="jezoar",$passwd="123456"){
-        $this->conexionDB = pg_connect("host=$host dbname=$nameDB port=$port user=$user password=$passwd") or die("Error de conexion Equipo_Jezoar ".pg_last_error());
+        $this->ConexionDB = pg_connect("host=$host dbname=$nameDB port=$port user=$user password=$passwd") or die("Error de conexion Equipo_Jezoar ".pg_last_error());
     }
 
     public function execute($query) {
-        $result = pg_query($this->conexionDB,$query);
+        $result = pg_query($this->ConexionDB,$query);
         if (!$result) {
             die("error en la consulta");
         }
