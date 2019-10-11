@@ -52,6 +52,10 @@ class Producto{
         $result=$this->conexion->execute("select count(*) from Insumo;");
         return pg_result($result,0,0);
     }
+
+    public function getListaAlmacenes(){
+        return $this->conexion->execute("select nombre from almacen;");
+    }
 }
 
 ?>

@@ -9,7 +9,7 @@
             <!-- Titulo de la cabecera -->
             <section class="content-header">
                 <h1>
-                    Productos
+                    Personal
                     <!-- <small>Blank example to the fixed layout</small> -->
                 </h1>
             </section>
@@ -18,58 +18,61 @@
             <section class="content">
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Gestion de Productos</h3>
+                        <h3 class="box-title">Gestion de Personal</h3>
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-primary" title="Volver Atras">
                             <i class="fa fa-fw fa-arrow-circle-left"></i></button>
                         </div>
                     </div>
                    <!-- Inicia tu codigo aqui -->                    
-                    <form role="form" method="post" action="../../controller/productoController.php">
+                    <form role="form" method="post" action="../../controller/personalController.php">
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box-body">
                             
                             <div class="col-lg-5">
-                                <label>Nombre de Producto</label>
-                                <input type="text" class="form-control" placeholder="Esponja" name="txtNombreProd">
+                                <label>Nombre de Personal</label>
+                                <input type="text" class="form-control" placeholder="Escriba nombres y apellidos" name="txtNombrePersonal">
                             </div>
-                            <div class="col-lg-5">
-                                <label>Marca</label>
-                                <input type="text" class="form-control" placeholder="Marca del producto" name="txtMarca">
-                            </div>
-                            <div class="col-lg-2">
-                                <label>Precio Unitario</label>
-                                <input type="number" step="0.01" class="form-control" placeholder="7.50" name="txtPrecioUnitario">
-                            </div>
-                        </div>
-                        <div class="box-body">
-                            <div class="col-lg-8">
-                                <label>Descripcion de Producto</label>
-                                <textarea class="form-control" name="txtDescripcion" rows="4" placeholder="Escriba una breve descripcion del la utilidad del producto"></textarea>
-                            </div>
-                            <div class="col-lg-4">
-                           <div class="form-group" data-select2-id="13">
-                               <label>Categoria</label>
-                               <select class="form-control select2 select2-hidden-accessible" name="listaDeCategoria">
+
+                            <div class="col-lg-3">
+                             <div class="form-group" data-select2-id="13">
+                               <label>Tipo de Personal</label>
+                               <select class="form-control select2 select2-hidden-accessible" name="listaTipoDePersonal">
                                <?php
-                                      require "../../controller/productoController.php";
-                                      $printer=getListaDeCategoria();
+                                      require "../../controller/personalController.php";
+                                      $printer=getlistaTipoDePersonal();
                                       echo $printer;      
                                             
                                 ?>
                                     
                                </select>
+                             </div>
+                            </div> 
 
-                           </div>
-                          </div> 
-                        <div class="col-lg-4" >
-                                <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" name="btnInsertarProducto" title="Agregar Servicio">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
-                            </div>
+                            <div class="col-lg-4">
+                             <div class="form-group" data-select2-id="13">
+                               <label>Cargo</label>
+                               <select class="form-control select2 select2-hidden-accessible" name="listaDeCargo">
+                               <?php
+                                      
+                                      $printer=getlistaCargoDePersonal();
+                                      echo $printer;      
+                                            
+                                ?>
+                                    
+                               </select>
+                             </div>
+                             </div>
                             
                         </div>
+                            
+                        
                         <div class="box-body">
-                           
+                            <div class="col-lg-4" >
+                                <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" name="btnInsertarProducto" title="Agregar Servicio">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
+                            </div>
                         </div>
+                        
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box box-success">
                             <div class="box-header">
@@ -81,17 +84,15 @@
                                         <tr>
                                             <th>Codigo</th>
                                             <th>Nombre</th>
-                                            <th>Descripcion</th>
-                                            <th>Marca</th>
-                                            <th>Categoria</th>
-                                            <th>Precio</th>
-                                            <th>Actualizar</th>
+                                            <th>Tipo</th>
+                                            <th>Cargo</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                             
-                                            $printer=getListaDeProductos();
+                                            $printer=getlistaDePersonal();
                                             echo $printer;
                                         ?>
                                     </tbody>
