@@ -1660,3 +1660,19 @@ as $$ begin
 			from personal
 			where nombre=nombrePersonal );
 end $$ language plpgsql;
+
+/* 35.Funcion que devuelva el nombre de Cliente a traves de su codigo*/
+create or replace function getNombreCliente(codigoCliente integer)returns text
+as $$ begin
+	return(select nombre
+			from cliente
+			where cod_cliente=codigoCliente);
+end; $$ 
+language plpgsql;
+/* 36. Funcion que devuelve el Codigo Cliente de una persona llevando como parametro su nombre*/
+create or replace function getCodCliente(nombreCliente text)returns integer 
+as $$ begin
+	return (select cod_cliente
+			from cliente
+			where nombre=nombreCliente );
+end $$ language plpgsql;
