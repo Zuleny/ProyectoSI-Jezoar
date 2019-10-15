@@ -1,0 +1,7 @@
+#tabla1{  
+    overflow: scroll;
+    table-layout: auto;
+    width: 100%;
+    background-color: #D4EFDF;
+    /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+}

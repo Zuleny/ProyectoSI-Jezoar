@@ -16,8 +16,8 @@
                     <div class="box-header">
                         <h3 class="box-title">Gestion de Herramientas</h3>
                         <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-primary" title="Volver Atras">
-                            <i class="fa fa-fw fa-arrow-circle-left"></i></button>
+                            <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                            <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                     </div>
                    <!-- Inicia tu codigo aqui -->   
@@ -25,40 +25,36 @@
                     <form role="form"action="../../controller/herramientaController.php" method="get">
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box-body">
-                            <div class="col-lg-3">
-                                <label>Codigo Insumo</label>
-                                <input type="text" class="form-control" name="codigo" placeholder="Codigo">
-                            </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <label>Nombre</label>
-                                <input type="text" class="form-control" name="nombre"placeholder="Nombre del insumo">
+                                <input type="text" class="form-control" name="nombre"placeholder="Nombre de la herramienta">
                             </div>
                         </div>
                         <div class="box-body">
-                            <div class="col-lg-12">
+                            <div class="col-lg-7">
                                 <label>Descripcion</label>
-                                <textarea name="descripcion" class="form-control" rows="5"></textarea>                                     
+                                <textarea class="form-control" name="descripcion" rows="4" placeholder="Escriba una breve descripcion"></textarea>                                     
                                 <br>
                             </div>
-                        
-                                <label>Estado:</label>
+                          
+                                <label>Estado</label>
                             <br>
                                 <p><input type="radio" name="estado" value="M">Mantenimiento</p>
                                 <p><input type="radio" name="estado" value="D">Disponible</p>
                                 <p><input type="radio" name="estado" value="N">No Disponible</p>
   
+                        </div>
+                        <div class="box-body">
                             <div class="col-lg-4">
-                                <br>
                                 <button type="submit" value="Agregar Herramienta" class="btn btn-block btn-success" title="Agregar Herramienta">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
                             </div>
                         </div>
-
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box box-success">
                             <div class="box-header">
                                 <h3 class="box-title">Herramientas</h3>
                             </div>
-                            <div class="box-body">
+                            <div class="box-body" style="overflow:scroll">
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -71,32 +67,9 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            include "../../model/Conexion.php";
-                                            $conexion=new Conexion("localhost",5432,"jezoar","jezoar","123456");
-                                            $result=$conexion->execute("SELECT insumo.cod_insumo,insumo.nombre,insumo.descripcion,herramienta.estado from herramienta,insumo where insumo.cod_insumo=herramienta.cod_insumo_herramienta;");
-                                            if (!$result) {
-                                                die("Error en la consulta");
-                                            }
-                                            $nroFilas=pg_num_rows($result);
-                                            if ($nroFilas>0) {
-                                                for ($nroTupla=0; $nroTupla < $nroFilas; $nroTupla++){ 
-                                                    echo "<tr> <td>".'<div contentEditable="false">'. pg_result($result,$nroTupla,0)."</td>";
-                                                    echo "<td>".'<div contentEditable="false">'. pg_result($result,$nroTupla,1)."</td>";
-                                                    echo "<td>".'<div contentEditable="false">'. pg_result($result,$nroTupla,2)."</td>";
-                                                    echo "<td>".'<div contentEditable="false">'. pg_result($result,$nroTupla,3)."</td>";
-                                                    echo '<td>
-                                                                 <div class="btn-group">
-                                                                    <button type="button" class="btn btn-warning btn-xs" title="Actualizar">
-                                                                        <i class="fa fa-fw fa-refresh"></i>
-                                                                    </button>
-                                                                    <button type="button" class="btn bg-purple  btn-xs" title="Editar">
-                                                                         <i class="fa fa-edit"></i>
-                                                                    </button>
-                                                                 </div>
-                                                          </td> 
-                                                    </tr>';
-                                                }
-                                            }
+                                            require "../../controller/herramientaController.php";
+                                            $printer=getListaDeHerramientas();
+                                            echo $printer;
                                         ?>
                                     </tbody>
                                 </table>
@@ -113,7 +86,6 @@
                 </div>
             </section>
         </div>
-    </div>
     <?php
         include "../../view/theme/AdminLTE/Additional/scripts.php";
     ?>
