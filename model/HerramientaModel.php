@@ -6,6 +6,7 @@ class Herramienta{
     public $nombre;
     public $Descripcion;
     public $Estado;
+
     public $Conexion;
     public function __construct($cod,$name,$des,$estado){   
         $this->codigo=$cod;
@@ -19,4 +20,10 @@ class Herramienta{
             $this->Conexion->execute("insert into Herramienta(cod_insumo_herramienta,estado) values($this->codigo,'$this->Estado');");
             return true;
     }
+
+    public function getListaHeramientas(){
+        $result=$this->Conexion->execute("select insumo.cod_insumo,insumo.nombre,insumo.descripcion,herramienta.estado from herramienta,insumo where insumo.cod_insumo=herramienta.cod_insumo_herramienta;");
+        return $result;
+    }
+
 }

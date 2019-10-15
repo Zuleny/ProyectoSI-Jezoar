@@ -5,8 +5,6 @@ $codigo=$_GET['codigo'];
 $nombre=$_GET['nombre'];
 $Descripcion=$_GET['descripcion'];
 $Estado=$_GET['estado'];
-
-
 //$almacen=new Almacen($codigo,$nombre,$Direccion);
 echo $codigo;
 echo $nombre;
