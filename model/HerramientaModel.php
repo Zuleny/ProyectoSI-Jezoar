@@ -6,6 +6,7 @@ class Herramienta{
     public $nombre;
     public $Descripcion;
     public $Estado;
+
     public $Conexion;
     public function __construct($codigo,$nombre,$Descripcion,$Estado){   
         $this->codigo=$codigo;
@@ -25,7 +26,8 @@ class Herramienta{
     }
 
     public function getCantidadHerramienta(){
-        $result = $this->Conexion->execute("select count(*) from Herramienta;");
+        $result = $this->Conexion->execute("select count(*) from Insumo;");
         return pg_result($result,0,0);
     }
 }
+?>

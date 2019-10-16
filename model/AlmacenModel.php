@@ -1,25 +1,35 @@
 <?php
-require_once "Conexion.php";
+include "Conexion.php";
 class Almacen{
-    //atributo
-    public $codigo;
+    public $codAlmacen;
     public $nombre;
     public $Direccion;
+
     public $Conexion;
-    public function __construct($cod,$name,$dir){   
-        $this->codigo=$cod;
-        $this->nombre=$name;
-        $this->Direccion=$dir;
+    
+    public function __construct($codAlmacen,$Almacen,$Dir){ 
         $this->Conexion=new Conexion();
+        $this->codAlmacen=$codAlmacen;
+        $this->nombre=$Almacen;
+        $this->Direccion=$Dir;
+        
     }
     public function insertarAlmacen(){
         try{
-            $this->Conexion->execute("insert into Almacen values($this->codigo,'$this->nombre','$this->Direccion');");
+            $this->Conexion->execute("insert into Almacen(cod_almacen,nombre,direccion) values($this->codAlmacen,'$this->nombre','$this->Direccion');");
             return true;
         }catch (\Throwable $th){
-            echo'<script> alert("Error: Los datos al insertar no se realizaron con exito")</script>';
             return false;
         }
+    }
+
+    public function getListaAlmacen(){
+        return $this->Conexion->execute("SELECT cod_almacen,nombre,direccion FROM Almacen;");
+    }
+
+    public function getCantidadAlmacen(){
+        $result = $this->Conexion->execute("select count(*) from Almacen;");
+        return pg_result($result,0,0);
     }
 }
 ?>

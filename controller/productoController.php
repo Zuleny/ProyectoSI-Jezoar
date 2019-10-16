@@ -55,8 +55,7 @@ function getListaDeProductos(){
             </button>
             <button type="button" class="btn bg-purple btn-xs" title="Editar">
                 <i class="fa fa-edit"></i>
-            </button></div></td> </tr>';
-            
+            </button></div></td> </tr>';            
         }
     }
     return $printer;

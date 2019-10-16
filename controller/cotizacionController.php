@@ -44,7 +44,6 @@ function getListaDeCotizaciones(){
         $printer.=      '<td>'.pg_result($result,$tupla,5).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,6).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,7).'</td>';
-        $printer.=      '<td>'.pg_result($result,$tupla,8).'</td>';
         $printer.=      '<td> <div class="btn-group">
                                             <button type="button" class="btn btn-warning btn-sm" title="Actualizar">
                                                 <i class="fa fa-fw fa-refresh"></i>
