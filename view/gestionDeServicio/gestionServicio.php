@@ -64,6 +64,35 @@
                                         echo $printer;
                                     ?>
                                 </tbody>
+                                <!-- Sub-Form Modal -->
+                                <div class="modal fade" id="modal-default">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h4 class="modal-title">Modificacion de Servicio</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label>Nombre</label>
+                                                    <input type="text" class="form-control" placeholder="Nombre del Servicio" name="nombreServicioModifcar">
+                                                    <br>
+                                                    <label>Descripcion</label>
+                                                    <input type="text" class="form-control" placeholder="Descripcion del Servicio" name="descripcionServicioModifcar">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-primary">Guardar Modificacion</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                <!-- /.modal-dialog -->
+                                </div>
+                                <!-- Sub-Form Modal Ended -->
                             </table>
                         </".>
                     </div>
@@ -82,6 +111,3 @@
 <?php
     include "../../view/theme/AdminLTE/Additional/scripts.php";
 ?>
-<script>
-    
-</script>

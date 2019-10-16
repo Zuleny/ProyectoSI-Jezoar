@@ -21,16 +21,12 @@ function getListaServicios(){
         $printer.=      '<td>'.pg_result($result,$nroTupla,1).'</td>';
         $printer.=      '<td>'.pg_result($result,$nroTupla,2).'</td>';
         $printer.=      '<td> <div class="btn-group">
-                                            <button type="button" class="btn btn-warning btn-sm" title="Actualizar">
-                                                <i class="fa fa-fw fa-refresh"></i>
-                                            </button>
-                                            &nbsp
-                                            <button type="button" class="btn bg-purple btn-sm" title="Editar">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                      </div>
-                                 </td>
-                          </tr>';
+                                    <button type="button" class="btn bg-purple btn-sm" data-toggle="modal" data-target="#modal-default">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </div>
+                            </td>
+                    </tr>';
     }
     return $printer;
 }
