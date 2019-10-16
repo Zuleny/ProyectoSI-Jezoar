@@ -56,7 +56,7 @@
                                 <tbody>
                                     <?php
                                         require '../../controller/herramientaController.php';
-                                        $printer=getListaHerramientas();
+                                        $printer=getListaDeHerramientas();
                                         echo $printer;
                                     ?>
                                 </tbody>
