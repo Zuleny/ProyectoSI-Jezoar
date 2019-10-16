@@ -25,7 +25,7 @@ class Herramienta{
     }
 
     public function getCantidadHerramienta(){
-        $result = $this->Conexion->execute("select count(*) from Herramienta;");
+        $result = $this->Conexion->execute("select count(*) from Insumo;");
         return pg_result($result,0,0);
     }
 }

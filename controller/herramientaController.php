@@ -15,6 +15,7 @@ if (isset($_GET['nombre']) && isset($_GET['descripcion']) && isset($_GET['estado
 }
 
 function getListaDeHerramientas(){
+    include "../../model/HerramientaModel.php";
     $usuario1= new Herramienta(0,"","","");
     $result=$usuario1->getListaHerramientas();
     $nroFilas=pg_num_rows($result);
@@ -25,11 +26,11 @@ function getListaDeHerramientas(){
         $printer.=      '<td>'.pg_result($result,$tupla,2).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,3).'</td>';
         $printer.=      '<td> <div class="btn-group">
-                                            <button type="button" class="btn btn-warning btn-sm" title="Actualizar">
+                                            <button type="button" class="btn btn-warning btn-xs" title="Actualizar">
                                                 <i class="fa fa-fw fa-refresh"></i>
                                             </button>
                                             &nbsp
-                                            <button type="button" class="btn bg-purple btn-sm" title="Editar">
+                                            <button type="button" class="btn bg-purple btn-xs" title="Editar">
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                       </div>
