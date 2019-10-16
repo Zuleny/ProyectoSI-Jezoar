@@ -5,7 +5,7 @@
     <!-- Titulo de la cabecera -->
     <section class="content-header">
         <h1>
-            Categoria de Productos
+            Permisos de Usuario
             <!-- <small>Blank example to the fixed layout</small> -->
         </h1>
     </section>
@@ -14,45 +14,46 @@
     <section class="content">
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">Gestion de Categoria de Productos</h3>
+                <h3 class="box-title">Gestion de Permisos</h3>
                 <div class="box-tools pull-right">
-                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
-                    <span class="glyphicon glyphicon-home"></span></a>
+                    <button type="button" class="btn btn-primary" title="Volver Atras">
+                        <i class="fa fa-fw fa-arrow-circle-left"></i>
+                    </button>
                 </div>
             </div>
             <!-- Inicia tu codigo aqui -->                    
-            <form role="form" action="../../controller/categoriaController.php" method="post">
+            <form role="form" action="../../controller/permisoController.php" method="get">
                 <!--  Lugar de butons y label y textbox  -->
                 <div class="box-body">
                     <div class="col-lg-8">
-                        <label>Nombre del Categoria</label>
-                        <input type="text" class="form-control" placeholder="Limpieza general de oficinas" name="nombre_categor">
+                        <label>Descripcion del Permiso</label>
+                        <input type="text" class="form-control" placeholder="Gestion de Clientes" name="descripcion_permiso">
                     </div>
                     <div class="col-lg-4">
                         <br>
-                        <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Crear Categoria
-                            <i class="fa fa-fw fa-check"></i>
+                        <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Permiso
+                            <i class="fa fa-fw fa-gear"></i>
                         </button>
                     </div>
                 </div>
                 <!--  Lugar de butons y label y textbox  -->
                 <div class="box box-success">
                     <div class="box-header">
-                        <h3 class="box-title">Categoria de Productos de la Empresa Jezoar</h3>
+                        <h3 class="box-title">Lista de Permisos del Uusario del Sistema</h3>
                     </div>
-                    <div class="box-body">
+                    <div class="box-body" style="scrollbar">
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Codigo de Categoria</th>
-                                    <th>Nombre de Categoria</th>
-                                    <th>Modificadores</th>
+                                    <th>#</th>
+                                    <th>Descripcion del Permiso</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                    require '../../controller/categoriaController.php';
-                                    $printer=getListaCategoria();
+                                    require '../../controller/permisoController.php';
+                                    $printer=getListaDePermisos();
                                     echo $printer;
                                 ?>
                             </tbody>
