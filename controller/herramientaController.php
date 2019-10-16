@@ -1,19 +1,5 @@
 <?php
 
-<<<<<<< HEAD
-$codigo=$_GET['codigo'];
-$nombre=$_GET['nombre'];
-$Descripcion=$_GET['descripcion'];
-$Estado=$_GET['estado'];
-//$almacen=new Almacen($codigo,$nombre,$Direccion);
-echo $codigo;
-echo $nombre;
-echo $Descripcion;
-echo $Estado;
-$herramienta=new Herramienta($codigo,$nombre,$Descripcion,$Estado);
-$result=$herramienta->insertarHerramienta();
-header('Location: ../view/gestionDeHerramienta/gestionHerramienta.php');
-=======
 if (isset($_GET['nombre']) && isset($_GET['descripcion']) && isset($_GET['estado'])) {
     $nombre=$_GET['nombre'];
     $Descripcion=$_GET['descripcion'];
@@ -53,7 +39,4 @@ function getListaDeHerramientas(){
     }
     return $printer;
 }
-
-
->>>>>>> 3093d113345399b3a826f2a9dbec7f536fff19e8
 ?>
