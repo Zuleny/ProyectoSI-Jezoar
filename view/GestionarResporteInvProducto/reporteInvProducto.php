@@ -7,7 +7,7 @@
         <!-- Titulo de la cabecera -->
         <section class="content-header">
             <h1>
-                Reportes de inventarios 
+                Reporte de Productos en almacen
                 <!-- <small>Blank example to the fixed layout</small> -->
             </h1>
         </section>
@@ -31,27 +31,29 @@
                     </div> 
                     <?php
                         $jezoar = new Conexion();
-                        $result = $jezoar->execute("select insumonombre, stockinsumo from getInventarioDeProductos('Almacen1');");
-                        $count = $jezoar->execute("select count(*) from producto;");
-                        
+                        $result = $jezoar->execute("SELECT insumonombre, stockinsumo from getInventarioDeProductos('Almacen1');");
+                        $arreglo = array();
+                        $arregloStock = array();
+                        for ($i=0; $i < pg_num_rows($result); $i++) { 
+                            $arreglo[$i] = pg_result($result,$i,0);
+                            $arregloStock[$i] = pg_result($result,$i,1);
+                        }
                     ?>
                     <div class="chart-container" style="position: relative; height:80vh; width:80vw">
                         <canvas id="myChart"></canvas>
                             <script>
                             var ctx = document.getElementById('myChart');
-                            
+                            arregloProductos = <?php echo json_encode($arreglo);?>;
+                            arregloStock = <?php echo json_encode($arregloStock);?>;
                             var myChart = new Chart(ctx, {                                    
                                 type: 'bar',                                    
                                 data: {
-                                    labels:   
-                                    ['<?php echo pg_result($result,0,0) ?>', '<?php echo pg_result($result,1,0) ?>', '<?php echo pg_result($result,2,0) ?>', 'Green', 'Purple', 'Orange','Yellow','Red'],
+                                    labels: arregloProductos,
                                     datasets: [{
-                                        label: 'Producto Stock',
-                                        data: [<?php echo pg_result($result,0,1) ?>, <?php echo pg_result($result,1,1) ?>, <?php echo pg_result($result,2,1) ?>, 5, 2, 3, 8, 4],
-                        
+                                        data: arregloStock,
                                         backgroundColor: 
                                             'rgba(54, 162, 235, 0.2)',
-                                        
+                                        label: 'Producto Stock',
                                         borderWidth: 1
                                     }]
                                 },  

@@ -1,0 +1,22 @@
+Lista de Trabajo
+*   Modificar los datos 
+    Detalle: Realizar en una vista aparte de la principal, si no se puede en la divicion "model"
+
+*   Avance de Reportes
+    Detalle: Realizar en una sola tabla si es que no existe avance con el reporte en graficas
+
+*   Reporte de Notas de Ingresos
+    Detalle: Generar un nuevo reporte con el TSQL respectivo en el script
+    
+*   Asignacion de permisos a los roles
+    Detalle: Generar una vista de asignacion de permisos con checkbox's 
+
+*   La opcion "me olvide la contraseña" avanzaren una nueva vista
+    Detalle: Escuchar opciones nuevas
+
+*   Lista de Propuestas y Cotizaciones, Notas de Ingreso y Egreso y Devolucion
+    Detalle: Visualizar y eliminar alguna de ellas
+
+*   Verificacion de permisos de los actores
+    Detalle: en cada CRUD verificar los permisos de un usuario
+                sessionstart()

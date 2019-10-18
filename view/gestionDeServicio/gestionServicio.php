@@ -24,18 +24,17 @@
                 <form role="form" action="../../controller/servicioController.php" method="post">
                     <!--  Lugar de butons y label y textbox  -->
                     <div class="box-body">
-                        <div class="col-lg-8">
+                        <div class="col-lg-5">
                             <label>Nombre del Servicio</label>
                             <input type="text" class="form-control" placeholder="Limpieza general de oficinas" name="nombre_servicio">
                         </div>
-                    </div>
-                    <div class="box-body">
-                        <div class="col-lg-8">
+                        <div class="col-lg-7">
                             <label>Descripcion</label>
                             <input type="text" class="form-control" placeholder="Descripcion del servicio" name="descripcion">
                         </div>
+                    </div>
+                    <div class="box-body">
                         <div class="col-lg-4">
-                            <br>
                             <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Servicio
                                 <i class="fa fa-fw fa-check"></i>
                             </button>
@@ -47,7 +46,7 @@
                             <h3 class="box-title">Servicios de la Empresa Jezoar</h3>
                         </div>
                         <div class="box-body">
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover" method="POST">
                                 <thead>
                                     <tr>
                                         <th>Id Servicio</th>
@@ -75,6 +74,9 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="form-group">
+                                                    <label>#</label>
+                                                    <input type="text" class="form-control" placeholder="Nombre del Servicio" name="nombreServicioModifcar">
+                                                    <br>
                                                     <label>Nombre</label>
                                                     <input type="text" class="form-control" placeholder="Nombre del Servicio" name="nombreServicioModifcar">
                                                     <br>
@@ -107,6 +109,7 @@
         </section>
         <!-- fin de contenido de mi Vista -->
     </div>
+    <script src="../../public/assets/updateServicio.js"></script>
 <?php
     include "../../view/theme/AdminLTE/Additional/scripts.php";
 ?>

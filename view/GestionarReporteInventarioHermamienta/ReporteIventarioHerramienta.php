@@ -1,11 +1,13 @@
 <?php
-    include "../../view/theme/AdminLTE/Additional/head.php";
+    include "../../view/theme/AdminLTE/Additional/head.php";    
+    include "../../model/Conexion.php";
 ?>
+<script type="text/javascript" src ="../GestionarResporteInvProducto/reportes.js"> </script>
     <div class="content-wrapper">
         <!-- Titulo de la cabecera -->
         <section class="content-header">
             <h1>
-                Reportes de inventarios 
+                Reporte de Productos en almacen
                 <!-- <small>Blank example to the fixed layout</small> -->
             </h1>
         </section>
@@ -14,7 +16,7 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Herramientas</h3>
+                    <h3 class="box-title">Productos</h3>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-primary" title="Volver Atras">
                             <i class="fa fa-fw fa-arrow-circle-left"></i>
@@ -22,49 +24,54 @@
                     </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->                    
-                <form role="form" action="../../controller/servicioController.php" method="post">
-                    <!--  Lugar de butons y label y textbox  -->
-                    <div class="box-body">
-                        <div class="col-lg-3">                                
-                                <button type="button" class="btn btn-block btn-primary" >Mostrar herramientas disponibles <i class="fa fa-fw fa-check-square-o"></i></button>
-                            </div>
-                            <div class="col-lg-3">                                
-                                    <button type="button" class="btn btn-block btn-primary">Mostrar herramientas ocupadas <i class="fa fa-fw fa-ban"></i></button>
-                            </div>
-                            <div class="col-lg-3">                                
-                                    <button type="button" class="btn btn-block btn-primary">Mostrar herramientas en mantenimiento <i class="fa fa-fw fa-cog"></i></button>
-                            </div>
-                            
-                        </div> 
-                    </div>
-                    
-                    <!--  Lugar de butons y label y textbox  -->
-                    <div class="box box-success">
-                        <div class="box-header">
-                            <h3 class="box-title">Lista de las herramientas</h3>
-                        </div>
-                        <div class="box-body">
-                            <table class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Cod herramienta</th>
-                                        <th>Nombre</th>
-                                        <th>Estado</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        require '../../controller/herramientaController.php';
-                                        $printer=getListaDeHerramientas();
-                                        echo $printer;
-                                    ?>
-                                </tbody>
-                            </table>
-                        </".>
-                    </div>
-                </form>
-              
+                <div class="box-body">
+                    <div class="col-lg-2">                                
+                            <button type="button" class="btn btn-block btn-primary" >Exportar PDF <i class="fa fa-fw fa-file-pdf-o "></i></button>
+                        </div><br>          <!-- Lugar de butons y label y textbox  -->         
+                    </div> 
+                    <?php
+                        $jezoar = new Conexion();
+                        $result = $jezoar->execute("SELECT nombre, stock from getHerramientaStock('Almacen1');");
+                        $arreglo = array();
+                        $arregloStock = array();
+                        for ($i=0; $i < pg_num_rows($result); $i++) { 
+                            $arreglo[$i] = pg_result($result,$i,0);
+                            $arregloStock[$i] = pg_result($result,$i,1);
+                        }
+                    ?>
+                    <div class="chart-container" style="position: relative; height:80vh; width:80vw">
+                        <canvas id="myChart"></canvas>
+                            <script>
+                            var ctx = document.getElementById('myChart');
+                            arregloProductos = <?php echo json_encode($arreglo);?>;
+                            arregloStock = <?php echo json_encode($arregloStock);?>;
+                            var myChart = new Chart(ctx, {                                    
+                                type: 'bar',                                    
+                                data: {
+                                    labels: arregloProductos,
+                                    datasets: [{
+                                        data: arregloStock,
+                                        backgroundColor: 
+                                            'rgba(54, 162, 235, 0.2)',
+                                        label: 'Herramienta stock',
+                                        borderWidth: 1
+                                    }]
+                                },  
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true
+                                            }
+                                        }]
+                                    }
+                                }                                    
+                            });                                                                        
+
+                        </script>  
+                    </div>  
+
+                </div>   
                 <!-- Termina tu codigo aqui -->
             </div>
         </section>
@@ -73,6 +80,3 @@
 <?php
     include "../../view/theme/AdminLTE/Additional/scripts.php";
 ?>
-<script>
-    
-</script>
