@@ -281,10 +281,13 @@
           <div class="col-md-3">
             <div class="info-box">
               <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text"><b>Gestion de</b></span>
-                <span class="info-box-text"><b>Cotizacion</b></span>
-              </div>
+              
+                <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeCotizacion/gestionCotizacion.php">
+                  <div class="btn btn-default">
+                    <span class="info-box-text"><b>Gestion de</b></span>
+                    <span class="info-box-text"><b>Cotizacion</b></span>
+                  </div>
+                </a>
             <!-- /.info-box-content -->
             </div>
           </div>
@@ -292,10 +295,13 @@
           <div class="col-md-3">
             <div class="info-box">
               <span class="info-box-icon bg-red"><i class="fa fa-files-o"></i></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text"><b>Gestion de</b></span>
-                <span class="info-box-text"><b>Almacen</b></span>
-              </div>
+              
+                <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeAlmacen/gestionAlmacen.php">
+                  <div class="btn btn-default">
+                    <span class="info-box-text"><b>Gestion de</b></span>
+                    <span class="info-box-text"><b>Almacen</b></span>
+                  </div>
+                </a>
               <!-- /.info-box-content -->
             </div>
           </div>
@@ -304,10 +310,12 @@
             <div class="info-box">
               <span class="info-box-icon bg-aqua"><i class="ion ion-ios-people-outline"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text"><b>Gestion de</b></span>
-                <span class="info-box-text"><b>Usuario</b></span>
-              </div>
+                <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeUsuario/gestionUsuario.php">
+                  <div class="btn btn-default">
+                    <span class="info-box-text"><b>Gestion de</b></span>
+                    <span class="info-box-text"><b>Usuario</b></span>
+                  </div>
+                </a>
               <!-- /.info-box-content -->
             </div>
           </div>
@@ -316,10 +324,12 @@
             <div class="info-box">
               <span class="info-box-icon bg-yellow"><i class="ion ion-ios-gear-outline"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text"><b>Gestion de</b></span>
-                <span class="info-box-text"><b>Producto</b></span>
-              </div>
+                <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeProducto/gestionProducto.php">
+                  <div class="btn btn-default">
+                    <span class="info-box-text"><b>Gestion de</b></span>
+                    <span class="info-box-text"><b>Producto</b></span>
+                  </div>
+                </a>
               <!-- /.info-box-content -->
             </div>
           </div>
@@ -331,10 +341,13 @@
           <div class="col-md-3">
             <div class="info-box">
               <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text"><b>Gestion de</b></span>
-                <span class="info-box-text"><b>Propuesta</b></span>
-              </div>
+              
+                <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDePropuesta/gestionPropuesta.php">
+                  <div class="btn btn-default">
+                    <span class="info-box-text"><b>Gestion de</b></span>
+                    <span class="info-box-text"><b>Propuesta</b></span>
+                  </div>
+                </a>
             <!-- /.info-box-content -->
             </div>
           </div>
@@ -343,10 +356,12 @@
             <div class="info-box">
               <span class="info-box-icon bg-red"><i class="fa fa-files-o"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text"><b>Gestion de</b></span>
-                <span class="info-box-text"><b>Proveedor</b></span>
-              </div>
+              <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeProveedor/gestionProveedor.php">
+                  <div class="btn btn-default">
+                    <span class="info-box-text"><b>Gestion de</b></span>
+                    <span class="info-box-text"><b>Proveedor</b></span>
+                  </div>
+                </a>
               <!-- /.info-box-content -->
             </div>
           </div>
@@ -355,10 +370,12 @@
             <div class="info-box">
               <span class="info-box-icon bg-aqua"><i class="ion ion-ios-people-outline"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text"><b>Gestion de</b></span>
-                <span class="info-box-text"><b>Rol</b></span>
-              </div>
+                <a href="http://localhost/ProyectoSI-Jezoar/view/GestionDeRol/gestionRol.php">
+                  <div class="btn btn-default">
+                    <span class="info-box-text"><b>Gestion de</b></span>
+                    <span class="info-box-text"><b>Rol</b></span>
+                  </div>
+                </a>
               <!-- /.info-box-content -->
             </div>
           </div>
@@ -367,10 +384,12 @@
             <div class="info-box">
               <span class="info-box-icon bg-yellow"><i class="ion ion-ios-gear-outline"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text"><b>Gestion de</b></span>
-                <span class="info-box-text"><b>Herramienta</b></span>
-              </div>
+              <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeHerramienta/gestionHerramienta.php">
+                  <div class="btn btn-default">
+                    <span class="info-box-text"><b>Gestion de</b></span>
+                    <span class="info-box-text"><b>Herramienta</b></span>
+                  </div>
+                </a>
               <!-- /.info-box-content -->
             </div>
           </div>
@@ -382,10 +401,13 @@
           <div class="col-md-3">
             <div class="info-box">
               <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text"><b>Gestion de</b></span>
-                <span class="info-box-text"><b>Servicio</b></span>
-              </div>
+              
+                <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeServicio/gestionServicio.php">
+                  <div class="btn btn-default">
+                    <span class="info-box-text"><b>Gestion de</b></span>
+                    <span class="info-box-text"><b>Servicio</b></span>
+                  </div>
+                </a>
             <!-- /.info-box-content -->
             </div>
           </div>
@@ -394,10 +416,12 @@
             <div class="info-box">
               <span class="info-box-icon bg-red"><i class="fa fa-files-o"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text"><b>Gestion de</b></span>
-                <span class="info-box-text"><b>Notas</b></span>
-              </div>
+              <a href="">
+                  <div class="btn btn-default">
+                    <span class="info-box-text"><b>Gestion de</b></span>
+                    <span class="info-box-text"><b>Notas</b></span>
+                  </div>
+                </a>
               <!-- /.info-box-content -->
             </div>
           </div>
@@ -406,10 +430,12 @@
             <div class="info-box">
               <span class="info-box-icon bg-aqua"><i class="ion ion-ios-people-outline"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text"><b>Gestion de</b></span>
-                <span class="info-box-text"><b>Permiso</b></span>
-              </div>
+                <a href="http://localhost/ProyectoSI-Jezoar/view/GestionDePermiso/gestionPermiso.php">
+                  <div class="btn btn-default">
+                    <span class="info-box-text"><b>Gestion de</b></span>
+                    <span class="info-box-text"><b>Permiso</b></span>
+                  </div>
+                </a>
               <!-- /.info-box-content -->
             </div>
           </div>
@@ -418,10 +444,13 @@
             <div class="info-box">
               <span class="info-box-icon bg-yellow"><i class="ion ion-ios-gear-outline"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text"><b>Gestion de</b></span>
-                <span class="info-box-text"><b>Categoria de Productos</b></span>
-              </div>
+                <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeCategoria/gestionCategoria.php">
+                  <div class="btn btn-default">
+                    <span class="info-box-text"><b>Gestion de</b></span>
+                    <span class="info-box-text"><b>Categoria de</b></span>
+                    <span class="info-box-text"><b>Productos</b></span>
+                  </div>
+                </a>
               <!-- /.info-box-content -->
             </div>
           </div>
