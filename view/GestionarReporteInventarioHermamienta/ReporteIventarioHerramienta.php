@@ -7,7 +7,7 @@
         <!-- Titulo de la cabecera -->
         <section class="content-header">
             <h1>
-                Reporte de Productos en almacen
+                Reporte de herramientas en almacen
                 <!-- <small>Blank example to the fixed layout</small> -->
             </h1>
         </section>
@@ -16,7 +16,7 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Productos</h3>
+                    <h3 class="box-title">Herramienta</h3>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-primary" title="Volver Atras">
                             <i class="fa fa-fw fa-arrow-circle-left"></i>

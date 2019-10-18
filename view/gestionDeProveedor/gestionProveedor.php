@@ -16,8 +16,8 @@
                     <div class="box-header">
                         <h3 class="box-title">Gestion de Proveedor</h3>
                         <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-primary" value="Página anterior" onClick="history.go(-3)" title="Volver Atras">
-                            <i class="fa fa-fw fa-arrow-circle-left"></i></button>
+                                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                                    <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                     </div>
                    <!-- Inicia tu codigo aqui -->          
@@ -47,10 +47,6 @@
                                 <div class="col-lg-6">
                                     <label>Nombre del Proveedor</label>
                                     <input type="text" class="form-control" name="nameProv" placeholder="nombre del proveedor">
-                                </div>
-                                <div class="box-tools pull-right">
-                                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
-                                    <span class="glyphicon glyphicon-home"></span></a>
                                 </div>
                             </div>
                     </form>
