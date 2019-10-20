@@ -42,7 +42,7 @@
   <div class="wrapper">
     <header class="main-header">
       <!-- Logo -->
-      <a href="index2.html" class="logo">
+      <a href="index.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>A</b>LT</span>
         <!-- logo for regular state and mobile devices -->
@@ -136,9 +136,10 @@
               <ul class="treeview-menu">
                   <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Gestion de Propuestas</a></li>
                   <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Gestion de Cotizacion</a></li>
-                  <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Gestion de Servicios</a></li>
-                  <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Gestion de Contratos</a></li>
                   <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Gestion de Informes</a></li>
+                  <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Administracion de Contratos</a></li>
+                  <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Gestion de Servicios</a></li>
+                  <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Gestion de Clientes</a></li>
               </ul>
             </li>
             <!-- Almacen Options -->
@@ -151,18 +152,29 @@
                   </span>
               </a>
               <ul class="treeview-menu">
-                  <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i>Notas de Ingreso</a></li>
-                  <li class="active"><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i>Notas de Egreso</a></li>
-                  <li><a href="collapsed-sidebar.html"><i class="fa fa-circle-o"></i>Notas de Egreso</a></li>
+                  <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Gestion de Proveedores</a></li>
                   <li><a href="collapsed-sidebar.html"><i class="fa fa-circle-o"></i>Gestion de Almacen</a></li>
+                  <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i>Notas de Ingreso</a></li>
                   <li><a href="collapsed-sidebar.html"><i class="fa fa-circle-o"></i>Notas de Egreso</a></li>
+                  <li><a href="collapsed-sidebar.html"><i class="fa fa-circle-o"></i>Notas de Devolucion</a></li>
               </ul>
             </li>
             <!-- Clientes  -->
-            <li>
-              <a href="../widgets.html">
-                  <i class="fa fa-fw fa-users"></i><span>Usuarios</span>
+            <li class="treeview">
+              <a href="#">
+                  <i class="fa fa-fw fa-users"></i>
+                  <span>Usuario</span>
+                  <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                  </span>
               </a>
+              <ul class="treeview-menu">
+                  <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Gestion de Usuarios</a></li>
+                  <li><a href="collapsed-sidebar.html"><i class="fa fa-circle-o"></i>Gestion de Rol</a></li>
+                  <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i>Notas de Permiso</a></li>
+                  <li><a href="collapsed-sidebar.html"><i class="fa fa-circle-o"></i>Adinistración de Bitacora</a></li>
+                  <li><a href="collapsed-sidebar.html"><i class="fa fa-circle-o"></i>Gestion de Personal</a></li>
+              </ul>
             </li>
             <!-- Insumos -->
             <li class="treeview">
@@ -182,20 +194,11 @@
               </ul>
             </li>
             <!-- Equipo de Trabajo -->
-            <li class="treeview">
+            <li>
               <a href="#">
                   <i class="fa fa-laptop"></i>
-                  <span>Equipo de Trabajo</span>
-                  <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                  </span>
+                  <span>Developers</span>
               </a>
-              <ul class="treeview-menu">
-                  <li><a href="../UI/general.html"><i class="fa fa-circle-o"></i> Personal</a></li>
-                  <li><a href="../UI/icons.html"><i class="fa fa-circle-o"></i> Usuario</a></li>
-                  <li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Roles</a></li>
-                  <li><a href="../UI/sliders.html"><i class="fa fa-circle-o"></i> Permisos</a></li>
-              </ul>
             </li>
         </ul>
       </section>
