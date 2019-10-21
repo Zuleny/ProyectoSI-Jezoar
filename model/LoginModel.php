@@ -19,5 +19,13 @@ class Login{
             return false;
         }
     }
+
+    public function getListaPermisos($usuario){
+        $result = $this->conexion->execute("SELECT DISTINCT p.descripcion 
+                                        FROM usuario as u,rol as r,permiso as p,rol_permiso as rp,usuario_rol as ur 
+                                        WHERE u.cod_usuario=ur.cod_usuario and p.id_permiso=rp.id_permiso and rp.cod_rol=r.cod_rol and u.nombre='$usuario';
+        ");
+        return pg_fetch_all($result);
+    }
 }
 ?>

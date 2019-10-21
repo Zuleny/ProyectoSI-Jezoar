@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <label>Nombre Personal</label>
                         <select class="form-control" name="nombrePersonal" >
                             <?php
@@ -41,9 +41,15 @@
                             ?>
                         </select>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <br>
                         <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">Agregar Usuario
+                            <i class="fa fa-fw fa-check"></i>
+                        </button>
+                    </div>
+                    <div class="col-lg-4">
+                        <br>
+                        <button type="button" class="btn btn-block btn-primary" action="asignacionRoles.php" title="Asignar Roles">Asignar Roles a Usuarios
                             <i class="fa fa-fw fa-check"></i>
                         </button>
                     </div>

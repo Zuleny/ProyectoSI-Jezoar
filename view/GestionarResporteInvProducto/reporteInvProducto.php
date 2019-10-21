@@ -2,7 +2,7 @@
     include "../../view/theme/AdminLTE/Additional/head.php";    
     include "../../model/Conexion.php";
 ?>
-<script type="text/javascript" src ="reportes.js"> </script>
+<script type="text/javascript" src ="../../public/assets/reportes.js"> </script>
     <div class="content-wrapper">
         <!-- Titulo de la cabecera -->
         <section class="content-header">

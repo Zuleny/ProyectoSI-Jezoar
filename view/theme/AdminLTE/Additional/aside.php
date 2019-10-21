@@ -7,7 +7,7 @@
           <img src="../../public/assets/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-          <p>Leonor Claros Torrico</p>
+          <p><?php echo $_SESSION['user']?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
       </div>

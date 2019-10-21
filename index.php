@@ -61,7 +61,7 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="public/assets/AdminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                <span class="hidden-xs">Alexander Pierce</span>
+                <span class="hidden-xs"><?php session_start(); echo $_SESSION['user']?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
@@ -69,7 +69,7 @@
                   <img src="public/assets/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                   <p>
-                    Alexander Pierce - Web Developer
+                    <?php echo $_SESSION['user']?>
                     <small>Member since Nov. 2012</small>
                   </p>
                 </li>
@@ -118,7 +118,7 @@
             <img src="public/assets/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-            <p>Leonor Claros Torrico</p>
+            <p><?php echo $_SESSION['user']?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -214,7 +214,6 @@
           <small>Menu Principal</small>
         </h1>
       </section>
-
       <!-- Main content -->
       <section class="content">
         <!-- Cajas principales de index -->
@@ -282,31 +281,29 @@
         <div class="col-lg-12">
           <!-- Servicio1 -->
           <div class="col-md-3">
-            <div class="info-box">
-              <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-              
-                <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeCotizacion/gestionCotizacion.php">
-                  <div class="btn btn-default">
-                    <span class="info-box-text"><b>Gestion de</b></span>
-                    <span class="info-box-text"><b>Cotizacion</b></span>
-                  </div>
-                </a>
-            <!-- /.info-box-content -->
-            </div>
+            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeCotizacion/gestionCotizacion.php">
+              <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text" style="color: black;"><b>Gestion de</b></span>
+                  <span class="info-box-text" style="color: black;"><b>Cotizacion</b></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+            </a>
           </div>
           <!-- Servicio2 -->
           <div class="col-md-3">
-            <div class="info-box">
-              <span class="info-box-icon bg-red"><i class="fa fa-files-o"></i></i></span>
-              
-                <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeAlmacen/gestionAlmacen.php">
-                  <div class="btn btn-default">
-                    <span class="info-box-text"><b>Gestion de</b></span>
-                    <span class="info-box-text"><b>Almacen</b></span>
-                  </div>
-                </a>
+            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeAlmacen/gestionAlmacen.php">
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-files-o"></i></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text" style="color: black;"><b>Gestion de</b></span>
+                  <span class="info-box-text" style="color: black;"><b>Almacen</b></span>
+                </div>
               <!-- /.info-box-content -->
-            </div>
+              </div>
+            </a>
           </div>
           <!-- Servicio3 -->
           <div class="col-md-3">
@@ -472,7 +469,6 @@
           </a>
       </div>
     </footer>
-
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Create the tabs -->
@@ -667,7 +663,6 @@
     <div class="control-sidebar-bg"></div>
   </div>
 <!-- jQuery 3 -->
-
 <script src="public/assets/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="public/assets/AdminLTE/bower_components/jquery-ui/jquery-ui.min.js"></script>
