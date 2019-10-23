@@ -1648,6 +1648,7 @@ as $$ begin
 			where id_personal=codigoPersonal);
 end; $$ 
 language plpgsql;
+
 /* 35. Funcion que devuelve el id Persona de una persona llevando como parametro su nombre*/
 create or replace function getIdPersonal(nombrePersonal text)returns integer 
 as $$ begin
@@ -1664,6 +1665,7 @@ as $$ begin
 			where cod_cliente=codigoCliente);
 end; $$ 
 language plpgsql;
+
 /* 37. Funcion que devuelve el Codigo Cliente de una persona llevando como parametro su nombre*/
 create or replace function getCodCliente(nombreCliente text)returns integer 
 as $$ begin
@@ -1671,3 +1673,17 @@ as $$ begin
 			from cliente
 			where nombre=nombreCliente );
 end $$ language plpgsql;
+
+/*38. Devolver Lista de Notas de Devoluciones*/
+create or replace function getListaDeNotasDeDevolucion()
+returns table (nro_nota integer, nombre_personal varchar, fecha date,nombre_almacen varchar,
+			   tipo_nota char) as $BODY$	
+begin
+	return query select n.nro_nota, p.nombre, n.fecha, a.nombre, n.tipo 
+				 from nota as n,personal as p,almacen as a 
+				 where p.id_personal=n.id_personal and 
+						a.cod_almacen=n.cod_almacen and 
+						n.tipo='D' 
+				 order by n.nro_nota; 
+end;  
+$BODY$ language 'plpgsql';
