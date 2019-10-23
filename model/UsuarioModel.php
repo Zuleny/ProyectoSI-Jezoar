@@ -76,5 +76,10 @@ class Usuario {
             return false;
         }
     }
+
+    public function getListaUsuarioYSusRoles(){
+        return $this->conexion->execute("SELECT usuario.cod_usuario, usuario.nombre, rol.cod_rol, rol.descripcion, personal.nombre FROM usuario_rol,rol,usuario,personal WHERE usuario_rol.cod_rol=rol.cod_rol AND usuario.cod_usuario=usuario_rol.cod_usuario AND usuario.id_personal_usuario=personal.id_personal;
+        ");
+    }
 }
 ?>

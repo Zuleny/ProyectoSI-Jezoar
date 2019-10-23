@@ -13,7 +13,9 @@
             <div class="box-header">
                 <h3 class="box-title">Roles de Usuario</h3>
                 <div class="box-tools pull-right">
-                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                    <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeUsuario/asignacionRoles.php" class="btn btn-primary" title="Volver Atras">
+                    <span class="fa fa-fw fa-arrow-circle-left"></span></a>
+                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
                     <span class="glyphicon glyphicon-home"></span></a>
                 </div>
             </div>
@@ -25,40 +27,33 @@
                         <table class="table table-hover">
                             <tbody>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>User</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th>Reason</th>
+                                    <th>Codigo Usuario</th>
+                                    <th>Usuario</th>
+                                    <th>Codigo Rol</th>
+                                    <th>Rol</th>
+                                    <th>Nombre Personal</th>
+                                    <th>Acciones</th>
                                 </tr>
-                                <tr>
-                                    <td>183</td>
-                                    <td>John Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-success">Approved</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
-                                <tr>
-                                    <td>219</td>
-                                    <td>Alexander Pierce</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-warning">Pending</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
-                                <tr>
-                                    <td>657</td>
-                                    <td>Bob Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-primary">Approved</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
-                                <tr>
-                                    <td>175</td>
-                                    <td>Mike Doe</td>
-                                    <td>11-7-2014</td>
-                                    <td><span class="label label-danger">Denied</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
+                                <?php 
+                                    require '../../controller/AsignarRolesController.php';
+                                    $resultado = getListaRolesUsuario();
+                                    $nroFilas = pg_num_rows($resultado);
+                                    for ($nroFila=0; $nroFila < $nroFilas; $nroFila++) { 
+                                        echo '<tr>
+                                                <td>'.pg_result($resultado,$nroFila,0).'</td>
+                                                <td>'.pg_result($resultado,$nroFila,1).'</td>
+                                                <td>'.pg_result($resultado,$nroFila,2).'</td>
+                                                <td>'.pg_result($resultado,$nroFila,3).'</td>
+                                                <td>'.pg_result($resultado,$nroFila,4).'</td>
+                                                <td> 
+                                                    <div class="btn-group">                                                      <button type="button" class="btn btn-danger btn-xs"    title="Eliminar">
+                                                                <i class="fa fa-fw fa-trash-o"></i>
+                                                            </button>
+                                                    </div>
+                                                </td>
+                                            </tr>';
+                                    }
+                                ?>
                             </tbody>
                         </table>
                     </div>

@@ -23,6 +23,12 @@ if (isset($_POST['nombrePersonal']) && $_POST['nombrePersonal']!="" && isset($_P
             die("Error en la asignacion de Roles a Usuario, el servicio murió");
         }
     }
-    header('Location: ../view/gestionDeUsuario/gestionUsuario.php');
+    header('Location: ../view/gestionDeUsuario/asignacionRoles.php');
+}
+
+function getListaRolesUsuario(){
+    require_once '../../model/UsuarioModel.php';
+    $usuario =new Usuario(-1,"","","");
+    return $usuario->getListaUsuarioYSusRoles();
 }
 ?>
