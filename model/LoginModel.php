@@ -27,5 +27,9 @@ class Login{
         ");
         return pg_fetch_all($result);
     }
+
+    public function getCodigoUsuario(){
+        return $this->conexion->execute("SELECT cod_usuario FROM usuario WHERE nombre='$this->username';");
+    }
 }
 ?>

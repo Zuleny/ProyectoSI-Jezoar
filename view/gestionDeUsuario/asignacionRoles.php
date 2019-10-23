@@ -37,6 +37,12 @@
                                 <button type="submit" class="btn btn-block btn-success" title="Agregar Rol">Asignar Roles
                                     <i class="fa fa-fw fa-street-view"></i>
                                 </button>
+                                <br>
+                                <a href="verRolesUsuario.php">
+                                    <button type="button" class="btn btn-block btn-info" title="Mostrar Lista">Mostrar Roles de cada Usuario
+                                        <i class="fa fa-fw fa-spinner"></i>
+                                    </button>
+                                </a>
                             </div>
                         </div>
                         <div class="col-lg-7">
@@ -54,8 +60,12 @@
                                             $result=getListaRols();
                                             $nroFilas=pg_num_rows($result);
                                             for ($tupla=0; $tupla <$nroFilas ; $tupla++) { 
-                                                echo'<tr> <td>'.pg_result($result,$tupla,0).' <input type="checkbox" name="roles[]" value="'.pg_result($result,$tupla,0).'"> </td>';
-                                                echo      '<td>'.pg_result($result,$tupla,1).'</td> </tr>';
+                                                echo'<tr> 
+                                                        <td>'.pg_result($result,$tupla,0).' 
+                                                            <input type="checkbox" name="rolesUsuario[]" value="'.pg_result($result,$tupla,0).'"> 
+                                                        </td>';
+                                                echo   '<td>'.pg_result($result,$tupla,1).'</td>
+                                                    </tr>';
                                             }
                                         ?>
                                     </tbody>

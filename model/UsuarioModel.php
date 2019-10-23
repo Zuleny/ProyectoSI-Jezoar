@@ -62,5 +62,19 @@ class Usuario {
     public function getListaroles(){
         return $this->conexion->execute("SELECT* from rol;");
     }
+
+    public function getCodUsuario($usuario){
+        $result = $this->conexion->execute("SELECT cod_usuario FROM usuario WHERE nombre = '$usuario';");
+        return pg_result($result,0,0);
+    }
+
+    public function asignarRolAUsuario($codUsuario, $codRol){
+        try {
+            $this->conexion->execute("INSERT INTO usuario_rol(cod_rol,cod_usuario) VALUES ($codRol,$codUsuario)");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
 }
 ?>

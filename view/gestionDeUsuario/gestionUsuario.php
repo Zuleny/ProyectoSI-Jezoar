@@ -49,9 +49,11 @@
                     </div>
                     <div class="col-lg-4">
                         <br>
-                        <button type="button" class="btn btn-block btn-primary" action="asignacionRoles.php" title="Asignar Roles">Asignar Roles a Usuarios
-                            <i class="fa fa-fw fa-check"></i>
-                        </button>
+                        <a href="asignacionRoles.php">
+                            <button type="button" class="btn btn-block btn-primary" title="Asignar Roles">Asignar Roles a Usuarios
+                                <i class="fa fa-fw fa-check"></i>
+                            </button>
+                        </a>
                     </div>
                 </div>
                 <!--  Lugar de butons y label y textbox  -->
@@ -60,7 +62,7 @@
                         <h3 class="box-title">Lista de Usuarios del Sistema</h3>
                     </div>
                     <div class="box-body">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover" id="tabla1">
                             <thead>
                                 <tr>
                                     <th>Codigo Usuario</th>

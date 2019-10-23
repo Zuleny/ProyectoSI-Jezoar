@@ -1,101 +1,59 @@
-<li class="treeview">
-            <a href="#">
-                <i class="fa fa-edit"></i> <span>Forms</span>
-                <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="../forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                <li><a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
-            </ul>
-            </li>
-            <li class="treeview">
-            <a href="#">
-                <i class="fa fa-table"></i> <span>Tables</span>
-                <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="../tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-                <li><a href="../tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
-            </ul>
-            </li>
-            <li>
-            <a href="../calendar.html">
-                <i class="fa fa-calendar"></i> <span>Calendar</span>
-                <span class="pull-right-container">
-                <small class="label pull-right bg-red">3</small>
-                <small class="label pull-right bg-blue">17</small>
-                </span>
-            </a>
-            </li>
-            <li>
-            <a href="../mailbox/mailbox.html">
-                <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                <span class="pull-right-container">
-                <small class="label pull-right bg-yellow">12</small>
-                <small class="label pull-right bg-green">16</small>
-                <small class="label pull-right bg-red">5</small>
-                </span>
-            </a>
-            </li>
-            <li class="treeview">
-            <a href="#">
-                <i class="fa fa-folder"></i> <span>Examples</span>
-                <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="../examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-                <li><a href="../examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-                <li><a href="../examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-                <li><a href="../examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-                <li><a href="../examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-                <li><a href="../examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-                <li><a href="../examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-                <li><a href="../examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-                <li><a href="../examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
-            </ul>
-            </li>
-            <li class="treeview">
-            <a href="#">
-                <i class="fa fa-share"></i> <span>Multilevel</span>
-                <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-                <li class="treeview">
-                <a href="#"><i class="fa fa-circle-o"></i> Level One
-                    <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                    <li class="treeview">
-                    <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                        <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                    </ul>
-                    </li>
-                </ul>
-                </li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-            </ul>
-            </li>
-            <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-            <li class="header">LABELS</li>
-            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+<div class="col-xs-12">
+    <div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Responsive Hover Table</h3>
+
+        <div class="box-tools">
+        <div class="input-group input-group-sm" style="width: 150px;">
+            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+            <div class="input-group-btn">
+            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+        <tbody><tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Reason</th>
+        </tr>
+        <tr>
+            <td>183</td>
+            <td>John Doe</td>
+            <td>11-7-2014</td>
+            <td><span class="label label-success">Approved</span></td>
+            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+        </tr>
+        <tr>
+            <td>219</td>
+            <td>Alexander Pierce</td>
+            <td>11-7-2014</td>
+            <td><span class="label label-warning">Pending</span></td>
+            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+        </tr>
+        <tr>
+            <td>657</td>
+            <td>Bob Doe</td>
+            <td>11-7-2014</td>
+            <td><span class="label label-primary">Approved</span></td>
+            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+        </tr>
+        <tr>
+            <td>175</td>
+            <td>Mike Doe</td>
+            <td>11-7-2014</td>
+            <td><span class="label label-danger">Denied</span></td>
+            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+        </tr>
+        </tbody></table>
+    </div>
+    <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</div>
