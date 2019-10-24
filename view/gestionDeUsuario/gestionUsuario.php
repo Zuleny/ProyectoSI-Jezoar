@@ -78,7 +78,7 @@
                                 ?>
                             </tbody>
                         </table>
-                    </".>
+</div>
                 </div>
             </form>
             <div class="box-footer">
