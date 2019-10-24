@@ -69,7 +69,7 @@
                 </div>
             </form>
             <!--  Lugar de la Table  -->
-            <form action="" method="post">
+            <form action="" method="get">
                 <div class="box box-success">
                     <div class="box-header">
                         <h3 class="box-title">Servicios de la Empresa Jezoar</h3>
@@ -99,14 +99,18 @@
                                             echo   "<td>".pg_result($resultado,$fila,3)."</td>";
                                             echo "<td> Devolucion </td>";
                                             echo '<td> 
-                                                        <div class="btn-group">
-                                                            <button type="submit" class="btn btn-xs bg-light-blue btn-sm" title="Asignar Insumos">
+                                                    <div class="btn-group">
+                                                        <a href="gestionDetalleNotaDevolucion.php?nroNotaDetalle='.pg_result($resultado,$fila,0).'">
+                                                            <button type="button" class="btn btn-xs bg-light-blue btn-sm" title="Asignar Insumos">
                                                                 <i class="fa fa-fw fa-cubes"></i>
                                                             </button>
-                                                            <button type="submit" class="btn bg-red btn-xs" title="Eliminar Nota">
+                                                        </a>
+                                                        <a href="../../controller/notaDevolucionController.php?nota='.pg_result($resultado,$fila,0).'">
+                                                            <button type="button" class="btn bg-red btn-xs" title="Eliminar Nota">
                                                                 <i class="fa fa-fw fa-trash-o"></i>
                                                             </button>
-                                                        </div>
+                                                        </a>
+                                                    </div>
                                                 </td>';
                                             echo "</tr>";
                                         }

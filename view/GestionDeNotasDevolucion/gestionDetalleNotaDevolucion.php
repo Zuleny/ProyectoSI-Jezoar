@@ -5,8 +5,8 @@
         <!-- Titulo de la cabecera -->
         <section class="content-header">
             <h1>
-                Servicios
-                <!-- <small>Blank example to the fixed layout</small> -->
+                Nota de Devolución
+                <small>Gestion de Almacén</small>
             </h1>
         </section>
         <!-- Fin de la cabecera -->
@@ -14,52 +14,83 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Gestion de Servicios</h3>
+                    <h3 class="box-title">Detalle de Nota Nro: 
+                        <b><?php echo $_GET['nroNotaDetalle']; ?></b>
+                    </h3>
                     <div class="box-tools pull-right">
-                        <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                        <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicial">
                         <span class="glyphicon glyphicon-home"></span></a>
                     </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->                    
-                <form role="form" action="../../controller/servicioController.php" method="post">
+                <form role="form" action="../../controller/detalleNotaDevolucionController.php" method="post">
                     <!--  Lugar de butons y label y textbox  -->
                     <div class="box-body">
                         <div class="col-lg-5">
-                            <label>Nombre del Servicio</label>
-                            <input type="text" class="form-control" placeholder="Limpieza general de oficinas" name="nombre_servicio">
+                            <label>Insumo</label>
+                            <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="nombreInsumo">
+                            <?php 
+                                include '../../controller/detalleNotaDevolucionController.php';
+                                $resultado = getInsumos($_GET['nroNotaDetalle']);
+                                $nroFilas = pg_num_rows($resultado);
+                                for ($fila=0; $fila < $nroFilas; $fila++) { 
+                                    echo '<option value="'.pg_result($resultado,$fila,0).'">'.pg_result($resultado,$fila,0).'</option>';
+                                }
+                            ?>
+                            </select>
                         </div>
-                        <div class="col-lg-7">
-                            <label>Descripcion</label>
-                            <input type="text" class="form-control" placeholder="Descripcion del servicio" name="descripcion">
-                        </div>
-                    </div>
-                    <div class="box-body">
                         <div class="col-lg-4">
-                            <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Servicio
+                            <label>Cantidad a Devolver</label>
+                            <input type="number" class="form-control" placeholder="Cantidad Insumo" name="stock">
+                        </div>
+                        <div class="col-lg-3">
+                            <input type="hidden" name="nroNota" value="<?php echo $_GET['nroNotaDetalle']?>">
+                            <br>
+                            <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Agregar a la Lista
                                 <i class="fa fa-fw fa-check"></i>
                             </button>
                         </div>
                     </div>
-                    <!--  Lugar de butons y label y textbox  -->
+                </form>
                     <div class="box box-success">
                         <div class="box-header">
-                            <h3 class="box-title">Servicios de la Empresa Jezoar</h3>
+                            <h3 class="box-title">Lista de Insumos</h3>
                         </div>
                         <div class="box-body">
                             <table class="table table-bordered table-hover" method="POST">
                                 <thead>
                                     <tr>
-                                        <th>Id Servicio</th>
-                                        <th>Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th></th>
+                                        <th>#</th>
+                                        <th>Insumo</th>
+                                        <th>Cantidad a Devolver</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                        require '../../controller/servicioController.php';
-                                        $printer=getListaServicios();
-                                        echo $printer;
+                                        $resultado = getListaInsumosDeDetalle($_GET['nroNotaDetalle']);
+                                        $nroFilas = pg_num_rows($resultado);
+                                        for ($fila=0; $fila < $nroFilas; $fila++) { 
+                                            echo "<tr>
+                                                    <td>".pg_result($resultado,$fila,0)."</td>";
+                                            echo   "<td>".pg_result($resultado,$fila,1)."</td>";
+                                            echo   "<td>".pg_result($resultado,$fila,2)."</td>";
+                                            echo   '<td> 
+                                                       <div class="btn-group">
+                                                          <a href="#">
+                                                              <button type="button" class="btn btn-xs bg-light-blue btn-sm" title="Asignar Insumos">
+                                                                  <i class="fa fa-fw fa-cubes"></i>
+                                                              </button>
+                                                          </a>
+                                                          <a href="../../controller/notaDevolucionController.php?nota='.pg_result($resultado,$fila,0).'">
+                                                              <button type="button" class="btn bg-red btn-xs" title="Eliminar Nota">
+                                                                 <i class="fa fa-fw fa-trash-o"></i>
+                                                              </button>
+                                                          </a>
+                                                        </div>
+                                                    </td>';
+                                            echo "</tr>";
+                                        }
                                     ?>
                                 </tbody>
                                 <!-- Sub-Form Modal -->
@@ -95,9 +126,8 @@
                                 </div>
                                 <!-- Sub-Form Modal Ended -->
                             </table>
-</div>
+                        </div>
                     </div>
-                </form>
                 <div class="box-footer">
                     <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">
                         <i class="fa fa-facebook"></i>

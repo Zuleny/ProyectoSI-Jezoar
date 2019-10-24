@@ -70,7 +70,7 @@ class NotaDevolucion{
         return $this->getLastNroNota() + 1;
     }
 
-    public function getIdPersonal($nombrePersonal){
+    private function getIdPersonal($nombrePersonal){
         if ($nombrePersonal != "") {
             $result = $this->conexion->execute("SELECT id_personal FROM personal WHERE nombre = '$nombrePersonal';");
             return pg_result($result, 0, 0);
@@ -106,6 +106,52 @@ class NotaDevolucion{
     public function insertNotaDevolucion(){
         try {
             $this->conexion->execute("INSERT INTO nota(nro_nota, fecha, tipo, cod_almacen, id_personal) VALUES (".$this->nroNota.",'".$this->fecha."','D',".$this->codAlmacen.",".$this->idPersonal.");");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function deleteNotaDevolucion($nroNota){
+        try {
+            $this->conexion->execute("DELETE FROM detalle_nota WHERE nro_nota=$nroNota ;");
+            $this->conexion->execute("DELETE FROM nota WHERE nro_nota=$nroNota ;");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function getInsumos($nroNotaDetalle){
+        return $this->conexion->execute("SELECT i.nombre
+                                         FROM nota as n, almacen as a, insumo_almacen as ia, insumo as i 
+                                         WHERE n.cod_almacen=a.cod_almacen and 
+                                                ia.cod_almacen=a.cod_almacen and 
+                                                ia.cod_insumo=i.cod_insumo and 
+                                                n.nro_nota=$nroNotaDetalle;");
+    }
+
+    public function getListaInsumosDeNotaDevolucion($nroNotaDetalle){
+        return $this->conexion->execute("SELECT id_detalle, nombre_insumo, cantidad_insumo 
+                                         FROM detalle_nota 
+                                         WHERE nro_nota=$nroNotaDetalle;");
+    }
+
+    private function getIdDetalle($nroNota){
+        $result = $this->conexion->execute("SELECT id_detalle 
+                                            FROM detalle_nota 
+                                            WHERE nro_nota=$nroNota 
+                                            ORDER BY id_detalle desc 
+                                            LIMIT 1;
+        ");
+        return pg_result($result, 0, 0)+1;
+    }
+
+    public function registrarInsumo($insumo, $stock, $nroNota){
+        try {
+            $idDetalle = $this->getIdDetalle($nroNota);
+            $this->conexion->execute("INSERT INTO detalle_nota(nro_nota, id_detalle, nombre_insumo, cantidad_insumo) 
+                                      VALUES ($nroNota, $idDetalle,'$insumo', $stock);");
             return true;
         } catch (\Throwable $th) {
             return false;
