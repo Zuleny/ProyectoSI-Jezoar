@@ -19,12 +19,20 @@ if (isset($_POST['nombreInsumo']) && isset($_POST['stock']) && isset($_POST['nro
             $nroNota = $_POST['nroNota'];
             header("Location: http://localhost/ProyectoSI-Jezoar/view/GestionDeNotasDevolucion/gestionDetalleNotaDevolucion.php?nroNotaDetalle=$nroNota");
         }else{
-            header('Location: ../view/Exceptions/exceptions.php');    
+            header('Location: ../view/Exceptions/exceptions.php');
         }
     }else{
         header('Location: ../view/Exceptions/exceptions.php');
+    }   
+}else if (isset($_GET['nroNotaDetalle']) && isset($_GET['idDetalle'])) {
+    require '../model/NotaDevolucionModel.php';
+    $nota = new NotaDevolucion();
+    if ($nota->deleteDetalleInsumo($_GET['nroNotaDetalle'], $_GET['idDetalle'])) {
+        $nroNota = $_GET['nroNotaDetalle'];
+        header("Location: http://localhost/ProyectoSI-Jezoar/view/GestionDeNotasDevolucion/gestionDetalleNotaDevolucion.php?nroNotaDetalle=$nroNota");
+    }else{
+        header('Location: ../view/Exceptions/exceptions.php');
     }
-    
 }
 
 ?>

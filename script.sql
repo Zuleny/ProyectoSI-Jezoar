@@ -1407,15 +1407,9 @@ begin
 		codInsumo := getCodInsumo(old.nombre_insumo);
 		fechaNotaDevolucion := getFechaNota(old.nro_nota);
 		cantDiasLimite := fechaActual - fechaNotaDevolucion;
-		if cantDiasLimite < 4 then
-			update insumo_almacen set stock = stock - old.cantidad_insumo 
-				   where cod_almacen = codAlmacen and cod_insumo = codInsumo;
+		update insumo_almacen set stock = stock - old.cantidad_insumo 
+			where cod_almacen = codAlmacen and cod_insumo = codInsumo;
 			raise notice 'La anulacion del registro del insumo % fue exitoso. Nota nro: %',old.nombre_insumo,old.nro_nota;
-		else 
-			raise notice 'Registro de la nota de devolucion nro %, no puede ser eliminado',old.nro_nota;
-			raise notice 'Solo tiene permiso de eliminar antes de 3 dias del registro del insumo %',old.nombre_insumo;
-			rollback;
-		end if;
 	end if;
 	return old;
 end;

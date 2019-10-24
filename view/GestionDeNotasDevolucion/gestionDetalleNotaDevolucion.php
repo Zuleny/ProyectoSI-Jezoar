@@ -47,7 +47,7 @@
                             <input type="hidden" name="nroNota" value="<?php echo $_GET['nroNotaDetalle']?>">
                             <br>
                             <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Agregar a la Lista
-                                <i class="fa fa-fw fa-check"></i>
+                                <i class="fa fa-fw fa-shopping-cart"></i>
                             </button>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                             <h3 class="box-title">Lista de Insumos</h3>
                         </div>
                         <div class="box-body">
-                            <table class="table table-bordered table-hover" method="POST">
+                            <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -76,18 +76,13 @@
                                             echo   "<td>".pg_result($resultado,$fila,1)."</td>";
                                             echo   "<td>".pg_result($resultado,$fila,2)."</td>";
                                             echo   '<td> 
-                                                       <div class="btn-group">
-                                                          <a href="#">
-                                                              <button type="button" class="btn btn-xs bg-light-blue btn-sm" title="Asignar Insumos">
-                                                                  <i class="fa fa-fw fa-cubes"></i>
-                                                              </button>
-                                                          </a>
-                                                          <a href="../../controller/notaDevolucionController.php?nota='.pg_result($resultado,$fila,0).'">
-                                                              <button type="button" class="btn bg-red btn-xs" title="Eliminar Nota">
-                                                                 <i class="fa fa-fw fa-trash-o"></i>
-                                                              </button>
-                                                          </a>
-                                                        </div>
+                                                        <a href="../../controller/detalleNotaDevolucionController.php?nroNotaDetalle='.$_GET['nroNotaDetalle'].'&idDetalle='.pg_result($resultado,$fila,0).'">
+                                                            <div class="btn-group">
+                                                                <button type="submit" class="btn bg-red btn-xs" title="Eliminar detalle">
+                                                                    <i class="fa fa-fw fa-trash-o"></i>
+                                                                </button>
+                                                            </div>
+                                                        </a>
                                                     </td>';
                                             echo "</tr>";
                                         }

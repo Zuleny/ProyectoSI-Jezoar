@@ -95,7 +95,7 @@
                                 </div>
                                 <!-- Sub-Form Modal Ended -->
                             </table>
-</div>
+                        </div>
                     </div>
                 </form>
                 <div class="box-footer">

@@ -1,43 +1,6 @@
 <?php
 require 'Conexion.php';
 
-class InsumoDevolucion{
-    private $insumo;
-    private $stock;
-
-    public function __construct(){
-        $this->insumo = "";
-        $this->stock = 0;
-    }
-
-    public function setInsumo($insumo){
-        $this->insumo=$insumo;
-    }
-
-    public function setSock($stockInsumo){
-        if ($stockInsumo>-1) {
-            $this->stock=$stockInsumo;
-        }
-    }
-
-    public function getInsumo(){
-        return $this->insumo;
-    }
-
-    public function getStock(){
-        return $this->stock;
-    }
-    
-    /**
-     * si stock < 0 => stock=0 , stock pertenece a los Numeros Naturales
-     */
-    public function setDatos($insumo, $stock){
-        $this->stock = ($stock>-1) ? $stock : 0;
-        $this->insumo = $insumo;
-    }
-
-}
-
 class NotaDevolucion{
     private $nroNota;
     private $fecha;
@@ -152,6 +115,15 @@ class NotaDevolucion{
             $idDetalle = $this->getIdDetalle($nroNota);
             $this->conexion->execute("INSERT INTO detalle_nota(nro_nota, id_detalle, nombre_insumo, cantidad_insumo) 
                                       VALUES ($nroNota, $idDetalle,'$insumo', $stock);");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function deleteDetalleInsumo($nroNota, $idDetalle){
+        try {
+            $this->conexion->execute("DELETE FROM detalle_nota WHERE nro_nota=$nroNota and id_detalle=$idDetalle;");
             return true;
         } catch (\Throwable $th) {
             return false;
