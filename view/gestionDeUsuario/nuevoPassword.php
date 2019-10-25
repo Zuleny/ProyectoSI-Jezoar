@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>I forgot my password</title>
+  <title>Nuevo Password</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -51,33 +51,39 @@
     <div class="container">
       <section class="content-header">
         <h1>
-          Configuración de Usuario
+          Restablecimiento de Usuario
           <small>Sistema Jezoar</small>
         </h1>
       </section>
       <section class="content">
         <div class="box box-danger">
           <div class="box-header with-border">
-            <h3 class="box-title">Reconocimiento de Usuario</h3>
+            <h3 class="box-title">Asignacion de Nueva Contraseña</h3>
           </div>
           <div class="box-body">
             <div class="form-group">
                 <div class="col-lg-6">
-                    <label>Nombre Personal</label>
-                    <input type="text" class="form-control" placeholder="Juanito Perez" name="nombrePersonalOvidado">
+                    <label>Nueva Contraseña</label>
+                    <input type="password" class="form-control" name="newPassword">
+                    <br>
+                    <label>Rescribir la Nueva Contraseña</label>
+                    <input type="password" class="form-control" name="retypePassword">
                 </div>
                 <div class="col-lg-6">
-                    <label>Cargo</label>
-                    <input type="text" class="form-control" placeholder="Animador de fiestas" name="cargoPersonalOvidado">
+                    <label>Enviar la contraseña por correo</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                        <input type="email" class="form-control" placeholder="Email">
+                    </div>
+                    <br>
+                    <br>
+                    <a href="#">
+                        <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">
+                            Guradar Nueva Contraseña
+                            <i class="fa fa-spin fa-check"></i>
+                        </button>
+                    </a>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <br>
-                <a href="#">
-                    <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">Verificar Usuario
-                        <i class="fa fa-spin fa-check"></i>
-                    </button>
-                </a>
             </div>
           </div>
         </div>

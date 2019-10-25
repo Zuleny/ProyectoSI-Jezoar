@@ -22,7 +22,7 @@ class Usuario {
      */
     public function insertarUsuario(){
         try {
-            $this->conexion->execute("insert into Usuario(cod_usuario,nombre,contrasenia,id_personal_usuario) values ($this->codUsuario,'$this->nombreUsuario','$this->password',$this->idPersonal);");
+            $this->conexion->execute("INSERT INTO usuario(cod_usuario,nombre,contrasenia,id_personal_usuario) VALUES ($this->codUsuario,'$this->nombreUsuario','$this->password',$this->idPersonal);");
             return true;
         } catch (\Throwable $th) {
             return false;
@@ -34,7 +34,7 @@ class Usuario {
      * Retorna el Id_Personal de un Empleado(Personal)
      */
     public function getIdPersonal($nombrePersona){
-        $result = $this->conexion->execute("select getIdPersonal('$nombrePersona');");
+        $result = $this->conexion->execute("SELECT getIdPersonal('$nombrePersona');");
         return pg_result($result,0,0);
     }
 

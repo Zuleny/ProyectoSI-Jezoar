@@ -16,18 +16,19 @@
             <input type="password" placeholder="Password" name="password">
         </div>
         <button type="submit" class="btn">
-                Sig In
+            <i class="fa fa-fw fa-unlock"></i>
+            &ThinSpace;  Sig In  &ThinSpace;     &ThinSpace;&ThinSpace;&ThinSpace;&ThinSpace;
         </button>
-        <a href="https://www.facebook.com/Jezoar-228770924276961/">
-            <button type="button" class="btn btn-block btn-social btn-facebook">
-                <i class="fa fa-facebook"></i>
-                    Facebook Jezoar's
-            </button>
-        </a>
         <a href="gestionDeUsuario/forgotMyPassword.php">
             <button type="button" class="btn btn-block">
                 <i class="fa fa-fw fa-frown-o"></i>
                     I Forgot my password
+            </button>
+        </a>
+        <a href="https://www.facebook.com/Jezoar-228770924276961/">
+            <button type="button" class="btn">
+                <i class="fa fa-facebook"></i>
+                    &ThinSpace;  Facebook Jezoar's
             </button>
         </a>
     </form>

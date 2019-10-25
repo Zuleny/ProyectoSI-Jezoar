@@ -1,17 +1,21 @@
 <?php
 
 if (isset($_POST['nombreUser']) && isset($_POST['passwordUser']) && isset($_POST['nombrePersonal'])) {
-    $nombreUser = $_POST['nombreUser'];
-    $passwordUser = $_POST['passwordUser'];
-    $nombrePersonal = $_POST['nombrePersonal'];
-    require "../model/UsuarioModel.php";
-    $user = new Usuario(0,$nombreUser,$passwordUser,$nombrePersonal);
-    $user->codUsuario = $user->getCantidadUsuarios()+1;
-    if (!$user->insertarUsuario()) {
-        echo "Error No se pudo registrar al nuevo usuario
-                vuelva a interntarlo";
+    if ($_POST['nombreUser']!="" && $_POST['passwordUser']!="" && $_POST['nombrePersonal']!="") {
+        $nombreUser = strtolower($_POST['nombreUser']);
+        $passwordUser = strtolower($_POST['passwordUser']);
+        $nombrePersonal = $_POST['nombrePersonal'];
+        require "../model/UsuarioModel.php";
+        $user = new Usuario(0,$nombreUser,$passwordUser,$nombrePersonal);
+        $user->codUsuario = $user->getCantidadUsuarios()+1;
+        if ($user->insertarUsuario()) {
+            header('Location: ../view/gestionDeUsuario/gestionUsuario.php');
+        }else{
+            header('Location: ../view/Exceptions/exceptions.php');
+        }
+    }else{
+        header('Location: ../view/Exceptions/exceptions.php');
     }
-    header('Location: ../view/gestionDeUsuario/gestionUsuario.php');
 }
 
 function getListaPersonal(){
