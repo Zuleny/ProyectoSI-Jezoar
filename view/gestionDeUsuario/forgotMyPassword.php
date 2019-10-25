@@ -4,17 +4,17 @@
 <div class="content-wrapper">
     <!-- Titulo de la cabecera -->
     <section class="content-header">
-        <h1>Gestion de Usuarios</h1>
+        <h1>Olvidé mi Contraseña</h1>
     </section>
     <!-- Fin de la cabecera -->
     <!-- contenido de mi Vista -->
     <section class="content">
         <div class="box box-info">
             <div class="box-header">
-                <h3 class="box-title">Usuario</h3>
+                <h3 class="box-title">Alguien se Olvidó su contraseña UwU</h3>
                 <div class="box-tools pull-right">
-                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
-                    <span class="glyphicon glyphicon-home"></span></a>
+                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="volver al Login">
+                    <span class="fa fa-fw fa-lock"></span></a>
                 </div>
             </div>
             <!-- Inicia tu codigo aqui -->                    
@@ -32,22 +32,6 @@
                 </div>
                 <div class="box-body">
                     <div class="col-lg-4">
-                        <label>Nombre Personal</label>
-                        <select class="form-control" name="nombrePersonal" >
-                            <?php
-                                require "../../controller/usuarioController.php";
-                                $lista=getListaPersonal();
-                                echo $lista;
-                            ?>
-                        </select>
-                    </div>
-                    <div class="col-lg-4">
-                        <br>
-                        <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">Agregar Usuario
-                            <i class="fa fa-fw fa-check"></i>
-                        </button>
-                    </div>
-                    <div class="col-lg-4">
                         <br>
                         <a href="asignacionRoles.php">
                             <button type="button" class="btn btn-block btn-primary" title="Asignar Roles">Asignar Roles a Usuarios
@@ -55,29 +39,9 @@
                             </button>
                         </a>
                     </div>
-                </div>
-                <!--  Lugar de butons y label y textbox  -->
-                <div class="box box-success">
-                    <div class="box-header">
-                        <h3 class="box-title">Lista de Usuarios del Sistema</h3>
-                    </div>
-                    <div class="box-body">
-                        <table class="table table-bordered table-hover" id="tabla1">
-                            <thead>
-                                <tr>
-                                    <th>Codigo Usuario</th>
-                                    <th>Nombre</th>
-                                    <th>Nombre de Persona</th>
-                                    <th>Modificaciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    $lista=getListaDeUsuarios();
-                                    echo $lista;
-                                ?>
-                            </tbody>
-                        </table>
+                    <div class="col-lg-4">
+                        <label>Nombre Personal</label>
+                            <?php echo sha1("Prof. Ruddy Quispe Mamani") ?>
                     </div>
                 </div>
             </form>

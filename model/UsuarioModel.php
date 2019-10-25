@@ -48,7 +48,10 @@ class Usuario {
     }
 
     public function getListPersonal(){
-        return $this->conexion->execute("SELECT nombre FROM personal;");
+        return $this->conexion->execute("SELECT nombre 
+                                         FROM personal 
+                                         WHERE id_personal NOT IN (SELECT id_personal_usuario 
+                                                                   from usuario);");
     }
 
     /**
