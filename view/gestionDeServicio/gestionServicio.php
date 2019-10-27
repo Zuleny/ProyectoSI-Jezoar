@@ -24,7 +24,7 @@
                 <form role="form" action="../../controller/servicioController.php" method="post">
                     <!--  Lugar de butons y label y textbox  -->
                     <div class="box-body">
-                        <div class="col-lg-5">
+                        <div class="col-lg-4">
                             <label>Nombre del Servicio</label>
                             <input type="text" class="form-control" placeholder="Limpieza general de oficinas" name="nombre_servicio">
                         </div>
@@ -34,8 +34,9 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <div class="col-lg-4">
-                            <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Servicio
+                        <div class="col-lg-9"></div>
+                        <div class="col-lg-3">
+                            <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" name=InsertarAlmacen" title="Agregar Servicio">Agregar Servicio
                                 <i class="fa fa-fw fa-check"></i>
                             </button>
                         </div>
@@ -45,13 +46,14 @@
                         <div class="box-header">
                             <h3 class="box-title">Servicios de la Empresa Jezoar</h3>
                         </div>
-                        <div class="box-body">
+                        <div class="box-body" id="tabla1">
                             <table class="table table-bordered table-hover" method="POST">
                                 <thead>
                                     <tr>
                                         <th>Id Servicio</th>
                                         <th>Nombre</th>
                                         <th>Descripcion</th>
+                                        <th>Modificaciones</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -74,9 +76,6 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="form-group">
-                                                    <label>#</label>
-                                                    <input type="text" class="form-control" placeholder="Nombre del Servicio" name="nombreServicioModifcar">
-                                                    <br>
                                                     <label>Nombre</label>
                                                     <input type="text" class="form-control" placeholder="Nombre del Servicio" name="nombreServicioModifcar">
                                                     <br>

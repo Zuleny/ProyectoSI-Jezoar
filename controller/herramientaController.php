@@ -26,9 +26,6 @@ function getListaDeHerramientas(){
         $printer.=      '<td>'.pg_result($result,$tupla,2).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,3).'</td>';
         $printer.=      '<td> <div class="btn-group">
-                                            <button type="button" class="btn btn-warning btn-xs" title="Actualizar">
-                                                <i class="fa fa-fw fa-refresh"></i>
-                                            </button>
                                             &nbsp
                                             <button type="button" class="btn bg-purple btn-xs" title="Editar">
                                                 <i class="fa fa-edit"></i>

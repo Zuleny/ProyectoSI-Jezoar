@@ -15,7 +15,7 @@
         header('Location: ../view/gestionDeAlmacen/gestionAlmacen.php');
     }    
     function getListaDeAlmacen(){
-        require_once "../../model/AlmacenModel.php"; //quitar conexion y llamar desde el modelo
+        require_once "../../model/AlmacenModel.php"; 
         $lista=new Almacen(0,"almacen","Dir");
         $result=$lista->getListaAlmacen();
         $countTuplas=pg_num_rows($result);
@@ -24,12 +24,9 @@
                 $printer.='<tr> <td>'. pg_result($result,$tupla,0).'</td>';
                 $printer.= '<td>'.'<div contentEditable="false">'. pg_result($result,$tupla,1).'</div></td>';
                 $printer.= '<td>'.'<div contentEditable="false">'. pg_result($result,$tupla,2).'</div></td>';
-                $printer.= '<td> 
+                $printer.= '<td>
                 <div class="btn-group">                                               
-                    <button type="button" class="btn btn-warning btn-xs" title="Actualizar">
-                        <i class="fa fa-fw fa-refresh"></i>
-                    </button>
-                    <button type="button" class="btn bg-purple btn-xs" title="Editar">
+                    <button type="button" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal-default "title="Editar">
                         <i class="fa fa-edit"></i>
                     </button>
                 </div>

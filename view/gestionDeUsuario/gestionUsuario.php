@@ -41,15 +41,17 @@
                             ?>
                         </select>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-2">
+                    </div>
+                    <div class="col-lg-3">
                         <br>
-                        <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">Agregar Usuario
+                        <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" title="Agregar Usuario">Agregar Usuario
                             <i class="fa fa-fw fa-check"></i>
                         </button>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <br>
-                        <button type="button" class="btn btn-block btn-primary" action="asignacionRoles.php" title="Asignar Roles">Asignar Roles a Usuarios
+                        <button type="button" class="btn btn-block btn-primary" style="border-radius: 15px;" action="asignacionRoles.php" title="Asignar Roles">Asignar Roles a Usuarios
                             <i class="fa fa-fw fa-check"></i>
                         </button>
                     </div>

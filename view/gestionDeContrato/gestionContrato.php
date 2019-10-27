@@ -16,14 +16,8 @@
                 <div class="box-header">
                     <h3 class="box-title"></h3>
                     <div class="box-tools pull-right">
-<<<<<<< HEAD
-                        <button type="button" class="btn btn-primary" title="Volver Atras">
-                            <i class="fa fa-fw fa-arrow-circle-left"></i>
-                        </button>
-=======
                         <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                         <span class="glyphicon glyphicon-home"></span></a>
->>>>>>> 3093d113345399b3a826f2a9dbec7f536fff19e8
                     </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->                    
@@ -65,19 +59,16 @@
                                 <label>Nombre de cliente</label>
                                 <div class="input-group margin-bottom-sm"> 
                                     <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                        <input type="text" name ="nombre_cliente"class="form-control" >
+                                    <input type="text" name ="nombre_cliente"class="form-control">
                                 </div>
+                            </div>
+                            <div class="col-lg-4"> </div>
+                            <div class="col-lg-2">  
+                                <br>                                                             
+                                <button type="submit" name ="verPresentacion" style="border-radius: 15px;" class="btn btn-block btn-primary">Ver presentacion  <i class="fa fa-fw fa-file-pdf-o"></i></button>
+                                </div> 
                             </div>                                                   
-
-                        </div>
-                                               
-                        <div class="box-body">
-                            <div class="col-lg-2">                                                               
-                                <button type="submit" name ="verPresentacion" class="btn btn-block btn-primary">Ver presentacion  <i class="fa fa-fw fa-file-pdf-o"></i></button>
-                            </div>                            
-                        </div>
-                            
-                            
+                        </div> 
                         </div>
 
 

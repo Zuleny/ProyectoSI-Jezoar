@@ -28,9 +28,10 @@
                         <label>Descripcion del Permiso</label>
                         <input type="text" class="form-control" placeholder="Gestion de Clientes" name="descripcion_permiso">
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-3">
                         <br>
-                        <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Permiso
+                        <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" title="Agregar Servicio">Agregar Permiso
                             <i class="fa fa-fw fa-gear"></i>
                         </button>
                     </div>

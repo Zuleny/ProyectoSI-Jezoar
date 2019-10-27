@@ -1,7 +1,6 @@
 <?php
 include "Conexion.php";
 class Proveedor{
-    //atributo
     public $codProveedor;
     public $nombre_empresa;
     public $email;
@@ -11,7 +10,6 @@ class Proveedor{
     public $Conexion;
     public function __construct($codProveedor,$empresaProv,$emailProv,$dirProv,$telProv,$nameProv){ 
         $this->Conexion=new Conexion();
-
         $this->codProveedor=$codProveedor;
         $this->nombre_empresa=$empresaProv;
         $this->email=$emailProv;
@@ -27,7 +25,7 @@ class Proveedor{
             return false;
         }
     }
-    public function getListaDeProveedor(){
+    public function getListaProveedor(){
         return $this->Conexion->execute("SELECT cod_proveedor,nombre_empresa,email,direccion,telefono,nombre_proveedor FROM Proveedor");
     }
     

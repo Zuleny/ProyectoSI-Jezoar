@@ -36,25 +36,26 @@
                                 <textarea class="form-control" name="descripcion" rows="4" placeholder="Escriba una breve descripcion"></textarea>                                     
                                 <br>
                             </div>
-                          
+                            <div class="col-lg-5">
                                 <label>Estado</label>
                             <br>
                                 <p><input type="radio" name="estado" value="M">Mantenimiento</p>
                                 <p><input type="radio" name="estado" value="D">Disponible</p>
                                 <p><input type="radio" name="estado" value="N">No Disponible</p>
-  
-                        </div>
-                        <div class="box-body">
-                            <div class="col-lg-4">
-                                <button type="submit" value="Agregar Herramienta" class="btn btn-block btn-success" title="Agregar Herramienta">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
                             </div>
                         </div>
+                            <div class="box-body">
+                            <div class="col-lg-9"></div>
+                                <div class="col-lg-3">
+                                    <button type="submit" value="Agregar Herramienta" class="btn btn-block btn-success" style="border-radius: 15px;"title="Agregar Herramienta">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
+                                </div>
+                            </div>  
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box box-success">
                             <div class="box-header">
                                 <h3 class="box-title">Herramientas</h3>
                             </div>
-                            <div class="box-body" style="overflow:scroll">
+                            <div class="box-body" style="overflow:scroll" id="tabla1">
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
