@@ -1,7 +1,6 @@
 <?php
     include "../../view/theme/AdminLTE/Additional/head.php";
 ?>
-<<<<<<< HEAD
     <div class="content-wrapper">
         <!-- Titulo de la cabecera -->
         <section class="content-header">
@@ -17,9 +16,8 @@
                 <div class="box-header">
                     <h3 class="box-title">Detalles de una obra terminada</h3>
                     <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-primary" title="Volver Atras">
-                            <i class="fa fa-fw fa-arrow-circle-left"></i>
-                        </button>
+                            <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                            <span class="glyphicon glyphicon-home"></span></a
                     </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->                    
@@ -31,56 +29,6 @@
                                 <div class="input-group margin-bottom-sm"> 
                                     <span class="input-group-addon"><i class="fa fa-archive fa-fw" aria-hidden="true"></i></span>
                                         <input type="text" class="form-control" name = "codigo_informe" placeholder="Solo numero">
-=======
-<div class="content-wrapper">
-<!-- Titulo de la cabecera -->
-    <section class="content-header">
-        <h1>Informe<small>Detalles de una obra terminada </small>
-        <div class="box-tools pull-right">
-            <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
-            <span class="glyphicon glyphicon-home"></span></a>
-        </div>
-        </h1>
-    </section>
-    <!-- Fin de la cabecera -->
-    <!-- contenido -->
-    <section class="content">
-        <div class="box">
-            <div class="box-header with-border">
-                <div class="row">
-                    <br>
-                    <div class="container">                         
-                        <div class=" row bg-primary col-lg-2">
-                            <label for="codigo del informe" style="margin: 8px 7px 7px" >Codigo del informe:</label>
-                        </div> 
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control input-lg2" id="text_codInforme" placeholder="Solo numérico" >
-                            &nbsp;&nbsp;
-                        </div>
-                        <div class="container"> 
-                            <div class=" row bg-success col-lg-1"style="margin-left: 40px">
-                                <label for="codigo del informe"  style="margin: 8px 7px 7px">Fecha:</label>
-                            </div> 
-                            <div class="col-sm-2">
-                                <input type="text" class="form-control input-md-2" id="text_codInforme" placeholder="Fecha actual">
-                            </div> 
-                            <div class="container"> 
-                                <div class=" row bg-danger  col-lg-3"style="margin-left: 40px">
-                                    <label for="codigo de presentacion"  style="margin: 8px 7px 7px" >Codigo de presentación:</label>
-                                </div> 
-                                <div class="col-lg-2">
-                                    <input type="text" class="form-control input-md-2" id="text_codInforme" placeholder="Codigo del documento">
-                                </div> 
-                            </div>
-                            <div class="row">
-                                <div class="container" >                       
-                                    <div class=" row bg-primary col-lg-2">
-                                        <label for="nombre cliente" style="margin: 8px 7px 7px" >Nombre del cliente:</label>
-                                    </div> 
-                                    <div class="col-sm-4">
-                                        <input type="text" class="form-control input-lg-3" id="nombreliente">
-                                    </div>
->>>>>>> 3093d113345399b3a826f2a9dbec7f536fff19e8
                                 </div>
                             </div>
                             <div class="col-lg-3">

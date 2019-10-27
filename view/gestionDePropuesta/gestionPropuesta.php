@@ -19,18 +19,15 @@
             </div>
             <!-- Inicia tu codigo aqui -->
             <!--Inicia datos de Proopuesta-->
-            <div class="form-group">
-                <label>Codigo de Propuesta</label>
-                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="120">
-            </div>
-            <div class="form-group">
-                <label>Nombre Cliente</label>
-                <input type="text" id="nombre" name="nombre" class="form-control"
-                    placeholder="Margarita Cerezo Calderon">
-            </div>
-            <div class="form-group">
-                <label>Cantidad de meses</label>
-                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="6">
+            <div class="box-body col-lg-12">
+                <div class="col-md-6">
+                    <label>Nombre Cliente</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Margarita Cerezo Calderon">
+                </div>
+                <div class="col-md-6">
+                    <label>Cantidad de meses</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="6">
+                </div>
             </div>
             <form name="formulario" method="post" action="http://pagina.com/send.php">
                 <!-- Campo de entrada de mes -->

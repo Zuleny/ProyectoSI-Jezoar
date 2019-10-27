@@ -23,30 +23,38 @@
                    <!-- Inicia tu codigo aqui -->          
                     <form role="form" action="../../controller/proveedorController.php" method="post">
                         <!--  Lugar de butons y label y textbox  -->
-                            <div class="box-body col-lg-12">
-                                <div class="col-md-6">
+                            <div class="box-body">
+                                <div class="col-lg-4">
                                     <label>Empresa</label>
                                     <input type="text" class="form-control" name="empresaProv" placeholder="Empresa para la que trabaja"method="post">
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-lg-4">
                                     <label>Correo electrónico</label>
                                     <input type="email" class="form-control" name="emailProv" placeholder="Ej.: usuario@servidor.com">
                                 </div>
-                            </div>
-                            <div class="box-body col-lg-12">
-                                <div class="col-md-6">
-                                    <label>Direccion</label>
-                                    <input type="text" class="form-control" name="dirProv" placeholder="Direccion">
-                                </div>
-                                <div class="col-md-6">
+                                <div class="col-lg-2">
                                     <label>Telefono</label>
-                                    <input type="text" class="form-control" name="telProv" placeholder="Telefono de la empresa">
+                                    <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
+                                        <input type="text" name = "telefono_cliente"class="form-control">
+                                    </div>
                                 </div>
                             </div>
                             <div class="box-body">
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
+                                    <label>Direccion</label>
+                                    <input type="text" class="form-control" name="dirProv" placeholder="Direccion">
+                                </div>
+                                <div class="col-lg-4">
                                     <label>Nombre del Proveedor</label>
                                     <input type="text" class="form-control" name="nameProv" placeholder="nombre del proveedor">
+                                </div>
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-3">
+                                    <br>
+                                    <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" name=InsertarAlmacen" title="Agregar Almacen">Agregar Registro
+                                    <i class="fa fa-fw fa-check"></i>
+                                    </button>
                                 </div>
                             </div>
                     </form>
@@ -55,7 +63,8 @@
                             <div class="box-header">
                                 <h3 class="box-title">Proveedores de la Empresa Jezoar</h3>
                             </div>
-                            <div class="box-body"style="overflow:scroll">
+                            <div class="box-body"> <!--style="overflow:scroll"-->
+                            <div class="box-body" id="tabla1">
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -75,6 +84,39 @@
                                             echo $lista;  
                                         ?>
                                     </tbody>
+                                    <div class="modal fade" id="modal-default">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true"></span>
+                                                </button>
+                                                <h4 class="modal-title">Modificar</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label>Empresa</label>
+                                                    <input type="text" class="form-control" placeholder="EcoPlan" name="empresaProveedor">
+                                                    <br>
+                                                    <label>Correo electrónico</label>
+                                                    <input type="text" class="form-control" placeholder="EcoPlan@" name="correoProveedor">
+                                                    <br>
+                                                    <label>Direccion</label>
+                                                    <input type="text" class="form-control" placeholder="Av. avaroa " name="direccionProveedor">
+                                                    <br>
+                                                    <label>Telefono</label>
+                                                    <input type="text" class="form-control" placeholder="3564578" name="telefonoProveedor">
+                                                    <br>
+                                                    <label>Nombre</label>
+                                                    <input type="text" class="form-control" placeholder="Lizbeth" name="nombreProveedor">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-danger pull-left" type="button" data-dismiss="modal">Cancelar</button>
+                                                <button class="btn btn-success" type="button">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </table>
                             </div>
                         </div>
