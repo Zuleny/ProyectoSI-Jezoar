@@ -48,6 +48,9 @@
                             <div class="col-lg-4">
                                 <button type="submit" value="Agregar Herramienta" class="btn btn-block btn-success" title="Agregar Herramienta">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
                             </div>
+                            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeAlmacen/asignacionProductoAlmacen.php" target="_blank" id="etiqueta1">
+                            Ir a: Registrar Herramienta en un almacen 
+                            </a>
                         </div>
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box box-success">
