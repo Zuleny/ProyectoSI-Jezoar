@@ -36,10 +36,6 @@ function getListaDeUsuarios(){
         $printer.=      '<td>'.pg_result($result,$tupla,1).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,2).'</td>';
         $printer.=      '<td> <div class="btn-group">
-                                            <button type="button" class="btn btn-warning btn-sm" title="Actualizar">
-                                                <i class="fa fa-fw fa-refresh"></i>
-                                            </button>
-                                            &nbsp
                                             <button type="button" class="btn bg-purple btn-sm" title="Editar">
                                                 <i class="fa fa-edit"></i>
                                             </button>
@@ -49,7 +45,6 @@ function getListaDeUsuarios(){
     }
     return $printer;
 }
-
 
 
 ?>

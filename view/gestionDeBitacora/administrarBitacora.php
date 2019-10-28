@@ -21,6 +21,24 @@
                             <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
+                        <br>
+                        <div class="box-body">
+                            <div class="col-lg-4">
+                                <label>Nombre Personal</label>
+                                <select class="form-control" name="nombrePersonal" >
+                                    <?php
+                                        require "../../controller/usuarioController.php";
+                                        $lista=getListaPersonal();
+                                        echo $lista;
+                                    ?>
+                                </select>
+                            </div>
+                            <br>
+                            <div class="col-lg-3" >
+                                <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" id="button1" name="btnAdministrarBitacora" title="Verificar">Verificar 
+                                    <i class="fa fa-fw fa-check"></i></button>
+                            </div>
+                        </div>
 
                     </div>
                    <!-- Inicia tu codigo aqui -->          
@@ -32,12 +50,10 @@
                             <div class="box-header">
                                 <h3 class="box-title">Bitacora de la Empresa Jezoar</h3>
                             </div>
-                            <div class="box-body"> <!--style="overflow:scroll"-->
+                            <div class="box-body"  id="tabla1">
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Codigo</th>
-                                            <th>Nombre del Usuario</th>
                                             <th>Hora-Fecha</th>
                                             <th>Descripcion</th>
                                         </tr>

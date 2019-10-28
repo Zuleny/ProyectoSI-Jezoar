@@ -58,8 +58,9 @@ class Usuario {
         $result = $this->conexion->execute("select count(*) from usuario;");
         return pg_result($result,0,0);
     }
-
-    
+ 
+    public function getListaroles(){
+        return $this->conexion->execute("SELECT* from rol;");
+    }
 }
-
 ?>

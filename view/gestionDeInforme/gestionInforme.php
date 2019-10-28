@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +31,28 @@
                             <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>s
+=======
+<?php
+    include "../../view/theme/AdminLTE/Additional/head.php";
+?>
+    <div class="content-wrapper">
+        <!-- Titulo de la cabecera -->
+        <section class="content-header">
+            <h1>
+                Informe
+                <!-- <small>Blank example to the fixed layout</small> -->
+            </h1>
+        </section>
+        <!-- Fin de la cabecera -->
+        <!-- contenido de mi Vista -->
+        <section class="content">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Detalles de una obra terminada</h3>
+                    <div class="box-tools pull-right">
+                            <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                            <span class="glyphicon glyphicon-home"></span></a
+>>>>>>> cc71b7f84442df0cbad9d23a425e3e1ca258823a
                     </div>
                    <!-- Inicia tu codigo aqui -->                    
                     <form role="form" action="../../controller/clienteController.php" method="post" >
@@ -39,8 +62,13 @@
                             <div class="col-lg-5">
                                 <label>Nombre de cliente</label>
                                 <div class="input-group margin-bottom-sm"> 
+<<<<<<< HEAD
                                     <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
                                         <input type="text" class="form-control" name = "nombre_cliente" >
+=======
+                                    <span class="input-group-addon"><i class="fa fa-archive fa-fw" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name = "codigo_informe" placeholder="Solo numero">
+>>>>>>> cc71b7f84442df0cbad9d23a425e3e1ca258823a
                                 </div>
                             </div>
                             <div class="col-lg-2">

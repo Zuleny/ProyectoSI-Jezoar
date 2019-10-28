@@ -2,7 +2,7 @@
     include "../../view/theme/AdminLTE/Additional/head.php";    
     include "../../model/Conexion.php";
 ?>
-<script type="text/javascript" src ="../GestionarResporteInvProducto/reportes.js"> </script>
+<script type="text/javascript" src ="../../public/assets/reportes.js"> </script>
     <div class="content-wrapper">
         <!-- Titulo de la cabecera -->
         <section class="content-header">
@@ -18,9 +18,8 @@
                 <div class="box-header">
                     <h3 class="box-title">Herramienta</h3>
                     <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-primary" title="Volver Atras">
-                            <i class="fa fa-fw fa-arrow-circle-left"></i>
-                        </button>
+                        <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                        <span class="glyphicon glyphicon-home"></span></a>
                     </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->                    

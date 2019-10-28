@@ -5,3 +5,17 @@
     background-color: #D4EFDF;
     /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
 }
+#button1{
+    border-radius: 15px;
+    margin: 15px;
+}
+#etiqueta1{
+    margin: 0px 0px 15px 770px;
+    color:#28558C;
+}
+a:hover {    
+    background-color: transparent;
+    font-size: medium;
+    text-decoration: underline;
+}
+

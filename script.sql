@@ -318,6 +318,7 @@ create table Contrato (
 	on update cascade
 	on delete cascade
 );
+
 /*************************Poblacion**********************************************************************************/
 insert into Cliente values(1,'SERVITODO ','San Martin,2do Anillo','servitodo_100@gmail.com','E');
 insert into Cliente values(2,'Yerba Buena','Av. Roca y Coronado,3er Anillo','yerba.buena@gmail.bo','E');
@@ -1233,6 +1234,8 @@ insert into Detalle_Nota(nro_nota,id_detalle,nombre_insumo,cantidad_insumo) valu
 (46,3,'Trapeador',2),
 (46,4,'Escoba',2),
 (46,5,'Avion',1);
+
+/******************************Funciones y Procedimientos Almacenados y Triggers*****************/
 /******************************Funciones y Procedimientos Almacenados y Triggers*****************/
 /*1. Funcion que Devuelve el stock de un insumo en un Almacen especifico
 	 (cantidad Disponible del Insumo)*/
@@ -1371,7 +1374,7 @@ begin
 		raise notice 'Proceso de Devolucion de Insumo fue exitoso :)';
 	end if;
 	return old;
-end; $BODY$ language plpgsql
+end; $BODY$ language plpgsql;
 
 /*11. Trigger para la eliminacion de insumo en una Nota de Egreso */
 create trigger detalleNotaEgresoAnulacion before delete
@@ -1451,6 +1454,7 @@ create trigger iDetalleIngreso
 before insert on Detalle_Ingreso
 for each row 
 	execute procedure ingresoDetalle();
+
 /*17. Funcion Auxiliar para el trigger dDetalleIngreso*/
 create or replace function dIngresoDetalle() returns trigger as 
 $$
@@ -1472,6 +1476,7 @@ $$
 	end;
 $$
 language plpgsql;
+
 /*18. Trigger para actualizar el stock de un determinado insumo y almacen al momento de 
 eliminar una fila en la tabla Detalle_Ingreso*/
 create trigger dDetalleIngreso 
@@ -1498,6 +1503,7 @@ $BODY$
    end;
 $BODY$
 LANGUAGE 'plpgsql';
+
 /*21. Devuelve una tabla con el codigo de producto,nombre del insumo,la descripcion,la marca del producto,
 la categoria a la que pertenece un producto, y el precio*/
 create or replace function getListaDeProductos()
@@ -1507,14 +1513,11 @@ begin
 	return query SELECT Producto.cod_insumo_producto,Insumo.nombre,Insumo.descripcion,Producto.marca,getCategoriaDeProducto(Producto.cod_insumo_producto),Producto.precio_unitario 
                  from Insumo,Producto,Producto_Categoria
                  where Insumo.cod_insumo=Producto.cod_insumo_producto and Producto.cod_insumo_producto=Producto_Categoria.cod_insumo_producto;
-				 
 end; $$
 language 'plpgsql';
-
- /*PROCEDIMIENTOS */
 	
 	
-/*21. Funcion que devuleve el inventario de un especifico almacen a traves de su nombre*/
+/*22. Funcion que devuleve el inventario de un especifico almacen a traves de su nombre*/
 create or replace function getInventarioDeProductos(nombreAlmacen varchar(20))
 returns table (nombre varchar,InsumoNombre varchar,ProductoMarca varchar,stockInsumo DECIMAL(12,2)) 
 as $$
@@ -1530,7 +1533,7 @@ begin
 end; $$
 language 'plpgsql';
 
-/*22. Funcion que devuelve el inventario de herramientas de un especifico almacen a traves de su nombre*/
+/*23. Funcion que devuelve el inventario de herramientas de un especifico almacen a traves de su nombre*/
 create or Replace function getHerramientaStock(nombreAlmacen varchar(20)) returns table (codigo integer,nombre varchar, estado char,stock decimal(12,2))
 as $$
 begin
@@ -1542,23 +1545,19 @@ begin
 		end; 
 $$
 language'plpgsql';
-select *from getHerramientaStocks('Almacen1');
-select * from Insumo,herramienta
-where Insumo.cod_insumo=Herramienta.cod_insumo_herramienta;
 
-/*23. Funcion que devuelve el precio Total de una sola nota*/
+/*24. Funcion que devuelve el precio Total de una sola nota*/
 create or replace function getPrecioTotalUnaNota(cod_nota integer) returns decimal(12,2) as $$
 begin
-	return (select coalesce(cast(sum(cantidad*precio_unitario))as decimal(12,2),0)
+	return (select coalesce(cast(sum(cantidad*precio_unitario)as decimal(12,2)),0)
 			from Detalle_Ingreso
 			where cod_nota=nro_ingreso
 			);
 end;
 $$
 language plpgsql;
-/*24. Funcion que devuelve una tabla con los precios totales de una nota en el almacen */ 
---select * from getListaPrecioTotales('Almacen1');
 
+/*25. Funcion que devuelve una tabla con los precios totales de una nota en el almacen */ 
 create or replace function getListaPrecioTotales(nombre_almacen varchar(25))
 returns table (codigo_nota integer, fecha_de_Ingreso date,nombre_del_receptor varchar,nombre_del_proveedor varchar,
 			   nombreDelAlmacen varchar, cantidad decimal(12,2)) as $$	
@@ -1570,15 +1569,7 @@ begin
 end;  
 $$ language 'plpgsql';
 
-
-/* 25.Trigger para eliminar un detalle_ingreso*/
-create trigger Eliminar_Ingreso after delete
-on Detalle_Ingreso
-for each row 
-    execute procedure Eliminar_DetalleI();
-
 /* 26.Funcion Auxiliar para el trigger*/
-drop function Eliminar_DetalleI cascade;
 create function Eliminar_DetalleI() returns trigger as $$
 begin
     if(contarDetalle(old.nro_ingreso)=0) then
@@ -1588,22 +1579,28 @@ begin
 end; $$
 language plpgsql;
 
-/* 27.Funcion para contar la cantidad de detalles que tiene una nota de ingreso*/
+/* 27.Trigger para eliminar un detalle_ingreso*/
+create trigger Eliminar_Ingreso after delete
+on Detalle_Ingreso
+for each row 
+    execute procedure Eliminar_DetalleI();
+
+/* 28.Funcion que suma los precios unitarios de la tabla Presentacion_Servicio*/
+create or replace FUNCTION Suma_Precio(codPresentacion integer) returns decimal(12,2) as $$
+begin
+    return (select coalesce(sum(precio_unitario),0) from Presentacion_Servicio,Presentacion 
+	        where Presentacion.cod_presentacion=Presentacion_Servicio.cod_presentacion and Presentacion_Servicio.cod_presentacion=codPresentacion);
+end; $$
+language plpgsql;
+
+/* 29.Funcion para contar la cantidad de detalles que tiene una nota de ingreso*/
 create or replace function contarDetalle(nroIngreso integer) returns integer as $$
 begin
      return (select count(*) from Detalle_Ingreso where Detalle_Ingreso.nro_ingreso=nroIngreso);
 end; $$
 language plpgsql;
 
-
-
-/* 28.Trigger que actualiza el precio total de la presentacion al insertar un servicio*/
-create trigger PresentacionServicioInsertar after insert
-on Presentacion_Servicio
-for each row
-    execute procedure Insertar_PrecioT();
-	
-/* 29.Funcion Auxiliar para el trigger de insercion*/		
+/* 30.Funcion Auxiliar para el trigger de insercion*/		
 create or replace function Insertar_PrecioT() returns trigger as $$
    declare
          precioT decimal(12,2);
@@ -1616,15 +1613,13 @@ begin
 end; $$
 language plpgsql;
 
-/* 30.Funcion que suma los precios unitarios de la tabla Presentacion_Servicio*/
-create or replace FUNCTION Suma_Precio(codPresentacion integer) returns decimal(12,2) as $$
-begin
-    return (select coalesce(sum(precio_unitario),0) from Presentacion_Servicio,Presentacion 
-	        where Presentacion.cod_presentacion=Presentacion_Servicio.cod_presentacion and Presentacion_Servicio.cod_presentacion=codPresentacion);
-end; $$
-language plpgsql;
+/* 31.Trigger que actualiza el precio total de la presentacion al insertar un servicio*/
+create trigger PresentacionServicioInsertar after insert
+on Presentacion_Servicio
+for each row
+    execute procedure Insertar_PrecioT();
 
-/* 31.Funcion Trigger para eliminar un servicio de una presentacion*/
+/* 32.Funcion Trigger para eliminar un servicio de una presentacion*/
 create or replace function Eliminar_PrecioT() returns trigger as $$
    declare
          precioT decimal(12,2);
@@ -1639,13 +1634,13 @@ begin
 end; $$
 language plpgsql;
 
-/* 32.Trigger para Eliminar un servicio de una Presentacion*/
+/* 33.Trigger para Eliminar un servicio de una Presentacion*/
 create trigger PresentacionServicioEliminar after delete
 on presentacion_servicio
 for each row
 	execute procedure Eliminar_PrecioT();
 
-/* 33.Funcion que devuelva el nombre de Persona a traves de su codigo*/
+/* 34.Funcion que devuelva el nombre de Persona a traves de su codigo*/
 create or replace function getNombrePersona(codigoPersonal integer)returns text
 as $$ begin
 	return(select nombre
@@ -1653,7 +1648,7 @@ as $$ begin
 			where id_personal=codigoPersonal);
 end; $$ 
 language plpgsql;
-/* 34. Funcion que devuelve el id Persona de una persona llevando como parametro su nombre*/
+/* 35. Funcion que devuelve el id Persona de una persona llevando como parametro su nombre*/
 create or replace function getIdPersonal(nombrePersonal text)returns integer 
 as $$ begin
 	return (select id_personal
@@ -1661,7 +1656,7 @@ as $$ begin
 			where nombre=nombrePersonal );
 end $$ language plpgsql;
 
-/* 35.Funcion que devuelva el nombre de Cliente a traves de su codigo*/
+/* 36.Funcion que devuelva el nombre de Cliente a traves de su codigo*/
 create or replace function getNombreCliente(codigoCliente integer)returns text
 as $$ begin
 	return(select nombre
@@ -1669,7 +1664,7 @@ as $$ begin
 			where cod_cliente=codigoCliente);
 end; $$ 
 language plpgsql;
-/* 36. Funcion que devuelve el Codigo Cliente de una persona llevando como parametro su nombre*/
+/* 37. Funcion que devuelve el Codigo Cliente de una persona llevando como parametro su nombre*/
 create or replace function getCodCliente(nombreCliente text)returns integer 
 as $$ begin
 	return (select cod_cliente

@@ -16,6 +16,7 @@
                 <div class="box-header">
                     <h3 class="box-title"></h3>
                     <div class="box-tools pull-right">
+<<<<<<< HEAD
 
                         <button type="button" class="btn btn-primary" title="Volver Atras">
                             <i class="fa fa-fw fa-arrow-circle-left"></i>
@@ -24,6 +25,10 @@
                         <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                         <span class="glyphicon glyphicon-home"></span></a>
 
+=======
+                        <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                        <span class="glyphicon glyphicon-home"></span></a>
+>>>>>>> cc71b7f84442df0cbad9d23a425e3e1ca258823a
                     </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->                    
@@ -65,9 +70,16 @@
                                 <label>Nombre de cliente</label>
                                 <div class="input-group margin-bottom-sm"> 
                                     <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                        <input type="text" name ="nombre_cliente"class="form-control" >
+                                    <input type="text" name ="nombre_cliente"class="form-control">
                                 </div>
+                            </div>
+                            <div class="col-lg-4"> </div>
+                            <div class="col-lg-2">  
+                                <br>                                                             
+                                <button type="submit" name ="verPresentacion" style="border-radius: 15px;" class="btn btn-block btn-primary">Ver presentacion  <i class="fa fa-fw fa-file-pdf-o"></i></button>
+                                </div> 
                             </div>                                                   
+<<<<<<< HEAD
 
                         </div>
                                                
@@ -79,6 +91,16 @@
                                 <button type="submit" name ="verPresentacion" class="btn btn-block btn-primary">Ver presentacion  <i class="fa fa-fw fa-file-pdf-o"></i></button>
                             </div>                            
                         </div>
+=======
+                        </div> 
+                        </div>
+
+
+                            
+
+                                     
+                    
+>>>>>>> cc71b7f84442df0cbad9d23a425e3e1ca258823a
                 </form>
                 
                 <!-- Termina tu codigo aqui -->

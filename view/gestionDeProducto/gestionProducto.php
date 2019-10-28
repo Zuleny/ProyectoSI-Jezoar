@@ -63,13 +63,13 @@
                            </div>
                           </div> 
                         <div class="col-lg-4" >
-                                <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" name="btnInsertarProducto" title="Agregar Servicio">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
+                                <button type="submit" class="btn btn-block btn-success" id="button1" name="btnInsertarProducto" title="Agregar Servicio">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
                             </div>
                             
                         </div>
-                        <div class="box-body">
-                           
-                        </div>
+                        <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeAlmacen/asignacionProductoAlmacen.php" target="_blank" id="etiqueta1">
+                            Ir a: Registrar Producto en un almacen 
+                        </a>
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box box-success">
                             <div class="box-header">

@@ -24,13 +24,15 @@
             <form role="form" action="../../controller/categoriaController.php" method="post">
                 <!--  Lugar de butons y label y textbox  -->
                 <div class="box-body">
-                    <div class="col-lg-8">
+                <div class="col-lg-5">
                         <label>Nombre del Categoria</label>
                         <input type="text" class="form-control" placeholder="Limpieza general de oficinas" name="nombre_categor">
                     </div>
                     <div class="col-lg-4">
+                    </div>
+                    <div class="col-lg-3">
                         <br>
-                        <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Crear Categoria
+                        <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" title="Agregar Servicio">Crear Categoria
                             <i class="fa fa-fw fa-check"></i>
                         </button>
                     </div>
@@ -56,6 +58,25 @@
                                     echo $printer;
                                 ?>
                             </tbody>
+                                <div class="modal fade" id="modal-default">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true"></span></button>
+                                                <h4 class="text-center modal-title">Modificar</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label>Nombre</label>
+                                                <input type="text" class="form-control" placeholder="Nombre de Categoria" name="nombreCategoria">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-default pull-left" type="button" data-dismiss="modal">Cancelar</button>
+                                                <button class="btn btn-primary" type="button">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                         </table>
                     </".>
                 </div>

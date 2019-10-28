@@ -56,6 +56,26 @@ class Producto{
     public function getListaAlmacenes(){
         return $this->conexion->execute("select nombre from almacen;");
     }
+
+    public function getListaInsumo(){
+        $result=$this->conexion->execute("select cod_insumo,nombre,tipo_insumo from Insumo;");
+        return $result;
+    }
+
+    public function insertarInsumo_Almacen($cod_insumo,$almacen,$stock){
+        try{
+            $cant=count($cod_insumo);
+            $result=$this->conexion->execute("select cod_almacen from almacen where nombre='$almacen';");
+            $codAlmacen=pg_result($result,0,0);
+            echo $codAlmacen;
+            for($i=0;$i<$cant;$i++){
+               $this->conexion->execute("insert into insumo_almacen values($cod_insumo[$i],$codAlmacen,$stock[$i]);");
+            }
+            return true;
+        }catch(\Throwable $th){
+            return false;
+        }
+    }
 }
 
 ?>

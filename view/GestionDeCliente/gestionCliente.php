@@ -51,12 +51,21 @@
                                 </div>
                             </div>
                             <div class="col-lg-2">
+<<<<<<< HEAD
                                 <label>Telefono (2)</label>
                                 <div class="input-group margin-bottom-sm">
                                     <span class="input-group-addon"><i class="fa fa-phone fa-fw" aria-hidden="true"></i></span>
                                     <input type="text" name = "telefono2_cliente" class="form-control">
                                 </div>
                             </div>
+=======
+                                <label>Telefono del cliente(2)</label>
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-phone fa-fw" aria-hidden="true"></i></span>
+                                        <input type="text" name = "telefono2_cliente" class="form-control">
+                                </div>
+                            </div> 
+>>>>>>> cc71b7f84442df0cbad9d23a425e3e1ca258823a
                         </div>
 
                         <div class="box-body">
@@ -74,34 +83,41 @@
                                         <input type="text" class="form-control"name ="nit_cliente" placeholder="CI, solo si es persona">
                                 </div>
                             </div>
+<<<<<<< HEAD
 
+=======
+                            
+>>>>>>> cc71b7f84442df0cbad9d23a425e3e1ca258823a
                         </div>
-
                         <div class="box-body">
-                            <div class="col-lg-7">
+                        <div class="col-lg-5">
                                 <label>Direccion</label>
                                 <div class="input-group margin-bottom-sm"> 
                                     <span class="input-group-addon"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i></span>
                                         <input type="text" name="direccion_cliente" class="form-control" >
                                 </div>
-                            </div>                         
-                            
-                        </div>
-
-                        <div class="box-body">
-                            <div class="col-lg-2">  
+                            </div>  
+                            <div class="col-lg-3">  
                             <label>Tipo de cliente:</label>
-                            <br>
                                 <p><input type="radio" name="tipo" value="P">Persona</p>
                                 <p><input type="radio" name="tipo" value="E">Empresa</p>
+                            </div> 
+                            <div class="col-lg-1"></div> 
+                            <div class="col-lg-3"> 
+                                <br><br>                              
+                                <button type="submit" name ="agregar_cliente" class="btn btn-block btn-success" style="border-radius: 15px;" title="Agregar Servicio">Agregar cliente <i class="fa fa-fw fa-user-plus"></i></button>
                             </div>
                         </div>                
+<<<<<<< HEAD
                         <div class="box-body">   
                             <div class="col-lg-2" >                                
                                 <button type="submit" name ="agregar_cliente" class="btn btn-block btn-primary" >Agregar cliente <i class="fa fa-fw fa-user-plus"></i></button>
                             </div>
                         </div>
                       </div>
+=======
+                    </div>  
+>>>>>>> cc71b7f84442df0cbad9d23a425e3e1ca258823a
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box box-info">
                             <div class="box-header">
