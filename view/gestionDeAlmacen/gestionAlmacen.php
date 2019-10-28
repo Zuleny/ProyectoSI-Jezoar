@@ -49,7 +49,7 @@
                         <div class="box-body">
                             <div class="col-lg-4">
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-text"type="text" placeholder="Editar">
+                                    <input type="text" class="form-control form-text" placeholder="Editar">
                                         <div class="input-group-btn">
                                             <button type="button" class="btn btn-info"><span class="icon glyphicon glyphicon-edit"></span></button>
                                         </div>
@@ -100,10 +100,10 @@
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <label>Nombre</label>
-                                                    <input type="text" class="form-control" placeholder="Nombre del Almacen" name="nombreServicioModifcar">
+                                                    <input type="text" class="form-control" placeholder="Nombre del Almacen" name="nombreAlmacenModifcar">
                                                     <br>
                                                     <label>Direccion</label>
-                                                    <input type="text" class="form-control" placeholder="Direccion del Almacen" name="descripcionServicioModifcar">
+                                                    <input type="text" class="form-control" placeholder="Direccion del Almacen" name="DireccionModifcar">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
