@@ -8,12 +8,10 @@ class Cliente{
     public $telefono;
     public $telefono2;
     public $direccion;
-
-    public $Conexion;
-    
+    public $conexion;
 
     public function __construct($cod_cliente, $nombre,$direccion, $email,$tipo,$telefono,$telefono2) {
-        $this->Conexion = new Conexion();
+        $this->conexion = new Conexion();
 
         $this->cod_cliente = $cod_cliente;
         $this->nombre = $nombre;
@@ -22,17 +20,24 @@ class Cliente{
         $this->tipo = $tipo;
         $this->telefono = $telefono;
         $this->telefono2 = $telefono2;
-        
-   
         }
     public function insertarCliente(){          
-            $this->Conexion->execute("insert into Cliente(cod_cliente,nombre,direccion,email,tipo) values
-                             ($this->cod_cliente,'$this->nombre','$this->direccion','$this->email','$this->tipo');");
-            $this->Conexion->execute("insert into Telefono(cod_cliente_telefono,telefono) values ($this->cod_cliente,'$this->telefono');");
-            $this->Conexion->execute("insert into Telefono(cod_cliente_telefono,telefono) values ($this->cod_cliente,'$this->telefono2');");
+            $this->conexion->execute("insert into Cliente(cod_cliente,nombre,direccion,email,tipo) values ($this->cod_cliente,'$this->nombre','$this->direccion','$this->email','$this->tipo');");
+            $this->conexion->execute("insert into Telefono(cod_cliente_telefono,telefono) values ($this->cod_cliente,'$this->telefono');");
+            $this->conexion->execute("insert into Telefono(cod_cliente_telefono,telefono) values ($this->cod_cliente,'$this->telefono2');");
             return true;
     }
-    
-    
+    public function getCantidadCliente(){
+        return $this->conexion->execute("select count(*) from cliente;");
+    }
+    public function getNewCodigoCliente(){
+        return $this->getCantidadCliente()+1;
+    }
+    public function getListaDeCliente(){
+        $resultado=$this->conexion->execute("SELECT cliente.cod_cliente,cliente.nombre,cliente.email, cliente.direccion, telefono.telefono, cliente.tipo FROM cliente, telefono
+                                                WHERE cliente.cod_cliente=telefono.cod_cliente_telefono ORDER BY cliente.cod_cliente;");
+        return $resultado;
+    }
+
 }
 ?>

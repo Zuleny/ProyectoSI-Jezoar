@@ -35,7 +35,6 @@ function getListaDeHerramientas(){
                                             </button>
                                       </div>
                                  </td>
-                          </tr>';
     }
     return $printer;
 }
