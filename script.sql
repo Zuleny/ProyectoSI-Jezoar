@@ -233,6 +233,8 @@ create table Usuario
 	cod_usuario int not null primary key,
 	nombre varchar(25) not null,
 	contrasenia varchar(200) not null,
+	question varchar(200) not null,
+	answer varchar(200) not null,
 	id_personal_usuario int not null,
 	foreign key (id_personal_usuario) references Personal(id_personal)
 	on delete cascade
@@ -875,34 +877,35 @@ insert into Detalle_Ingreso values(164,'Paños de algodon',12,7,9);
 insert into Detalle_Ingreso values(165,'Franelas',12,5,9);
 insert into Detalle_Ingreso values(166,'Esponja',10,5,9);
 
-insert into Personal values (1,'Leonor Claros Torrico','F','Gerente');
-insert into Personal values (2,'Stephani Heredia Claros','F','Administrador');
-insert into Personal values (3,'Divina Lino Cuellar','F','Operador de Limpieza');
-insert into Personal values (4,'Monica Kelly Heredia Zeballos','F','Supervisor');
-insert into Personal values (5,'Daniel Valda Torrez','E','Operador de Limpieza');
-insert into Personal values (6,'Sonia Arenas Estevez','F','Operador de Limpieza');
-insert into Personal values (7,'Adela Enriquez Cochegua','E','Operador de Limpieza');
-insert into Personal values (8,'Maria Gloria Aramendaro','E','1Operador de Limpieza');
-insert into Personal values (9,'Fernando Espinoza Ardaya','E','Operador de Limpieza');
-insert into Personal values (10,'Juan Espinoza Ardaya','E','Operador de Limpieza');
-insert into Personal values (11,'Leonarda Apaza','E','Operador de Limpieza');
-insert into Personal values (12,'Elsa Morales','E','Operador de Limpieza');
-insert into Personal values (13,'Raquel Estrada','E','Operador de Limpieza');
-insert into Personal values (14,'Marta Peñaranta','E','Operador de Limpieza');
-insert into Personal values (15,'Jorge Airese','E','Operador de Limpieza');
-insert into Personal values (16,'Crithian Aleman','E','Operador de Limpieza');
-insert into Personal values (17,'Goldy Bayaregua','E','Operador de Limpieza');
-insert into Personal values (18,'Alejandria Guancu','E','Operador de Limpieza');
-insert into Personal values (19,'Cristian Luna','F','Supervisor');
-insert into Personal values (20,'Maritza Lino','F','Supervisor');
-insert into Personal values (21,'Nadia Aleman','E','Operador de Limpieza');
-insert into Personal values (22,'Yessenia','E','Operador de Limpieza');
-insert into Personal values (23,'Veronica Castro','E','Operador de Limpieza');
-insert into Personal values (24,'Ines Garcia','E','Operador de Limpieza');
-insert into Personal values (25,'Marili Aguilar Sanchez','F','Supervisor');
+insert into Personal values (1,'leonor claros torrico','F','gerente');
+insert into Personal values (2,'stephani heredia claros','F','administrador');
+insert into Personal values (3,'divina lino cuellar','F','operador de limpieza');
+insert into Personal values (4,'monica kelly heredia zeballos','F','supervisor');
+insert into Personal values (5,'daniel valda torrez','E','operador de limpieza');
+insert into Personal values (6,'sonia arenas estevez','F','operador de limpieza');
+insert into Personal values (7,'adela enriquez cochegua','E','operador de limpieza');
+insert into Personal values (8,'maria gloria aramendaro','E','operador de limpieza');
+insert into Personal values (9,'fernando espinoza ardaya','E','operador de limpieza');
+insert into Personal values (10,'juan espinoza ardaya','E','operador de limpieza');
+insert into Personal values (11,'leonarda apaza','E','operador de limpieza');
+insert into Personal values (12,'elsa morales','E','operador de limpieza');
+insert into Personal values (13,'raquel estrada','E','operador de limpieza');
+insert into Personal values (14,'marta peñaranta','E','operador de limpieza');
+insert into Personal values (15,'jorge airese','E','operador de limpieza');
+insert into Personal values (16,'crithian aleman','E','operador de limpieza');
+insert into Personal values (17,'goldy bayaregua','E','operador de limpieza');
+insert into Personal values (18,'alejandria guancu','E','operador de limpieza');
+insert into Personal values (19,'cristian luna','F','supervisor');
+insert into Personal values (20,'maritza lino','F','supervisor');
+insert into Personal values (21,'nadia aleman','E','operador de limpieza');
+insert into Personal values (22,'yessenia','E','operador de limpieza');
+insert into Personal values (23,'veronica castro','E','operador de limpieza');
+insert into Personal values (24,'ines garcia','E','operador de limpieza');
+insert into Personal values (25,'marili aguilar sanchez','F','supervisor');
 
-insert into Usuario values (1,'Leonor','leonorCT71',1);
-insert into Usuario values (2,'Stephani','stephaniHC97',2);
+insert into Usuario(cod_usuario,nombre,contrasenia,question,answer,id_personal_usuario) values 
+(	1	   ,'leonor'  ,'leonorCT71'  ,'Si a=b y b=c, entonces ¿a=c?','a=c'	   ,1),
+(	2	   ,'stephani','stephaniHC97','¿Cúal es mi nombre?'         ,'stephani',2);
 
 insert into Rol(cod_rol,descripcion) values (1,'Gerencia'),
 											(2,'Administracion');
