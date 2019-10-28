@@ -61,7 +61,7 @@
             <h3 class="box-title">Asignacion de Nueva Contraseña</h3>
           </div>
           <div class="box-body">
-            <div class="form-group">
+            <form class="form-group" action="../../controller/seguridadPasswordController.php" method="post">
                 <div class="col-lg-6">
                     <label>Nueva Contraseña</label>
                     <input type="password" class="form-control" name="newPassword">
@@ -69,22 +69,21 @@
                     <label>Rescribir la Nueva Contraseña</label>
                     <input type="password" class="form-control" name="retypePassword">
                 </div>
+                <input type="hidden" value="<?php echo $_GET['nombrePersonal']; ?>" name="nombrPersonal">
                 <div class="col-lg-6">
                     <label>Enviar la contraseña por correo</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" class="form-control" placeholder="email" name="email">
                     </div>
                     <br>
                     <br>
-                    <a href="#">
-                        <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">
-                            Guradar Nueva Contraseña
-                            <i class="fa fa-spin fa-check"></i>
-                        </button>
-                    </a>
+                    <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">
+                        Guradar Nueva Contraseña
+                        <i class="fa fa-spin fa-check"></i>
+                    </button>
                 </div>
-            </div>
+            </form>
           </div>
         </div>
       </section>

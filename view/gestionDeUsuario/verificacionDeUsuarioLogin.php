@@ -63,21 +63,21 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Pregunta Gestionada por el Usuario</h3>
                 </div>
-                <div class="box-body">
+                <form class="box-body" action="../../controller/seguridadPasswordController.php" method="get">
                     <div class="col-lg-4">
                         <h4>Nota:</h4>
                         <p>
-                            Esta pregunta fué creada por <b>usted</b>, al momento de crear su usuario de uso para este sistema, por favor responda la siguiente pregunta. <br> 
+                            Querido(a) <?php echo $_GET['nombpersonal'] ?>, esta pregunta fué creada por <b>usted</b>, al momento de crear su usuario de uso para este sistema, por favor responda la siguiente pregunta. <br> 
                             <b>Si responde correctamente esta pregunta</b>, podrá recuperar su usuario de uso.
                         </p>
                     </div>
                     <div class="form-group">
                         <div class="col-lg-8">
                             <label>Pregunta de Verificación</label>
-                            <input type="hidden" class="form-control" placeholder="Juanito Perez" name="preguntaPersonalOvidado">
                             <br>
-                            <label>¿Cúal es la integral de x^2 con diferencial de x?</label>
+                            <label> <?php echo $_GET['question']; ?> </label>
                         </div>
+                        <input type="hidden" class="form-control" placeholder="Juanito Perez" name="nombre" value="<?php echo $_GET['nombpersonal']; ?>">
                         <div class="col-lg-8">
                             <label>Respuesta: </label>
                             <input type="text" class="form-control" placeholder="Las respuesta es..." name="respuestaPersonalOvidado">
@@ -85,14 +85,11 @@
                     </div>
                     <div class="col-lg-4">
                         <br>
-                        <a href="#">
-                            <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">Confirmar Respuesta
-                                <i class="fa fa-spin fa-check"></i>
-                            </button>
-                        </a>
+                        <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">Confirmar Respuesta
+                            <i class="fa fa-spin fa-check"></i>
+                        </button>
                     </div>
-                </div>
-                </div>
+                </form>
             </section>
             </div>
         </div>

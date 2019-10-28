@@ -3,7 +3,7 @@ require "../model/LoginModel.php";
 
 $username=$_GET['username'];
 $password=$_GET['password'];
-$login=new Login(strtolower($username),sha1(strtolower($password)));
+$login=new Login(strtolower($username),sha1($password));
 if($login->existeUser()){
     session_start();
     $_SESSION['user']=$username;

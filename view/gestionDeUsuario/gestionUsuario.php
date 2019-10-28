@@ -21,17 +21,15 @@
             <form role="form" action="../../controller/usuarioController.php" method="post">
                 <!--  Lugar de butons y label y textbox  -->
                 <div class="box-body">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <label>Nombre de Usuario</label>
-                        <input type="text" class="form-control" placeholder="Juanito@ArcoIris" name="nombreUser">
+                        <input type="text" class="form-control" placeholder="laura@rodriguez" name="nombreUser">
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <label>Contraseña</label>
                         <input type="password" class="form-control" placeholder="Contraseña Max 6 caracteres" name="passwordUser">
                     </div>
-                </div>
-                <div class="box-body">
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <label>Nombre Personal</label>
                         <select class="form-control" name="nombrePersonal" >
                             <?php
@@ -41,13 +39,29 @@
                             ?>
                         </select>
                     </div>
-                    <div class="col-lg-4">
+                </div>
+                <div class="box-body">
+                    <div class="col-lg-2">
+                        <p>
+                            <b>Nota:</b>
+                            Pregunta y Respuesta de seguridad se le solicitará cuando olvide su contraseña, con ello usted podrá recuperarla.
+                        </p>
+                    </div>
+                    <div class="col-lg-5">
+                        <label>Pregunta de Seguridad</label>
+                        <input type="text" class="form-control" placeholder="Ej. ¿Quién descubrió América?" name="pregUsuario">
+                    </div>
+                    <div class="col-lg-5">
+                        <label>Respuesta de Seguridad</label>
+                        <input type="text" class="form-control" placeholder="Ej. Cristobal Colón" name="respUsuario">
+                    </div>
+                    <div class="col-lg-5">
                         <br>
                         <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">Agregar Usuario
                             <i class="fa fa-fw fa-check"></i>
                         </button>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-5">
                         <br>
                         <a href="asignacionRoles.php">
                             <button type="button" class="btn btn-block btn-primary" title="Asignar Roles">Asignar Roles a Usuarios

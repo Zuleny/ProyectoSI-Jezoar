@@ -60,7 +60,7 @@
           <div class="box-header with-border">
             <h3 class="box-title">Reconocimiento de Usuario</h3>
           </div>
-          <div class="box-body">
+          <form class="box-body" action="../../controller/seguridadPasswordController.php" method="post">
             <div class="form-group">
                 <div class="col-lg-6">
                     <label>Nombre Personal</label>
@@ -79,7 +79,7 @@
                     </button>
                 </a>
             </div>
-          </div>
+          </f>
         </div>
       </section>
     </div>

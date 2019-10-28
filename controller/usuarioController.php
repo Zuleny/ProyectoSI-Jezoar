@@ -1,12 +1,14 @@
 <?php
 
-if (isset($_POST['nombreUser']) && isset($_POST['passwordUser']) && isset($_POST['nombrePersonal'])) {
-    if ($_POST['nombreUser']!="" && $_POST['passwordUser']!="" && $_POST['nombrePersonal']!="") {
+if (isset($_POST['nombreUser']) && isset($_POST['passwordUser']) && isset($_POST['nombrePersonal']) && isset($_POST['pregUsuario']) && isset($_POST['respUsuario'])) {
+    if ($_POST['nombreUser']!="" && $_POST['passwordUser']!="" && $_POST['nombrePersonal']!="" && $_POST['pregUsuario']!="" && $_POST['respUsuario']!="") {
         $nombreUser = strtolower($_POST['nombreUser']);
-        $passwordUser = strtolower($_POST['passwordUser']);
+        $passwordUser = $_POST['passwordUser'];
+        $question = $_POST['pregUsuario'];
+        $answer = $_POST['respUsuario'];
         $nombrePersonal = $_POST['nombrePersonal'];
         require "../model/UsuarioModel.php";
-        $user = new Usuario(0,$nombreUser,$passwordUser,$nombrePersonal);
+        $user = new Usuario(0,$nombreUser,$passwordUser,$question,$answer,$nombrePersonal);
         $user->codUsuario = $user->getCantidadUsuarios()+1;
         if ($user->insertarUsuario()) {
             header('Location: ../view/gestionDeUsuario/gestionUsuario.php');
@@ -20,7 +22,7 @@ if (isset($_POST['nombreUser']) && isset($_POST['passwordUser']) && isset($_POST
 
 function getListaPersonal(){
     require "../../model/UsuarioModel.php";
-    $usuario= new Usuario(0,"","","");
+    $usuario= new Usuario(0,"","","","","");
     $result=$usuario->getListPersonal();
     $nroFilas=pg_num_rows($result);
     $printer="";
@@ -31,7 +33,7 @@ function getListaPersonal(){
 }
 
 function getListaDeUsuarios(){
-    $usuario1= new Usuario(0,"","","");
+    $usuario1= new Usuario(0,"","","","","");
     $result=$usuario1->getListaUsuarios();
     $nroFilas=pg_num_rows($result);
     $printer="";
