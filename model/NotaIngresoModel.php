@@ -7,19 +7,22 @@ class NotaIngreso{
     private $codAlmacen;
     private $codProveedor;
     private $conexion;
-    public function __construct($nombreRecibe,$nombreAlmacen,$nombreProveedor){
+    public function __construct(){
         $this->conexion=new Conexion();
          
         $this->nroIngreso=$this->getNroIngreso()+1;
         $fechaHora=getdate();
         $this->fechaIngreso=$fechaHora['year'].'-'.$fechaHora['mon'].'-'.$fechaHora['mday'];
-        $this->nombreRecibe =$nombreRecibe;
-        $this->codAlmacen=$this->getCodAlmacen($nombreAlmacen);
-        $this->codProveedor=$this->getCodProveedor($nombreProveedor);
+        $this->nombreRecibe ="";
+        $this->codAlmacen=0;
+        $this->codProveedor=0;
     }
 
-    public function insertarNotaIngreso(){
+    public function insertarNotaIngreso($nombreRecibe,$nombreAlmacen,$nombreProveedor){
         try{
+            $this->nombreRecibe=$nombreRecibe;
+            $this->codAlmacen=$this->getCodAlmacen($nombreAlmacen);
+            $this->codProveedor=$this->getCodProveedor($nombreProveedor);
             $this->conexion->execute("insert into nota_ingreso values($this->nroIngreso,'$this->fechaIngreso','$this->nombreRecibe',$this->codAlmacen,$this->codProveedor);");
             return true;
         }catch(\Throwable $th){
@@ -27,8 +30,6 @@ class NotaIngreso{
         }
     }
     //Auxiliares
-
-    
     public function getListaAlmacen(){
         $result=$this->conexion->execute("select nombre from almacen;");
         return $result;
@@ -46,7 +47,8 @@ class NotaIngreso{
 
     public function getCodAlmacen($nombreAlmacen){
         $result=$this->conexion->execute("SELECT COALESCE(cod_almacen,1) from almacen where nombre='$nombreAlmacen';");
-        return pg_result($result,0,0);
+        $cod=pg_result($result,0,0);
+        return $cod;
     }
 
     public function getCodProveedor($nombreProveedor){
@@ -70,6 +72,11 @@ class NotaIngreso{
         }
     }
     
+    public function getListaDetalle(){
+        $nroIngreso=$this->getNroIngreso();
+        return ($this->conexion->execute("SELECT id_ingreso,nombre_insumo,cantidad,precio_unitario from detalle_ingreso where nro_ingreso=$nroIngreso;"));
+    }
+
     public function getIdIngreso($nroIngreso){
         $result=$this->conexion->execute("SELECT COALESCE(MAX(id_ingreso),0) from detalle_ingreso where nro_ingreso=$nroIngreso;"); 
         return pg_result($result,0,0);

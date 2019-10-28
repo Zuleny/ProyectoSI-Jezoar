@@ -20,8 +20,8 @@
                     <div class="box-header">
                         <h3 class="box-title">Gestion de Nota de Ingreso</h3>
                         <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-primary" title="Volver Atras">
-                            <i class="fa fa-fw fa-arrow-circle-left"></i></button>
+                            <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                            <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                     </div>
                    <!-- Inicia tu codigo aqui -->                    
@@ -80,6 +80,27 @@
                                             echo $printer;
                                         ?>
                                     </tbody>
+                                    <div class="modal fade" id="modal-default">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true"></span>
+                                                </button>
+                                                <h4 class="modal-title">Modificar</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label>Nombre Recibe</label>
+                                                    <input type="text" class="form-control" placeholder="Juan Perez" name="NombreAModifcar">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-danger pull-left" type="button" data-dismiss="modal">Cancelar</button>
+                                                <button class="btn btn-success" type="button">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </table>
                             </div>    
                         

@@ -6,7 +6,7 @@ isset($_POST["listaProveedor"]) && isset($_POST["listaAlmacen"])){
     $nombreAlmacen=$_POST["listaAlmacen"];
     require "../model/NotaIngresoModel.php";
     $notaIngreso=new NotaIngreso($nombreRecibe,$nombreAlmacen,$nombreProveedor);
-    $b=$notaIngreso->insertarNotaIngreso();
+    $b=$notaIngreso->insertarNotaIngreso($nombreRecibe,$nombreAlmacen,$nombreProveedor);
     if($b){
         echo '<script language="javascript">alert("Nota De Ingreso Registrada Exitosamente");</script>';
     }else{
@@ -17,7 +17,7 @@ isset($_POST["listaProveedor"]) && isset($_POST["listaAlmacen"])){
 
 function getListaProveedor(){
     require "../../model/NotaIngresoModel.php";
-    $notaIngreso2=new NotaIngreso("","","");
+    $notaIngreso2=new NotaIngreso();
     $result2=$notaIngreso2->getListaProveedor();
     $rows=pg_num_rows($result2);
     $printer="";
@@ -29,7 +29,7 @@ function getListaProveedor(){
 
 function getListaAlmacen(){
     
-    $notaIngreso1=new NotaIngreso("","","");
+    $notaIngreso1=new NotaIngreso();
     $result1=$notaIngreso1->getListaAlmacen();
     $rows=pg_num_rows($result1);
     $printer="";
@@ -40,7 +40,7 @@ function getListaAlmacen(){
 }
 
 function getListaNotasIngreso(){ 
-    $notaIngreso1=new NotaIngreso("","","");
+    $notaIngreso1=new NotaIngreso();
     $result2=$notaIngreso1->getListaNotasIngresos();
     $rows=pg_num_rows($result2);
     $printer="";
