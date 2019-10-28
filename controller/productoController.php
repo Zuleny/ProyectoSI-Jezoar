@@ -17,9 +17,6 @@ if(isset($_POST["txtNombreProd"]) &&
     }
     header('Location: ../view/gestionDeProducto/gestionProducto.php');
 }
-
-
-
 function getListaDeCategoria(){
     require "../../model/productoModel.php"; 
     $producto=new Producto("","",0,"","");
@@ -74,6 +71,7 @@ function getListaAlmacenes(){
     }
     return $lista;
 }
+
 
 
 ?>

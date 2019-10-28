@@ -22,7 +22,7 @@
     function getListaDeProveedor(){
         require "../../model/ProveedorModel.php";
         $lista=new Proveedor(0,"empresaProv","emailProv","dirProv","telProv","nameProv");
-        $result=$lista->getListaDeProveedor();
+        $result=$lista->getListaProveedor();
         $countTupla=pg_num_rows($result);
         $printer="";
         for ($tupla=0; $tupla < $countTupla; $tupla++){ 
@@ -33,11 +33,8 @@
             $printer.= "<td>".'<div contentEditable="false">'. pg_result($result,$tupla,4)."</div></td>";
             $printer.= "<td>".'<div contentEditable="false">'. pg_result($result,$tupla,5)."</div></td>";
             $printer.= '<td> 
-                        <div class="btn-group">                                               
-                            <button type="button" class="btn btn-warning btn-xs" title="Actualizar">
-                                <i class="fa fa-fw fa-refresh"></i>
-                            </button>
-                            <button type="button" class="btn bg-purple btn-xs" title="Editar">
+                        <div class="btn-group">
+                            <button type="button" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal-default "title="Editar">                                               
                                 <i class="fa fa-edit"></i>
                             </button>
                         </div>

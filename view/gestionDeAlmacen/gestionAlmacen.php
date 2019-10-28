@@ -26,22 +26,41 @@
                     <form role="form" action="../../controller/almacenController.php" method="post">
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box-body">
-
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <label>Nombre de Almacen</label>
                                 <input type="text" class="form-control" name="Almacen" placeholder="nombre del almacen" method="post">
                             </div>
-                        </div>
-                        <div class="box-body">
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <label>Direccion</label>
                                 <input type="text" class="form-control" name="Dir" placeholder="Direccion del Almacen">
+                            </div> 
+                            <div class="col-lg-3">
+                            <br>
+                                <div class="input-group">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-primary"><span class="icon glyphicon glyphicon-search"></span></button>
+                                    </div>
+                                    <input type="search" class="form-control form-text" placeholder="Buscar">
+                                </div>
                             </div>
-                            <div class="box-tools pull-right">
-                                <br>
-                                <button type="submit" class="btn btn-block btn-success" name="InsertarAlmacen" title="Agregar Almacen">Agregar Registro 
-                                    <i class="fa fa-fw fa-"></i>
-                                </button>
+                        </div>
+                        <br>
+                        
+                        <div class="box-body">
+                            <div class="col-lg-4">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-text" placeholder="Editar">
+                                        <div class="input-group-btn">
+                                            <button type="button" class="btn btn-info"><span class="icon glyphicon glyphicon-edit"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5"></div>
+                                <div class="col-lg-3">
+                                    <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" name=InsertarAlmacen" title="Agregar Almacen">Agregar Registro
+                                    <i class="fa fa-fw fa-check"></i>
+                                    </button>
+                                </div>
                             </div>     
                         </div>
 
@@ -51,7 +70,9 @@
                                 <h3 class="box-title">Almacenes de la Empresa Jezoar</h3>
                             </div>
                             <div class="box-body"> <!--style="overflow:scroll"-->
+                            <div class="box-body"  id="tabla1">
                                 <table class="table table-bordered table-hover">
+                                    
                                     <thead>
                                         <tr>
                                             <th>codigo Almacen</th>
@@ -67,7 +88,33 @@
                                             echo $lista;                                       
                                         ?>
                                     </tbody>
+                                    <div class="modal fade" id="modal-default">
+                                        <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true"></span>
+                                                </button>
+                                                <h4 class="modal-title">Modificar</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label>Nombre</label>
+                                                    <input type="text" class="form-control" placeholder="Nombre del Almacen" name="nombreAlmacenModifcar">
+                                                    <br>
+                                                    <label>Direccion</label>
+                                                    <input type="text" class="form-control" placeholder="Direccion del Almacen" name="DireccionModifcar">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-danger pull-left" type="button" data-dismiss="modal">Cancelar</button>
+                                                <button class="btn btn-success" type="button">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
                                 </table>
+                            </div>
                             </div>
                         </div>
                     </form>
