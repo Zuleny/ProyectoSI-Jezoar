@@ -2,7 +2,7 @@
    if(isset($_POST["txtNombrePersonal"]) && 
    isset($_POST["listaTipoDePersonal"]) &&
    isset($_POST["listaDeCargo"])){
-   $nombrePersonal=$_POST["txtNombrePersonal"];
+   $nombrePersonal=strtolower($_POST["txtNombrePersonal"]);
    $tipoDePersonal=$_POST["listaTipoDePersonal"];
    $cargo=$_POST["listaDeCargo"];
    require "../model/personalModel.php";
@@ -11,7 +11,7 @@
    if(!$b){
       echo "Personal no registrado";
    }
-   header('Location: ../view/gestionDePersonal/gestionPersonal.php');
+   header('Location: ../view/gestionDePersonal/gestionDePersonal.php');
 }
 
 function getListaTipoDePersonal(){

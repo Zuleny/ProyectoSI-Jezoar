@@ -22,9 +22,6 @@ function getListaDePermisos(){
         $printer.='<tr> <td>'.pg_result($resultado,$nroPermiso,0).'</td>';
         $printer.='     <td>'.pg_result($resultado,$nroPermiso,1).'</td>';
         $printer.='     <td> <div class="btn-group">                                               
-                                <button type="button" class="btn btn-warning btn-xs" title="Actualizar">
-                                    <i class="fa fa-fw fa-refresh"></i>
-                                </button>
                                 <button type="button" class="btn bg-purple btn-xs" title="Editar">
                                     <i class="fa fa-edit"></i>
                                 </button>

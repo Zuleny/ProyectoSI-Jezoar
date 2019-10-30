@@ -63,8 +63,10 @@
                            </div>
                           </div> 
                         <div class="col-lg-4" >
-                                <button type="submit" class="btn btn-block btn-success" id="button1" name="btnInsertarProducto" title="Agregar Servicio">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
-                            </div>
+                            <button type="submit" class="btn btn-block btn-success" id="button1" name="btnInsertarProducto" title="Agregar Servicio">
+                                Agregar Registro <i class="fa fa-fw fa-check"></i>
+                            </button>
+                        </div>
                             
                         </div>
                         <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeAlmacen/asignacionProductoAlmacen.php" target="_blank" id="etiqueta1">

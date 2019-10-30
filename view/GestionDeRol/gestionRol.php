@@ -33,9 +33,6 @@
                                 <button type="submit" class="btn btn-block btn-success" title="Agregar Rol">Agregar Rol
                                     <i class="fa fa-fw fa-floppy-o"></i>
                                 </button>
-                                <button type="submit" class="btn btn-block btn-primary" title="Asignar Permisos">Asignar Roles a Usuarios
-                                    <i class="fa fa-fw fa-floppy-o"></i>
-                                </button>
                             </div>
                         </div>
                         <div class="col-lg-7">

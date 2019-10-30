@@ -16,19 +16,8 @@
                 <div class="box-header">
                     <h3 class="box-title"></h3>
                     <div class="box-tools pull-right">
-<<<<<<< HEAD
-
-                        <button type="button" class="btn btn-primary" title="Volver Atras">
-                            <i class="fa fa-fw fa-arrow-circle-left"></i>
-                        </button>
-
                         <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                         <span class="glyphicon glyphicon-home"></span></a>
-
-=======
-                        <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
-                        <span class="glyphicon glyphicon-home"></span></a>
->>>>>>> cc71b7f84442df0cbad9d23a425e3e1ca258823a
                     </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->                    
@@ -79,19 +68,6 @@
                                 <button type="submit" name ="verPresentacion" style="border-radius: 15px;" class="btn btn-block btn-primary">Ver presentacion  <i class="fa fa-fw fa-file-pdf-o"></i></button>
                                 </div> 
                             </div>                                                   
-<<<<<<< HEAD
-
-                        </div>
-                                               
-                        <div class="box-body">
-                            <div class="col-lg-2">
-                                <button type="submit" name ="añadirContrato" class="btn btn-block btn-primary">Añadir contrato  <i class="fa fa-fw fa-file-pdf-o"></i></button>
-                            </div>
-                            <div class="col-lg-2">                                                               
-                                <button type="submit" name ="verPresentacion" class="btn btn-block btn-primary">Ver presentacion  <i class="fa fa-fw fa-file-pdf-o"></i></button>
-                            </div>                            
-                        </div>
-=======
                         </div> 
                         </div>
 
@@ -100,7 +76,6 @@
 
                                      
                     
->>>>>>> cc71b7f84442df0cbad9d23a425e3e1ca258823a
                 </form>
                 
                 <!-- Termina tu codigo aqui -->

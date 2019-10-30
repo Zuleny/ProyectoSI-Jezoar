@@ -1,6 +1,6 @@
 <header class="main-header">
       <!-- Logo -->
-      <a href="index2.html" class="logo">
+      <a href="http://localhost/ProyectoSI-Jezoar/" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>J</b>ZR</span>
         <!-- logo for regular state and mobile devices -->
@@ -19,40 +19,24 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="../../public/assets/AdminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                <span class="hidden-xs"><span class="hidden-xs"><?php session_start(); echo $_SESSION['user']?> </span></span>
+                <span class="hidden-xs"><span class="hidden-xs"><?php  echo $_SESSION['user']?> </span></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
                   <img src="../../public/assets/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
                   <p>
-                    Alexander Pierce - Web Developer
-                    <small>Member since Nov. 2012</small>
+                    <?php echo $_SESSION['user']?>
+                    <small>Usuario Jezoar</small>
                   </p>
                 </li>
-                <!-- Menu Body -->
-                <li class="user-body">
-                  <div class="row">
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Followers</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Sales</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Friends</a>
-                    </div>
-                  </div>
-                  <!-- /.row -->
-                </li>
-                <!-- Menu Footer-->
                 <li class="user-footer">
-                  <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  </div>
-                  <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <div class="box-danger">
+                    <a href="#">
+                      <button type="button" class="btn btn-block btn-danger" title="Cerrar Sesion">
+                          Sign Out <i class="fa fa-fw fa-check"></i>
+                      </button>
+                    </a>
                   </div>
                 </li>
               </ul>
