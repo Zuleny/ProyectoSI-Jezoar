@@ -8,12 +8,12 @@ Lista de Trabajo
 *   Asignacion de permisos a los roles
     Detalle: Generar una vista de asignacion de permisos con checkbox's 
 
-*   La opcion "me olvide la contraseña" avanzaren una nueva vista
-    Detalle: Escuchar opciones nuevas
-
-*   Lista de Propuestas y Cotizaciones, Notas de Ingreso y Egreso y Devolucion
+*   Lista de Propuestas y Cotizaciones, Notas de Ingresoo y Egreso y Devolucion
     Detalle: Visualizar y eliminar alguna de ellas
 
 *   Verificacion de permisos de los actores
     Detalle: en cada CRUD verificar los permisos de un usuario
                 sessionstart()
+
+*   Editar Cotizaciones
+    Detalle: Vista ya hecha pero debemos trabajarlo inmediatamente

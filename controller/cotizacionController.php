@@ -1,21 +1,54 @@
 <?php
-
-if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCliente']) && isset($_POST['precio']) && isset($_POST['dias']) && isset($_POST['Servicio']) && isset($_POST['estadoM'])) {
-    $fecha = $_POST['fecha'];
-    $estado = $_POST['estadoP'];
-    $nombreCliente = $_POST['nombreCliente'];
-    $precioTotal = $_POST['precio'];
-    $cantDias = $_POST['dias'];
-    $tipoServicio = $_POST['Servicio'];
-    $material = $_POST['estadoM'];
-    require "../model/CotizacionModel.php";
-    $user = new Cotizacion(0,$fecha,$estado,$precioTotal,$nombreCliente,$cantDias,$tipoServicio,$material);
-    $user->codCotizacion = $user->getCantidadCotizaciones()+1;
-    if (!$user->insertarCotizacion()) {
-        echo "Error No se pudo registrar la nueva cotizacion
-                vuelva a interntarlo";
+if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCliente']) && isset($_POST['precio']) && 
+    isset($_POST['dias']) && isset($_POST['Servicio']) && isset($_POST['estadoM'])) {
+    if ($_POST['fecha']!="" && $_POST['estadoP']!="" && $_POST['nombreCliente']!="" 
+            && $_POST['precio']!="" && $_POST['dias']!="" && $_POST['Servicio']!="" && $_POST['estadoM']!="") {
+        $fecha = $_POST['fecha'];
+        $estado = $_POST['estadoP'];
+        $nombreCliente = $_POST['nombreCliente'];
+        $precioTotal = $_POST['precio'];
+        $cantDias = $_POST['dias'];
+        $tipoServicio = $_POST['Servicio'];
+        $material = $_POST['estadoM'];
+        require "../model/CotizacionModel.php";
+        $user = new Cotizacion(0,$fecha,$estado,$precioTotal,$nombreCliente,$cantDias,$tipoServicio,$material);
+        $user->codCotizacion = $user->getCantidadCotizaciones()+1;
+        if (!$user->insertarCotizacion()) {
+            header('Location: ../view/Exceptions/exceptions.php');
+        }else{
+            header('Location: ../view/gestionDeCotizacion/gestionCotizacion.php');
+        }
+    }else{
+        header('Location: ../view/Exceptions/exceptions.php');
     }
-    header('Location: ../view/gestionDeCotizacion/gestionCotizacion.php');
+}else if ( isset($_GET['idServicio']) && isset($_GET['areaTrabajo']) && isset($_GET['cantPersonas']) && isset($_GET['precioUnitario'])) {
+    require '../model/CotizacionModel.php';
+    $listaDeAreasTrabajo = array();
+    $listaDeCantidadPersonas = array();
+    $listaDePreciosUnitarios = array();
+    $cantidad = 0;
+    $length = count($_GET['areaTrabajo']);
+    for ($dato=0; $dato < $length; $dato++) { 
+        if ($_GET['areaTrabajo'][$dato]!="" && $_GET['cantPersonas'][$dato]!="" && $_GET['precioUnitario'][$dato]!="" ){
+            $listaDeAreasTrabajo[$cantidad] = $_GET['areaTrabajo'][$dato];
+            $listaDeCantidadPersonas[$cantidad] = $_GET['cantPersonas'][$dato];
+            $listaDePreciosUnitarios[$cantidad] = $_GET['precioUnitario'][$dato];
+            $cantidad++;
+        }
+    }
+    if ( count($_GET['idServicio']) == count($listaDeAreasTrabajo) && 
+         count($listaDeAreasTrabajo) == count($listaDeCantidadPersonas) && 
+         count($listaDeCantidadPersonas) == count($listaDePreciosUnitarios) ) {
+        $cotizacion = new Cotizacion();
+        if ($cotizacion->asignarServicios($_GET['codigo'], $_GET['idServicio'], $listaDeAreasTrabajo, $listaDeCantidadPersonas, $listaDePreciosUnitarios)) {
+            $codigo = $_GET['codigo'];
+            header("Location: http://localhost/ProyectoSI-Jezoar/view/gestionDeCotizacion/listaServiciosDeUnaCotizacion.php?codigo=$codigo");
+        }else{
+            header('Location: ../view/Exceptions/exceptions.php');    
+        }
+    }else{
+        header('Location: ../view/Exceptions/exceptions.php');
+    }
 }
 
 function getListaCliente(){
@@ -39,24 +72,57 @@ function getListaDeCotizaciones(){
         $printer.='<tr> <td>'.pg_result($result,$tupla,0).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,1).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,2).'</td>';
-        $printer.=      '<td>'.pg_result($result,$tupla,3).'</td>';
+        $printer.=      '<td>'.pg_result($result,$tupla,3).' Bs. </td>';
         $printer.=      '<td>'.pg_result($result,$tupla,4).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,5).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,6).'</td>';
-        $printer.=      '<td>'.pg_result($result,$tupla,7).'</td>';
+        if (pg_result($result,$tupla,7)==='S') {
+            $printer.=  '<td>No Incluye Material</td>';
+        }else{
+            $printer.=  '<td>Incluye Material</td>';
+        }
         $printer.=      '<td> <div class="btn-group">
-                                            <button type="button" class="btn btn-warning btn-sm" title="Actualizar">
-                                                <i class="fa fa-fw fa-refresh"></i>
-                                            </button>
-                                            &nbsp
-                                            <button type="button" class="btn bg-purple btn-sm" title="Editar">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                      </div>
-                                 </td>
-                          </tr>';
+                                <a href="asignarServicioCotizacion.php?codigo='.pg_result($result,$tupla,0).'">
+                                    <button type="button" class="btn bg-blue btn-xs btn-sm" title="Asignar Servicios">
+                                        <i class="fa fa-fw fa-cubes"></i>
+                                    </button>
+                                </a>
+                                <a href ="editarCotizacion.php?codigo='.pg_result($result,$tupla,0).'">
+                                    <button type="button" class="btn bg-purple btn-xs btn-sm" title="Editar">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </a>
+                                <a href="../gestionDeInforme/gestionInforme.php">
+                                    <button type="button" class="btn bg-green btn-xs btn-sm" title="Gestionar Informe">
+                                        <i class="fa fa-fw fa-file-text-o"></i>
+                                    </button>
+                                </a>
+                                <a href="listaServiciosDeUnaCotizacion.php?codigo='.pg_result($result,$tupla,0).'">
+                                    <button type="button" class="btn bg-aqua btn-xs btn-sm" title="Ver Lista de Sericios">
+                                        <i class="fa fa-fw fa-folder"></i>
+                                    </button>
+                                </a>
+                              </div>
+                        </td>
+                    </tr>';
     }
     return $printer;
 }
 
+function getListaAsignacionServicioCotizacion($codCotizacion){
+    require '../../model/CotizacionModel.php';
+    $cotizacion = new Cotizacion();
+    return $cotizacion->getListaAsignacionServicio($codCotizacion);
+}
+
+function getDatos($codCotizacion){
+    require '../../model/CotizacionModel.php';
+    $cotizacion = new Cotizacion();
+    return $cotizacion->getDatosDeCotizacion($codCotizacion);
+}
+
+function getListaServiciosCotizacion($codCotizacion){
+    $cotizacion = new Cotizacion();
+    return $cotizacion->getListaServiciosDeCotizacion($codCotizacion);
+}
 ?>

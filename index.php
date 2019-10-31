@@ -67,34 +67,19 @@
                 <!-- User image -->
                 <li class="user-header">
                   <img src="public/assets/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
                   <p>
                     <?php echo $_SESSION['user']?>
-                    <small>Member since Nov. 2012</small>
+                    <small>Usuario Jezoar</small>
                   </p>
                 </li>
                 <!-- Menu Body -->
-                <li class="user-body">
-                  <div class="row">
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Followers</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Sales</a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                      <a href="#">Friends</a>
-                    </div>
-                  </div>
-                  <!-- /.row -->
-                </li>
-                <!-- Menu Footer-->
                 <li class="user-footer">
-                  <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  </div>
-                  <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <div class="box-danger">
+                    <a href="#">
+                      <button type="button" class="btn btn-block btn-danger" title="Cerrar Sesion">
+                          Sign Out <i class="fa fa-fw fa-check"></i>
+                      </button>
+                    </a>
                   </div>
                 </li>
               </ul>
@@ -370,7 +355,8 @@
                 <span class="info-box-icon bg-red-gradient"><i class="fa fa-files-o"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text"style="color: black;"><b>Gestion de</b></span>
-                  <span class="info-box-text"style="color: black;"><b>Notas</b></span>
+                  <span class="info-box-text"style="color: black;"><b>Notas de</b></span>
+                  <span class="info-box-text"style="color: black;"><b>Inventarios</b></span>
                 </div>
               </div>
             </a>

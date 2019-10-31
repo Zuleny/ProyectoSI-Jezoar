@@ -31,7 +31,6 @@
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
 <div class="wrapper">
-
   <header class="main-header">
     <nav class="navbar navbar-static-top">
       <div class="container">
@@ -48,41 +47,25 @@
   </header>
   <!-- Full Width Column -->
   <div class="content-wrapper">
-    <div class="container">
-      <section class="content-header">
-        <h1>
-          Configuración de Usuario
-          <small>Sistema Jezoar</small>
-        </h1>
-      </section>
-      <section class="content">
-        <div class="box box-danger">
-          <div class="box-header with-border">
-            <h3 class="box-title">Reconocimiento de Usuario</h3>
-          </div>
-          <form class="box-body" action="../../controller/seguridadPasswordController.php" method="post">
-            <div class="form-group">
-                <div class="col-lg-6">
-                    <label>Nombre Completo del Personal</label>
-                    <input type="text" class="form-control" placeholder="Juanito Perez Carrasco" name="nombrePersonalOvidado">
-                </div>
-                <div class="col-lg-6">
-                    <label>Cargo</label>
-                    <input type="text" class="form-control" placeholder="Animador de fiestas" name="cargoPersonalOvidado">
-                </div>
+    <section class="content">
+        <div class="error-page">
+            <h6 class="headline text-yellow"> Error </h6>
+            <div class="error-content">
+                <h3>
+                    <i class="fa fa-warning text-yellow"></i> Ups! Transcurrió un error al realizar la recuperación de contraseña en el sistema <b>Jezoarcito :c </b>.
+                </h3>
+                <p>
+                    Puede haber ocurrido por : <br>
+                    * <b>No escribio los datos correctos correspondientes.</b> <br>
+                    * Talves ocurrio al registrar datos inconsistentes, tenga cuidado.<br>
+                    * Algun fallo en relacion al proceso que estaba realizando, si es eso, por favor comuniquese con los desarrolladores. <b>Tome en cuenta que ellos estan aprendiendo.  :3</b>  
+                    
+                </p>
             </div>
-            <div class="col-lg-4">
-                <br>
-                <a href="#">
-                    <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">Verificar Usuario
-                        <i class="fa fa-spin fa-check"></i>
-                    </button>
-                </a>
-            </div>
-          </f>
+            <!-- /.error-content -->
         </div>
-      </section>
-    </div>
+        <!-- /.error-page -->
+    </section>
   </div>
   <footer class="main-footer">
     <div class="container">

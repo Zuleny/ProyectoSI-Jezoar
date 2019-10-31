@@ -21,23 +21,20 @@
                     </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->                
-                <form role="form" action="../../controller/servicioController.php" method="post">
+                <form role="form" action="../../controller/servicioController.php" method="get">
                     <!--  Lugar de butons y label y textbox  -->
                     <div class="box-body">
-                        <div class="col-lg-5">
-                            <label>Codigo del Servicio</label>
-                            <input type="text" class="form-control" placeholder="#" name="nombre_servicio" value="">
-                        </div>
-                        <div class="col-lg-7">
+                        <input type="hidden" class="form-control" placeholder="#" name="cod" value="<?php echo $_GET['codServicio'];?>">
+                        <div class="col-lg-6">
                             <label>Nombre</label>
-                            <input type="text" class="form-control" placeholder="nombre del servicio" name="descripcion">
+                            <input type="text" class="form-control" placeholder="nombre del servicio" name="name" value="<?php echo $_GET['nombre']; ?>">
                         </div>  
+                        <div class="col-lg-6">
+                            <label>Descripcion</label>
+                            <input type="text" class="form-control" placeholder="Descripcion del servicio" name="description" value="<?php echo $_GET['descripcion'];?>">
+                        </div>
                     </div>
                     <div class="box-body">
-                        <div class="col-lg-8">
-                            <label>Descripcion</label>
-                            <input type="text" class="form-control" placeholder="Descripcion del servicio" name="descripcion">
-                        </div>
                         <div class="col-lg-4">
                             <br>
                             <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Servicio
@@ -45,7 +42,6 @@
                             </button>
                         </div>
                     </div>
-                    
                 </form>
                 <div class="box-footer">
                     <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">

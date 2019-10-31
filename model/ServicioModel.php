@@ -7,7 +7,7 @@ class Servicio {
     public $descripcion;
     public $conexion;
 
-    public function __construct($id,$nombre,$descripcion){
+    public function __construct($id =-1, $nombre = "",$descripcion = ""){
         $this->id_servicio=$id;
         $this->nombre=$nombre;
         $this->descripcion=$descripcion;
@@ -36,6 +36,16 @@ class Servicio {
     public function getListDeServicios(){
         $result=$this->conexion->execute("select servicio.id_servicio, nombre, detalle from servicio,detalle_servicio where servicio.id_servicio=detalle_servicio.id_servicio;");
         return $result;
+    }
+
+    public function updateServicio(){
+        try {
+            $this->conexion->execute("UPDATE servicio SET nombre='$this->nombre' where id_servicio=$this->id_servicio;");
+            $this->conexion->execute("UPDATE detalle_servicio SET detalle='$this->descripcion' where id_servicio=$this->id_servicio;");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 }
 ?>
