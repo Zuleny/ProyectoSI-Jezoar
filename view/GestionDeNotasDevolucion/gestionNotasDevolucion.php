@@ -16,7 +16,7 @@
             <div class="box-header">
                 <h3 class="box-title">Gestionar Nota de Devolucion</h3>
                 <div class="box-tools pull-right">
-                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
                     <span class="glyphicon glyphicon-home"></span></a>
                 </div>
             </div>
@@ -72,10 +72,10 @@
             <form action="" method="get">
                 <div class="box box-success">
                     <div class="box-header">
-                        <h3 class="box-title">Servicios de la Empresa Jezoar</h3>
+                        <h3 class="box-title">Lista de Notas de Devolución Registradas</h3>
                     </div>
                     <div class="box-body">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover" id="tabla1">
                             <thead>
                                 <tr>
                                     <th>#</th>

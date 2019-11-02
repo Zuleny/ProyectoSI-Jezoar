@@ -48,7 +48,9 @@ class Usuario {
      * (cod_Usuario, nombre, nombrePersonal)
      */
     public function getListaUsuarios(){
-        return $this->conexion->execute("SELECT cod_usuario,nombre,getNombrePersona(id_personal_usuario) FROM usuario;");
+        return $this->conexion->execute("SELECT cod_usuario,nombre,getNombrePersona(id_personal_usuario) 
+                                         FROM usuario
+                                         ORDER BY cod_usuario;");
     }
 
     public function getListPersonal(){

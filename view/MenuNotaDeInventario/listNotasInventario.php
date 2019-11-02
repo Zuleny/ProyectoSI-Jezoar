@@ -25,7 +25,7 @@
                 <div class="box-group">
                     <!-- Boton NOTA INGRESO -->
                     <div class="col-md-3 col-lg-4 col-12">
-                        <a href="#">
+                        <a href="../gestionDeNotaDeIngreso/gestionNotaIngreso.php">
                             <div class="info-box bg-purple-gradient ">
                                 <span class="info-box-icon ">
                                     <i class="fa fa-bookmark-o"></i>
@@ -48,7 +48,7 @@
                     <!-- FIN Boton NOTA INGRESO -->
                     <!-- Boton NOTA EGRESO -->
                     <div class="col-md-3 col-lg-4 col-12">
-                        <a href="#">
+                        <a href="../GetionarNotas/gestionarNotaDeEgreso.php">
                             <div class="info-box bg-blue-gradient">
                                 <span class="info-box-icon ">
                                     <i class="fa fa-bookmark-o"></i>

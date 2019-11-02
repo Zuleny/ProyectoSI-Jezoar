@@ -6,7 +6,7 @@
         <section class="content-header">
             <h1>
                 Servicios
-                <!-- <small>Blank example to the fixed layout</small> -->
+                <small>Gestión de Servicios</small>
             </h1>
         </section>
         <!-- Fin de la cabecera -->

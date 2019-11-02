@@ -5,7 +5,7 @@
         <!-- Titulo de la cabecera -->
         <section class="content-header">
             <h1>
-                Nota de Devolución
+                Nota de Egreso
                 <small>Gestion de Almacén</small>
             </h1>
         </section>
@@ -18,21 +18,21 @@
                         <b><?php echo $_GET['nroNotaDetalle']; ?></b>
                     </h3>
                     <div class="box-tools pull-right">
-                        <a href="gestionNotasDevolucion.php" class="btn btn-primary" title="Volver Atras">
+                        <a href="gestionarNotaDeEgreso.php" class="btn btn-primary" title="Volver Atras">
                         <span class="fa fa-fw fa-mail-reply"></span></a>
                         <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicial">
                         <span class="glyphicon glyphicon-home"></span></a>
                     </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->                    
-                <form role="form" action="../../controller/detalleNotaDevolucionController.php" method="post">
+                <form role="form" action="../../controller/NotasController/detalleNotaEgresoController.php" method="post">
                     <!--  Lugar de butons y label y textbox  -->
                     <div class="box-body">
                         <div class="col-lg-5">
                             <label>Insumo</label>
                             <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="nombreInsumo">
                             <?php 
-                                include '../../controller/detalleNotaDevolucionController.php';
+                                require '../../controller/NotasController/detalleNotaEgresoController.php';
                                 $resultado = getInsumos($_GET['nroNotaDetalle']);
                                 $nroFilas = pg_num_rows($resultado);
                                 for ($fila=0; $fila < $nroFilas; $fila++) { 
@@ -78,7 +78,7 @@
                                             echo   "<td>".pg_result($resultado,$fila,1)."</td>";
                                             echo   "<td>".pg_result($resultado,$fila,2)."</td>";
                                             echo   '<td> 
-                                                        <a href="../../controller/detalleNotaDevolucionController.php?nroNotaDetalle='.$_GET['nroNotaDetalle'].'&idDetalle='.pg_result($resultado,$fila,0).'">
+                                                        <a href="../../controller/NotasController/detalleNotaEgresoController.php?nroNotaDetalle='.$_GET['nroNotaDetalle'].'&idDetalle='.pg_result($resultado,$fila,0).'">
                                                             <div class="btn-group">
                                                                 <button type="submit" class="btn bg-red btn-xs" title="Eliminar detalle">
                                                                     <i class="fa fa-fw fa-trash-o"></i>

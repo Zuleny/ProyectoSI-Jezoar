@@ -32,8 +32,8 @@
                 </li>
                 <li class="user-footer">
                   <div class="box-danger">
-                    <a href="#">
-                      <button type="button" class="btn btn-block btn-danger" title="Cerrar Sesion">
+                    <a href="../../controller/loginController.php?user=<?php echo $_SESSION['user']?>">
+                      <button type="button" class="btn btn-block btn-danger" title="Cerrar Sesion" >
                           Sign Out <i class="fa fa-fw fa-check"></i>
                       </button>
                     </a>
