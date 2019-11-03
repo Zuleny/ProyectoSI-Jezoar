@@ -63,10 +63,10 @@ function getListaBitacora() {
     return $user->getBitacoraUsers();
 }
 
-function getActividadesUsuarioBitacora($user) {
+function getActividadesUsuarioBitacora($usuario) {
     require '../../model/UsuarioModel.php';
     $user = new Usuario();
-    return $user->getBitacoraUser($user);
+    return $user->getBitacoraUser($usuario);
 }
 
 

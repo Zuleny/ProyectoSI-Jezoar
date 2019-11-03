@@ -122,10 +122,25 @@ class Cotizacion{
 
     public function getDatosCotizacionEditar($codCotizacion) {
         return $this->conexion->execute("SELECT p.fecha, c.nombre, co.cant_dias, p.precio_total, 
-                                                p.tipo_presentacion, co.material, p.estado
+                                                co.tipo_servicio, co.material, p.estado
                                          FROM presentacion as p, cotizacion as co, cliente as c
                                          WHERE p.cod_presentacion = co.cod_presentacion_cotizacion and 
                                                 c.cod_cliente=p.cod_cliente_presentacion and co.cod_presentacion_cotizacion=$codCotizacion;");
+    }
+
+    public function updateCotizacion($codigo, $fecha, $nombreCliente, $cantDias, $tipoServicio, $estadoMaterial, $estadoCotizacion){
+        try {
+            $this->conexion->execute("UPDATE cotizacion 
+                                      SET cant_dias=$cantDias, tipo_servicio = '$tipoServicio', material='$estadoMaterial' 
+                                      WHERE cod_presentacion_cotizacion=$codigo;");
+
+            $this->conexion->execute("UPDATE presentacion 
+                                      SET fecha='$fecha', estado='$estadoCotizacion', cod_cliente_presentacion=getcodcliente('$nombreCliente') 
+                                      WHERE cod_presentacion=$codigo;");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 }
 ?>

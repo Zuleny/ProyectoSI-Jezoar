@@ -18,7 +18,13 @@
                 </div>
             </div>
             <div class="info-box-content">
-
+                <div class="box-group">
+                    <p>
+                        Versiones: <br>
+                        <b>1.0.3: </b> Proceso Gestión de Almacen terminado <br>
+                        <b>1.0.4: </b> Proceso Gestión de Servicios de de Limpieza terminado
+                    </p>
+                </div>
             </div>
             <div class="box-footer">
                 <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">

@@ -141,7 +141,7 @@ class Usuario {
     public function getBitacoraUser($usuarioBitacora) {
         return $this->conexion->execute("SELECT codigo, nombre_usuario, descripcion, fecha_hora 
                                          FROM bitacora 
-                                         WHERE nombre_usuario='strval($usuarioBitacora)';");
+                                         WHERE nombre_usuario='$usuarioBitacora';");
     }
 }
 ?>

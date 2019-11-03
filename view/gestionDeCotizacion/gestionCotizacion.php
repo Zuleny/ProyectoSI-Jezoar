@@ -70,19 +70,19 @@
                             <option value="Oficinas">Limpieza de Oficinas</option>
                         </select>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" style="background-color: #D4EFDF;">
                         <label>Material</label>
                             <br>
                             <div class="col-md-6">
-                                <p><input type="radio" name="estadoM" value="C"> Con Material</p>
+                                <p><input type="radio" name="estadoM" value="S"> Con Material</p>
                             </div>
                             <div class="col-md-6">
-                                <p><input type="radio" name="estadoM" value="S"> Sin Material</p>
+                                <p><input type="radio" name="estadoM" value="N"> Sin Material</p>
                             </div>
                     </div>
                 </div>
                 <div class="box-body">
-                    <div class="col-lg-8 form-group">
+                    <div class="col-lg-8 form-group" style="background-color: #D4EFDF;">
                         <label>Estado</label>
                         <br>
                             <div class="col-md-4">

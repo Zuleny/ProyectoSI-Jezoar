@@ -84,7 +84,7 @@
             </li>
             <!-- Equipo de Trabajo -->
             <li>
-              <a href="view/DevelopersView/Developers.php">
+              <a href="http://localhost/ProyectoSI-Jezoar/view/DevelopersView/Developers.php">
                   <i class="fa fa-laptop"></i>
                   <span>Developers</span>
               </a>

@@ -16,8 +16,10 @@
             <section class="content">
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Registro de Actividades del usuario(a) <b><? $user=$_POST['nombreUser']; echo $_POST['nombreUser'];?> </b> </h3>
+                        <h3 class="box-title">Registro de Actividades del usuario(a) <b><? echo $_POST['nombreUser'];?> </b> </h3>
                         <div class="box-tools pull-right">
+                            <a href="administrarBitacora.php" class="btn btn-primary" title="Volver a Adm. Bitacora">
+                            <span class="fa fa-fw fa-mail-reply"></span></a>
                             <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
@@ -28,7 +30,7 @@
                         </div>
                         <div class="box-body">
                             <br>
-                            <p>Actividades registradad por el usuario: <? echo $user; ?></p>
+                            <p>Actividades registradas por el usuario: <? echo $_POST['nombreUser']; ?></p>
                             <table class="table table-bordered table-hover" id="tabla1">
                                 <thead>
                                     <tr>
@@ -41,7 +43,7 @@
                                 <tbody>
                                     <?php
                                         require "../../controller/usuarioController.php";
-                                        $result = getActividadesUsuarioBitacora($user);
+                                        $result = getActividadesUsuarioBitacora($_POST['nombreUser']);
                                         $countRows = pg_num_rows($result);
                                         for ($tupla=0; $tupla < $countRows ; $tupla++) { 
                                             echo '<tr>';

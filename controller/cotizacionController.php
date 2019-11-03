@@ -49,10 +49,43 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
     }else{
         header('Location: ../view/Exceptions/exceptions.php');
     }
+}else if (isset($_POST['fechaEditar']) && 
+            isset($_POST['nombreClienteEditar']) && 
+                isset($_POST['diasEditar']) && 
+                    isset($_POST['tipoServicioEditar']) && 
+                        isset($_POST['estadoMEditar']) && 
+                            isset($_POST['estadoPEditar']) && isset($_POST['codigo']) ) {
+    if ( $_POST['fechaEditar']!="" && $_POST['nombreClienteEditar']!="" && $_POST['diasEditar']!="" && $_POST['tipoServicioEditar']!="" && $_POST['estadoMEditar']!="" && $_POST['estadoPEditar']!="" ) {
+        require '../model/CotizacionModel.php';
+        $cotizacion = new Cotizacion();
+        if ($cotizacion->updateCotizacion($_POST['codigo'], $_POST['fechaEditar'], $_POST['nombreClienteEditar'], $_POST['diasEditar'], $_POST['tipoServicioEditar'], $_POST['estadoMEditar'], $_POST['estadoPEditar'])) {
+            header('Location: ../view/gestionDeCotizacion/gestionCotizacion.php');
+        }else{
+            header('Location: ../view/Exceptions/exceptions.php');    
+        }
+        echo $_POST['codigo'];
+        echo $_POST['fechaEditar'];
+        echo $_POST['nombreClienteEditar'];
+        echo $_POST['diasEditar'];
+        echo $_POST['tipoServicioEditar'];
+        echo $_POST['estadoMEditar'];
+        echo $_POST['estadoPEditar'];
+    }
 }
 
 function getListaCliente(){
     require "../../model/CotizacionModel.php";
+    $cotizacion= new Cotizacion(0,"","","","","","","");
+    $result=$cotizacion->getListCliente();
+    $nroFilas=pg_num_rows($result);
+    $printer="";
+    for ($tupla=0; $tupla <$nroFilas ; $tupla++) { 
+        $printer.='<option value="'.pg_result($result,$tupla,0).'">'.pg_result($result,$tupla,0).'</option>';
+    }
+    return $printer;
+}
+
+function getListaClienteEditar(){
     $cotizacion= new Cotizacion(0,"","","","","","","");
     $result=$cotizacion->getListCliente();
     $nroFilas=pg_num_rows($result);

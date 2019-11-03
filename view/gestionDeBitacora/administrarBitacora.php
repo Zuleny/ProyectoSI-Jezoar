@@ -47,8 +47,9 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-4" >
-                                    <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" id="button1" name="btnAdministrarBitacora" title="Verificar">Visualizar Actividades
-                                        <i class="fa fa-fw fa-spinner fa-spin"></i></button>
+                                    <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" id="button1" title="Verificar">
+                                        Visualizar Actividades <i class="fa fa-fw fa-spinner fa-spin"></i>
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -98,4 +99,3 @@
     <?php
         include "../../view/theme/AdminLTE/Additional/scripts.php";
     ?>
-</body>
