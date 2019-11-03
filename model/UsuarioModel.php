@@ -1,24 +1,28 @@
 <?php
 include "Conexion.php";
 class Usuario {
-    public $codUsuario;
-    public $nombreUsuario;
-    public $password;
-    public $question;
-    public $answer;
-    public $idPersonal;
-    public $conexion;
+    private $codUsuario;
+    private $nombreUsuario;
+    private $password;
+    private $question;
+    private $answer;
+    private $idPersonal;
+    private $conexion;
     /**
      * Constructor
      */
-    public function __construct($codUsuario = -1, $nombreUsuario  = "",$password = "",$question = "",$answer = "",$nombrePersonal = -1){
+    public function __construct($codUsuario = -1, $nombreUsuario  = "",$password = "",$question = "",$answer = "",$nombrePersonal = ""){
         $this->conexion = new Conexion();
         $this->codUsuario = $codUsuario;
         $this->nombreUsuario = strtolower($nombreUsuario);
         $this->password = sha1($password);
         $this->question=$question;
         $this->answer=$answer;
-        $this->idPersonal = $this->getIdPersonal($nombrePersonal);
+        if ($nombrePersonal != "") {
+            $this->idPersonal = $this->getIdPersonal($nombrePersonal);
+        }else{
+            $this->idPersonal = -1;
+        }
     }
 
     /**
@@ -128,6 +132,16 @@ class Usuario {
         } catch (\Throwable $th) {
             return false;
         }
+    }
+
+    public function getBitacoraUsers() {
+        return $this->conexion->execute("SELECT * FROM bitacora;");
+    }
+
+    public function getBitacoraUser($usuarioBitacora) {
+        return $this->conexion->execute("SELECT codigo, nombre_usuario, descripcion, fecha_hora 
+                                         FROM bitacora 
+                                         WHERE nombre_usuario='strval($usuarioBitacora)';");
     }
 }
 ?>

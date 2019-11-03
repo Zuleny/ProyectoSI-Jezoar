@@ -31,9 +31,9 @@
                                 <i class="fa fa-calendar"></i>
                             </div>
                         <input type="date" class="form-control" name="fecha">
+                        </div>
                     </div>
-                    </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3 form-group">
                         <label>Nombre Cliente</label>
                         <select class="form-control" name="nombreCliente" >
                             <?php
@@ -43,6 +43,14 @@
                             ?>
                         </select>
                     </div>
+                    <div class="col-lg-1">
+                        <br>
+                        <a href="../GestionDeCliente/gestionCliente.php">
+                            <button class="btn bg-aqua-active" title="Agregar Nuevo Cliente" type="button">
+                                <i class="fa fa-fw fa-child"></i>
+                            </button>
+                        </a>
+                    </div>
                     <div class="col-lg-4">
                         <label>Cantidad de Dias</label>
                         <input type="number" class="form-control" placeholder="Ingrese Cantidad" name="dias">
@@ -51,7 +59,8 @@
                 <div class="box-body">
                     <div class="col-lg-4">
                         <label>Precio Total</label>
-                        <input type="number" class="form-control" step="0.01" placeholder="Precio Total" name="precio">
+                        <input type="text" class="form-control" step="0.01" placeholder="Precio Total" value="0.0 Bs." disabled>
+                        <input type="hidden" name="precio" value="0.0">
                     </div>
                     <div class="col-lg-4 form-group">
                         <label for="option">Tipo de Servicio</label>

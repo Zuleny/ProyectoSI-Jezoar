@@ -119,5 +119,13 @@ class Cotizacion{
                                                 s.id_servicio=ds.id_servicio and 
                                                 ps.cod_presentacion=$codCotizacion;");
     }
+
+    public function getDatosCotizacionEditar($codCotizacion) {
+        return $this->conexion->execute("SELECT p.fecha, c.nombre, co.cant_dias, p.precio_total, 
+                                                p.tipo_presentacion, co.material, p.estado
+                                         FROM presentacion as p, cotizacion as co, cliente as c
+                                         WHERE p.cod_presentacion = co.cod_presentacion_cotizacion and 
+                                                c.cod_cliente=p.cod_cliente_presentacion and co.cod_presentacion_cotizacion=$codCotizacion;");
+    }
 }
 ?>

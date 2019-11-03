@@ -32,6 +32,12 @@ function getListaPersonal(){
     return $printer;
 }
 
+function getUsuarios(){
+    require '../../model/UsuarioModel.php';
+    $user = new Usuario();
+    return $user->getListaUsuarios();
+}
+
 function getListaDeUsuarios(){
     $usuario1= new Usuario(0,"","","","","");
     $result=$usuario1->getListaUsuarios();
@@ -50,6 +56,17 @@ function getListaDeUsuarios(){
                           </tr>';
     }
     return $printer;
+}
+
+function getListaBitacora() {
+    $user = new Usuario();
+    return $user->getBitacoraUsers();
+}
+
+function getActividadesUsuarioBitacora($user) {
+    require '../../model/UsuarioModel.php';
+    $user = new Usuario();
+    return $user->getBitacoraUser($user);
 }
 
 

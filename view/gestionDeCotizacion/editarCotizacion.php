@@ -14,13 +14,17 @@
     <section class="content">
         <div class="box box-info">
             <div class="box-header">
-                <h3 class="box-title">Modificación de Cotización # <? echo $_GET['codigo'] ?></h3>
+                <h3 class="box-title">Modificación de Cotización # <? echo $_GET['codigo']; ?></h3>
                 <div class="box-tools pull-right">
                     <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
                     <span class="glyphicon glyphicon-home"></span></a>
                 </div>
             </div>
             <!-- Inicia tu codigo aqui -->                    
+            <?php
+                require '../../controller/cotizacionController.php';
+                $result = getDatosEditarCotizacion($_GET['codigo']);
+            ?>
             <form role="form" action="../../controller/cotizacionController.php" method="post">
                 <!--  Lugar de butons y label y textbox  -->
                 <div class="box-body">
@@ -30,14 +34,13 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                        <input type="date" class="form-control" name="fecha">
+                        <input type="date" class="form-control" name="fecha" value="<?php echo pg_result($result,0,0)?>">
                     </div>
                     </div>
                     <div class="col-lg-4">
-                        <label>Nombre Cliente</label>
+                        <label> <b>Nombre Cliente:</b> <?php echo pg_result($result,0,1); ?> </label>
                         <select class="form-control" name="nombreCliente" >
                             <?php
-                                require "../../controller/cotizacionController.php";
                                 $lista=getListaCliente();
                                 echo $lista;
                             ?>
@@ -45,16 +48,16 @@
                     </div>
                     <div class="col-lg-4">
                         <label>Cantidad de Dias</label>
-                        <input type="number" class="form-control" placeholder="Ingrese Cantidad" name="dias">
+                        <input type="number" class="form-control" placeholder="Ingrese Cantidad" name="dias" value="<?php echo pg_result($result,0,2) ?>">
                     </div>
                 </div>
                 <div class="box-body">
                     <div class="col-lg-4">
                         <label>Precio Total</label>
-                        <input type="number" class="form-control" step="0.01" placeholder="Precio Total" name="precio">
+                        <input type="number" class="form-control" step="0.01" placeholder="Precio Total" name="precio" disabled value="<?php echo pg_result($result,0,3)  ?>">
                     </div>
                     <div class="col-lg-4 form-group">
-                        <label for="option">Tipo de Servicio</label>
+                        <label for="option"> <b>Tipo de Servicio: </b> <?php echo pg_result($result,0,4) ?> </label>
                         <select class="form-control" name="Servicio">
                             <option value="Profunda">Limpieza Profunda</option>
                             <option value="Post-Obra">Limpieza Post-Obra</option>
@@ -62,7 +65,7 @@
                         </select>
                     </div>
                     <div class="col-lg-4">
-                        <label>Material</label>
+                        <label> <b>Material: </b> <?php echo pg_result($result,0,5) ?> </label>
                             <br>
                             <div class="col-md-6">
                                 <p><input type="radio" name="estadoM" value="C"> Con Material</p>
@@ -74,7 +77,7 @@
                 </div>
                 <div class="box-body">
                     <div class="col-lg-8 form-group">
-                        <label>Estado</label>
+                        <label> <b>Estado: </b> <?php echo pg_result($result,0,5) ?> </label>
                         <br>
                             <div class="col-md-4">
                                 <p><input type="radio" name="estadoP" value="Aceptado"> Cotización Aceptado</p>
@@ -88,7 +91,7 @@
                     </div>
                     <div class="col-lg-4">
                         <br>
-                        <button type="submit" value="Agregar Cotizacion" class="btn btn-block btn-success" title="Agregar Cotizacion">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
+                        <button type="submit" value="Agregar Cotizacion" class="btn btn-block btn-success" title="Agregar Cotizacion">Modificar Cotización <i class="fa fa-fw fa-check"></i></button>
                     </div>
                 </div>
             </form>

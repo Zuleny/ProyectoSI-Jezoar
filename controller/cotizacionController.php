@@ -70,16 +70,22 @@ function getListaDeCotizaciones(){
     $printer="";
     for ($tupla=0; $tupla <$nroFilas ; $tupla++) { 
         $printer.='<tr> <td>'.pg_result($result,$tupla,0).'</td>';
-        $printer.=      '<td>'.pg_result($result,$tupla,1).'</td>';
-        $printer.=      '<td>'.pg_result($result,$tupla,2).'</td>';
+        $printer.=      '<td>'.date('d F Y',strtotime(pg_result($result,$tupla,1))).'</td>';
+        if (pg_result($result,$tupla,2)=="Denegado") {
+            $printer.=  '<td><span class="label label-danger">Denegado</span></td>';
+        }else if (pg_result($result,$tupla,2)=="Aceptado") {
+            $printer.=  '<td><span class="label label-success">Aceptado</span></td>';
+        }else{
+            $printer.=  '<td><span class="label label-warning">Espera</span></td>';
+        }
         $printer.=      '<td>'.pg_result($result,$tupla,3).' Bs. </td>';
         $printer.=      '<td>'.pg_result($result,$tupla,4).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,5).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,6).'</td>';
         if (pg_result($result,$tupla,7)==='S') {
-            $printer.=  '<td>No Incluye Material</td>';
-        }else{
             $printer.=  '<td>Incluye Material</td>';
+        }else{
+            $printer.=  '<td>No Incluye Material</td>';
         }
         $printer.=      '<td> <div class="btn-group">
                                 <a href="asignarServicioCotizacion.php?codigo='.pg_result($result,$tupla,0).'">
@@ -125,4 +131,11 @@ function getListaServiciosCotizacion($codCotizacion){
     $cotizacion = new Cotizacion();
     return $cotizacion->getListaServiciosDeCotizacion($codCotizacion);
 }
+
+function getDatosEditarCotizacion($codCotizacion) {
+    require '../../model/CotizacionModel.php';
+    $cotizacion = new Cotizacion();
+    return $cotizacion->getDatosCotizacionEditar($codCotizacion);
+}
+
 ?>
