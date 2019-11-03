@@ -1684,3 +1684,11 @@ begin
 				 order by n.nro_nota; 
 end;  
 $BODY$ language 'plpgsql';
+
+/*39. Devuelve el cod_almacen de un almacen por su nombre*/
+create or replace function getCodAlmacenOnName(nombreAlmacen text)returns integer 
+as $$ begin
+	return (select cod_almacen
+			from almacen
+			where nombre=nombreAlmacen);
+end $$ language 'plpgsql';
