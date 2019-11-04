@@ -129,6 +129,23 @@ class NotaDevolucion{
             return false;
         }
     }
+
+    public function getDatosNotaDevolucionEditar($nro_nota){
+        return $this->conexion->execute("SELECT p.nombre, n.fecha, a.nombre 
+                                         FROM nota as n, personal as p, almacen as a
+                                         WHERE n.cod_almacen=a.cod_almacen and 
+                                                p.id_personal=n.id_personal and 
+                                                n.nro_nota=$nro_nota;");
+    }
+
+    public function updateNotaDevolucion($nroNota, $personalEditar, $fechaEditar, $almacenEditar){
+        try {
+            $this->conexion->execute("UPDATE nota set fecha='$fechaEditar', cod_almacen=getcodalmacenonname('$almacenEditar'), id_personal=getidpersonal('$personalEditar') WHERE nro_nota=$nroNota;");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
 }
 
 ?>

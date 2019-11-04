@@ -18,6 +18,23 @@ if (isset($_POST['nombreUser']) && isset($_POST['passwordUser']) && isset($_POST
     }else{
         header('Location: ../view/Exceptions/exceptions.php');
     }
+}else if ( isset($_POST['codUsuarioEditar']) && isset($_POST['nombreEditar']) && isset($_POST['passwordEditar']) && isset($_POST['nombrePEditar']) && isset($_POST['pregEditar']) && isset($_POST['respEditar']) ) {
+    if ( $_POST['codUsuarioEditar']!="" && $_POST['nombreEditar']!="" && $_POST['passwordEditar']!="" && $_POST['nombrePEditar']!="" && $_POST['pregEditar']!="" && $_POST['respEditar']!="" ) {
+        $nombreUser = strtolower($_POST['nombreEditar']);
+        $passwordUser = sha1($_POST['passwordEditar']);
+        $question = $_POST['pregEditar'];
+        $answer = $_POST['respEditar'];
+        $nombrePersonal = $_POST['nombrePEditar'];
+        require "../model/UsuarioModel.php";
+        $user = new Usuario();
+        if ($user->updateUsuario($_POST['codUsuarioEditar'] ,$nombreUser, $passwordUser, $question, $answer, $nombrePersonal)) {
+            header('Location: ../view/gestionDeUsuario/gestionUsuario.php');
+        }else{
+            header('Location: ../view/Exceptions/exceptions.php');
+        }
+    }else{
+        header('Location: ../view/Exceptions/exceptions.php');
+    }
 }
 
 function getListaPersonal(){
@@ -47,13 +64,16 @@ function getListaDeUsuarios(){
         $printer.='<tr> <td>'.pg_result($result,$tupla,0).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,1).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,2).'</td>';
-        $printer.=      '<td> <div class="btn-group">
-                                            <button type="button" class="btn bg-purple btn-sm" title="Editar">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                      </div>
-                                 </td>
-                          </tr>';
+        $printer.=      '<td> 
+                            <div class="btn-group">
+                                <a href="editarUsuarios.php?codUser='.pg_result($result,$tupla,0).'">
+                                    <button type="button" class="btn bg-purple btn-sm btn-xs" title="Editar">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </td>
+                  </tr>';
     }
     return $printer;
 }
@@ -69,5 +89,9 @@ function getActividadesUsuarioBitacora($usuario) {
     return $user->getBitacoraUser($usuario);
 }
 
+function getDatosUsuarioEditar( $codUsuario ) {
+    $user = new Usuario();
+    return $user->getDatosUsuarioEditar($codUsuario);
+}
 
 ?>

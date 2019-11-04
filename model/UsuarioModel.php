@@ -143,5 +143,20 @@ class Usuario {
                                          FROM bitacora 
                                          WHERE nombre_usuario='$usuarioBitacora';");
     }
+
+    public function getDatosUsuarioEditar($codUsuario) {
+        return $this->conexion->execute("SELECT nombre, question, answer, getnombrepersona(id_personal_usuario)
+                                         FROM usuario
+                                         WHERE cod_usuario = $codUsuario;");
+    }
+
+    public function updateUsuario( $codUsuario, $nombreUser, $passwordUser, $question, $answer, $nombrePersonal){
+        try {
+            $this->conexion->execute("UPDATE usuario set nombre='$nombreUser', contrasenia='$passwordUser', question='$question', answer='$answer', id_personal_usuario=getidpersonal('$nombrePersonal') WHERE cod_usuario = $codUsuario;");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
 }
 ?>

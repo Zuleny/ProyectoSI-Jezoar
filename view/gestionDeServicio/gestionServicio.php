@@ -5,7 +5,7 @@
         <!-- Titulo de la cabecera -->
         <section class="content-header">
             <h1>
-                Servicios
+                Servicio
                 <small>Gestión de Servicios</small>
             </h1>
         </section>

@@ -105,6 +105,11 @@
                                                                 <i class="fa fa-fw fa-cubes"></i>
                                                             </button>
                                                         </a>
+                                                        <a href="editarNotaDevolucion.php?notaEditar='.pg_result($resultado,$fila,0).'">
+                                                            <button type="button" class="btn bg-purple btn-xs" title="Editar Nota">
+                                                                <i class="fa fa-fw fa-edit"></i>
+                                                            </button>
+                                                        </a>
                                                         <a href="../../controller/notaDevolucionController.php?nota='.pg_result($resultado,$fila,0).'">
                                                             <button type="button" class="btn bg-red btn-xs" title="Eliminar Nota">
                                                                 <i class="fa fa-fw fa-trash-o"></i>

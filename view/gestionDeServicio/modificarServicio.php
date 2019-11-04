@@ -6,7 +6,7 @@
         <section class="content-header">
             <h1>
                 Servicios
-                <!-- <small>Blank example to the fixed layout</small> -->
+                <small>Gestión de Servicios</small>
             </h1>
         </section>
         <!-- Fin de la cabecera -->
@@ -14,7 +14,7 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Editar Servicio</h3>
+                    <h3 class="box-title">Editar Servicio # <? echo $_GET['codServicio'] ?></h3>
                     <div class="box-tools pull-right">
                         <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                         <span class="glyphicon glyphicon-home"></span></a>
@@ -25,19 +25,17 @@
                     <!--  Lugar de butons y label y textbox  -->
                     <div class="box-body">
                         <input type="hidden" class="form-control" placeholder="#" name="cod" value="<?php echo $_GET['codServicio'];?>">
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <label>Nombre</label>
                             <input type="text" class="form-control" placeholder="nombre del servicio" name="name" value="<?php echo $_GET['nombre']; ?>">
                         </div>  
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <label>Descripcion</label>
                             <input type="text" class="form-control" placeholder="Descripcion del servicio" name="description" value="<?php echo $_GET['descripcion'];?>">
                         </div>
-                    </div>
-                    <div class="box-body">
                         <div class="col-lg-4">
                             <br>
-                            <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Servicio
+                            <button type="submit" style="border-radius: 15px;" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Servicio
                                 <i class="fa fa-fw fa-check"></i>
                             </button>
                         </div>

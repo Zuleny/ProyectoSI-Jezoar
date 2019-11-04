@@ -5,7 +5,7 @@ class Permiso {
     public $id_permiso;
     public $descripcion_permiso;
     public $conexion;
-    public function __construct($id, $descripcion){
+    public function __construct($id = -1, $descripcion = ""){
         $this->id_permiso = $id;
         $this->descripcion_permiso = $descripcion;
         $this->conexion = new Conexion();
@@ -40,9 +40,21 @@ class Permiso {
     }
 
     public function getPermisos(){
-        return $this->conexion->execute("select * from permiso;");
+        return $this->conexion->execute("SELECT * FROM permiso ORDER BY id_permiso;");
     }
 
+    public function getDescripcion($codPermiso) {
+        return $this->conexion->execute("SELECT descripcion FROM permiso WHERE id_permiso=$codPermiso;");
+    }
+
+    public function updatePermiso($codPermiso, $descripcion){
+        try {
+            $this->conexion->execute("UPDATE permiso set descripcion='$descripcion' WHERE id_permiso=$codPermiso;");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
 }
 
 ?>

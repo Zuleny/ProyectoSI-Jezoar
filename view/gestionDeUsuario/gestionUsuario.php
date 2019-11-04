@@ -4,16 +4,19 @@
 <div class="content-wrapper">
     <!-- Titulo de la cabecera -->
     <section class="content-header">
-        <h1>Gestion de Usuarios</h1>
+        <h1>
+            Usuarios
+            <small>Gestión de Usuarios</small>
+        </h1>
     </section>
     <!-- Fin de la cabecera -->
     <!-- contenido de mi Vista -->
     <section class="content">
         <div class="box box-info">
             <div class="box-header">
-                <h3 class="box-title">Usuario</h3>
+                <h3 class="box-title">Gestionar Usuario</h3>
                 <div class="box-tools pull-right">
-                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
                     <span class="glyphicon glyphicon-home"></span></a>
                 </div>
             </div>
@@ -23,11 +26,11 @@
                 <div class="box-body">
                     <div class="col-lg-4">
                         <label>Nombre de Usuario</label>
-                        <input type="text" class="form-control" placeholder="laura@rodriguez" name="nombreUser">
+                        <input type="text" class="form-control" placeholder="Ej. messi" name="nombreUser">
                     </div>
                     <div class="col-lg-5">
                         <label>Contraseña</label>
-                        <input type="password" class="form-control" placeholder="Contraseña Max 6 caracteres" name="passwordUser">
+                        <input type="password" class="form-control" placeholder="Contraseña Máx. 6 caracteres" name="passwordUser">
                     </div>
                     <div class="col-lg-3">
                         <label>Nombre Personal</label>
@@ -43,8 +46,8 @@
                 <div class="box-body">
                     <div class="col-lg-2">
                         <p>
-                            <b>Nota:</b>
-                            Pregunta y Respuesta de seguridad se le solicitará cuando olvide su contraseña, con ello usted podrá recuperarla.
+                            <b>Nota:</b><br>
+                            Pregunta y Respuesta de seguridad se le solicitará cuando olvide su contraseña, con ello usted podrá restablecer su cuenta.
                         </p>
                     </div>
                     <div class="col-lg-5">
@@ -79,10 +82,10 @@
                         <table class="table table-bordered table-hover" id="tabla1">
                             <thead>
                                 <tr>
-                                    <th>Codigo Usuario</th>
-                                    <th>Nombre</th>
-                                    <th>Nombre de Persona</th>
-                                    <th>Modificaciones</th>
+                                    <th> # </th>
+                                    <th> user name </th>
+                                    <th> nombre personal completo </th>
+                                    <th> acciones </th>
                                 </tr>
                             </thead>
                             <tbody>
