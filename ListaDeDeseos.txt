@@ -14,3 +14,14 @@ Lista de Trabajo
 
 *   Estudiar sobre permisos de usuario para los procesos del sistema
     Detalle: como hacer la verificacion de permisos para cada proceso
+
+**************************************************************************************************
+Lista de Procesos Terminados
+*   Gestionar Cotizacion
+*   Gestionar Servicio
+*   Gestionar Nota Devolucion
+*   Gestionar Usuario
+*   Gestionar Rol
+*   Gestionar Permisos
+*   Administrar Bitacora
+*   Gestionar Categoria
