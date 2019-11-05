@@ -15,6 +15,15 @@ class NotaDevolucion{
      * $nombrePersonal: nombre del personal
      * $nombreAlmacen: nombre del Almacen
      */
+
+    public function getNroNota(){
+        return $this->nroNota;
+    }
+
+    public function getConexion(){
+        return $this->conexion;
+    }
+
     public function __construct($fecha = "01-01-2001", $nombrePersonal = "" , $nombreAlmacen = ""){
         $this->conexion = new Conexion();
         $this->nroNota = $this->getNewNroNota();

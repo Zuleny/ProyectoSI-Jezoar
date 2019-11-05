@@ -1,6 +1,6 @@
 <?php
 
-function getInsumos($nroNota){
+function getListaInsumosAAgregar($nroNota){
     require '../../model/NotaDevolucionModel.php';
     $nota = new NotaDevolucion();
     return $nota->getInsumos($nroNota);

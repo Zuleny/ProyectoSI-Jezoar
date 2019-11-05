@@ -27,7 +27,7 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
         header('Location: ../view/Exceptions/errorExterno.php');
     }
 }else if ( isset($_POST['newPassword']) && isset($_POST['retypePassword']) && isset($_POST['nombrPersonal']) && isset($_POST['email']) ) {
-    if ( $_POST['newPassword']!="" && $_POST['retypePassword']!="" && $_POST['nombrPersonal']!="" && $_POST['email']!="" ) {
+    if ( $_POST['newPassword']!="" && $_POST['retypePassword']!="" && $_POST['nombrPersonal']!="" && $_POST['email']!="" && strlen($_POST['newPassword'])>5 && strlen($_POST['retypePassword'])>5) {
         require '../model/UsuarioModel.php';
         $user = new Usuario();
         if (sha1($_POST['newPassword'])===sha1($_POST['retypePassword'])) {

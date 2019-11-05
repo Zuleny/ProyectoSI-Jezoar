@@ -1,8 +1,10 @@
 <?php
+
 if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCliente']) && isset($_POST['precio']) && 
     isset($_POST['dias']) && isset($_POST['Servicio']) && isset($_POST['estadoM'])) {
     if ($_POST['fecha']!="" && $_POST['estadoP']!="" && $_POST['nombreCliente']!="" 
             && $_POST['precio']!="" && $_POST['dias']!="" && $_POST['Servicio']!="" && $_POST['estadoM']!="") {
+        session_start();
         $fecha = $_POST['fecha'];
         $estado = $_POST['estadoP'];
         $nombreCliente = $_POST['nombreCliente'];
@@ -16,6 +18,10 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
         if (!$user->insertarCotizacion()) {
             header('Location: ../view/Exceptions/exceptions.php');
         }else{
+            $fecha_hora = date('j-n-Y G:i:s', time());
+            $username = $_SESSION['user'];
+            $user->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                    VALUES ('$username', 'Registro de Cotizacion nro. $user->codCotizacion', '$fecha_hora');");
             header('Location: ../view/gestionDeCotizacion/gestionCotizacion.php');
         }
     }else{
@@ -23,6 +29,7 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
     }
 }else if ( isset($_GET['idServicio']) && isset($_GET['areaTrabajo']) && isset($_GET['cantPersonas']) && isset($_GET['precioUnitario'])) {
     require '../model/CotizacionModel.php';
+    session_start();
     $listaDeAreasTrabajo = array();
     $listaDeCantidadPersonas = array();
     $listaDePreciosUnitarios = array();
@@ -42,6 +49,11 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
         $cotizacion = new Cotizacion();
         if ($cotizacion->asignarServicios($_GET['codigo'], $_GET['idServicio'], $listaDeAreasTrabajo, $listaDeCantidadPersonas, $listaDePreciosUnitarios)) {
             $codigo = $_GET['codigo'];
+            $fecha_hora = date('j-n-Y G:i:s', time());
+            $username = $_SESSION['user'];
+            $nroCotizacion = $_GET['codigo'];
+            $cotizacion->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                    VALUES ('$username', 'Asignando servicios a cotizacion nro. $nroCotizacion', '$fecha_hora');");
             header("Location: http://localhost/ProyectoSI-Jezoar/view/gestionDeCotizacion/listaServiciosDeUnaCotizacion.php?codigo=$codigo");
         }else{
             header('Location: ../view/Exceptions/exceptions.php');    
@@ -57,19 +69,20 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
                             isset($_POST['estadoPEditar']) && isset($_POST['codigo']) ) {
     if ( $_POST['fechaEditar']!="" && $_POST['nombreClienteEditar']!="" && $_POST['diasEditar']!="" && $_POST['tipoServicioEditar']!="" && $_POST['estadoMEditar']!="" && $_POST['estadoPEditar']!="" ) {
         require '../model/CotizacionModel.php';
+        session_start();
         $cotizacion = new Cotizacion();
         if ($cotizacion->updateCotizacion($_POST['codigo'], $_POST['fechaEditar'], $_POST['nombreClienteEditar'], $_POST['diasEditar'], $_POST['tipoServicioEditar'], $_POST['estadoMEditar'], $_POST['estadoPEditar'])) {
+            $fecha_hora = date('j-n-Y G:i:s', time());
+            $username = $_SESSION['user'];
+            $nroCotizacion = $_POST['codigo'];
+            $cotizacion->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                    VALUES ('$username', 'Modificando cotizacion nro. $nroCotizacion', '$fecha_hora');");
             header('Location: ../view/gestionDeCotizacion/gestionCotizacion.php');
         }else{
             header('Location: ../view/Exceptions/exceptions.php');    
         }
-        echo $_POST['codigo'];
-        echo $_POST['fechaEditar'];
-        echo $_POST['nombreClienteEditar'];
-        echo $_POST['diasEditar'];
-        echo $_POST['tipoServicioEditar'];
-        echo $_POST['estadoMEditar'];
-        echo $_POST['estadoPEditar'];
+    } else {
+        header('Location: ../view/Exceptions/exceptions.php');    
     }
 }
 

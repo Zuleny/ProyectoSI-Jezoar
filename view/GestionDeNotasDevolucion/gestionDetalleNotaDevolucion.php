@@ -33,7 +33,7 @@
                             <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="nombreInsumo">
                             <?php 
                                 include '../../controller/detalleNotaDevolucionController.php';
-                                $resultado = getInsumos($_GET['nroNotaDetalle']);
+                                $resultado = getListaInsumosAAgregar($_GET['nroNotaDetalle']);
                                 $nroFilas = pg_num_rows($resultado);
                                 for ($fila=0; $fila < $nroFilas; $fila++) { 
                                     echo '<option value="'.pg_result($resultado,$fila,0).'">'.pg_result($resultado,$fila,0).'</option>';
@@ -59,7 +59,7 @@
                             <h3 class="box-title">Lista de Insumos</h3>
                         </div>
                         <div class="box-body">
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover" id="tabla1">
                                 <thead>
                                     <tr>
                                         <th>#</th>

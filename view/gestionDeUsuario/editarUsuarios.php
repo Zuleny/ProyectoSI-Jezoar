@@ -23,7 +23,7 @@
             <!-- Inicia tu codigo aqui -->                    
             <?
                 require "../../controller/usuarioController.php";
-                $lista = getListaPersonal();
+                $lista = getListaPersonalEdit();
                 $resultado = getDatosUsuarioEditar( $_GET['codUser'] );
             ?>
             <form role="form" action="../../controller/usuarioController.php" method="post">

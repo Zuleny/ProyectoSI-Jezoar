@@ -1,15 +1,15 @@
 <?php
 
 if (isset($_POST['nombreUser']) && isset($_POST['passwordUser']) && isset($_POST['nombrePersonal']) && isset($_POST['pregUsuario']) && isset($_POST['respUsuario'])) {
-    if ($_POST['nombreUser']!="" && $_POST['passwordUser']!="" && $_POST['nombrePersonal']!="" && $_POST['pregUsuario']!="" && $_POST['respUsuario']!="") {
+    if ($_POST['nombreUser']!="" && $_POST['passwordUser']!="" && $_POST['nombrePersonal']!="" && $_POST['pregUsuario']!="" && $_POST['respUsuario']!="" && strlen($_POST['passwordUser'])>5) {
         $nombreUser = strtolower($_POST['nombreUser']);
         $passwordUser = $_POST['passwordUser'];
         $question = $_POST['pregUsuario'];
-        $answer = $_POST['respUsuario'];
+        $answer = strtolower($_POST['respUsuario']);
         $nombrePersonal = $_POST['nombrePersonal'];
         require "../model/UsuarioModel.php";
         $user = new Usuario(0,$nombreUser,$passwordUser,$question,$answer,$nombrePersonal);
-        $user->codUsuario = $user->getCantidadUsuarios()+1;
+        $user->setCodUsuario($user->getCantidadUsuarios()+1);
         if ($user->insertarUsuario()) {
             header('Location: ../view/gestionDeUsuario/gestionUsuario.php');
         }else{
@@ -19,11 +19,11 @@ if (isset($_POST['nombreUser']) && isset($_POST['passwordUser']) && isset($_POST
         header('Location: ../view/Exceptions/exceptions.php');
     }
 }else if ( isset($_POST['codUsuarioEditar']) && isset($_POST['nombreEditar']) && isset($_POST['passwordEditar']) && isset($_POST['nombrePEditar']) && isset($_POST['pregEditar']) && isset($_POST['respEditar']) ) {
-    if ( $_POST['codUsuarioEditar']!="" && $_POST['nombreEditar']!="" && $_POST['passwordEditar']!="" && $_POST['nombrePEditar']!="" && $_POST['pregEditar']!="" && $_POST['respEditar']!="" ) {
+    if ( $_POST['codUsuarioEditar']!="" && $_POST['nombreEditar']!="" && $_POST['passwordEditar']!="" && $_POST['nombrePEditar']!="" && $_POST['pregEditar']!="" && $_POST['respEditar']!="" && strlen($_POST['passwordEditar'])>5 ) {
         $nombreUser = strtolower($_POST['nombreEditar']);
         $passwordUser = sha1($_POST['passwordEditar']);
         $question = $_POST['pregEditar'];
-        $answer = $_POST['respEditar'];
+        $answer = strtolower($_POST['respEditar']);
         $nombrePersonal = $_POST['nombrePEditar'];
         require "../model/UsuarioModel.php";
         $user = new Usuario();
@@ -35,6 +35,18 @@ if (isset($_POST['nombreUser']) && isset($_POST['passwordUser']) && isset($_POST
     }else{
         header('Location: ../view/Exceptions/exceptions.php');
     }
+}
+
+function getListaPersonalEdit(){
+    require "../../model/UsuarioModel.php";
+    $usuario= new Usuario(0,"","","","","");
+    $result=$usuario->getListaPersonalEditar();
+    $nroFilas=pg_num_rows($result);
+    $printer="";
+    for ($tupla=0; $tupla <$nroFilas ; $tupla++) { 
+        $printer.='<option value="'.pg_result($result,$tupla,0).'">'.pg_result($result,$tupla,0).'</option>';
+    }
+    return $printer;
 }
 
 function getListaPersonal(){

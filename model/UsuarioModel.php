@@ -25,6 +25,10 @@ class Usuario {
         }
     }
 
+    public function setCodUsuario($nuevoCodigoUsuario) {
+        $this->codUsuario = $nuevoCodigoUsuario;
+    }
+
     /**
      * Inserta un Usuario con sus correspondientes campos
      */
@@ -61,14 +65,19 @@ class Usuario {
         return $this->conexion->execute("SELECT nombre 
                                          FROM personal 
                                          WHERE id_personal NOT IN (SELECT id_personal_usuario 
-                                                                   from usuario);");
+                                                                   from usuario)
+                                         ORDER BY nombre;");
+    }
+
+    public function getListaPersonalEditar(){
+        return $this->conexion->execute("SELECT nombre FROM personal ORDER BY nombre;");
     }
 
     /**
      * Retorna la cantidad de usuarios registrados en el sistema (BD)
      */
     public function getCantidadUsuarios(){
-        $result = $this->conexion->execute("select count(*) from usuario;");
+        $result = $this->conexion->execute("SELECT count(*) FROM usuario;");
         return pg_result($result,0,0);
     }
  

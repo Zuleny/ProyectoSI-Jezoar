@@ -18,12 +18,11 @@ if ( isset($_GET['username']) && isset($_GET['password']) ) {
         header('Location: ../view/login.php');
     }
 }else if ( isset($_GET['user']) ) {
-    echo $_GET['user'].'<br>';
     $username=$_GET['user'];
     $login=new Login($username,"");
     $fecha_hora = date('j-n-Y G:i:s', time());
     $login->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                 VALUES ('$username', 'Cierre de Sesión de $username', '$fecha_hora');");
-    die("good bye!!!!!");
+    header('Location: ../view/login.php');
 }
 ?>
