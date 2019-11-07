@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="info-box-content">
-                <div class="box-group">
+                <div class="box-group col-lg-8">
                     <p>
                         <b>Desarrolladores:</b><br>
                         &bull; Cerezo Calderon Margareth  <br>
@@ -28,7 +28,17 @@
                         <br>
                         <b>Versiones:</b> <br>
                         <b>1.0.3: </b> Proceso Gestión de Almacen terminado <br>
-                        <b>1.0.4: </b> Proceso Gestión de Servicios de de Limpieza terminado
+                        <b>1.0.4: </b> Proceso Gestión de Servicios de de Limpieza terminado <br>
+                        <b>1.0.5: </b> Proceso Gestión de Insumos terminado <br>
+                        <b>1.0.6: </b> Proceso Gestión de Usuarios y aplicación Permisos terminado <br>
+                    </p>
+                </div>
+                <div class="box-group col-lg-4">
+                    <img src="../../documentation/jezoar.png" class="user-image" alt="User Image">
+                    <p>
+                        <b>Gerente: </b><br>
+                        Leonor Claros Torrico <br>
+                        &ThinSpace; Gerente Propietaria
                     </p>
                 </div>
             </div>

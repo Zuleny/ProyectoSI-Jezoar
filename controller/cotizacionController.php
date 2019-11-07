@@ -144,14 +144,19 @@ function getListaDeCotizaciones(){
                                         <i class="fa fa-edit"></i>
                                     </button>
                                 </a>
+                                <a href="listaServiciosDeUnaCotizacion.php?codigo='.pg_result($result,$tupla,0).'">
+                                    <button type="button" class="btn bg-aqua btn-xs btn-sm" title="Ver Lista de Sericios">
+                                        <i class="fa fa-fw fa-folder-o"></i>
+                                    </button>
+                                </a>
                                 <a href="../gestionDeInforme/gestionInforme.php">
                                     <button type="button" class="btn bg-green btn-xs btn-sm" title="Gestionar Informe">
                                         <i class="fa fa-fw fa-file-text-o"></i>
                                     </button>
                                 </a>
-                                <a href="listaServiciosDeUnaCotizacion.php?codigo='.pg_result($result,$tupla,0).'">
-                                    <button type="button" class="btn bg-aqua btn-xs btn-sm" title="Ver Lista de Sericios">
-                                        <i class="fa fa-fw fa-folder"></i>
+                                <a href="../gestionDeContrato/gestionContrato.php">
+                                    <button type="button" style="border-radius: 3px;" class="btn bg-orange btn-flat btn-sm btn-xs" title="Gestionar Contrato">
+                                        <i class="fa fa-fw fa-list-alt"></i>
                                     </button>
                                 </a>
                               </div>
