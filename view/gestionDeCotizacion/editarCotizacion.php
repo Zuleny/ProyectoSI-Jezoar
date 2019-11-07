@@ -101,14 +101,14 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="col-md-6">
+                            <br>
                             <a href="gestionCotizacion.php">
-                                <br>
-                                <button type="button"class="btn btn-block btn-danger" title="Cancelar Cambios">Cancelar<i class="fa fa-fw fa-times"></i></button>
+                                <button type="button" style="border-radius: 15px;" class="btn btn-block btn-danger" title="Cancelar Cambios">Cancelar<i class="fa fa-fw fa-times"></i></button>
                             </a>
                         </div>
                         <br>
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-block btn-success" title="Agregar Cotizacion">Modificar <i class="fa fa-fw fa-check"></i></button>
+                            <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" title="Agregar Cotizacion">Modificar <i class="fa fa-fw fa-check"></i></button>
                         </div>
                     </div>
                 </div>

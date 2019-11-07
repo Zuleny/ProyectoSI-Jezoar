@@ -48,7 +48,7 @@
                         <div class="col-lg-3">
                             <input type="hidden" name="nroNota" value="<?php echo $_GET['nroNotaDetalle']?>">
                             <br>
-                            <button type="submit" class="btn btn-block btn-success" title="Agregar Servicio">Agregar a la Lista
+                            <button type="submit" style="border-radius: 15px;" class="btn btn-block btn-success" title="Agregar Servicio">Agregar a la Lista
                                 <i class="fa fa-fw fa-shopping-cart"></i>
                             </button>
                         </div>

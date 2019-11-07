@@ -62,7 +62,7 @@
                     </div>
                     <div class="col-lg-6">
                         <br>
-                        <button type="submit" class="btn btn-block btn-success" title="Agregar ">Crear Nota de Devolución
+                        <button type="submit" style="border-radius: 20px;" class="btn btn-block btn-success" title="Agregar ">Crear Nota de Devolución
                             <i class="fa fa-fw fa-file-o"></i>
                         </button>
                     </div>

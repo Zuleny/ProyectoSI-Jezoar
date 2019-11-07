@@ -20,7 +20,13 @@
             <div class="info-box-content">
                 <div class="box-group">
                     <p>
-                        Versiones: <br>
+                        <b>Desarrolladores:</b><br>
+                        &bull; Cerezo Calderon Margareth  <br>
+                        &bull; Cruz Rodriguez Zuleny  <br>
+                        &bull; Heredia Claros Stephani  <br>
+                        &bull; Quispe Mamani Ruddy Bryan  <br>
+                        <br>
+                        <b>Versiones:</b> <br>
                         <b>1.0.3: </b> Proceso Gestión de Almacen terminado <br>
                         <b>1.0.4: </b> Proceso Gestión de Servicios de de Limpieza terminado
                     </p>

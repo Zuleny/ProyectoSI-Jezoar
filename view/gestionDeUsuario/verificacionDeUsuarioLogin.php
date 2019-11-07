@@ -35,7 +35,7 @@
             <nav class="navbar navbar-static-top">
                 <div class="container">
                     <div class="navbar-header">
-                    <a href="#" class="navbar-brand"><b>J</b>ezoar</a>
+                    <a href="../login.php" class="navbar-brand"><b>J</b>ezoar</a>
                     </div>
                     <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                         <ul class="nav navbar-nav">
@@ -67,8 +67,8 @@
                     <div class="col-lg-4">
                         <h4>Nota:</h4>
                         <p>
-                            Querido(a) <?php echo $_GET['nombpersonal'] ?>, esta pregunta fué creada por <b>usted</b>, al momento de crear su usuario de uso para este sistema, por favor responda la siguiente pregunta. <br> 
-                            <b>Si responde correctamente esta pregunta</b>, podrá recuperar su usuario de uso.
+                            Querido(a) <b><?php echo strtoupper($_GET['nombpersonal']); ?></b>, esta pregunta fué creada por <b>usted</b>, al momento de crear su usuario de uso para este sistema, por favor responda la siguiente pregunta. <br> 
+                            <b>Si responde correctamente esta pregunta, podrá recuperar su usuario de uso.</b>
                         </p>
                     </div>
                     <div class="form-group">

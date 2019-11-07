@@ -39,7 +39,7 @@
                         <input type="hidden" name="codUsuarioEditar" value="<? echo $_GET['codUser']; ?>">
                     </div>
                     <div class="col-lg-4">
-                        <label><b>Nombre Personal: </b> <? echo strtoupper(pg_result($resultado,0,3)); ?></label>
+                        <label><b>Personal: </b> <? echo strtoupper(pg_result($resultado,0,3)); ?></label>
                         <select class="form-control" name="nombrePEditar" >
                             <?php
                                 echo $lista;

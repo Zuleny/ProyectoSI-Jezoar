@@ -35,7 +35,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="#" class="navbar-brand"><b>J</b>ezoar</a>
+          <a href="../login.php" class="navbar-brand"><b>J</b>ezoar</a>
         </div>
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">

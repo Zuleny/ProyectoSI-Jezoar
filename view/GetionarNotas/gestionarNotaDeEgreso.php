@@ -60,7 +60,7 @@
                 </div>
                 <div class="box-body">
                     <div class="col-lg-4">
-                        <button type="submit" class="btn btn-block btn-success" title="Agregar ">Crear Nota de Egreso   
+                        <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" title="Agregar ">Crear Nota de Egreso   
                             <i class="fa fa-fw fa-file-o"></i>
                         </button>
                     </div>

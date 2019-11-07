@@ -36,11 +36,11 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="#" class="navbar-brand"><b>J</b>ezoar</a>
+          <a href="../login.php" class="navbar-brand"><b>J</b>ezoar</a>
         </div>
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="inactive"><a href="#"><i class="fa fa-fw fa-child"></i>Olvivdé mi Contraseña</a></li>
+            <li class="inactive"><a href="#"><i class="fa fa-fw fa-child"></i>Olvidé mi Contraseña</a></li>
           </ul>
         </div>
       </div>
@@ -58,16 +58,16 @@
       <section class="content">
         <div class="box box-danger">
           <div class="box-header with-border">
-            <h3 class="box-title">Asignacion de Nueva Contraseña</h3>
+            <h3 class="box-title">Asignacion de Nueva Contraseña para el(la) usuario:  <? echo strtoupper($_GET['nombrePersonal']); ?></h3>
           </div>
           <div class="box-body">
             <form class="form-group" action="../../controller/seguridadPasswordController.php" method="post">
                 <div class="col-lg-6">
                     <label>Nueva Contraseña</label>
-                    <input type="password" class="form-control" name="newPassword">
+                    <input type="password" class="form-control" name="newPassword" placeholder="Máx. 6 caracteres">
                     <br>
                     <label>Rescribir la Nueva Contraseña</label>
-                    <input type="password" class="form-control" name="retypePassword">
+                    <input type="password" class="form-control" name="retypePassword" placeholder="Máx. 6 caracteres">
                 </div>
                 <input type="hidden" value="<?php echo $_GET['nombrePersonal']; ?>" name="nombrPersonal">
                 <div class="col-lg-6">

@@ -68,14 +68,14 @@
                         <div class="col-md-6">
                             <br>
                             <a href="gestionNotasDevolucion.php">
-                                <button type="button" class="btn btn-block btn-danger" title="Cancelar Cambios">Cancelar Cambios
+                                <button type="button" style="border-radius: 15px;" class="btn btn-block btn-danger" title="Cancelar Cambios">Cancelar Cambios
                                     <i class="fa fa-fw fa-times"></i>
                                 </button>
                             </a>
                         </div>
                         <br>
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-block btn-success" title="Guardar Cambios">Guardar Cambios
+                            <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" title="Guardar Cambios">Guardar Cambios
                                 <i class="fa fa-fw fa-check"></i>
                             </button>
                         </div>

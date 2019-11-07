@@ -57,8 +57,9 @@
                             <div class="col-lg-4 pull-right">
                                 <input type="hidden" name="codigo" value="<? echo $_GET['codigo'];?>">
                                 <br>
-                                <button type="submit" class="btn btn-block btn-success" title="Registrar Nota de Ingreso">Registrar En Almacen
-                                <i class="fa fa-fw fa-street-view"></i>
+                                <button type="submit" style="border-radius: 15px;" class="btn btn-block btn-success" title="Registrar Nota de Ingreso">
+                                    Asiganr Servicios a Cotización
+                                <i class="fa fa-fw fa-cart-plus"></i>
                                 </button>
                             </div>
                         </form>
