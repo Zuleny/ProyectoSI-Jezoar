@@ -110,12 +110,12 @@
                     <table class="table table-bordered table-hover" id="tabla1">
                         <thead>
                             <tr>
-                                <th>Codigo</th>
+                                <th>#</th>
                                 <th>Fecha</th>
                                 <th>Estado</th>
                                 <th>Precio</th>
                                 <th>Cliente</th>
-                                <th>Cant_Dias</th>
+                                <th>Cantidad Dias</th>
                                 <th>Tipo Servicio</th>
                                 <th>Material</th>
                                 <th>Acciones</th>

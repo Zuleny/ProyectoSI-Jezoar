@@ -142,5 +142,18 @@ class Cotizacion{
             return false;
         }
     }
+
+    public function deleteCotizacion($codCotizacion) {
+        try {
+            $this->conexion->execute("DELETE FROM presentacion_servicio WHERE cod_presentacion=$codCotizacion;
+                                      DELETE FROM contrato WHERE cod_presentacion=$codCotizacion;
+                                      DELETE FROM informe WHERE cod_presentacion_cotizacion=$codCotizacion;
+                                      DELETE FROM cotizacion WHERE cod_presentacion_cotizacion= $codCotizacion; 
+                                      DELETE FROM presentacion WHERE cod_presentacion=$codCotizacion;");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
 }
 ?>

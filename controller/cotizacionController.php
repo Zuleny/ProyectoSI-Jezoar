@@ -84,6 +84,15 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
     } else {
         header('Location: ../view/Exceptions/exceptions.php');    
     }
+}else if (isset($_GET['codigoCotizacionEliminar'])) {
+    echo $_GET['codigoCotizacionEliminar'];
+    require '../model/CotizacionModel.php';
+    $cotizacion = new Cotizacion();
+    if ($cotizacion->deleteCotizacion($_GET['codigoCotizacionEliminar'])) {
+        header('Location: ../view/gestionDeCotizacion/gestionCotizacion.php');
+    }else{
+        header('Location: ../view/Exceptions/exceptions.php');
+    }
 }
 
 function getListaCliente(){
@@ -159,6 +168,11 @@ function getListaDeCotizaciones(){
                                         <i class="fa fa-fw fa-list-alt"></i>
                                     </button>
                                 </a>
+                                <a href="../../controller/cotizacionController.php?codigoCotizacionEliminar='.pg_result($result,$tupla,0).'">
+                                    <button type="button" class="btn bg-red btn-xs btn-sm" title="Ver Lista de Sericios">
+                                        <i class="fa fa-fw fa-trash-o"></i>
+                                    </button>
+                                </a>                                
                               </div>
                         </td>
                     </tr>';

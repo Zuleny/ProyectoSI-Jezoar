@@ -37,7 +37,7 @@ function getListaCategoria() {
         $printer=$printer.      '<td> <div class="btn-group">
                                             &nbsp
                                             <a href="editarCategoria.php?nameCategory='.pg_result($result,$Categoria,0).'">
-                                                <button type="button" class="btn bg-purple btn-sm" title="Editar">
+                                                <button type="button" class="btn bg-purple btn-sm btn-xs" title="Editar">
                                                     <i class="fa fa-edit"></i>
                                                 </button>
                                             </a>
