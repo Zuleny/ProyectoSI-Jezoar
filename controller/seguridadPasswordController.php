@@ -27,12 +27,11 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
         header('Location: ../view/Exceptions/errorExterno.php');
     }
 }else if ( isset($_POST['newPassword']) && isset($_POST['retypePassword']) && isset($_POST['nombrPersonal']) && isset($_POST['email']) ) {
-    //  FALTA DARLE USO a $_POST['email']!=""
-    if ( $_POST['newPassword']!="" && $_POST['retypePassword']!="" && $_POST['nombrPersonal']!="" && strlen($_POST['newPassword'])>5 && strlen($_POST['retypePassword'])>5) {
+    if ( $_POST['newPassword']!="" && $_POST['retypePassword']!="" && $_POST['nombrPersonal']!="" && strlen($_POST['newPassword'])>5 && strlen($_POST['retypePassword'])>5 && $_POST['email']!="") {
         require '../model/UsuarioModel.php';
         $user = new Usuario();
         if (sha1($_POST['newPassword'])===sha1($_POST['retypePassword'])) {
-            if ($user->updatePasswordUser($_POST['nombrPersonal'], $_POST['newPassword'])) {
+            if ($user->updatePasswordUser($_POST['nombrPersonal'], $_POST['newPassword'], $_POST['newPassword'])) {
                 header('Location: ../view/login.php');
             }else{
                 die("Escriba bien los datos por favor....");

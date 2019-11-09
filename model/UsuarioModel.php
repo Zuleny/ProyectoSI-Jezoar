@@ -137,15 +137,20 @@ class Usuario {
         }
     }
 
-    public function updatePasswordUser($personal, $password){
+    public function updatePasswordUser($personal, $password, $email){
         try {
             $passwdSeguro = sha1($password);
             $codUsuario = $this->getCodUsuarioPersonal($personal);
             $this->conexion->execute("UPDATE usuario set contrasenia='$passwdSeguro' WHERE cod_usuario=$codUsuario ;");
+            mail($email,"Contraseña Sistema Jezoar", "Contraseña del usuario: $this->getNombreUsuario($codUsuario) : Password: $password. Mantenga Seguro este correo de seguridad. Buenos Dias");
             return true;
         } catch (\Throwable $th) {
             return false;
         }
+    }
+
+    private function getNombreUsuario($codUsuario){
+        return $this->conexion->execute("SELECT nombre FROM usuario WHERE cod_usuario=$codUsuario;");
     }
 
     public function getBitacoraUsers() {
