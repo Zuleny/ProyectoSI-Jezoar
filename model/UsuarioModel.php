@@ -34,7 +34,8 @@ class Usuario {
      */
     public function insertarUsuario(){
         try {
-            $this->conexion->execute("INSERT INTO usuario(cod_usuario,nombre,contrasenia,question,answer,id_personal_usuario) VALUES ($this->codUsuario,'$this->nombreUsuario','$this->password','$this->question','$this->answer',$this->idPersonal);");
+            $this->conexion->execute("INSERT INTO usuario(cod_usuario,nombre,contrasenia,question,answer,id_personal_usuario)
+                                        VALUES ($this->codUsuario,'$this->nombreUsuario','$this->password','$this->question','$this->answer',$this->idPersonal);");
             return true;
         } catch (\Throwable $th) {
             return false;

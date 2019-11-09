@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-lg-3">
                         <br>
-                        <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" title="Agregar Servicio">Crear Categoria
+                        <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" title="Agregar Categoria">Crear Categoria
                             <i class="fa fa-fw fa-check"></i>
                         </button>
                     </div>
