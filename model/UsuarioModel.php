@@ -17,7 +17,7 @@ class Usuario {
         $this->nombreUsuario = strtolower($nombreUsuario);
         $this->password = sha1($password);
         $this->question=$question;
-        $this->answer=$answer;
+        $this->answer=md5($answer);
         if ($nombrePersonal != "") {
             $this->idPersonal = $this->getIdPersonal($nombrePersonal);
         }else{
@@ -101,7 +101,11 @@ class Usuario {
     }
 
     public function getListaUsuarioYSusRoles(){
-        return $this->conexion->execute("SELECT usuario.cod_usuario, usuario.nombre, rol.cod_rol, rol.descripcion, personal.nombre FROM usuario_rol,rol,usuario,personal WHERE usuario_rol.cod_rol=rol.cod_rol AND usuario.cod_usuario=usuario_rol.cod_usuario AND usuario.id_personal_usuario=personal.id_personal;
+        return $this->conexion->execute("SELECT usuario.cod_usuario, usuario.nombre, rol.cod_rol, rol.descripcion, personal.nombre 
+                                         FROM usuario_rol,rol,usuario,personal 
+                                         WHERE usuario_rol.cod_rol=rol.cod_rol AND 
+                                                usuario.cod_usuario=usuario_rol.cod_usuario AND 
+                                                    usuario.id_personal_usuario=personal.id_personal;
         ");
     }
 
@@ -111,7 +115,7 @@ class Usuario {
                                                 FROM personal, usuario 
                                                 WHERE personal.id_personal=usuario.id_personal_usuario AND personal.nombre='$nombrePersonal';");
             $respuestaCorrecta = pg_result($result,0,0);
-            if ($respuestaCorrecta === $answer) {
+            if ($respuestaCorrecta === md5($answer)) {
                 return true;
             }else{
                 return false;
@@ -162,6 +166,7 @@ class Usuario {
 
     public function updateUsuario( $codUsuario, $nombreUser, $passwordUser, $question, $answer, $nombrePersonal){
         try {
+            $answer = md5($answer);
             $this->conexion->execute("UPDATE usuario set nombre='$nombreUser', contrasenia='$passwordUser', question='$question', answer='$answer', id_personal_usuario=getidpersonal('$nombrePersonal') WHERE cod_usuario = $codUsuario;");
             return true;
         } catch (\Throwable $th) {

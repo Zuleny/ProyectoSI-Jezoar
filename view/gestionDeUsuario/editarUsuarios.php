@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-lg-5">
                         <label>Respuesta de Seguridad</label>
-                        <input type="text" class="form-control" placeholder="Ej. Cristobal Colón" name="respEditar" value="<? echo pg_result($resultado,0,2); ?>">
+                        <input type="text" class="form-control" placeholder="Nueva Respuesta" name="respEditar">
                     </div>
                     <div class="col-lg-5">
                         <br>
