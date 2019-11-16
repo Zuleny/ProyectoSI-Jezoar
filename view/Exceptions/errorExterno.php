@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Nuevo Password</title>
+  <title>I forgot my password</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -31,7 +31,6 @@
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
 <div class="wrapper">
-
   <header class="main-header">
     <nav class="navbar navbar-static-top">
       <div class="container">
@@ -40,7 +39,7 @@
         </div>
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="inactive"><a href="#"><i class="fa fa-fw fa-child"></i>Olvidé mi Contraseña</a></li>
+            <li class="inactive"><a href="#"><i class="fa fa-fw fa-child"></i>Olvivdé mi Contraseña</a></li>
           </ul>
         </div>
       </div>
@@ -48,46 +47,25 @@
   </header>
   <!-- Full Width Column -->
   <div class="content-wrapper">
-    <div class="container">
-      <section class="content-header">
-        <h1>
-          Restablecimiento de Usuario
-          <small>Sistema Jezoar</small>
-        </h1>
-      </section>
-      <section class="content">
-        <div class="box box-danger">
-          <div class="box-header with-border">
-            <h3 class="box-title">Asignacion de Nueva Contraseña para el(la) usuario:  <? echo strtoupper($_GET['nombrePersonal']); ?></h3>
-          </div>
-          <div class="box-body">
-            <form class="form-group" action="../../controller/seguridadPasswordController.php" method="post">
-                <div class="col-lg-6">
-                    <label>Nueva Contraseña</label>
-                    <input type="password" class="form-control" name="newPassword" placeholder="Máx. 6 caracteres">
-                    <br>
-                    <label>Rescribir la Nueva Contraseña</label>
-                    <input type="password" class="form-control" name="retypePassword" placeholder="Máx. 6 caracteres">
-                </div>
-                <input type="hidden" value="<?php echo $_GET['nombrePersonal']; ?>" name="nombrPersonal">
-                <div class="col-lg-6">
-                    <label>Enviar la contraseña por correo</label>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                        <input type="email" class="form-control" placeholder="email" name="email">
-                    </div>
-                    <br>
-                    <br>
-                    <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">
-                        Guradar Nueva Contraseña
-                        <i class="fa fa-spin fa-check"></i>
-                    </button>
-                </div>
-            </form>
-          </div>
+    <section class="content">
+        <div class="error-page">
+            <h6 class="headline text-yellow"> Error </h6>
+            <div class="error-content">
+                <h3>
+                    <i class="fa fa-warning text-yellow"></i> Ups! Transcurrió un error al realizar la recuperación de contraseña en el sistema <b>Jezoarcito :c </b>.
+                </h3>
+                <p>
+                    Puede haber ocurrido por : <br>
+                    * <b>No escribio los datos correctos correspondientes.</b> <br>
+                    * Talves ocurrio al registrar datos inconsistentes, tenga cuidado.<br>
+                    * Algun fallo en relacion al proceso que estaba realizando, si es eso, por favor comuniquese con los desarrolladores. <b>Tome en cuenta que ellos estan aprendiendo.  :3</b>  
+                    
+                </p>
+            </div>
+            <!-- /.error-content -->
         </div>
-      </section>
-    </div>
+        <!-- /.error-page -->
+    </section>
   </div>
   <footer class="main-footer">
     <div class="container">

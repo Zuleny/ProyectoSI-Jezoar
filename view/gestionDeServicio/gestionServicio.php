@@ -5,8 +5,8 @@
         <!-- Titulo de la cabecera -->
         <section class="content-header">
             <h1>
-                Servicios
-                <!-- <small>Blank example to the fixed layout</small> -->
+                Servicio
+                <small>Gestión de Servicios</small>
             </h1>
         </section>
         <!-- Fin de la cabecera -->
@@ -28,16 +28,14 @@
                             <label>Nombre del Servicio</label>
                             <input type="text" class="form-control" placeholder="Limpieza general de oficinas" name="nombre_servicio">
                         </div>
-                        <div class="col-lg-7">
+                        <div class="col-lg-5">
                             <label>Descripcion</label>
                             <input type="text" class="form-control" placeholder="Descripcion del servicio" name="descripcion">
                         </div>
-                    </div>
-                    <div class="box-body">
-                        <div class="col-lg-9"></div>
                         <div class="col-lg-3">
+                            <br>
                             <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" name=InsertarAlmacen" title="Agregar Servicio">Agregar Servicio
-                                <i class="fa fa-fw fa-check"></i>
+                                <i class="fa fa-fw fa-cart-plus"></i>
                             </button>
                         </div>
                     </div>

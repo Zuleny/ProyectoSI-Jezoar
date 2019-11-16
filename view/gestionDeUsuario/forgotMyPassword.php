@@ -36,7 +36,7 @@
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="#" class="navbar-brand"><b>J</b>ezoar</a>
+          <a href="../login.php" class="navbar-brand"><b>J</b>ezoar</a>
         </div>
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
@@ -63,8 +63,8 @@
           <form class="box-body" action="../../controller/seguridadPasswordController.php" method="post">
             <div class="form-group">
                 <div class="col-lg-6">
-                    <label>Nombre Personal</label>
-                    <input type="text" class="form-control" placeholder="Juanito Perez" name="nombrePersonalOvidado">
+                    <label>Nombre Completo del Personal</label>
+                    <input type="text" class="form-control" placeholder="Juanito Perez Carrasco" name="nombrePersonalOvidado">
                 </div>
                 <div class="col-lg-6">
                     <label>Cargo</label>

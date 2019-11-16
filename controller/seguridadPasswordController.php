@@ -8,8 +8,10 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
             $nombre = $_POST['nombrePersonalOvidado'];
             header("Location: http://localhost/ProyectoSI-Jezoar/view/gestionDeUsuario/verificacionDeUsuarioLogin.php?question=$resultado&nombpersonal=$nombre");
         }else{
-            header('Location: ../view/Exceptions/exceptions.php');
+            header('Location: ../view/Exceptions/errorExterno.php');
         }
+    }else{
+        header('Location: ../view/Exceptions/errorExterno.php');
     }
 }else if (isset($_GET['respuestaPersonalOvidado']) && isset($_GET['nombre'])) {
     if ($_GET['nombre']!="" && $_GET['respuestaPersonalOvidado']!="") {
@@ -22,14 +24,14 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
             die("Respuesta incorrecta. Estamos llamando a la policia, corre!!");
         }
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        header('Location: ../view/Exceptions/errorExterno.php');
     }
 }else if ( isset($_POST['newPassword']) && isset($_POST['retypePassword']) && isset($_POST['nombrPersonal']) && isset($_POST['email']) ) {
-    if ( $_POST['newPassword']!="" && $_POST['retypePassword']!="" && $_POST['nombrPersonal']!="" && $_POST['email']!="" ) {
+    if ( $_POST['newPassword']!="" && $_POST['retypePassword']!="" && $_POST['nombrPersonal']!="" && strlen($_POST['newPassword'])>5 && strlen($_POST['retypePassword'])>5 && $_POST['email']!="") {
         require '../model/UsuarioModel.php';
         $user = new Usuario();
         if (sha1($_POST['newPassword'])===sha1($_POST['retypePassword'])) {
-            if ($user->updatePasswordUser($_POST['nombrPersonal'], $_POST['newPassword'])) {
+            if ($user->updatePasswordUser($_POST['nombrPersonal'], $_POST['newPassword'], $_POST['newPassword'])) {
                 header('Location: ../view/login.php');
             }else{
                 die("Escriba bien los datos por favor....");
@@ -38,7 +40,7 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
             die("error, la contraseña no coincide...");
         }
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        header('Location: ../view/Exceptions/errorExterno.php');
     }
 }
 

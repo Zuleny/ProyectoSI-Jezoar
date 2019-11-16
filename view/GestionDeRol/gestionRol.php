@@ -30,17 +30,14 @@
                                 <label>Descripcion de Rol</label>
                                 <input type="text" class="form-control" placeholder="Descripcion de Rol de Usuario" name="descripcionRol">
                                 <br>
-                                <button type="submit" class="btn btn-block btn-success" title="Agregar Rol">Agregar Rol
-                                    <i class="fa fa-fw fa-floppy-o"></i>
-                                </button>
-                                <button type="submit" class="btn btn-block btn-primary" title="Asignar Permisos">Asignar Roles a Usuarios
+                                <button type="submit" style="border-radius: 15px;" class="btn btn-block btn-success" title="Agregar Rol">Agregar Rol
                                     <i class="fa fa-fw fa-floppy-o"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="col-lg-7">
                             <div class="box-body">
-                                <table class="table table-bordered table-hover">
+                                <table class="table table-bordered table-hover" id="tabla1">
                                     <thead>
                                         <tr>
                                             <th>Codigo Rol</th>

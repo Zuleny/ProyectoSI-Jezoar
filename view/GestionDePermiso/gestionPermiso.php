@@ -6,7 +6,7 @@
     <section class="content-header">
         <h1>
             Permisos de Usuario
-            <!-- <small>Blank example to the fixed layout</small> -->
+            <small>Gestión de Usuario</small>
         </h1>
     </section>
     <!-- Fin de la cabecera -->
@@ -39,10 +39,10 @@
                 <!--  Lugar de butons y label y textbox  -->
                 <div class="box box-success">
                     <div class="box-header">
-                        <h3 class="box-title">Lista de Permisos del Uusario del Sistema</h3>
+                        <h3 class="box-title">Lista de Permisos del Usuario del Sistema</h3>
                     </div>
                     <div class="box-body" style="scrollbar">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover" id="tabla1">
                             <thead>
                                 <tr>
                                     <th>#</th>

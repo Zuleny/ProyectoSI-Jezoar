@@ -31,7 +31,7 @@ function getListaDeHerramientas(){
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                       </div>
-                                 </td>
+                                 </td>';
     }
     return $printer;
 }

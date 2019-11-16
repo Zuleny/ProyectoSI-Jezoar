@@ -1,4 +1,4 @@
-    <?php
+<?php
         include "../../view/theme/AdminLTE/Additional/head.php";
     ?>
 
@@ -16,49 +16,21 @@
             <section class="content">
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Registro de Actividades</h3>
+                        <h3 class="box-title">Registro de Actividades del usuario(a) <b><? echo $_POST['nombreUser'];?> </b> </h3>
                         <div class="box-tools pull-right">
+                            <a href="administrarBitacora.php" class="btn btn-primary" title="Volver a Adm. Bitacora">
+                            <span class="fa fa-fw fa-mail-reply"></span></a>
                             <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
-                        <br>
-                        <form role="form" action="usuarioBitacora.php" method="post">
-                            <div class="box-body">
-                                <br>
-                                <div class="col-lg-4">
-                                    <p>
-                                        <b><? echo $_SESSION['user'] ?></b>, en esta parte del sistema 
-                                        se visualiza las actividades que se realizaron por parte de 
-                                        todos los usuarios en general, incluyendote, <br>
-                                        asi que mucho cuidado XD
-                                    </p>
-                                </div>
-                                <div class="col-lg-4">
-                                    <label>Nombre Personal</label>
-                                    <select class="form-control" name="nombreUser" >
-                                        <?php
-                                            require "../../controller/usuarioController.php";
-                                            $result = getUsuarios();
-                                            $nroFilas = pg_num_rows($result);
-                                            for ($tupla=0; $tupla < $nroFilas; $tupla++) { 
-                                                echo '<option value="'.pg_result($result,$tupla,1).'">'.pg_result($result,$tupla,1).'</option>';
-                                            } 
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="col-lg-4" >
-                                    <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" id="button1" title="Verificar">
-                                        Visualizar Actividades <i class="fa fa-fw fa-spinner fa-spin"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
-                    <div class="box box-success">
+                    <div class="box-group">
                         <div class="box-header">
-                            <h3 class="box-title">Tabla de Actividades en el Sistema Jezoar</h3>
+                            <h3 class="box-title">Tabla de Actividades</h3>
                         </div>
-                        <div class="box-body"  >
+                        <div class="box-body">
+                            <br>
+                            <p>Actividades registradas por el usuario: <? echo $_POST['nombreUser']; ?></p>
                             <table class="table table-bordered table-hover" id="tabla1">
                                 <thead>
                                     <tr>
@@ -70,7 +42,8 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $result = getListaBitacora();
+                                        require "../../controller/usuarioController.php";
+                                        $result = getActividadesUsuarioBitacora($_POST['nombreUser']);
                                         $countRows = pg_num_rows($result);
                                         for ($tupla=0; $tupla < $countRows ; $tupla++) { 
                                             echo '<tr>';
@@ -99,3 +72,4 @@
     <?php
         include "../../view/theme/AdminLTE/Additional/scripts.php";
     ?>
+</body>

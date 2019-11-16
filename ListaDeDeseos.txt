@@ -1,19 +1,27 @@
 Lista de Trabajo
 *   Modificar los datos 
     Detalle: Realizar en una vista aparte de la principal, si no se puede en la divicion "model"
-
-*   Reporte de Notas de Ingresos
-    Detalle: Generar un nuevo reporte con el TSQL respectivo en el script
     
 *   Asignacion de permisos a los roles
-    Detalle: Generar una vista de asignacion de permisos con checkbox's 
+    Detalle: Generar una vista de asignacion de permisos con checkbox's o algo similar
 
-*   La opcion "me olvide la contraseña" avanzaren una nueva vista
-    Detalle: Escuchar opciones nuevas
-
-*   Lista de Propuestas y Cotizaciones, Notas de Ingreso y Egreso y Devolucion
+*   Lista de Propuestas
     Detalle: Visualizar y eliminar alguna de ellas
 
 *   Verificacion de permisos de los actores
     Detalle: en cada CRUD verificar los permisos de un usuario
                 sessionstart()
+
+*   Estudiar sobre permisos de usuario para los procesos del sistema
+    Detalle: como hacer la verificacion de permisos para cada proceso
+
+**************************************************************************************************
+Lista de Procesos Terminados
+*   Gestionar Cotizacion
+*   Gestionar Servicio
+*   Gestionar Nota Devolucion
+*   Gestionar Usuario
+*   Gestionar Rol
+*   Gestionar Permisos
+*   Administrar Bitacora
+*   Gestionar Categoria

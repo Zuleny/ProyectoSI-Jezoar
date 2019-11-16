@@ -15,6 +15,15 @@ class NotaDevolucion{
      * $nombrePersonal: nombre del personal
      * $nombreAlmacen: nombre del Almacen
      */
+
+    public function getNroNota(){
+        return $this->nroNota;
+    }
+
+    public function getConexion(){
+        return $this->conexion;
+    }
+
     public function __construct($fecha = "01-01-2001", $nombrePersonal = "" , $nombreAlmacen = ""){
         $this->conexion = new Conexion();
         $this->nroNota = $this->getNewNroNota();
@@ -124,6 +133,23 @@ class NotaDevolucion{
     public function deleteDetalleInsumo($nroNota, $idDetalle){
         try {
             $this->conexion->execute("DELETE FROM detalle_nota WHERE nro_nota=$nroNota and id_detalle=$idDetalle;");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function getDatosNotaDevolucionEditar($nro_nota){
+        return $this->conexion->execute("SELECT p.nombre, n.fecha, a.nombre 
+                                         FROM nota as n, personal as p, almacen as a
+                                         WHERE n.cod_almacen=a.cod_almacen and 
+                                                p.id_personal=n.id_personal and 
+                                                n.nro_nota=$nro_nota;");
+    }
+
+    public function updateNotaDevolucion($nroNota, $personalEditar, $fechaEditar, $almacenEditar){
+        try {
+            $this->conexion->execute("UPDATE nota set fecha='$fechaEditar', cod_almacen=getcodalmacenonname('$almacenEditar'), id_personal=getidpersonal('$personalEditar') WHERE nro_nota=$nroNota;");
             return true;
         } catch (\Throwable $th) {
             return false;

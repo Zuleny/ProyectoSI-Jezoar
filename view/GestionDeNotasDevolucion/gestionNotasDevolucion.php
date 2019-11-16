@@ -16,7 +16,7 @@
             <div class="box-header">
                 <h3 class="box-title">Gestionar Nota de Devolucion</h3>
                 <div class="box-tools pull-right">
-                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
                     <span class="glyphicon glyphicon-home"></span></a>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="col-lg-6">
                         <br>
-                        <button type="submit" class="btn btn-block btn-success" title="Agregar ">Crear Nota de Devolución
+                        <button type="submit" style="border-radius: 20px;" class="btn btn-block btn-success" title="Agregar ">Crear Nota de Devolución
                             <i class="fa fa-fw fa-file-o"></i>
                         </button>
                     </div>
@@ -72,10 +72,10 @@
             <form action="" method="get">
                 <div class="box box-success">
                     <div class="box-header">
-                        <h3 class="box-title">Servicios de la Empresa Jezoar</h3>
+                        <h3 class="box-title">Lista de Notas de Devolución Registradas</h3>
                     </div>
                     <div class="box-body">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover" id="tabla1">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -103,6 +103,11 @@
                                                         <a href="gestionDetalleNotaDevolucion.php?nroNotaDetalle='.pg_result($resultado,$fila,0).'">
                                                             <button type="button" class="btn btn-xs bg-light-blue btn-sm" title="Asignar Insumos">
                                                                 <i class="fa fa-fw fa-cubes"></i>
+                                                            </button>
+                                                        </a>
+                                                        <a href="editarNotaDevolucion.php?notaEditar='.pg_result($resultado,$fila,0).'">
+                                                            <button type="button" class="btn bg-purple btn-xs" title="Editar Nota">
+                                                                <i class="fa fa-fw fa-edit"></i>
                                                             </button>
                                                         </a>
                                                         <a href="../../controller/notaDevolucionController.php?nota='.pg_result($resultado,$fila,0).'">
