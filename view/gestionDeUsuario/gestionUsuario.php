@@ -39,7 +39,6 @@
                             ?>
                         </select>
                     </div>
-<<<<<<< HEAD
                 </div>
                 <div class="box-body">
                     <div class="col-lg-2">
@@ -57,17 +56,11 @@
                         <input type="text" class="form-control" placeholder="Ej. Cristobal Colón" name="respUsuario">
                     </div>
                     <div class="col-lg-5">
-=======
-                    <div class="col-lg-2">
-                    </div>
-                    <div class="col-lg-3">
->>>>>>> 4229b96553713a131fa551367464297df3b77d86
                         <br>
                         <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" title="Agregar Usuario">Agregar Usuario
                             <i class="fa fa-fw fa-check"></i>
                         </button>
                     </div>
-<<<<<<< HEAD
                     <div class="col-lg-5">
                         <br>
                         <a href="asignacionRoles.php">
@@ -75,13 +68,6 @@
                                 <i class="fa fa-fw fa-check"></i>
                             </button>
                         </a>
-=======
-                    <div class="col-lg-3">
-                        <br>
-                        <button type="button" class="btn btn-block btn-primary" style="border-radius: 15px;" action="asignacionRoles.php" title="Asignar Roles">Asignar Roles a Usuarios
-                            <i class="fa fa-fw fa-check"></i>
-                        </button>
->>>>>>> 4229b96553713a131fa551367464297df3b77d86
                     </div>
                 </div>
                 <!--  Lugar de butons y label y textbox  -->
