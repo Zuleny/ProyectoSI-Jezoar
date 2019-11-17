@@ -73,10 +73,13 @@
                         <!--  Lugar de butons y label y textbox  -->
 
                     </form>
-
+                    <div class="box-header">
+                        <h3 class="box-title">Lista de Productos</h3>
+                    </div>
                     <!--Aqui Inicia Datatable-->
 
                     <div class="row">
+
                         <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
                             <div class="col-sm-offset-2 col-sm-8">
                                 <h3 class="text-center"> <small class="mensaje"></small></h3>

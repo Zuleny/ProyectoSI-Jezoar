@@ -7,7 +7,7 @@
       $precioUnitario=$_POST["precioUnitario"];
       require "../model/NotaIngresoModel.php";
       $notaIngreso=new NotaIngreso();
-      $b=$notaIngreso->insertarDetalleIngreso($nombreInsumo,$cantidadInsumo,$precioUnitario,$nroIngreso);
+      $b=$notaIngreso->insertarDetalleIngreso($nombreInsumo,$cantidadInsumo,$precioUnitario);
       if(!$b){
           echo "Detalle No Registrado";
       }
@@ -26,27 +26,7 @@
       return $lista;
    }
 
-   function getListaDetalleIngreso(){ 
-      $detalleIngreso=new NotaIngreso();
-      $result3=$detalleIngreso->getListaDetalle();
-      $nroFilas=pg_num_rows($result3);
-      $printer="";
-      for ($nroTupla=0;$nroTupla<$nroFilas;$nroTupla++){
-         $printer.='<tr> <td>'. pg_result($result3,$nroTupla,0).'</td>';
-         $printer.='<td>'. pg_result($result3,$nroTupla,1).'</td>';
-         $printer.='<td>'. pg_result($result3,$nroTupla,2).'</td>';
-         $printer.='<td>'. pg_result($result3,$nroTupla,3).'</td>';
-         $printer.= '<td>
-                <div class="btn-group">                                               
-                    <button type="button" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal-default "title="Editar">
-                        <i class="fa fa-edit"></i>
-                    </button>
-                </div>
-                </td>
-                </tr>';
-      }
-      return $printer;
-   }
+
 
 
 
