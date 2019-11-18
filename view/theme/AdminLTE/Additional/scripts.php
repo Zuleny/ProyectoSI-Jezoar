@@ -199,4 +199,7 @@
 <script src="../../public/assets/AdminLTE/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../public/assets/AdminLTE/dist/js/demo.js"></script>
+
+<script src="../../public/assets/AdminLTE/dist/js/custom.js"></script>
+<script src="../../public/assets/AdminLTE/dist/js/custom2.js"></script>
 </body>
