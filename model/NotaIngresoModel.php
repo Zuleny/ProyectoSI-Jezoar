@@ -29,6 +29,25 @@ class NotaIngreso{
             return false;
         }
     }
+
+    public function actualizarNotaIngreso($nro_ingreso,$nombre_recibe){
+        try{
+
+            $this->conexion->execute("UPDATE nota_ingreso set nombre_recibe='$nombre_recibe' where nro_ingreso=$nro_ingreso;");
+            return true;
+        }catch(\Throwable $th){
+            return false;
+        }
+    }
+
+    public function eliminarNotaIngreso($nro_ingreso){
+        try{
+            $this->conexion->execute("DELETE from nota_ingreso where nro_ingreso=$nro_ingreso;");
+            return true;
+        }catch(\Throwable $th){
+            return false;
+        }
+    }
     //Auxiliares
     public function getListaAlmacen(){
         $result=$this->conexion->execute("select nombre from almacen;");
@@ -57,24 +76,43 @@ class NotaIngreso{
     }
 
     public function getListaNotasIngresos(){
-        return $this->conexion->execute("SELECT nro_ingreso, fecha_ingreso, nombre_recibe FROM nota_ingreso;");
+        return $this->conexion->getArrayAssoc("SELECT nro_ingreso, fecha_ingreso, nombre_recibe FROM nota_ingreso;");
     }
     //Auxiliares para detalle Ingreso
-    public function insertarDetalleIngreso($nombreInsumo,$cantidad,$precioUnitario){
+    public function insertarDetalleIngreso($nroIngreso,$nombreInsumo,$cantidad,$precioUnitario){
         try{
-            $nroIngreso=$this->getNroIngreso();
             $idIngreso=$this->getIdIngreso($nroIngreso)+1;
-            echo $idIngreso;
             $this->conexion->execute("insert into detalle_ingreso values($idIngreso,'$nombreInsumo',$cantidad,$precioUnitario,$nroIngreso);");
             return true;
         }catch(\Throwable $th){
             return false;
         }
     }
+
+    public function actualizarDetalle($id_ingreso,$nombre_insumo,$cantidad,$precio){
+        try{
+            $nroIngreso=$this->getNroIngreso();
+            $this->conexion->execute("UPDATE detalle_ingreso SET nombre_insumo='$nombre_insumo',cantidad=$cantidad,precio_unitario=$precio where id_ingreso=$id_ingreso and nro_ingreso=$nroIngreso;");
+            return true;
+        }catch(\Throwable $th){
+            return false;
+        }
+    }
+
+    public function eliminarDetalleIngreso($id_ingreso){
+        try{
+            $nroIngreso=$this->getNroIngreso();
+            $this->conexion->execute("DELETE FROM detalle_ingreso where id_ingreso=$id_ingreso and nro_ingreso=$nroIngreso;");
+            return true;
+        }catch(\Throwable $th){
+            return false;
+        }
+    }
+
+
     
-    public function getListaDetalle(){
-        $nroIngreso=$this->getNroIngreso();
-        return ($this->conexion->execute("SELECT id_ingreso,nombre_insumo,cantidad,precio_unitario from detalle_ingreso where nro_ingreso=$nroIngreso;"));
+    public function getListaDetalle($nroIngreso){
+        return ($this->conexion->getArrayAssoc("SELECT id_ingreso,nombre_insumo,cantidad,precio_unitario from detalle_ingreso where nro_ingreso=$nroIngreso;"));
     }
 
     public function getIdIngreso($nroIngreso){

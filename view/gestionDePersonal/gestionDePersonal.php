@@ -79,8 +79,9 @@
                             <div class="box-header">
                                 <h3 class="box-title">Lista de Productos</h3>
                             </div>
-                            <div class="box-body"  id="tabla1">
-                                <table class="table table-bordered table-hover">
+                            <div class="box-body"  >
+                                <table class="display" style="width:100%" id="tabla1">
+                                  
                                     <thead>
                                         <tr>
                                             <th>Codigo</th>
@@ -91,13 +92,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                            
-                                            $printer=getlistaDePersonal();
-                                            echo $printer;
-                                        ?>
+
                                     </tbody>
+                                  
+                                
+                                
+                                  
                                 </table>
+                                
                             </div>
                         </div>
                     </form>

@@ -34,6 +34,14 @@ session_start();
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">   
         
         <link rel="stylesheet" href="../../public/assets/view/viewStyle.css">
+
+        <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net/css/estilos.css">
+        <!-- Buttons DataTables -->
+        <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net/css/buttons.bootstrap.min.css">
+        <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net/css/font-awesome.min.css">
+
         
     </head>
     <!-- the fixed layout is not compatible with sidebar-mini -->

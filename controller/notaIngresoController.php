@@ -12,7 +12,7 @@ isset($_POST["listaProveedor"]) && isset($_POST["listaAlmacen"])){
     }else{
         echo '<script language="javascript">alert("Error al Insertar la Nota De Ingreso");</script>';
     }
-    header('Location: ../view/gestionDeNotaDeIngreso/gestionDetalleIngreso.php');
+    header('Location: ../view/gestionDeNotaDeIngreso/gestionNotaIngreso.php');
 }
 
 function getListaProveedor(){
@@ -39,24 +39,5 @@ function getListaAlmacen(){
     return $printer;
 }
 
-function getListaNotasIngreso(){ 
-    $notaIngreso1=new NotaIngreso();
-    $result2=$notaIngreso1->getListaNotasIngresos();
-    $rows=pg_num_rows($result2);
-    $printer="";
-    for($tupla=0;$tupla<$rows;$tupla++){
-        $printer.='<tr> <td >'.pg_result($result2,$tupla,0).'</td>';
-        $printer.='<td >'.pg_result($result2,$tupla,1).'</td>';
-        $printer.='<td >'.pg_result($result2,$tupla,2).'</td>';
-       $printer.= '<td> <div class="btn-group">                                               
-            <button type="button" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal-default "title="Editar">
-                <i class="fa fa-edit"></i>
-            </button>
-        </div>
-        </td>
-        </tr>';
-    }
-    return $printer;
-}
 
 ?>
