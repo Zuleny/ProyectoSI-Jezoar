@@ -79,9 +79,8 @@ class NotaIngreso{
         return $this->conexion->getArrayAssoc("SELECT nro_ingreso, fecha_ingreso, nombre_recibe FROM nota_ingreso;");
     }
     //Auxiliares para detalle Ingreso
-    public function insertarDetalleIngreso($nombreInsumo,$cantidad,$precioUnitario){
+    public function insertarDetalleIngreso($nroIngreso,$nombreInsumo,$cantidad,$precioUnitario){
         try{
-            $nroIngreso=$this->getNroIngreso();
             $idIngreso=$this->getIdIngreso($nroIngreso)+1;
             $this->conexion->execute("insert into detalle_ingreso values($idIngreso,'$nombreInsumo',$cantidad,$precioUnitario,$nroIngreso);");
             return true;
@@ -112,8 +111,7 @@ class NotaIngreso{
 
 
     
-    public function getListaDetalle(){
-        $nroIngreso=$this->getNroIngreso();
+    public function getListaDetalle($nroIngreso){
         return ($this->conexion->getArrayAssoc("SELECT id_ingreso,nombre_insumo,cantidad,precio_unitario from detalle_ingreso where nro_ingreso=$nroIngreso;"));
     }
 

@@ -12,7 +12,7 @@ isset($_POST["listaProveedor"]) && isset($_POST["listaAlmacen"])){
     }else{
         echo '<script language="javascript">alert("Error al Insertar la Nota De Ingreso");</script>';
     }
-    header('Location: ../view/gestionDeNotaDeIngreso/gestionDetalleIngreso.php');
+    header('Location: ../view/gestionDeNotaDeIngreso/gestionNotaIngreso.php');
 }
 
 function getListaProveedor(){

@@ -1,17 +1,18 @@
 <?php 
    //inserttar
-   if(isset($_POST["nombreInsumo"])&&
+   if(isset($_POST["nroIngreso"]) && isset($_POST["nombreInsumo"])&&
     isset($_POST["cantidadInsumo"])&& isset($_POST["precioUnitario"])){
+      $nroIngreso=$_POST["nroIngreso"];
       $nombreInsumo=$_POST["nombreInsumo"];
       $cantidadInsumo=$_POST["cantidadInsumo"];
       $precioUnitario=$_POST["precioUnitario"];
       require "../model/NotaIngresoModel.php";
       $notaIngreso=new NotaIngreso();
-      $b=$notaIngreso->insertarDetalleIngreso($nombreInsumo,$cantidadInsumo,$precioUnitario);
+      $b=$notaIngreso->insertarDetalleIngreso($nroIngreso,$nombreInsumo,$cantidadInsumo,$precioUnitario);
       if(!$b){
           echo "Detalle No Registrado";
       }
-      header('Location: ../view/gestionDeNotaDeIngreso/gestionDetalleIngreso.php');
+      header("Location: ../view/gestionDeNotaDeIngreso/gestionDetalleIngreso.php?nro_ingreso=$nroIngreso");
    }
 
    function getListaInsumos(){

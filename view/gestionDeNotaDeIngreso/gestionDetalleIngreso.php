@@ -18,7 +18,12 @@
                         <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                         <span class="glyphicon glyphicon-home"></span></a>
                     </div>
+
                     <form class="box-body" action="../../controller/detalleIngresoController.php" method="post">
+                        <?php
+                           $nroIngreso=$_GET['nro_ingreso'];
+                           echo '<input type="hidden" id="nroIngreso" name="nroIngreso" value="'.$nroIngreso.'">'
+                        ?>
                       <div class="form-group col-md-12">
                         <div class="col-lg-6">
                             <label>Nombre de Insumo</label>
@@ -54,6 +59,7 @@
                         </a>
                       </div>
                     </form>
+
                     <!--Aqui Inicia Datatable-->
                     <div class="row">
                         <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
@@ -81,6 +87,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div>
                         <form id="frmDeleteDetalleIngreso" action="" method="POST">
                             <input type="hidden" id="idDetalleIngreso" name="idDetalleIngreso" value="0">
@@ -165,10 +172,13 @@
                         });
 
                         var listar= function(){
+                            var nro_ingreso=document.getElementById("nroIngreso").value;
+                            console.log(nro_ingreso);
                             var table=$("#tabla1").DataTable({
                                 "destroy":true,
                                 "ajax":{
                                     "method":"POST",
+                                    "data":{"nro_ingreso":nro_ingreso},
                                     "url":"listarDetalleIngreso.php",
                                     "dataSrc": "data"
                                 },

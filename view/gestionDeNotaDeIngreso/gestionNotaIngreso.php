@@ -152,8 +152,16 @@
 
                         </div>
 
+                        <div>
+                            <form id="frmVisualizarNotaIngreso" action="" method="POST">
+                               <input type="hidden" id="idFrmNotaIngreso" name="idFrmNotaIngreso" value="0">
+                               <input type="hidden" id="opcion" name="opcion" value="visualizar">
+                            </form>
+
+                        </div>
+
                         <?php
-                        include "../../view/theme/AdminLTE/Additional/scripts.php";
+                             include "../../view/theme/AdminLTE/Additional/scripts.php";
                         ?>
 
                         <script>
@@ -162,6 +170,7 @@
                                 listar();
                                 actualizar();
                                 eliminar();
+                                //visualizar();
                             });
                             //Lista los datos devueltos del servidor
                             var listar= function(){
@@ -176,14 +185,16 @@
                                         {"data":"nro_ingreso"},
                                         {"data":"fecha_ingreso"},
                                         {"data":"nombre_recibe"},
-                                        {"defaultContent":"<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square-o'></i></button>" +
-                                                "<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
+                                        {"defaultContent":"<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square'></i></button>" +
+                                                          "<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"+
+                                                          "<button type='button' class='visualizar btn btn-link' id='visualizar'><i class='fa fa-fw fa-plus-square-o'></i></button>"}
 
                                     ],
                                     "language":idioma_espanol
                                 });
                                 getDataRow("#tabla1 tbody",table);
                                 getIdNotaIngresoRow("#tabla1 tbody",table);
+                                getIdNotaIngresoVisualizar("#tabla1 tbody",table);
                             }
 
                             //Settear los valores devueltos por el servidor(database) al sus respectivos inputs del modal editar
@@ -204,6 +215,16 @@
                                 });
                             }
 
+                            //Settear los valores devueltos por el servidor(database) al sus respectivos inputs para visualizar los detalles de dico nro de Ingreeso
+                            var getIdNotaIngresoVisualizar=function (tbody,table) {
+                                $(tbody).on("click","button.visualizar",function () {
+                                    var data=table.row($(this).parents("tr")).data();
+                                    var nro_ingreso=$("#frmVisualizarNotaIngreso #idFrmNotaIngreso").val(data.nro_ingreso);
+                                    var porId=document.getElementById("idFrmNotaIngreso").value;
+                                    console.log(porId);
+                                    location.href = "gestionDetalleIngreso.php?nro_ingreso=" + porId;
+                                });
+                            }
                             //Metodo Actualizar ( hace una peticion al servidor)
                             var actualizar=function () {
                                 $("#updateNotaIngreso").on("click",function () {
@@ -229,7 +250,7 @@
                                 $("#deleteNotaIngreso").on("click",function () {
                                     var nro_ingreso=$("#frmDeleteNotaIngreso #idNotaIngreso").val(),
                                         opcion=$("#frmDeleteNotaIngreso #opcion").val();
-
+                                    console.log(nro_ingreso);
                                     var row={nro_ingreso:nro_ingreso,opcion:opcion};
                                     $.ajax({
                                         method:"POST",
@@ -242,6 +263,26 @@
                                     listar();
                                 });
                             }
+
+                            //Metodo Que va a la ventana de detalle ingreso de un determinado nota de ingreso ( hace una peticion al servidor)
+                            var visualizar=function () {
+                                $("#visualizar").on("click",function () {
+                                    var nro_ingreso=$("#frmVisualizarNotaIngreso #idNotaIngreso").val(),
+                                        opcion=$("#frmVisualizarNotaIngreso #opcion").val();
+
+                                    var row={nro_ingreso:nro_ingreso,opcion:opcion};
+                                    $.ajax({
+                                        method:"POST",
+                                        url: "listarDetalleIngreso.php",
+                                        data: row,
+                                        success: function (info) {
+                                            console.log(info);
+                                        }
+                                    });
+                                });
+                            }
+
+
 
                             var idioma_espanol={
                                 "sProcessing":     "Procesando...",

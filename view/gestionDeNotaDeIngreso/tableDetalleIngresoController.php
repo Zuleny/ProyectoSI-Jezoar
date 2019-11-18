@@ -14,7 +14,7 @@
        }else{
            echo json_encode("Error: No se Elimino");
        }
-    }else{
+    }else if($opcion=='actualizar'){
        $nombre_insumo=$_POST['nombre_insumo'];
        $cantidad=$_POST['cantidad'];
        $precio=$_POST['precio'];
