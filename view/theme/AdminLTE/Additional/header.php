@@ -19,7 +19,7 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="../../documentation/jezoar.png" class="user-image" alt="User Image">
-                <span class="hidden-xs"><span class="hidden-xs"><?php  echo $_SESSION['user']?> </span></span>
+                <span class="hidden-xs"><?php echo $_SESSION['user']?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
@@ -30,10 +30,11 @@
                     <small>Usuario Jezoar</small>
                   </p>
                 </li>
+                <!-- Menu Body -->
                 <li class="user-footer">
                   <div class="box-danger">
                     <a href="../../controller/loginController.php?user=<?php echo $_SESSION['user']?>">
-                      <button type="button" class="btn btn-block btn-danger" title="Cerrar Sesion" >
+                      <button type="button" class="btn btn-block btn-danger" title="Cerrar Sesion">
                           Sign Out <i class="fa fa-fw fa-check"></i>
                       </button>
                     </a>

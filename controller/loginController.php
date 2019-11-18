@@ -15,11 +15,8 @@ if ( isset($_GET['username']) && isset($_GET['password']) ) {
                                     VALUES ('$username', 'Inicio de Sesión de $username', '$fecha_hora');");
         header('Location: ../index.php');
     }else{
-
-
-        \FB::log($username);
-
-       // header('Location: ../view/login.php');
+        //\FB::log($username);
+       header('Location: ../view/login.php');
     }
 }else if ( isset($_GET['user']) ) {
     $username=$_GET['user'];

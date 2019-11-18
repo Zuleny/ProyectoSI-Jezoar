@@ -30,7 +30,7 @@
                                 require '../../controller/NotasController/notaEgresoController.php';
                                 $resultado = getNombresDePersonal();
                                  $nroFilas = pg_num_rows($resultado);
-                                     \FB::log($nroFilas);
+                                     //  \FB::log($nroFilas);
                                 for ($fila=0; $fila < $nroFilas; $fila++) { 
                                     echo '<option value="'.pg_result($resultado,$fila,0).'">'.pg_result($resultado,$fila,0).'</option>';
                                 }
