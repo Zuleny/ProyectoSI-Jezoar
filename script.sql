@@ -1,16 +1,14 @@
 -- Database: jezoar
 
 -- DROP DATABASE jezoar;
+/*
+CREATE DATABASE jezoar 
+	with owner=jezoar 
+	encoding='UTF8' 
+	tablespace=pg_default 
+	CONNECTION LIMIT=-1;
 
-CREATE DATABASE jezoar
-    WITH 
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    LC_COLLATE = 'Spanish_Spain.1252'
-    LC_CTYPE = 'Spanish_Spain.1252'
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1;
-
+*/
 COMMENT ON DATABASE jezoar
     IS 'clean service Jezoar';
 	
@@ -361,33 +359,44 @@ insert into Presentacion values(10,'2019/02/20','Denegado',430000,6,'P');
 insert into Presentacion values(11,'2019/04/21','Espera',30000,5,'P');
 
 insert into Servicio values(1,'Limpieza general de oficinas');
-insert into Servicio values(2,'Limpieza de vidrios');
-insert into Servicio values(3,'Limpieza de pisos');
-insert into Servicio values(4,'Limpieza de escaleras');
-insert into Servicio values(5,'Limpieza general de postobra');
-insert into Servicio values(6,'Servicio de supervicion');
-insert into Servicio values(7,'Limpieza general profunda');
-insert into Servicio values(8,'Prestacion de materiales');
+insert into Servicio values(2,'Limpieza general de oficinas');
+insert into Servicio values(3,'Limpieza general de oficinas');
+insert into Servicio values(4,'Limpieza de vidrios');
+insert into Servicio values(5,'Limpieza de vidrios');
+insert into Servicio values(6,'Limpieza de vidrios');
+insert into Servicio values(7,'Limpieza de pisos');
+insert into Servicio values(8,'Limpieza de escaleras');
+insert into Servicio values(9,'Limpieza de escaleras');
+insert into Servicio values(10,'Limpieza general de postobra');
+insert into Servicio values(11,'Limpieza general de postobra');
+insert into Servicio values(12,'Limpieza general de postobra');
+insert into Servicio values(13,'Servicio de supervicion');
+insert into Servicio values(14,'Servicio de supervicion');
+insert into Servicio values(15,'Limpieza general profunda');
+insert into Servicio values(16,'Limpieza general profunda');
+insert into Servicio values(17,'Limpieza general profunda');
+insert into Servicio values(18,'Prestacion de materiales');
+insert into Servicio values(19,'Prestacion de materiales');
 
 insert into Detalle_Servicio values(1,1,'Incluye IVA');
-insert into Detalle_Servicio values(1,2,'Incluye materiales');
-insert into Detalle_Servicio values(1,3,'Mano de obra');
-insert into Detalle_Servicio values(2,1,'Incluye IVA');
-insert into Detalle_Servicio values(2,2,'Sin material');
-insert into Detalle_Servicio values(3,1,'Incluye IVA');
-insert into Detalle_Servicio values(3,2,'Sin material');
-insert into Detalle_Servicio values(4,1,'Sin material');
-insert into Detalle_Servicio values(4,2,'Incluye IVA');
-insert into Detalle_Servicio values(5,1,'Con material');
-insert into Detalle_Servicio values(5,2,'Incluye IVA');
-insert into Detalle_Servicio values(5,3,'Mano de obra');
-insert into Detalle_Servicio values(6,1,'Con material');
-insert into Detalle_Servicio values(6,2,'Incluye IVA');
-insert into Detalle_Servicio values(7,1,'Con material');
-insert into Detalle_Servicio values(7,2,'Incluye IVA');
-insert into Detalle_Servicio values(7,3,'Mano de obra');
-insert into Detalle_Servicio values(8,1,'Con material');
-insert into Detalle_Servicio values(8,2,'Mano de obra');
+insert into Detalle_Servicio values(2,1,'Incluye materiales');
+insert into Detalle_Servicio values(3,1,'Mano de obra');
+insert into Detalle_Servicio values(4,1,'Incluye IVA');
+insert into Detalle_Servicio values(5,1,'Sin material');
+insert into Detalle_Servicio values(6,1,'Incluye IVA');
+insert into Detalle_Servicio values(7,1,'Sin material');
+insert into Detalle_Servicio values(8,1,'Sin material');
+insert into Detalle_Servicio values(9,1,'Incluye IVA');
+insert into Detalle_Servicio values(10,1,'Con material');
+insert into Detalle_Servicio values(11,1,'Incluye IVA');
+insert into Detalle_Servicio values(12,1,'Mano de obra');
+insert into Detalle_Servicio values(13,1,'Con material');
+insert into Detalle_Servicio values(14,1,'Incluye IVA');
+insert into Detalle_Servicio values(15,1,'Con material');
+insert into Detalle_Servicio values(16,1,'Incluye IVA');
+insert into Detalle_Servicio values(17,1,'Mano de obra');
+insert into Detalle_Servicio values(18,1,'Con material');
+insert into Detalle_Servicio values(19,1,'Mano de obra');
 
 insert into Presentacion_Servicio values(1,1,'Oficina',4,9750);
 insert into Presentacion_Servicio values(1,6,'Oficina',1,2000);
@@ -904,9 +913,10 @@ insert into Personal values (24,'ines garcia','E','operador de limpieza');
 insert into Personal values (25,'marili aguilar sanchez','F','supervisor');
 
 insert into Usuario(cod_usuario,nombre,contrasenia,question,answer,id_personal_usuario) values 
-(	1	   ,'leonor'  ,'leonorCT71'  ,'Si a=b y b=c, entonces ¿a=c?','a=c'	   ,1),
-(	2	   ,'stephani','stephaniHC97','¿Cúal es mi nombre?'         ,'stephani',2);
-
+(1,'leonor'  ,'4fc572104aefd0d77d3f730595f784f30e1a43be','Si a=b y b=c, entonces ¿a=c?','3a4b324ac68dd0bf2802abe457653208',1),
+--Contrasenia = 'leonorCT71' answer ='a=c'
+(2,'stephani','f4b968000b1905e24b45eaa516bdbfb0ccb3df4a','¿Cúal es mi nombre?'         ,'4a3a932425682c8b87dac8d9f2e0128f',2);
+--Contrasenia = 'stephaniHC97' answer = 'stephani'
 insert into Rol(cod_rol,descripcion) values (1,'Gerencia'),
 											(2,'Administracion');
 

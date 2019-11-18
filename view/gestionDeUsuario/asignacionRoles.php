@@ -15,7 +15,9 @@
                 <div class="box-header">
                     <h3 class="box-title">Asignacion de Roles</h3>
                     <div class="box-tools pull-right">
-                        <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                        <a href="gestionUsuario.php" class="btn btn-primary" title="Volver Atras">
+                        <span class="fa fa-fw fa-mail-reply"></span></a>
+                        <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
                         <span class="glyphicon glyphicon-home"></span></a>
                     </div>
                     <form class="box-body" action="../../controller/AsignarRolesController.php" method="post">
@@ -47,10 +49,10 @@
                         </div>
                         <div class="col-lg-7">
                             <div class="box-body">
-                                <table class="table table-bordered table-hover">
+                                <table class="table table-bordered table-hover" id="tabla1">
                                     <thead>
                                         <tr>
-                                            <th>Codigo Rol</th>
+                                            <th>Código Rol</th>
                                             <th>Descripcion de Rol</th>
                                         </tr>
                                     </thead>

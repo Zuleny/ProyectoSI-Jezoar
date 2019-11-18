@@ -7,7 +7,7 @@ if ( isset($_GET['username']) && isset($_GET['password']) ) {
     $login=new Login(strtolower($username),sha1($password));
     if($login->existeUser()){
         session_start();
-        $_SESSION['user']=$username;
+        $_SESSION['user']=strtolower($username);
         $_SESSION['cod_usuario'] = $login->getCodigoUsuario();
         $_SESSION['permisos']=$login->getListaPermisos($username);
         $fecha_hora = date('j-n-Y G:i:s', time());

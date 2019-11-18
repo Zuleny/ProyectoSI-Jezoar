@@ -1,4 +1,3 @@
-	
 create table Cliente (
 	cod_cliente int not null primary key,
 	nombre varchar(100) not null,
@@ -218,6 +217,8 @@ create table Usuario
 	cod_usuario int not null primary key,
 	nombre varchar(25) not null,
 	contrasenia varchar(200) not null,
+	question varchar(200) not null,
+	answer varchar(200) not null,
 	id_personal_usuario int not null,
 	foreign key (id_personal_usuario) references Personal(id_personal)
 	on delete cascade

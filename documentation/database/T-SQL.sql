@@ -433,3 +433,24 @@ as $$ begin
 			from cliente
 			where nombre=nombreCliente );
 end $$ language plpgsql;
+/*38. Devolver Lista de Notas de Devoluciones*/
+create or replace function getListaDeNotasDeDevolucion()
+returns table (nro_nota integer, nombre_personal varchar, fecha date,nombre_almacen varchar,
+			   tipo_nota char) as $BODY$	
+begin
+	return query select n.nro_nota, p.nombre, n.fecha, a.nombre, n.tipo 
+				 from nota as n,personal as p,almacen as a 
+				 where p.id_personal=n.id_personal and 
+						a.cod_almacen=n.cod_almacen and 
+						n.tipo='D' 
+				 order by n.nro_nota; 
+end;  
+$BODY$ language 'plpgsql';
+
+/*39. Devuelve el cod_almacen de un almacen por su nombre*/
+create or replace function getCodAlmacenOnName(nombreAlmacen text)returns integer 
+as $$ begin
+	return (select cod_almacen
+			from almacen
+			where nombre=nombreAlmacen);
+end $$ language 'plpgsql';
