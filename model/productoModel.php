@@ -38,8 +38,27 @@ class Producto{
         }
     }
 
+    public function actualizarProducto($codproducto,$nombreinsumo,$descripcioninsumo,$marcaproducto,$categoriaproducto,$precioproducto){
+
+        try{
+            $codCategoria=$this->getCodCategoria($categoriaproducto);
+            $result=$this->conexion->execute("UPDATE Insumo SET nombre='$nombreinsumo', descripcion='$descripcioninsumo' where cod_insumo=$codproducto;");
+            $result=$this->conexion->execute("UPDATE producto SET precio_unitario=$precioproducto, marca='$marcaproducto' where cod_insumo_producto=$codproducto;");
+            $result=$this->conexion->execute("UPDATE Producto_Categoria SET cod_categoria= $codCategoria where cod_insumo_producto=$codproducto;");
+            return true;
+        }catch (\Throwable $th){
+            return false;
+        }
+    }
+
+    public function getCodCategoria($categoria){
+        $result=$this->conexion->execute("select getCodCategoriaDeProducto('$categoria');");
+        return pg_result($result,0,0);
+
+    }
+
     public function getListaDeProductos(){
-        $result=$this->conexion->execute("select* from getListaDeProductos();");
+        $result=$this->conexion->getArrayAssoc("select* from getListaDeProductos();");
         return $result;
     }
 

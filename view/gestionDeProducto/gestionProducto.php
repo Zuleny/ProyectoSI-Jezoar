@@ -61,11 +61,9 @@
                                </select>
 
                            </div>
-                          </div> 
+                           </div>
                         <div class="col-lg-4" >
-                            <button type="submit" class="btn btn-block btn-success" id="button1" name="btnInsertarProducto" title="Agregar Servicio">
-                                Agregar Registro <i class="fa fa-fw fa-check"></i>
-                            </button>
+                                <button type="submit" class="btn btn-block btn-success" id="button1" name="btnInsertarProducto" title="Agregar Servicio">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
                         </div>
                             
                         </div>
@@ -73,34 +71,229 @@
                             Ir a: Registrar Producto en un almacen 
                         </a>
                         <!--  Lugar de butons y label y textbox  -->
-                        <div class="box box-success">
-                            <div class="box-header">
-                                <h3 class="box-title">Lista de Productos</h3>
+
+                    </form>
+                    <div class="box-header">
+                        <h3 class="box-title">Lista de Productos</h3>
+                    </div>
+                    <!--Aqui Inicia Datatable-->
+
+                    <div class="row">
+
+                        <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-sm-offset-2 col-sm-8">
+                                <h3 class="text-center"> <small class="mensaje"></small></h3>
                             </div>
-                            <div class="box-body"  id="tabla1">
-                                <table class="table table-bordered table-hover">
+                            <div class="table-responsive col-sm-12">
+                                <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
                                     <thead>
-                                        <tr>
-                                            <th>Codigo</th>
-                                            <th>Nombre</th>
-                                            <th>Descripcion</th>
-                                            <th>Marca</th>
-                                            <th>Categoria</th>
-                                            <th>Precio</th>
-                                            <th>Actualizar</th>
-                                        </tr>
+                                    <tr>
+                                        <th class="col-lg-1">#</th>
+                                        <th class="col-lg-2">Nombre</th>
+                                        <th class="col-lg-3">Descripcion</th>
+                                        <th class="col-lg-1">Marca</th>
+                                        <th class="col-lg-1">Categoria</th>
+                                        <th class="col-lg-1">Precio</th>
+                                        <th class="col-lg-2"></th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                            
-                                            $printer=getListaDeProductos();
-                                            echo $printer;
-                                        ?>
+
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                    <div>
+                        <form id="frmDeleteProducto" action="" method="POST">
+                            <input type="hidden" id="idProducto" name="idProducto" value="0">
+                            <input type="hidden" id="opcion" name="opcion" value="eliminar">
+                            <!-- Modal Delete-->
+                            <div class="modal fade" data-backdrop=”static” id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="modalEliminarLabel">Eliminar Producto</h4>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            ¿Está seguro de eliminar el producto?<strong data-name=""></strong>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" onclick="" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div>
+
+
+                        <!-- Modal Update-->
+                        <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="modalUpdateLabel">Actualizar Producto</h4>
+                                    </div>
+                                    <!--Modal Body Here-->
+                                    <div class="modal-body">
+                                        <form id="frmUpdateProducto" class="form-horizontal" action="" method="POST">
+                                            <input type="hidden" id="idProductoFrmUpdate" name="idProductoFrmUpdate" value="">
+                                            <input type="hidden" id="opcion" name="opcion" value="actualizar">
+
+                                            <div class="form-group">
+                                                <label for="nombre" class="col-form-label">Nombre:</label>
+                                                <input type="text" class="form-control" id="nombre" name="nombre">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="descripcion" class="col-form-label">Descripcion:</label>
+                                                <textarea class="form-control" rows="4" id="descripcion" name="descripcion"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="marca" class="col-form-label">Marca:</label>
+                                                <input type="text" class="form-control" id="marca" name="marca">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="categoria" class="col-form-label">Categoria:</label>
+                                                <input type="text" class="form-control" id="categoria" name="categoria">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="precio" class="col-form-label">Precio:</label>
+                                                <input type="number" step="0.01" class="form-control" placeholder="7.50" id="precio" name="precio">
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <!--Modal Body-->
+                                    <div class="modal-footer">
+                                        <button type="button" id="updateProducto" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <?php
+                           include "../../view/theme/AdminLTE/Additional/scripts.php";
+                    ?>
+
+                    <script>
+
+                        $(document).on("ready",function(){
+                            listar();
+                            actualizar();
+                        });
+
+                        var listar= function(){
+                            var table=$("#tabla1").DataTable({
+                                "destroy":true,
+                                "ajax":{
+                                    "method":"POST",
+                                    "url":"listarProducto.php",
+                                    "dataSrc": "data"
+                                },
+                                "columns":[
+                                    {"data":"codproducto"},
+                                    {"data":"nombreinsumo"},
+                                    {"data":"descripcioninsumo"},
+                                    {"data":"marcaproducto"},
+                                    {"data":"categoriaproducto"},
+                                    {"data":"precioproducto"},
+                                    {"defaultContent":"<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square-o'></i></button>" +
+                                            "<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
+
+                                ],
+                                "language":idioma_espanol
+                            });
+                            getDataRow("#tabla1 tbody",table);
+                            getIdPersonalRow("#tabla1 tbody",table);
+                        }
+
+
+                        var getDataRow=function (tbody,table) {
+                            $(tbody).on("click","button.editar",function () {
+                                var data=table.row($(this).parents("tr")).data();
+                                console.log(data);
+                                var codproducto=$("#frmUpdateProducto #idProductoFrmUpdate").val(data.codproducto),
+                                    nombreinsumo=$("#frmUpdateProducto #nombre").val(data.nombreinsumo),
+                                    descripcioninsumo=$("#frmUpdateProducto #descripcion").val(data.descripcioninsumo),
+                                    marcaproducto=$("#frmUpdateProducto #marca").val(data.marcaproducto),
+                                    categoriaproducto=$("#frmUpdateProducto #categoria").val(data.categoriaproducto),
+                                    precioproducto=$("#frmUpdateProducto #precio").val(data.precioproducto);
+                                console.log(precioproducto);
+
+                            });
+                        }
+
+                        var getIdPersonalRow=function (tbody,table) {
+                            $(tbody).on("click","button.eliminar",function () {
+                                var data=table.row($(this).parents("tr")).data();
+                                var id_personal=$("#frmDeletePersonal #idPersonal").val(data.id_personal);
+                            });
+                        }
+
+                        var actualizar=function () {
+                            $("#updateProducto").on("click",function () {
+                                var codproducto=$("#frmUpdateProducto #idProductoFrmUpdate").val(),
+                                    nombreinsumo=$("#frmUpdateProducto #nombre").val(),
+                                    descripcioninsumo=$("#frmUpdateProducto #descripcion").val(),
+                                    marcaproducto=$("#frmUpdateProducto #marca").val(),
+                                    categoriaproducto=$("#frmUpdateProducto #categoria").val(),
+                                    precioproducto=$("#frmUpdateProducto #precio").val(),
+                                    opcion=$("#frmUpdateProducto #opcion").val();
+                                console.log(opcion);
+                                var row={codproducto:codproducto,nombreinsumo:nombreinsumo,descripcioninsumo:descripcioninsumo,marcaproducto:marcaproducto,categoriaproducto:categoriaproducto,precioproducto:precioproducto,opcion:opcion};
+                                $.ajax({
+                                    method:"POST",
+                                    url: "tableProductoController.php",
+                                    data: row,
+                                    success: function (info) {
+                                        console.log(info);
+                                    }
+                                });
+                                listar();
+                            });
+                        }
+
+                        var idioma_espanol={
+                            "sProcessing":     "Procesando...",
+                            "sLengthMenu":     "Mostrar _MENU_ registros",
+                            "sZeroRecords":    "No se encontraron resultados",
+                            "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
+                            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                            "sInfoPostFix":    "",
+                            "sSearch":         "Buscar:",
+                            "sUrl":            "",
+                            "sInfoThousands":  ",",
+                            "sLoadingRecords": "Cargando...",
+                            "oPaginate": {
+                                "sFirst":    "Primero",
+                                "sLast":     "Último",
+                                "sNext":     "Siguiente",
+                                "sPrevious": "Anterior"
+                            },
+                            "oAria": {
+                                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                            },
+                            "buttons": {
+                                "copy": "Copiar",
+                                "colvis": "Visibilidad"
+                            }
+                        }
+
+                    </script>
+        <!--Datatable termina aqui-->
                     <div>
                         <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">
                             <i class="fa fa-facebook"></i>
@@ -111,6 +304,5 @@
                 </div>
             </section>
         </div>
-    <?php
-        include "../../view/theme/AdminLTE/Additional/scripts.php";
-    ?>
+
+    </body>

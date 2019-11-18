@@ -42,30 +42,6 @@ function getListaCargoDePersonal(){
   }
  return $lista;
 }
-function getListaDePersonal(){
-  
-   $personal3=new Personal("","","");
-   $result=$personal3->getListaDePersonal();
-   $nroFilas=pg_num_rows($result);
-   $printer="";
-   if ($nroFilas>0) {
-      for ($tupla=0; $tupla < $nroFilas; $tupla++){ 
-
-           $printer.='<tr> <td >'.pg_result($result,$tupla,0).'</td>';
-           $printer.='<td >'.pg_result($result,$tupla,1).'</td>';
-           $printer.='<td >'.pg_result($result,$tupla,2).'</td>';
-           $printer.='<td >'.pg_result($result,$tupla,3).'</td>';
-           $printer.='<td > <div class="btn-group">                                               
-           <button type="button" class="btn btn-warning btn-xs" title="Actualizar">
-           <i class="fa fa-fw fa-refresh"></i>
-           </button>
-           <button type="button" class="btn bg-purple btn-xs" title="Editar">
-           <i class="fa fa-edit"></i>
-           </button></div></td> </tr>'; 
-      }
-   }
-   return $printer;
-}
        
     
      

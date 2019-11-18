@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-2">
-                                <label>Telefono del cliente(2)</label>
+                                <label>Telefono(2)</label>
                                 <div class="input-group margin-bottom-sm"> 
                                     <span class="input-group-addon"><i class="fa fa-phone fa-fw" aria-hidden="true"></i></span>
                                         <input type="text" name = "telefono2_cliente" class="form-control">
@@ -110,7 +110,7 @@
                                             <th>Correo</th>
                                             <th>Direccion</th>
                                             <th>Telefono</th>
-                                            <th>Tipo</th>
+
                                             
                                         </tr>
                                     </thead>

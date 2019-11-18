@@ -193,15 +193,12 @@ create table Nota_Ingreso
 	fecha_ingreso date not null,
 	nombre_recibe varchar(25) not null,
 	cod_almacen integer not null,
-	cod_proveedor integer not null
+	cod_proveedor integer not null,
+	FOREIGN KEY(cod_almacen) REFERENCES Almacen(cod_almacen)
+	on update cascade on delete cascade,
+	FOREIGN KEY(cod_proveedor) REFERENCES Proveedor(cod_proveedor)
+	on update cascade on delete cascade
 );
-
-ALTER TABLE Nota_Ingreso add
-			FOREIGN KEY(cod_almacen)
-			REFERENCES Almacen(cod_almacen);
-ALTER TABLE Nota_Ingreso add 
-			FOREIGN KEY(cod_proveedor)
-			REFERENCES Proveedor(cod_proveedor);
 
 create table Detalle_Ingreso
 (
@@ -210,12 +207,10 @@ create table Detalle_Ingreso
 	cantidad decimal(12,2) not null,
 	precio_unitario decimal(12,2) not null,
 	nro_ingreso int not null,
-	primary key (id_ingreso,nro_ingreso)
+	primary key (id_ingreso,nro_ingreso),
+	FOREIGN KEY(nro_ingreso) REFERENCES Nota_Ingreso(nro_ingreso)
+	on update cascade on delete cascade
 );
-
-ALTER TABLE Detalle_Ingreso ADD
-			foreign key (nro_ingreso)
-			REFERENCES Nota_Ingreso(nro_ingreso);
 
 create table Personal
 (

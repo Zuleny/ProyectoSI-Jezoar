@@ -24,6 +24,15 @@
          }
        }
 
+       public function actualizarPersonal($idPersonal,$nombre,$tipo,$cargo){
+           try{
+               $result=$this->conexion->execute("UPDATE Personal set nombre='$nombre',tipo='$tipo',cargo='$cargo' where id_personal= $idPersonal;");
+               return true;
+           }catch(\Throwable $th){
+               return false;
+           }
+       }
+
        public function getCantidadDePersonal(){
           $cant=$this->conexion->execute("select count(*) from Personal;");
           return pg_result($cant,0,0);
@@ -40,7 +49,8 @@
        }
 
        public function getListaDePersonal(){
-         $lista=$this->conexion->execute("select* from Personal;");
+         $lista=[];
+         $lista=$this->conexion->getArrayAssoc("select* from Personal;");
           return $lista;
        }
 
@@ -69,5 +79,7 @@
           ");
           return pg_result($result,0,0);
        }
+
+
    }
 ?>
