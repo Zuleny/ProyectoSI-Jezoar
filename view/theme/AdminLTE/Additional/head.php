@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -39,7 +39,8 @@ session_start();
         <!-- Buttons DataTables -->
         <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net/css/buttons.bootstrap.min.css">
         <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net/css/font-awesome.min.css">
-
+        <!-- DataTables -->
+        <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
         
     </head>
     <!-- the fixed layout is not compatible with sidebar-mini -->

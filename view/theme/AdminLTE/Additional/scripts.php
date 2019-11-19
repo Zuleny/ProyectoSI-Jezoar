@@ -199,18 +199,7 @@
 <script src="../../public/assets/AdminLTE/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../public/assets/AdminLTE/dist/js/demo.js"></script>
-<!--  DataTable-->
-    <script src="../../public/assets/AdminLTE/bower_components/datatables.net/js/jquery-1.12.3.js"></script>
-    <script src="../../public/assets/AdminLTE/bower_components/datatables.net/js/bootstrap.min.js"></script>
+
+    <!-- DataTables -->
     <script src="../../public/assets/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="../../public/assets/AdminLTE/bower_components/datatables.net/js/dataTables.bootstrap.js"></script>
-    <!--botones DataTables-->
-    <script src="../../public/assets/AdminLTE/bower_components/datatables.net/js/dataTables.buttons.min.js"></script>
-    <script src="../../public/assets/AdminLTE/bower_components/datatables.net/js/buttons.bootstrap.min.js"></script>
-    <!--Libreria para exportar Excel-->
-    <script src="../../public/assets/AdminLTE/bower_components/datatables.net/js/jszip.min.js"></script>
-    <!--Librerias para exportar PDF-->
-    <script src="../../public/assets/AdminLTE/bower_components/datatables.net/js/pdfmake.min.js"></script>
-    <script src="../../public/assets/AdminLTE/bower_components/datatables.net/js/vfs_fonts.js"></script>
-    <!--Librerias para botones de exportación-->
-    <script src="../../public/assets/AdminLTE/bower_components/datatables.net/js/buttons.html5.min.js"></script>
+    <script src="../../public/assets/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>

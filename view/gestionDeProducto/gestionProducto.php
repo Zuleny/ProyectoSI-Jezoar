@@ -186,8 +186,7 @@
                     ?>
 
                     <script>
-
-                        $(document).on("ready",function(){
+                        $(document).ready(function(){
                             listar();
                             actualizar();
                         });
@@ -295,14 +294,13 @@
                     </script>
         <!--Datatable termina aqui-->
                     <div>
-                        <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">
+                        <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank" class="btn btn-block btn-social btn-facebook">
                             <i class="fa fa-facebook"></i>
                             Página de Facebook de Jezoar
                         </a>
                     </div>
                     <!-- Termina tu codigo aqui -->
-                </div>
+
             </section>
         </div>
 
-    </body>
