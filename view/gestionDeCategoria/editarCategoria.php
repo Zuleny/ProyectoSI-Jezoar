@@ -6,7 +6,7 @@
     <section class="content-header">
         <h1>
             Categoria de Productos
-            <!-- <small>Blank example to the fixed layout</small> -->
+            <small>Gestión De Insumos</small>
         </h1>
     </section>
     <!-- Fin de la cabecera -->
@@ -14,9 +14,9 @@
     <section class="content">
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">Gestion de Categoria de Productos</h3>
+                <h3 class="box-title">Modificación de Categoria de Productos # <? echo $_GET['nameCategory']; ?></h3>
                 <div class="box-tools pull-right">
-                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
                     <span class="glyphicon glyphicon-home"></span></a>
                 </div>
             </div>

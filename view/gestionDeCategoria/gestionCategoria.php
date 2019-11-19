@@ -6,7 +6,7 @@
     <section class="content-header">
         <h1>
             Categoria de Productos
-            <!-- <small>Blank example to the fixed layout</small> -->
+            <small>Gestión De Insumos</small>
         </h1>
     </section>
     <!-- Fin de la cabecera -->

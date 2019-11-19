@@ -71,7 +71,7 @@
                 </div>
                 <input type="hidden" value="<?php echo $_GET['nombrePersonal']; ?>" name="nombrPersonal">
                 <div class="col-lg-6">
-                    <label>Enviar la contraseña por correo</label>
+                    <label>Enviar la contraseña por correo(<b>OBLIGATORIO</b>)</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                         <input type="email" class="form-control" placeholder="email" name="email">
