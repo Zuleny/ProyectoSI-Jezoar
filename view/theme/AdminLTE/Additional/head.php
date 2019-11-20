@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,9 +38,21 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-</head>
+        <!-- Google Font -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">   
+        
+        <link rel="stylesheet" href="../../public/assets/view/viewStyle.css">
+
+        <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net/css/estilos.css">
+        <!-- Buttons DataTables -->
+        <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net/css/buttons.bootstrap.min.css">
+        <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net/css/font-awesome.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="../../public/assets/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        
+    </head>
     <!-- the fixed layout is not compatible with sidebar-mini -->
     <body class="hold-transition skin-blue fixed sidebar-mini">
         <div class="wrapper">

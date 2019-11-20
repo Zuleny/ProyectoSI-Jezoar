@@ -166,7 +166,7 @@
 
                         <script>
 
-                            $(document).on("ready",function(){
+                            $(document).ready(function(){
                                 listar();
                                 actualizar();
                                 eliminar();
@@ -185,9 +185,11 @@
                                         {"data":"nro_ingreso"},
                                         {"data":"fecha_ingreso"},
                                         {"data":"nombre_recibe"},
-                                        {"defaultContent":"<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square'></i></button>" +
-                                                          "<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"+
-                                                          "<button type='button' class='visualizar btn btn-link' id='visualizar'><i class='fa fa-fw fa-plus-square-o'></i></button>"}
+                                        {"defaultContent":"<div class='btn-group'>" +
+                                                                "<button type='button' class='visualizar btn btn-xs bg-light-blue btn-sm' id='visualizar'><i class='fa fa-fw fa-cubes'></i></button>"+
+                                                                "<button type='button' class='editar btn bg-purple btn-xs' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square'></i></button>" +
+                                                                "<button type='button' class='eliminar btn bg-red btn-xs' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"+
+                                                            "</div>"}
 
                                     ],
                                     "language":idioma_espanol

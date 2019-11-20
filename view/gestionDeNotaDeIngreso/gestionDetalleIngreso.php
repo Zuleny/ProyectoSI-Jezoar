@@ -5,7 +5,7 @@
         <!-- Titulo de la cabecera -->
         <section class="content-header">
             <h1>
-                Gestion de Insumos a Almacen
+                Nota De Ingreso
             </h1>
         </section>
         <!-- Fin de la cabecera -->
@@ -13,7 +13,9 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Detalle de Nota de Ingreso a Almacen</h3>
+                    <h3 class="box-title">Detalle Nota de Ingreso Nro:
+                        <b><?php echo $_GET['nro_ingreso']; ?></b>
+                    </h3>
                     <div class="box-tools pull-right">
                         <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                         <span class="glyphicon glyphicon-home"></span></a>
@@ -158,14 +160,18 @@
                         </div>
 
                     </div>
-
+                    <div>
+                        <h3>
+                            <b></b>
+                        </h3>
+                    </div>
                     <?php
                       include "../../view/theme/AdminLTE/Additional/scripts.php";
                     ?>
 
                     <script>
 
-                        $(document).on("ready",function(){
+                        $(document).ready(function(){
                             listar();
                             actualizar();
                             eliminar();
@@ -187,8 +193,8 @@
                                     {"data":"nombre_insumo"},
                                     {"data":"cantidad"},
                                     {"data":"precio_unitario"},
-                                    {"defaultContent":"<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square-o'></i></button>" +
-                                                      "<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
+                                    {"defaultContent":"<button type='button' class='editar btn bg-purple btn-xs' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square'></i></button>" +
+                                                      "<button type='button' class='eliminar btn bg-red btn-xs' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
 
                                 ],
                                 "language":idioma_espanol
