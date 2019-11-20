@@ -1348,7 +1348,7 @@ begin
 				raise notice 'Egreso realizado correctamente :3 Insumo: % en el NroNota: %',new.nombre_insumo,new.nro_nota;
 			else 
 				raise notice 'No se realizo el registro, Stock insuficiente en el almacen Nro %',codAlmacen;
-				raise Excpetion 'No se registro el insumo: % en el nro de Nota: %',new.nombre_insumo,new.nro_nota;
+				raise exception 'No se registro el insumo: % en el nro de Nota: %',new.nombre_insumo,new.nro_nota;
 				
 			end if;
 		else 

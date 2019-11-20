@@ -1,6 +1,4 @@
 Lista de Trabajo
-*   Modificar los datos 
-    Detalle: Realizar en una vista aparte de la principal, si no se puede en la divicion "model"
     
 *   Asignacion de permisos a los roles
     Detalle: Generar una vista de asignacion de permisos con checkbox's o algo similar
