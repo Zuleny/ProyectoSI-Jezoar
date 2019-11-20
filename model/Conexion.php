@@ -15,11 +15,12 @@ class Conexion {
      * Metodo que manda a Ejecutar una Consulta
      */
     public function execute($query) {
-        $result = pg_query($this->ConexionDB,$query);
-        if (!$result) {
-            die("error en la consulta");
+        try {
+            $result = pg_query($this->ConexionDB,$query);
+            return $result;
+        } catch (\Throwable $th) {
+            return false;
         }
-        return $result;
     }
 
     public function getArrayAssoc($query) {

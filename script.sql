@@ -1348,8 +1348,8 @@ begin
 				raise notice 'Egreso realizado correctamente :3 Insumo: % en el NroNota: %',new.nombre_insumo,new.nro_nota;
 			else 
 				raise notice 'No se realizo el registro, Stock insuficiente en el almacen Nro %',codAlmacen;
-				raise notice 'No se registro el insumo: % en el nro de Nota: %',new.nombre_insumo,new.nro_nota;
-				rollback;
+				raise Excpetion 'No se registro el insumo: % en el nro de Nota: %',new.nombre_insumo,new.nro_nota;
+				
 			end if;
 		else 
 			raise notice 'No se realizo el registro, Insumo % no registrado',new.nombre_insumo;
@@ -1402,7 +1402,8 @@ end;
 $$ language plpgsql;
 
 /*13. Funcion Trigger que Elimina una registro de una nota de Devolucion*/
-create or replace function detalleDevolucionAnulacion()returns trigger as $BODY$ 
+create or replace function detalleDevolucionAnulacion()returns trigger 
+as $BODY$ 
 declare codAlmacen INTEGER;
 		codInsumo INTEGER;
 		fechaNotaDevolucion DATE;
@@ -1415,9 +1416,13 @@ begin
 		codInsumo := getCodInsumo(old.nombre_insumo);
 		fechaNotaDevolucion := getFechaNota(old.nro_nota);
 		cantDiasLimite := fechaActual - fechaNotaDevolucion;
-		update insumo_almacen set stock = stock - old.cantidad_insumo 
-			where cod_almacen = codAlmacen and cod_insumo = codInsumo;
-			raise notice 'La anulacion del registro del insumo % fue exitoso. Nota nro: %',old.nombre_insumo,old.nro_nota;
+		if old.cantidad_insumo<getStockInsumo(old.nombre_insumo, codAlmacen) then
+			update insumo_almacen set stock = stock - old.cantidad_insumo 
+				where cod_almacen = codAlmacen and cod_insumo = codInsumo;
+				raise notice 'La anulacion del registro del insumo % fue exitoso. Nota nro: %',old.nombre_insumo,old.nro_nota;
+		else
+			raise exception 'Error en La Anulacion, stock negativo no ser posible';
+		end if;
 	end if;
 	return old;
 end;
