@@ -46,7 +46,7 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
                     $mail->SMTPSecure = 'tls';
                     $mail->Port = 587;
 
-                    $mail->setFrom($_POST['email'],'Jezoar');
+                    $mail->setFrom($_POST['email'],'Usuario Jezoar');
                     $mail->addAddress($_POST['email']);
 
                     $mail->isHTML(true);
