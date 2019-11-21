@@ -14,6 +14,11 @@ function gestionRol() {
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                         </a>
+                                        <a href="asignarPermisos.php?codigoRolPermiso='.pg_result($result,$tupla,0).'&nombRol='.pg_result($result,$tupla,1).'">
+                                            <button type="button" class="btn bg-light-blue btn-sm btn-xs" title="Asignar Permisos">
+                                                <i class="fa fa-fw fa-paperclip"></i>
+                                            </button>
+                                        </a>
                                      </div>
                                 </td>
                             </tr>';
@@ -21,10 +26,21 @@ function gestionRol() {
     return $printer;
 }
 
+function getListaPermisosAAsignarRol($codRol){
+    $rol = new Rol();
+    return $rol->getListaDePermisosAAsignar($codRol);
+}
+
 function getDatosEditarRol($codRol) {
     require '../../model/RolModel.php';
     $rol = new Rol();
     return $rol->getDescripcionRol($codRol);
+}
+
+function getListaPermisosDeRol($codRol){
+    require '../../model/RolModel.php';
+    $rol = new Rol();
+    return $rol->getListaPermisosRol($codRol);
 }
 
 if (isset($_POST['descripcionRol'])) {
@@ -46,6 +62,18 @@ if (isset($_POST['descripcionRol'])) {
             header('Location: ../view/GestionDeRol/gestionRol.php');
         }else{
             header('Location: ../view/Exceptions/exceptions.php');
+        }
+    }else{
+        header('Location: ../view/Exceptions/exceptions.php');
+    }
+}else if (isset($_POST['coRolPermiso']) && isset($_POST['idPermisos'])) {
+    if ($_POST['coRolPermiso']!="" && count($_POST['idPermisos'])>0) {
+        require '../model/RolModel.php';
+        $rol = new Rol();
+        if ($rol->asignarPermisosARol($_POST['coRolPermiso'], $_POST['idPermisos'])) {
+            header('Location: ../view/GestionDeRol/gestionRol.php');
+        }else{
+            header('Location: ../view/Exceptions/exceptions.php');    
         }
     }else{
         header('Location: ../view/Exceptions/exceptions.php');

@@ -73,6 +73,32 @@
                 return false;
             }
         }
+
+        public function getListaDePermisosAAsignar($codRol){
+            return $this->conexion->execute("SELECT id_permiso, descripcion
+                                             FROM permiso
+                                             WHERE id_permiso NOT IN (SELECT id_permiso 
+                                                                      FROM rol_permiso 
+                                                                      WHERE cod_rol=$codRol);");
+        }
+
+        public function asignarPermisosARol($codRol, $listaPermisos){
+            try {
+                foreach ($listaPermisos as $idPermiso) {
+                    $this->conexion->execute("INSERT INTO rol_permiso(cod_rol,id_permiso) VALUES ($codRol, $idPermiso);");
+                }
+                return true;
+            } catch (\Throwable $th) {
+                return false;
+            }
+        }
+
+        public function getListaPermisosRol($codRol){
+            return $this->conexion->execute("SELECT descripcion 
+                                             FROM rol_permiso, permiso 
+                                             WHERE rol_permiso.id_permiso=permiso.id_permiso AND
+                                                   cod_rol=$codRol;");
+        }
     }
 
 ?>
