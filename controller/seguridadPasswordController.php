@@ -37,13 +37,14 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
                 require '../public/assets/PHPMailer/SMTP.php';
                 $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
                 try{
-                    $mail->SMTPDebug = 0;
+                    $mail->SMTPDebug = 2;
                     $mail->isSMTP();
-                    $mail->Host='smtp.gamil.com';
+                    $mail->Host='smtp.gmail.com';
                     $mail->SMTPAuth = true;
-                    $mail->Username = 'ruddyq18@gmail.com';
-                    $mail->Password = '75395373';
-                    $mail->SMTPSecure = 'tls';
+                    $mail->Username = 'ac8794572@gmail.com';
+                    $mail->Password = 'crespo@123';
+                    $mail->SMTPSecure = 'TLS';
+                    
                     $mail->Port = 587;
 
                     $mail->setFrom($_POST['email'],'Usuario Jezoar');
