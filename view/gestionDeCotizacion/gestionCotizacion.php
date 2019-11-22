@@ -36,10 +36,10 @@
                     <div class="col-lg-3 form-group">
                         <label>Nombre Cliente</label>
                         <select class="form-control" name="nombreCliente" >
-                            <?php
+                            <?php/*
                                 require "../../controller/cotizacionController.php";
                                 $lista=getListaCliente();
-                                echo $lista;
+                                echo $lista;*/
                             ?>
                         </select>
                     </div>
@@ -95,10 +95,14 @@
                                 <p><input type="radio" name="estadoP" value="Denegado"> Cotización Denegado</p>    
                             </div>
                     </div>
+
+                </div>
+                <div class="box-body">
                     <div class="col-lg-4">
-                        <br>
                         <button type="submit" style="border-radius: 15px;" value="Agregar Cotizacion" class="btn btn-block btn-success" title="Agregar Cotizacion">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
                     </div>
+
+
                 </div>
             </form>
             <!--  Tabla de Cotizaciones  -->

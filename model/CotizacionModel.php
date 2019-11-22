@@ -35,7 +35,7 @@ class Cotizacion{
     }
 
     public function getCodCliente($nombrePersona){
-        $result = $this->conexion->execute("select getCodCliente('$nombrePersona');");
+        $result = $this->conexion->execute("select getCodCliente($nombrePersona);");
         return pg_result($result,0,0);
     }
 

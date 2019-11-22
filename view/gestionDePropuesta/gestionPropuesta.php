@@ -24,7 +24,7 @@
                     <div class="box-body">
                         <div class="col-lg-4">
                             <label>Nombre Cliente</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Margarita Cerezo Calderon">
+                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Yerba Buena">
                         </div>
                         <div class="col-lg-2">
                             <label>Cantidad de meses</label>

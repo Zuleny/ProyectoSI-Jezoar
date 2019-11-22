@@ -27,69 +27,105 @@
                     </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->                    
-                <form role="form" action="../../controller/servicioController.php" method="post">
+                <form role="form" action="../../controller/contratoController.php" method="post">
                     <!--  Lugar de butons y label y textbox  -->
-                    <div class="box-body">
-                            <div class="col-lg-2">
-                                <label>Codigo de presentacion</label>
-                                <div class="input-group margin-bottom-sm"> 
-                                    <span class="input-group-addon"><i class="fa fa-pencil-scuare-o fa-fw" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name = "codigo_contrato" placeholder="Solo si desea ver la presentación">
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <label>Fecha</label>
-                                <div class="input-group margin-bottom-sm"> 
-                                    <span class="input-group-addon"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i></span>
-                                        <input type="text" name = "fecha_actual" class="form-control" placeholder="Fecha actual">
-                                </div>        
-                            </div>
-                            <div class="col-lg-3">
-                                <label>Fecha inicial</label>
-                                <div class="input-group margin-bottom-sm"> 
-                                    <span class="input-group-addon"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i></span>
-                                        <input type="text" name = "fecha_inicial" class="form-control" >
-                                </div>        
-                            </div>
-                            <div class="col-lg-3">
-                                <label>Fecha final</label>
-                                <div class="input-group margin-bottom-sm"> 
-                                    <span class="input-group-addon"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i></span>
-                                        <input type="text" name = "fecha_final" class="form-control" >
-                                </div>        
-                            </div>                            
-                    </div>
-                        
+
                         <div class="box-body">
-                            <div class="col-lg-5">
+                            <div class="col-lg-4">
                                 <label>Nombre de cliente</label>
-                                <div class="input-group margin-bottom-sm"> 
-                                    <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                    <input type="text" name ="nombre_cliente"class="form-control">
+                                <select class="form-control" name="nombreCliente" >
+                                    <?php
+                                    require "../../controller/contratoController.php";
+                                    $lista=getClienteContrato();
+                                    echo $lista;
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-lg-4">
+                                <label>Fecha inicial</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="date" class="form-control" name="fecha_inicial">
                                 </div>
                             </div>
-                            <div class="col-lg-4"> </div>
+                            <div class="col-lg-4">
+                                <label>Fecha final</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="date" class="form-control" name="fecha_final">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body">
                             <div class="col-lg-2">  
                                 <br>                                                             
-                                <button type="submit" name ="verPresentacion" style="border-radius: 15px;" class="btn btn-block btn-primary">Ver presentacion  <i class="fa fa-fw fa-file-pdf-o"></i></button>
-                                </div> 
-                            </div>                                                   
-
-                        </div>
-                                               
-                        <div class="box-body">
-                            <div class="col-lg-2">
-                                <button type="submit" name ="añadirContrato" class="btn btn-block btn-primary">Añadir contrato  <i class="fa fa-fw fa-file-pdf-o"></i></button>
+                                <button type="submit" name ="verPresentacion" style="border-radius: 15px;" class="btn btn-block btn-primary">Crear Contrato  <i class="fa fa-fw fa-file-pdf-o"></i></button>
                             </div>
-                            <div class="col-lg-2">                                                               
-                                <button type="submit" name ="verPresentacion" class="btn btn-block btn-primary">Ver presentacion  <i class="fa fa-fw fa-file-pdf-o"></i></button>
-                            </div>                            
                         </div>
-                </form>
+                    </form>
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Lista de contratos realizados</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered table-hover" id="tabla1">
+                        <thead>
+                        <tr>
+                            <th>cod</th>
+                            <th>Cliente</th>
+                            <th>Fecha</th>
+                            <th>Tipo</th>
+                            <th>Acciones </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $resultado = getListaContratos();
+                        $nroFilas = pg_num_rows($resultado);
+                        for ($fila=0; $fila < $nroFilas; $fila++) {
+                           // if (pg_result($resultado,$fila,4) == 'C') {
+                                echo "<tr><td>".pg_result($resultado,$fila,0)."</td>";
+                                echo   "<td>".pg_result($resultado,$fila,1)."</td>";
+                                echo   "<td>".pg_result($resultado,$fila,2) ."</td>";
+                        if (pg_result($resultado,$fila,3) == 'P') {
+                            echo   "<td> Propuesta</td>";
+                        }
+                        if (pg_result($resultado,$fila,3) == 'C') {
+                            echo   "<td> Cotizacion</td>";
+                        }
+                                echo '<td> 
+                                                    <div class="btn-group">                                                        
+                                                        <a href="editarNotaDevolucion.php?contratoEditar='.pg_result($resultado,$fila,0).'">
+                                                            <button type="button" class="btn bg-purple btn-xs" title="Editar Nota">
+                                                                <i class="fa fa-fw fa-edit"></i>
+                                                            </button>
+                                                        </a>
+                                                        <a href="../../controller/notaDevolucionController.cphp?nota='.pg_result($resultado,$fila,0).'">
+                                                            <button type="button" class="btn bg-red btn-xs" title="Eliminar Nota">
+                                                                <i class="fa fa-fw fa-trash-o"></i>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </td>';
+                                echo "</tr>";
+                            //}
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                 </div>
+                </div>
+            </div>
+        </section>
+
+
                 
                 <!-- Termina tu codigo aqui -->
             </div>
-        </section>
         <!-- fin de contenido de mi Vista -->
     </div>
 

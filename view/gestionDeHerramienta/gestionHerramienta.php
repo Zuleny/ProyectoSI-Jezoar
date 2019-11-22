@@ -5,7 +5,8 @@
             <!-- Titulo de la cabecera -->
             <section class="content-header">
                 <h1>
-                    Herramientas
+                    Herramienta
+                    <small>Gestión de Insumo</small>
                     <!-- <small>Blank example to the fixed layout</small> -->
                 </h1>
             </section>
@@ -14,7 +15,7 @@
             <section class="content">
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Gestion de Herramientas</h3>
+                        <h3 class="box-title">Gestion de Herramienta</h3>
                         <div class="box-tools pull-right">
                             <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
@@ -22,37 +23,45 @@
                     </div>
                    <!-- Inicia tu codigo aqui -->   
                                     
-                    <form role="form"action="../../controller/herramientaController.php" method="get">
+                    <form role="form"action="../../controller/herramientaController.php" method="post">
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box-body">
                             <div class="col-lg-4">
-                                <label>Nombre</label>
-                                <input type="text" class="form-control" name="nombre"placeholder="Nombre de la herramienta">
+                                <label>Nombre Herramienta</label>
+                                <input type="text" class="form-control" name="nombre" placeholder="Nombre de la herramienta">
                             </div>
+
                         </div>
                         <div class="box-body">
                             <div class="col-lg-7">
                                 <label>Descripcion</label>
-                                <textarea class="form-control" name="descripcion" rows="4" placeholder="Escriba una breve descripcion"></textarea>                                     
-                                <br>
+                                <textarea class="form-control" name="descripcion" rows="3" placeholder="Escriba una breve descripcion"></textarea>
                             </div>
-                            <div class="col-lg-5">
-                                <label>Estado</label>
-                            <br>
-                                <p><input type="radio" name="estado" value="M">Mantenimiento</p>
-                                <p><input type="radio" name="estado" value="D">Disponible</p>
-                                <p><input type="radio" name="estado" value="N">No Disponible</p>
-                            </div>
+
                             <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeAlmacen/asignacionProductoAlmacen.php" target="_blank" id="etiqueta1">
                             Ir a: Registrar Herramienta en un almacen 
                             </a>
                         </div>
-                            <div class="box-body">
-                            <div class="col-lg-9"></div>
-                                <div class="col-lg-3">
-                                    <button type="submit" value="Agregar Herramienta" class="btn btn-block btn-success" style="border-radius: 15px;"title="Agregar Herramienta">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
+                        <div class="box-body">
+                            <div class="col-lg-7" style="background-color: #D4EFDF;">
+                                <label>Estado</label>
+                                <br>
+                                <div class="col-md-4">
+                                    <p><input type="radio" name="estado" value="D"> Disponible</p>
                                 </div>
-                            </div>  
+                                <div class="col-md-4">
+                                    <p><input type="radio" name="estado" value="N"> No Disponible</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <p><input type="radio" name="estado" value="M"> Mantenimiento</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-3">
+                                <button type="submit" value="Agregar Herramienta" class="btn btn-block btn-success" style="border-radius: 15px;"title="Agregar Herramienta">Agregar Herramienta <i class="fa fa-fw fa-check"></i></button>
+                            </div>
+
+                        </div>
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box box-success">
                             <div class="box-header">

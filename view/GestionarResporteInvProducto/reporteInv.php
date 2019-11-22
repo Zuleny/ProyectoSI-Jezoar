@@ -1,6 +1,6 @@
 <?php
-    include "../../view/theme/AdminLTE/Additional/head.php";    
-    include "../../model/Conexion.php";
+    include "../../view/theme/AdminLTE/Additional/head.php";
+
 ?>
 <script type="text/javascript" src ="../../public/assets/reportes.js"> </script>
     <div class="content-wrapper">
@@ -22,15 +22,25 @@
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                 </div>
-                <!-- Inicia tu codigo aqui -->                    
-                <div class="box-body">
-                    <div class="col-lg-2">                                
-                            <button type="button" class="btn btn-block btn-primary" >Exportar PDF <i class="fa fa-fw fa-file-pdf-o "></i></button>
-                        </div><br>          <!-- Lugar de butons y label y textbox  -->         
-                    </div> 
+                <!-- Inicia tu codigo aqui -->
+
+
+                            <!--<input type="button" class="btn btn-block btn-primary" onclick="location.href='../GestionarResporteInvProducto/reporteTabla.php'">Exportar PDF <i class="fa fa-fw fa-file-pdf-o "></i>-->
+
+                    <!-- Lugar de butons y label y textbox  -->
+
+
+                     <!--   <div class="col-lg-2" >
+                            <button type="button" class="btn btn-block btn-primary" href="reporteTabla.php">Exportar PDF <i class="fa fa-fw fa-file-pdf-o "></i></button>
+                        </div>
+                        -->
                     <?php
-                        $jezoar = new Conexion();
-                        $result = $jezoar->execute("SELECT insumonombre, stockinsumo from getInventarioDeProductos('Almacen1');");
+                    /*
+                    $nombreAlmv= $_POST['nombre'];
+                    echo $nombreAlmv;*/
+                    require "../../controller/reporteController.php";
+                    //$nombreAlm = getNombreAlmacen();
+                    $result = getStockActual('Almacen1');
                         $arreglo = array();
                         $arregloStock = array();
                         for ($i=0; $i < pg_num_rows($result); $i++) { 
@@ -70,7 +80,8 @@
                         </script>  
                     </div>  
 
-                </div>   
+                    </div>
+                </section>
                 <!-- Termina tu codigo aqui -->
             </div>
         </section>

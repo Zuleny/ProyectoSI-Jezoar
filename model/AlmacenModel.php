@@ -4,7 +4,6 @@ class Almacen{
     public $codAlmacen;
     public $nombre;
     public $Direccion;
-
     public $Conexion;
     
     public function __construct($codAlmacen,$Almacen,$Dir){ 

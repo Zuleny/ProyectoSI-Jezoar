@@ -10,7 +10,7 @@
         echo $almacen->codAlmacen;
         if (!$almacen->insertarAlmacen()) {
             echo "Error No se pudo registrar al nuevo almacen
-                    vuelva a interntarlo";
+                    vuelva a intentarlo";
         }
         header('Location: ../view/gestionDeAlmacen/gestionAlmacen.php');
     }    

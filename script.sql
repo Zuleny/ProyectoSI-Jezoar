@@ -305,6 +305,8 @@ create table Informe (
 	on update cascade
 	on delete cascade
 );
+alter table informe add column imageAfter text;
+alter table informe add column imageBefore text;
 
 create table Contrato (
 	cod_contrato int not null primary key,
