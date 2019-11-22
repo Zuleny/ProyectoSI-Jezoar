@@ -1,110 +1,371 @@
 <?php
-    include "../../view/theme/AdminLTE/Additional/head.php";
+include "../../view/theme/AdminLTE/Additional/head.php";
 ?>
-<div>
-    <div class="content-wrapper">
-        <!-- Titulo de la cabecera -->
-        <section class="content-header">
-            <h1>Gestion de Propuesta Jezoar</h1>
-        </section>
-        <!-- Fin de la cabecera -->
-        <!-- contenido -->
-        <section class="content">
-            <div class="box box-info">
-                <div class="box-header">
-                    <h3 class="box-title">Registrar Propuesta</h3>
-                    <div class="box-tools pull-right">
-                        <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+
+<!-- the fixed layout is not compatible with sidebar-mini -->
+
+<div class="content-wrapper">
+    <!-- Titulo de la cabecera -->
+    <section class="content-header">
+        <h1>
+            Propuesta
+            <!-- <small>Blank example to the fixed layout</small> -->
+        </h1>
+    </section>
+    <!-- Fin de la cabecera -->
+    <!-- contenido -->
+    <section class="content">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Gestion de Propuesta</h3>
+                <div class="box-tools pull-right">
+                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                         <span class="glyphicon glyphicon-home"></span></a>
-                    </div>
                 </div>
+
                 <!-- Inicia tu codigo aqui -->
-                <!--Inicia datos de Proopuesta-->
-                <form role="form" action="../../controller/propuestaController.php" method="post">
+                <form role="form" method="post" action="../../controller/propuestaController.php">
+                    <!--  Lugar de butons y label y textbox  -->
+
                     <div class="box-body">
                         <div class="col-lg-4">
-                            <label>Nombre Cliente</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Margarita Cerezo Calderon">
-                        </div>
-                        <div class="col-lg-2">
-                            <label>Cantidad de meses</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="6">
-                        </div>
-                        <div class="col-lg-2">
                             <label>Fecha</label>
-                            <input type="text" name="fecha" class="form-control form-text" placeholder="2019-08-23">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="date" class="form-control" name="fecha">
+                            </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 form-group">
+                            <label>Nombre Cliente</label>
+                            <select class="form-control" name="nombreCliente" >
+                                <?php
+                                require "../../controller/propuestaController.php";
+                                $lista=getListaCliente();
+                                echo $lista;
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-lg-2">
+                            <label>Cant. Meses</label>
+                            <input type="number" id="cantidadMeses" name="cantidadMeses" min="1" class="form-control" placeholder="6" required>
+                        </div>
+
+                        <div class="col-lg-7 form-group" style="background-color: #D4EFDF;" >
                             <label>Estado</label>
-                            <p><input type="radio" name="estado" value="A">Aceptadp</p>
-                            <p><input type="radio" name="estado" value="D">Denegado</p>
-                            <p><input type="radio" name="estado" value="R">Rechazado</p>
+                            <br>
+                            <div class="col-md-3">
+                                <p><input type="radio" name="estadoP" value="Aceptado">Aceptado</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p><input type="radio" name="estadoP" value="Espera">En Espera</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p><input type="radio" name="estadoP" value="Denegado">Denegado</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="box-body">
+                        <div class="col-lg-2">
+                            <label>Precio Total</label>
+                            <input type="text" class="form-control" step="0.01" placeholder="Precio Total" value="0.0 Bs." disabled>
+                            <input type="hidden" name="precio" value="0.0">
+                        </div>
                         <div class="col-lg-3">
-                            <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" name=InsertarPropuesta" title="Agregar Propuesta">Agregar Registro
-                            <i class="fa fa-fw fa-check"></i>
+                            <button type="submit" class="btn btn-block btn-success" id="button1" name="InsertarPropuesta" title="Agregar Propuesta">Agregar Registro
+                                <i class="fa fa-fw fa-check"></i>
                             </button>
                         </div>
-                        <div class="col-lg-6"></div>
-                        <div class="col-lg-3">
-                            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeServicio/gestionServicio.php" target="_blank" id="etiqueta1">
-                            ¿No encontro el servicio en la lista?
-                            </a>
-                        </div>
                     </div>
-            
-                    <div class="box box-success">
+
+                    <!--  Lugar de butons y label y textbox  -->
+
+                </form>
+                <!--Aqui Inicia Datatable-->
+                <div class="row">
+                    <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
                         <div class="box-header">
-                            <h3 class="box-title">Lista de Servicios</h3>
+                            <h3 class="box-title">Lista de detalles</h3>
                         </div>
-                        <div class="box-body" id="tabla1">
-                            <table class="table table-bordered table-hover">
+                        <div class="col-sm-offset-2 col-sm-8">
+                            <h3 class="text-center"> <small class="mensaje"></small></h3>
+                        </div>
+                        <div class="table-responsive col-sm-12">
+                            <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
                                 <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th>Seleccionar</th>
-                                    </tr>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Fecha</th>
+                                    <th>Nombre Cliente</th>
+                                    <th>Cant Meses</th>
+                                    <th>Estado</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                <?php
-                                    include "../../model/Conexion.php";
-                                    $conexion=new Conexion("localhost",5432,"jezoar","jezoar","'123456'");
-                                    $result=$conexion->execute("SELECT nombre,detalle_servicio.detalle from servicio,detalle_servicio where servicio.id_servicio=detalle_servicio.id_servicio;");
-                                    if (!$result) {
-                                        die("Error en la consulta");
-                                    }
-                                    $nroFilas=pg_num_rows($result);
-                                    if ($nroFilas>0) {
-                                        for ($nroTupla=0; $nroTupla < $nroFilas; $nroTupla++){ 
-                                            echo "<tr> <td>". pg_result($result,$nroTupla,0)."</td>";
-                                            echo "<td>". pg_result($result,$nroTupla,1)."</td>";
-                                            echo '<td>  <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                            <label class="form-check-label" for="defaultCheck1">
-                                            </label>
-                                            </div></td></tr>';
-                                        }
-                                    }
-                                    ?>
+
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+                <div>
+                    <form id="frmDeletePropuesta" action="" method="POST">
+                        <input type="hidden" id="idPropuesta" name="idPropuesta" value="0">
+                        <input type="hidden" id="opcion" name="opcion" value="eliminar">
+                        <!-- Modal Delete-->
+                        <div class="modal fade" data-backdrop=”static” id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="modalEliminarLabel">Eliminar Propuesta</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        ¿Está seguro de eliminar la Propuesta?<strong data-name=""></strong>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="deletePropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div>
+
+
+                    <!-- Modal Update-->
+                    <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="modalUpdateLabel">Actualizar Propuesta</h4>
+                                </div>
+                                <!--Modal Body Here-->
+                                <div class="modal-body">
+                                    <form id="frmUpdatePropuesta" class="form-horizontal" action="" method="POST">
+                                        <input type="hidden" id="idPropuesta" name="idPropuesta" value="">
+                                        <input type="hidden" id="opcion" name="opcion" value="actualizar">
+
+                                        <div class="form-group">
+                                            <label>Fecha</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <input type="date" class="form-control" id="fecha" name="fecha">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nombre" class="col-form-label">Nombre Cliente:</label>
+                                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="cantidad" class="col-form-label">Cantidad:</label>
+                                            <input type="number"  min="1" class="form-control" id="cantidad" name="cantidad" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="estado" class="col-form-label">Estado:</label>
+                                            <input type="text" class="form-control" id="estado" name="estado" required>
+                                        </div>
+
+
+                                    </form>
+                                </div>
+                                <!--Modal Body-->
+                                <div class="modal-footer">
+                                    <button type="button" id="updatePropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </form>
-                <div class="box-footer">
+
+                </div>
+
+                <div>
+                    <form id="frmPropuesta" action="" method="POST">
+                        <input type="hidden" id="idFrmPropuestaInsumo" name="idFrmPropuestaInsumo" value="0">
+                        <input type="hidden" id="idFrmPropuestaServicio" name="idFrmPropuestaServicio" value="0">
+                        <input type="hidden" id="opcion" name="opcion" value="visualizar">
+                    </form>
+
+                </div>
+
+                <?php
+                   include "../../view/theme/AdminLTE/Additional/scripts.php";
+                ?>
+
+                <script>
+
+                    $(document).ready(function(){
+                        listar();
+                        actualizar();
+                        eliminar();
+
+                    });
+                    //Lista los datos devueltos del servidor
+                    var listar= function(){
+                        var table=$("#tabla1").DataTable({
+                            "destroy":true,
+                            "ajax":{
+                                "method":"POST",
+                                "url":"listarPropuesta.php",
+                                "dataSrc": "data"
+                            },
+                            "columns":[
+                                {"data":"cod_presentacion"},
+                                {"data":"fecha"},
+                                {"data":"getnombrecliente"},
+                                {"data":"cant_meses"},
+                                {"data":"estado"},
+                                {"data":"precio_total"},
+                                {"defaultContent":" <button type='button' class='insumo btn btn-xs bg-light-blue btn-sm' id='visualizar'><i class='fa fa-fw fa-cubes'></i></button>"+
+                                        "<button type='button' class='servicio btn btn-xs bg-light-blue btn-sm' id='visualizar'><i class='fa fa-fw fa-cubes'></i></button>"+
+                                        "<button type='button' class='editar btn bg-purple btn-xs' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square'></i></button>" +
+                                        "<button type='button' class='eliminar btn bg-red btn-xs' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
+
+                            ],
+                            "language":idioma_espanol
+                        });
+                        getDataRow("#tabla1 tbody",table);
+                        getIdPropuestaRow("#tabla1 tbody",table);
+                        getIdPropuestaServicio("#tabla1 tbody",table);
+                        getIdPropuestaInsumo("#tabla1 tbody",table);
+                    }
+
+                    //Settear los valores devueltos por el servidor(database) al sus respectivos inputs del modal editar
+                    var getDataRow=function (tbody,table) {
+                        $(tbody).on("click","button.editar",function () {
+                            var data=table.row($(this).parents("tr")).data();
+                            var cod_presentacion=$("#frmUpdatePropuesta #idPropuesta").val(data.cod_presentacion),
+                                fecha=$("#frmUpdatePropuesta #fecha").val(data.fecha),
+                                nombre_cliente=$("#frmUpdatePropuesta #nombre").val(data.getnombrecliente),
+                                cant_meses=$("#frmUpdatePropuesta #cantidad").val(data.cant_meses),
+                                estado=$("#frmUpdatePropuesta #estado").val(data.estado);
+
+                        });
+                    }
+
+                    //Settear los valores devueltos por el servidor(database) al sus respectivos inputs del modal eliminar
+                    var getIdPropuestaRow=function (tbody,table) {
+                        $(tbody).on("click","button.eliminar",function () {
+                            var data=table.row($(this).parents("tr")).data();
+                            var cod_presentacion=$("#frmDeletePropuesta #idPropuesta").val(data.cod_presentacion);
+                        });
+                    }
+
+                    //Settear los valores devueltos por el servidor(database) al sus respectivos inputs para visualizar los detalles de dico nro de Ingreeso
+                    var getIdPropuestaServicio=function (tbody,table) {
+                        $(tbody).on("click","button.servicio",function () {
+                            var data=table.row($(this).parents("tr")).data();
+                            var cod_presentacion=$("#frmPropuesta #idFrmPropuestaServicio").val(data.cod_presentacion);
+                            var porId=document.getElementById("idFrmPropuestaServicio").value;
+                            console.log(porId);
+                            location.href = "detalleServicioPropuesta.php?cod_presentacion=" + porId;
+                        });
+                    }
+
+                    //Settear los valores devueltos por el servidor(database) al sus respectivos inputs para visualizar los detalles de dico nro de Ingreeso
+                    var getIdPropuestaInsumo=function (tbody,table) {
+                        $(tbody).on("click","button.insumo",function () {
+                            var data=table.row($(this).parents("tr")).data();
+                            var cod_presentacion=$("#frmPropuesta #idFrmPropuestaInsumo").val(data.cod_presentacion);
+                            var porId=document.getElementById("idFrmPropuestaInsumo").value;
+                            console.log(porId);
+                            location.href = "detalleInsumoPropuesta.php?cod_presentacion=" + porId;
+                        });
+                    }
+                    //Metodo Actualizar ( hace una peticion al servidor)
+                    var actualizar=function () {
+                        $("#updatePropuesta").on("click",function () {
+                            var cod_presentacion=$("#frmUpdatePropuesta #idPropuesta").val(),
+                                fecha=$("#frmUpdatePropuesta #fecha").val(),
+                                nombre_cliente=$("#frmUpdatePropuesta #nombre").val(),
+                                cant_meses=$("#frmUpdatePropuesta #cantidad").val(),
+                                estado=$("#frmUpdatePropuesta #estado").val(),
+                                opcion=$("#frmUpdatePropuesta #opcion").val();
+
+                            var row={cod_presentacion:cod_presentacion,fecha:fecha, nombre_cliente:nombre_cliente, cant_meses:cant_meses, estado:estado, opcion:opcion};
+                            $.ajax({
+                                method:"POST",
+                                url: "tablePropuestaController.php",
+                                data: row,
+                                success: function (info) {
+                                    console.log(info);
+                                }
+                            });
+                            listar();
+                        });
+                    }
+
+                    //Metodo Eliminar ( hace una peticion al servidor)
+                    var eliminar=function () {
+                        $("#deletePropuesta").on("click",function () {
+                            var cod_presentacion=$("#frmDeletePropuesta #idPropuesta").val();
+                                opcion=$("#frmDeletePropuesta #opcion").val();
+                            console.log(cod_presentacion);
+                            var row={cod_presentacion:cod_presentacion,opcion:opcion};
+                            $.ajax({
+                                method:"POST",
+                                url: "tablePropuestaController.php",
+                                data: row,
+                                success: function (info) {
+                                    console.log(info);
+                                }
+                            });
+                            listar();
+                        });
+                    }
+
+
+                    var idioma_espanol={
+                        "sProcessing":     "Procesando...",
+                        "sLengthMenu":     "Mostrar _MENU_ registros",
+                        "sZeroRecords":    "No se encontraron resultados",
+                        "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
+                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                        "sInfoPostFix":    "",
+                        "sSearch":         "Buscar:",
+                        "sUrl":            "",
+                        "sInfoThousands":  ",",
+                        "sLoadingRecords": "Cargando...",
+                        "oPaginate": {
+                            "sFirst":    "Primero",
+                            "sLast":     "Último",
+                            "sNext":     "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        },
+                        "buttons": {
+                            "copy": "Copiar",
+                            "colvis": "Visibilidad"
+                        }
+                    }
+
+                </script>
+                <!--Datatable termina aqui-->
+
+                <div>
                     <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">
                         <i class="fa fa-facebook"></i>
                         Página de Facebook de Jezoar
                     </a>
                 </div>
-                    <!-- Termina tu codigo aqui -->
-            </section>
-        </div>
-    </div>
-    <?php
-        include "../../view/theme/AdminLTE/Additional/scripts.php";
-?>
+                <!-- Termina tu codigo aqui -->
+            </div>
+    </section>
+</div>
+</body>
