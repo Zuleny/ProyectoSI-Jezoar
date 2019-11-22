@@ -31,8 +31,38 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
         require '../model/UsuarioModel.php';
         $user = new Usuario();
         if (sha1($_POST['newPassword'])===sha1($_POST['retypePassword'])) {
-            if ($user->updatePasswordUser($_POST['nombrPersonal'], $_POST['newPassword'], $_POST['newPassword'])) {
-                header('Location: ../view/login.php');
+            if ($user->updatePasswordUser($_POST['nombrPersonal'], $_POST['newPassword'])) {
+                require '../public/assets/PHPMailer/PHPMailer.php';
+                require '../public/assets/PHPMailer/Exception.php';
+                require '../public/assets/PHPMailer/SMTP.php';
+                $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+                try{
+                    $mail->SMTPDebug = 2;
+                    $mail->isSMTP();
+                    $mail->Host='smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'ac8794572@gmail.com';
+                    $mail->Password = 'crespo@123';
+                    $mail->SMTPSecure = 'TLS';
+                    
+                    $mail->Port = 587;
+
+                    $mail->setFrom($_POST['email'],'Usuario Jezoar');
+                    $mail->addAddress($_POST['email']);
+
+                    $mail->isHTML(true);
+                    $mail->Subject = "Reasignacion de Contraseña";
+                    $mail->Body = "Nueva Contraseña: ".$_POST['retypePassword']." para el personal: ".$_POST['nombrPersonal'];
+                    if ($mail->send()){
+                        echo "Mensaje ha sido enviado";
+                    }else{
+                        echo "Mensaje no ha sido enviado".$mail->ErrorInfo;
+                    }
+
+                }catch (Exception $ex){
+                    echo "Hubo un error al enviar el mesnaje ".$mail->ErrorInfo;
+                }
+                // header('Location: ../view/login.php');
             }else{
                 die("Escriba bien los datos por favor....");
             }

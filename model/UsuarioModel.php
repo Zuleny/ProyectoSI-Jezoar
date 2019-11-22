@@ -182,12 +182,11 @@ class Usuario {
     /**
      * Modificar la Contraseña de un Personal, si solo si es usuario
      */
-    public function updatePasswordUser($personal, $password, $email){
+    public function updatePasswordUser($personal, $password){
         try {
             $passwdSeguro = sha1($password);
             $codUsuario = $this->getCodUsuarioPersonal($personal);
             $this->conexion->execute("UPDATE usuario set contrasenia='$passwdSeguro' WHERE cod_usuario=$codUsuario ;");
-            $this->enviarEMailUsuario($email, $personal, $password);
             return true;
         } catch (\Throwable $th) {
             return false;

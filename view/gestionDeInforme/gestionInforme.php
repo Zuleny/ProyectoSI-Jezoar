@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-<?php
-    include "../../view/theme/AdminLTE/Additional/head.php";
-    //require_once '../../vendor/autoload.php';
-?>
-    <div class="content-wrapper">
-        <!-- Titulo de la cabecera -->
-        <section class="content-header">
-            <h1>
-                Informe
-                <!-- <small>Blank example to the fixed layout</small> -->
-            </h1>
-        </section>
-        <!-- Fin de la cabecera -->
-        <!-- contenido de mi Vista -->
-        <section class="content">
-            <div class="box box-primary">
-                <div class="box-header">
-                    <h3 class="box-title">Detalles de la culminacion de una obra terminada</h3>
-                    <div class="box-tools pull-right">
-=======
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +27,6 @@
                     <div class="box-header">
                         <h3 class="box-title">Gestion de informe</h3>
                         <div class="box-tools pull-right">
->>>>>>> 6bc15bea6efcd371acfd2bf4f2be05de0ae1c771
                             <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>s
@@ -59,17 +37,6 @@
 
                         <div class="box-body">
                             <div class="col-lg-5">
-<<<<<<< HEAD
-                                <label>Nombre de Cliente</label>
-                                <select class="form-control" name="nombreCliente">
-                                    <?php
-                                    require "../../controller/informeController.php";
-                                    require "../../model/informeModel.php";
-                                    $result=getClienteInforme();
-                                    echo $result;
-                                    ?>
-                                </select>
-=======
                                 <label>Nombre de cliente</label>
                                 <div class="input-group margin-bottom-sm"> 
                                     <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
@@ -89,7 +56,6 @@
                                     <span class="input-group-addon"><i class="fa fa-file fa-fw" aria-hidden="true"></i></span>
                                         <input type="text" name = "cod_presentacion"class="form-control">
                                 </div>
->>>>>>> 6bc15bea6efcd371acfd2bf4f2be05de0ae1c771
                             </div>
 
                         </div>

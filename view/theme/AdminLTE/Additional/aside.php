@@ -1,6 +1,6 @@
 <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
@@ -84,12 +84,12 @@
             </li>
             <!-- Equipo de Trabajo -->
             <li>
-              <a href="http://localhost/ProyectoSI-Jezoar/view/DevelopersView/Developers.php">
+              <a href="../../view/DevelopersView/Developers.php">
                   <i class="fa fa-laptop"></i>
                   <span>Developers</span>
               </a>
             </li>
         </ul>
-    </section>
-    <!-- /.sidebar -->
-</aside>
+      </section>
+      <!-- /.sidebar -->
+    </aside>

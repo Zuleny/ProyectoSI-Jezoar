@@ -61,14 +61,15 @@
                     <div class="col-lg-5">
                         <br>
                         <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" title="Agregar Usuario">Agregar Usuario
-                            <i class="fa fa-fw fa-check"></i>
+                            <i class="fa fa-fw fa-user"></i>
                         </button>
                     </div>
                     <div class="col-lg-5">
                         <br>
                         <a href="asignacionRoles.php">
                             <button type="button" class="btn btn-block btn-primary" style="border-radius: 15px;" title="Asignar Roles">Asignar Roles a Usuarios
-                                <i class="fa fa-fw fa-check"></i>
+                                <i class="fa fa-fw fa-user"></i>
+                                <i class="fa fa-fw fa-gear"></i>
                             </button>
                         </a>
                     </div>

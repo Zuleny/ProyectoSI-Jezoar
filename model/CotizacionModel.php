@@ -33,8 +33,9 @@ class Cotizacion{
      */
     public function insertarCotizacion(){
         try {
-            $this->conexion->execute("insert into Presentacion(cod_presentacion,fecha,estado,precio_total,cod_cliente_presentacion,tipo_presentacion) values ($this->codCotizacion,'$this->fecha','$this->estado',$this->precioTotal,$this->codCliente,'C');");
-            $this->conexion->execute("insert into Cotizacion(cod_presentacion_cotizacion,cant_dias,tipo_servicio,material) values ($this->codCotizacion,$this->cantDias,'$this->tipoServicio','$this->material');");
+            $this->conexion->execute("insert into Presentacion(cod_presentacion,fecha,estado,precio_total,cod_cliente_presentacion,tipo_presentacion) values ($this->codCotizacion,'$this->fecha','$this->estado',$this->precioTotal,$this->codCliente,'C');
+            insert into Cotizacion(cod_presentacion_cotizacion,cant_dias,tipo_servicio,material) values ($this->codCotizacion,$this->cantDias,'$this->tipoServicio','$this->material');
+            ");
             return true;
         } catch (\Throwable $th) {
             return false;
@@ -49,6 +50,13 @@ class Cotizacion{
         return pg_result($result,0,0);
     }
 
+    public function getNewCodCotizacion(){
+        $result = $this->conexion->execute("SELECT cod_presentacion 
+                                         FROM presentacion 
+                                         ORDER BY cod_presentacion DESC 
+                                         LIMIT 1;");
+        return pg_result($result,0,0)+1;
+    }
     /**
      * Devuelve una lista de nombres De Clientes
      */

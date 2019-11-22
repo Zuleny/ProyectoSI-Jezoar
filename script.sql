@@ -919,17 +919,26 @@ insert into Usuario_Rol(cod_usuario,cod_rol) values (1,1),
 													(2,2);
 
 insert into Permiso(id_permiso,descripcion) values 
-(1,'Gestion de Servicios'),
-(2,'Gestion de Clientes'),
-(3,'Administracion de Bitacora'),
-(4,'Gestion de Presentacion(Propuestas y Cotizaciones)'),
-(5,'Gestion de Notas de Almacen'),
-(6,'Gestion de Insumos (Productos y Almacen)'),
-(7,'Gestion de Personal'),
-(8,'Gestion de Usuarios'),
-(9,'Gestion de Proveedores');
+(1,'Gestion de Presentacion(Propuestas y Cotizaciones)'),
+(2,'Gestion de Informes'),
+(3,'Administrar Contratos'),
+(4,'Gestion de Servicios'),
+(5,'Gestion de Clientes'),
+(6,'Gestion de Proveedores'),
+(7,'Gestion de Almacenes'),
+(8,'Gestion de Notas de Ingreso'),
+(9,'Gestion de Notas de Egreso'),
+(10,'Gestion de Notas de Devolucion'),
+(11,'Gestion de Usuarios'),
+(12,'Gestion de Roles'),
+(13,'Gestion de Permisos'),
+(14,'Administracion de Bitacora'),
+(15,'Gestion de Personal'),
+(16,'Gestion de Insumos (Productos y Almacen)'),
+(17,'Gestion de Gestion de Categoria Productos'),
+(18,'Consultar Reportes');
 
-insert into Rol_Permiso(cod_rol,id_permiso) values 
+insert into Rol_Permiso(cod_rol,id_permiso) values
 (1,1),
 (1,2),
 (1,3),
@@ -939,17 +948,22 @@ insert into Rol_Permiso(cod_rol,id_permiso) values
 (1,7),
 (1,8),
 (1,9),
-(2,1),
-(2,2),
-(2,3),
-(2,4),
-(2,5),
-(2,6),
-(2,7),
+(1,10),
+(1,11),
+(1,12),
+(1,13),
+(1,14),
+(1,15),
+(1,16),
+(1,17),
+(1,18),
 (2,8),
-(2,9);
+(2,9),
+(2,10),
+(2,16),
+(2,18);
 
-insert into Nota(nro_nota,fecha,tipo,cod_almacen,id_personal) values 
+insert into Nota(nro_nota,fecha,tipo,cod_almacen,id_personal) values
 (1 ,'2018/05/21','E',1,4),
 (2 ,'2018/06/21','E',1,4),
 (3 ,'2018/07/21','E',1,4),
@@ -1348,8 +1362,8 @@ begin
 				raise notice 'Egreso realizado correctamente :3 Insumo: % en el NroNota: %',new.nombre_insumo,new.nro_nota;
 			else 
 				raise notice 'No se realizo el registro, Stock insuficiente en el almacen Nro %',codAlmacen;
-				raise notice 'No se registro el insumo: % en el nro de Nota: %',new.nombre_insumo,new.nro_nota;
-				rollback;
+				raise exception 'No se registro el insumo: % en el nro de Nota: %',new.nombre_insumo,new.nro_nota;
+				
 			end if;
 		else 
 			raise notice 'No se realizo el registro, Insumo % no registrado',new.nombre_insumo;
@@ -1402,7 +1416,8 @@ end;
 $$ language plpgsql;
 
 /*13. Funcion Trigger que Elimina una registro de una nota de Devolucion*/
-create or replace function detalleDevolucionAnulacion()returns trigger as $BODY$ 
+create or replace function detalleDevolucionAnulacion()returns trigger 
+as $BODY$ 
 declare codAlmacen INTEGER;
 		codInsumo INTEGER;
 		fechaNotaDevolucion DATE;
@@ -1415,9 +1430,13 @@ begin
 		codInsumo := getCodInsumo(old.nombre_insumo);
 		fechaNotaDevolucion := getFechaNota(old.nro_nota);
 		cantDiasLimite := fechaActual - fechaNotaDevolucion;
-		update insumo_almacen set stock = stock - old.cantidad_insumo 
-			where cod_almacen = codAlmacen and cod_insumo = codInsumo;
-			raise notice 'La anulacion del registro del insumo % fue exitoso. Nota nro: %',old.nombre_insumo,old.nro_nota;
+		if old.cantidad_insumo<getStockInsumo(old.nombre_insumo, codAlmacen) then
+			update insumo_almacen set stock = stock - old.cantidad_insumo 
+				where cod_almacen = codAlmacen and cod_insumo = codInsumo;
+				raise notice 'La anulacion del registro del insumo % fue exitoso. Nota nro: %',old.nombre_insumo,old.nro_nota;
+		else
+			raise exception 'Error en La Anulacion, stock negativo no ser posible';
+		end if;
 	end if;
 	return old;
 end;

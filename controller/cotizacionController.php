@@ -14,7 +14,7 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
         $material = $_POST['estadoM'];
         require "../model/CotizacionModel.php";
         $user = new Cotizacion(0,$fecha,$estado,$precioTotal,$nombreCliente,$cantDias,$tipoServicio,$material);
-        $user->codCotizacion = $user->getCantidadCotizaciones()+1;
+        $user->codCotizacion = $user->getNewCodCotizacion();
         if (!$user->insertarCotizacion()) {
             header('Location: ../view/Exceptions/exceptions.php');
         }else{
@@ -138,9 +138,9 @@ function getListaDeCotizaciones(){
         $printer.=      '<td>'.pg_result($result,$tupla,5).'</td>';
         $printer.=      '<td>'.pg_result($result,$tupla,6).'</td>';
         if (pg_result($result,$tupla,7)==='S') {
-            $printer.=  '<td>Incluye Material</td>';
+            $printer.=  '<td><i class="fa fa-fw fa-check"></i></td>';
         }else{
-            $printer.=  '<td>No Incluye Material</td>';
+            $printer.=  '<td><i class="fa fa-fw fa-remove"></i></td>';
         }
         $printer.=      '<td> <div class="btn-group">
                                 <a href="asignarServicioCotizacion.php?codigo='.pg_result($result,$tupla,0).'">
