@@ -115,7 +115,7 @@ class Usuario {
      */
     public function asignarRolAUsuario($codUsuario, $codRol){
         try {
-            $this->conexion->execute("INSERT INTO usuario_rol(cod_rol,cod_usuario) VALUES ($codRol,$codUsuario)");
+            $this->conexion->execute("INSERT INTO usuario_rol(cod_rol,cod_usuario) VALUES ($codRol,$codUsuario);");
             return true;
         } catch (\Throwable $th) {
             return false;
@@ -234,6 +234,15 @@ class Usuario {
             $this->conexion->execute("UPDATE usuario set nombre='$nombreUser', contrasenia='$passwordUser', question='$question', answer='$answer', id_personal_usuario=getidpersonal('$nombrePersonal') WHERE cod_usuario = $codUsuario;");
             return true;
         } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function deleteRolUsuario($codUser, $codRol){
+        try{
+            $this->conexion->execute("DELETE FROM usuario_rol WHERE cod_usuario=$codUser AND cod_rol=$codRol;");
+            return true;
+        }catch (Exception $ex){
             return false;
         }
     }
