@@ -97,7 +97,8 @@ class NotaEgreso{
                                          WHERE n.cod_almacen=a.cod_almacen and 
                                                 ia.cod_almacen=a.cod_almacen and 
                                                 ia.cod_insumo=i.cod_insumo and 
-                                                n.nro_nota=$nroNotaDetalle;");
+                                                n.nro_nota=$nroNotaDetalle
+                                          ORDER BY i.nombre;");
     }
 
     public function getListaInsumosDeNotaEgreso($nroNotaDetalle){
