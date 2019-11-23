@@ -1,7 +1,4 @@
 Lista de Trabajo
-    
-*   Asignacion de permisos a los roles
-    Detalle: Generar una vista de asignacion de permisos con checkbox's o algo similar
 
 *   Lista de Propuestas
     Detalle: Visualizar y eliminar alguna de ellas

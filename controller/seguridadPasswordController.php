@@ -55,6 +55,7 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
                     $mail->Body = "Nueva Contraseña: ".$_POST['retypePassword']." para el personal: ".$_POST['nombrPersonal'];
                     if ($mail->send()){
                         echo "Mensaje ha sido enviado";
+                        header('Location: ../view/login.php');
                     }else{
                         echo "Mensaje no ha sido enviado".$mail->ErrorInfo;
                     }
