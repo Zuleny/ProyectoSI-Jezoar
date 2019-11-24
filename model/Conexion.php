@@ -67,7 +67,7 @@ class Conexion {
     }
 }
 
-   /* $conexion = new Conexion('localhost','5432','jezoar','jezoar','123456');
+   /*$conexion = new Conexion('localhost','5432','jezoar','jezoar','123456');
     if (! $conexion) {
         die("Error ".pg_last_error());
     }else{

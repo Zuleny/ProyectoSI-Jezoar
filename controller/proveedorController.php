@@ -34,7 +34,7 @@
             $printer.= "<td>".'<div contentEditable="false">'. pg_result($result,$tupla,5)."</div></td>";
             $printer.= '<td> 
                         <div class="btn-group">
-                            <button type="button" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal-default "title="Editar">                                               
+                            <button type="button" class="btn bg-purple btn-xs" title="Editar">                                               
                                 <i class="fa fa-edit"></i>
                             </button>
                         </div>
@@ -43,4 +43,5 @@
         }
         return $printer;
     }
+
 ?>

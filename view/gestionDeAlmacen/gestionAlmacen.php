@@ -1,7 +1,7 @@
     <?php
         include "../../view/theme/AdminLTE/Additional/head.php";
     ?>
-    <div>
+
 <!-- the fixed layout is not compatible with sidebar-mini -->
         <div class="content-wrapper">
             <!-- Titulo de la cabecera -->
@@ -33,102 +33,216 @@
                             <div class="col-lg-4">
                                 <label>Direccion</label>
                                 <input type="text" class="form-control" name="Dir" placeholder="Direccion del Almacen">
-                            </div> 
-                            <div class="col-lg-3">
-                            <br>
-                                <div class="input-group">
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-primary"><span class="icon glyphicon glyphicon-search"></span></button>
-                                    </div>
-                                    <input type="search" class="form-control form-text" placeholder="Buscar">
-                                </div>
                             </div>
                         </div>
-                        <br>
-                        
                         <div class="box-body">
-                            <div class="col-lg-4">
-                                <div class="input-group">
-                                    <input type="text" class="form-control form-text" placeholder="Editar">
-                                        <div class="input-group-btn">
-                                            <button type="button" class="btn btn-info"><span class="icon glyphicon glyphicon-edit"></span></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5"></div>
-                                <div class="col-lg-3">
-                                    <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" name=InsertarAlmacen" title="Agregar Almacen">Agregar Registro
+                            <div class="col-lg-9"></div>
+                            <div class="col-lg-3">
+                                <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" name=InsertarAlmacen" title="Agregar Almacen">Agregar Registro
                                     <i class="fa fa-fw fa-check"></i>
-                                    </button>
-                                </div>
+                                </button>
                             </div>     
                         </div>
-
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box box-success">
                             <div class="box-header">
-                                <h3 class="box-title">Almacenes de la Empresa Jezoar</h3>
+                                <h3 class="box-title">Lista de Almacen</h3>
                             </div>
-                            <div class="box-body"> <!--style="overflow:scroll"-->
-                            <div class="box-body"  id="tabla1">
-                                <table class="table table-bordered table-hover">
-                                    
-                                    <thead>
-                                        <tr>
-                                            <th>codigo Almacen</th>
-                                            <th>Nombre</th>
-                                            <th>Direccion</th>
-                                            <th>Actualizar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                            require "../../controller/almacenController.php";
-                                            $lista=getListaDeAlmacen();
-                                            echo $lista;                                       
-                                        ?>
-                                    </tbody>
-                                    <div class="modal fade" id="modal-default">
-                                        <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true"></span>
-                                                </button>
-                                                <h4 class="modal-title">Modificar</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label>Nombre</label>
-                                                    <input type="text" class="form-control" placeholder="Nombre del Almacen" name="nombreAlmacenModifcar">
-                                                    <br>
-                                                    <label>Direccion</label>
-                                                    <input type="text" class="form-control" placeholder="Direccion del Almacen" name="DireccionModifcar">
+                            <!--Aqui Inicia Datatable-->
+                            <div class="row">
+                                <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="col-sm-offset-2 col-sm-8">
+                                        <h3 class="text-center"> <small class="mensaje"></small></h3>
+                                    </div>
+                                    <div class="table-responsive col-sm-12">
+                                        <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
+                                            <thead>
+                                            <tr>
+                                                <th class="col-lg-2">codigo</th>
+                                                <th class="col-lg-3">Nombre</th>
+                                                <th class="col-lg-4">Direccion</th>
+                                                <th class="col-lg-3"></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <form id="frmDeleteAlmacen" action="" method="POST">
+                                    <input type="hidden" id="idAlmacen" name="idAlmacen" value="0">
+                                    <input type="hidden" id="opcion" name="opcion" value="eliminar">
+                                    <!-- Modal Delete-->
+                                    <div class="modal fade" data-backdrop=”static” id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="modalEliminarLabel">Eliminar Almacen</h4>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-danger pull-left" type="button" data-dismiss="modal">Cancelar</button>
-                                                <button class="btn btn-success" type="button">Guardar</button>
+                                                <div class="modal-body">
+                                                    ¿Está seguro de eliminar el almacen?<strong data-name=""></strong>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" onclick="" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
-                                </table>
-                            </div>
+                                </form>
                             </div>
                         </div>
+                        <div>
+                            <!-- Modal Update-->
+                            <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="modalUpdateLabel">Actualizar Almacen</h4>
+                                        </div>
+                                        <!--Modal Body Here-->
+                                        <div class="modal-body">
+                                            <form id="frmUpdateAlmacen" class="form-horizontal" action="" method="POST">
+                                                <input type="hidden" id="idAlmacenFrmUpdate" name="idAlmacenFrmUpdate" value="">
+                                                <input type="hidden" id="opcion" name="opcion" value="actualizar">
+
+                                                <div class="form-group">
+                                                    <label for="nombre" class="col-form-label">Nombre:</label>
+                                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="direccion" class="col-form-label">Direccion:</label>
+                                                    <input type="text" class="form-control" id="direccion" name="direccion">
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                        <!--Modal Body-->
+                                        <div class="modal-footer">
+                                            <button type="button" id="updateAlmacen" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                            include "../../view/theme/AdminLTE/Additional/scripts.php";
+                            ?>
+                        <script>
+                            $(document).ready(function(){
+                                listar();
+                                actualizar();
+                                
+                            });
+
+                            var listar= function(){
+                                var table=$('#tabla1').DataTable({
+                                    "destroy":true,
+                                    "ajax":{
+                                        "method":"POST",
+                                        "url":"listarAlmacen.php",
+                                        "dataSrc": "data"
+                                    },
+                                    "columns":[
+                                        {"data":"cod_almacen"}, //nombre del data del navegador del listar
+                                        {"data":"nombre"},
+                                        {"data":"direccion"},
+                                        {"defaultContent":"<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square-o'></i></button>"}
+
+                                    ],
+                                    "language":idioma_espanol
+                                });
+                                getDataRow("#tabla1 tbody",table);
+                                getIdAlmacenRow("#tabla1 tbody",table);
+                            }
+
+                            var getDataRow=function (tbody,table) {
+                                console.log("entro");
+                                $(tbody).on("click","button.editar",function () {
+                                    console.log("aqui");
+                                    var data=table.row($(this).parents("tr")).data();
+                                    console.log(data);
+                                    var codalmacen=$("#frmUpdateAlmacen #idAlmacenFrmUpdate").val(data.cod_almacen),
+                                        nombrealmacen=$("#frmUpdateAlmacen #nombre").val(data.nombre),
+                                        direccionalmacen=$("#frmUpdateAlmacen #direccion").val(data.direccion);
+                                });
+                            }
+
+                            var getIdAlmacenRow=function (tbody,table) {
+                                $(tbody).on("click","button.eliminar",function () {
+                                    var data=table.row($(this).parents("tr")).data();
+                                    var id_personal=$("#frmDeleteAlmacen #idAlmacen").val(data.cod_almacen);
+                                });
+                            }
+
+                            var actualizar=function () {
+                                $("#updateAlmacen").on("click",function () {
+                                    var codalmacen=$("#frmUpdateAlmacen #idAlmacenFrmUpdate").val(),
+                                        nombrealmacen=$("#frmUpdateAlmacen #nombre").val(),
+                                        direccionalmacen=$("#frmUpdateAlmacen #direccion").val(),
+                                        opcion=$("#frmUpdateAlmacen #opcion").val(); //actualizar o
+                                    console.log(opcion);
+                                    var row={codalmacen:codalmacen,nombrealmacen:nombrealmacen,direccionalmacen:direccionalmacen,opcion:opcion};
+                                    $.ajax({
+                                        method:"POST",
+                                        url: "tableAlmacenController.php",
+                                        data: row,
+                                        success: function (info) {
+                                            console.log(info);
+                                        }
+                                    });
+                                    listar();
+                                });
+                            }
+
+                            var idioma_espanol={
+                                "sProcessing":     "Procesando...",
+                                "sLengthMenu":     "Mostrar _MENU_ registros",
+                                "sZeroRecords":    "No se encontraron resultados",
+                                "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
+                                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                                "sInfoPostFix":    "",
+                                "sSearch":         "Buscar:",
+                                "sUrl":            "",
+                                "sInfoThousands":  ",",
+                                "sLoadingRecords": "Cargando...",
+                                "oPaginate": {
+                                    "sFirst":    "Primero",
+                                    "sLast":     "Último",
+                                    "sNext":     "Siguiente",
+                                    "sPrevious": "Anterior"
+                                },
+                                "oAria": {
+                                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                },
+                                "buttons": {
+                                    "copy": "Copiar",
+                                    "colvis": "Visibilidad"
+                                }
+                            }
+
+                        </script>
                     </form>
-                    <div class="box-footer">
-                        <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">
-                            <i class="fa fa-facebook"></i>
-                            Página de Facebook de Jezoar
-                        </a>
-                    </div>
-                    <!-- Termina tu codigo aqui -->
+                </div>
+                    <!--Datatable termina aqui-->
+                <div>
+                    <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank" class="btn btn-block btn-social btn-facebook">
+                        <i class="fa fa-facebook"></i>
+                        Página de Facebook de Jezoar
+                    </a>
                 </div>
             </section>
-        </div>
+            <!-- Termina tu codigo aqui -->
     </div>
-    <?php
-        include "../../view/theme/AdminLTE/Additional/scripts.php";
+
     ?>

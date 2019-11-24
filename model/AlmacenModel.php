@@ -23,8 +23,17 @@ class Almacen{
         }
     }
 
+    public function actualizarAlmacen($codalmacen,$nombrealmacen,$direccionalmacen){
+        try{
+            $this->Conexion->execute("UPDATE Almacen SET nombre='$nombrealmacen', direccion='$direccionalmacen' where cod_almacen=$codalmacen;");
+            return true;
+        }catch (\Throwable $th){
+            return false;
+        }
+    }
+
     public function getListaAlmacen(){
-        return $this->Conexion->execute("SELECT cod_almacen,nombre,direccion FROM Almacen;");
+        return $this->Conexion->getArrayAssoc("SELECT cod_almacen,nombre,direccion FROM Almacen;"); //getArrayAssoc sirve para listar en un arreglo asociativo
     }
 
     public function getCantidadAlmacen(){

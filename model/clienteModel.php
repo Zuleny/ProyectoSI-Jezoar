@@ -56,6 +56,13 @@ class Cliente{
         $result = $this->conexion->execute("SELECT telefono.telefono FROM telefono  WHERE telefono.cod_cliente_telefono= $codCliente;");
         return  $result;
     }
+    public function getListCliente(){
+        return $this->conexion->execute("SELECT nombre FROM Cliente;");
+    }
+    public function getDatosClienteEditar($codCliente) {
+        return $this->conexion->execute("SELECT cliente.nombre,cliente.email, cliente.direccion 
+                                        FROM cliente order by cliente.cod_cliente WHERE cod_cliente=$codCliente;");
+    }
 
 }
 ?>
