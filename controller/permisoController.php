@@ -1,14 +1,20 @@
 <?php
 
 if (isset($_GET['descripcion_permiso'])) {
-    require "../model/PermisoModel.php";
-    $descripcion=$_GET['descripcion_permiso'];
-    $permiso = new Permiso(0,$descripcion);
-    $permiso->id_permiso = $permiso->getNewIdPermiso();
-    if ($permiso->insertarPermiso()) {
-        header('Location: ../view/GestionDePermiso/gestionPermiso.php');
+    if ($_GET['descripcion_permiso']!="") {
+        require "../model/PermisoModel.php";
+        $descripcion=$_GET['descripcion_permiso'];
+        $permiso = new Permiso(0,$descripcion);
+        $permiso->id_permiso = $permiso->getNewIdPermiso();
+        if ($permiso->insertarPermiso()) {
+            header('Location: ../view/GestionDePermiso/gestionPermiso.php');
+        }else{
+            $errorMessage = "<b>Error en el registro de Permiso, Datos Invalidos.</b>";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
+        }
     }else{
-        echo "Error en la insersion de datos";
+        $errorMessage = "<b>Error en el registro de Permiso, Escriba algo en la descripcion por favor.</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
     }
 }else if (isset($_GET['codPermisoEditar']) && isset($_GET['descripcionPermisoEditar'])) {
     if ( $_GET['codPermisoEditar']!="" && $_GET['descripcionPermisoEditar']!="" ) {
@@ -20,7 +26,8 @@ if (isset($_GET['descripcion_permiso'])) {
             header('Location: ../view/Exceptions/exceptions.php');
         }
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        $errorMessage = "<b>Error en la modificación de Permiso, Datos Invalidos.</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
     }
 }
 

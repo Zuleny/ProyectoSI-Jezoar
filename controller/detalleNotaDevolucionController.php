@@ -25,10 +25,12 @@ if (isset($_POST['nombreInsumo']) && isset($_POST['stock']) && isset($_POST['nro
                                                      VALUES ('$username', 'Inserción del insumo $insumo en Nota de Devolución nro. $nroNota', '$fecha_hora');");
             header("Location: http://localhost/ProyectoSI-Jezoar/view/GestionDeNotasDevolucion/gestionDetalleNotaDevolucion.php?nroNotaDetalle=$nroNota");
         }else{
-            header('Location: ../view/Exceptions/exceptions.php');
+            $errorMessage = "<b>Error en el registro de ".$_POST['nombreInsumo'].", ".$_POST['stock']." y ".$_POST['nroNota']." en Nota Devolución.</b>";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
         }
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        $errorMessage = "<b>Error en el registro de insumo (".$_POST['nombreInsumo'].", stock invalido, ".$_POST['nroNota'].") en Nota Devolución, Datos invalidos.</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
     }   
 }else if (isset($_GET['nroNotaDetalle']) && isset($_GET['idDetalle'])) {
     require '../model/NotaDevolucionModel.php';
@@ -43,7 +45,8 @@ if (isset($_POST['nombreInsumo']) && isset($_POST['stock']) && isset($_POST['nro
                                                      VALUES ('$username', 'Eliminacion del insumo $insumo en Nota de Devolución nro. $nroNota', '$fecha_hora');");
         header("Location: http://localhost/ProyectoSI-Jezoar/view/GestionDeNotasDevolucion/gestionDetalleNotaDevolucion.php?nroNotaDetalle=$nroNota");
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        $errorMessage = "<b>Error en el eliminacion de ".$_GET['nroNotaDetalle']." en Nota Devolución.</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
     }
 }
 

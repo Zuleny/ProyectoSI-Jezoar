@@ -16,7 +16,8 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
         $user = new Cotizacion(0,$fecha,$estado,$precioTotal,$nombreCliente,$cantDias,$tipoServicio,$material);
         $user->codCotizacion = $user->getNewCodCotizacion();
         if (!$user->insertarCotizacion()) {
-            header('Location: ../view/Exceptions/exceptions.php');
+            $errorMessage = "<b>Error en proceso de Registro de la cotizacion</b>";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
         }else{
             $fecha_hora = date('j-n-Y G:i:s', time());
             $username = $_SESSION['user'];
@@ -25,7 +26,8 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
             header('Location: ../view/gestionDeCotizacion/gestionCotizacion.php');
         }
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        $errorMessage = "<b>Datos A Registrar son invalidos OJO</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
     }
 }else if ( isset($_GET['idServicio']) && isset($_GET['areaTrabajo']) && isset($_GET['cantPersonas']) && isset($_GET['precioUnitario'])) {
     require '../model/CotizacionModel.php';
@@ -56,10 +58,12 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
                                     VALUES ('$username', 'Asignando servicios a cotizacion nro. $nroCotizacion', '$fecha_hora');");
             header("Location: http://localhost/ProyectoSI-Jezoar/view/gestionDeCotizacion/listaServiciosDeUnaCotizacion.php?codigo=$codigo");
         }else{
-            header('Location: ../view/Exceptions/exceptions.php');    
+            $errorMessage = "<b>Problemas en la Asignacion de Servicios a Cotización.</b>";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
         }
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        $errorMessage = "<b>Valores Invalidos en los campos de Asignacion de Servicios.</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
     }
 }else if (isset($_POST['fechaEditar']) && 
             isset($_POST['nombreClienteEditar']) && 
@@ -79,10 +83,12 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
                                     VALUES ('$username', 'Modificando cotizacion nro. $nroCotizacion', '$fecha_hora');");
             header('Location: ../view/gestionDeCotizacion/gestionCotizacion.php');
         }else{
-            header('Location: ../view/Exceptions/exceptions.php');    
+            $errorMessage = "<b>Error en la Modificacion de la Cotizacion.</b>";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
         }
     } else {
-        header('Location: ../view/Exceptions/exceptions.php');    
+        $errorMessage = "<b>Error en la Modificacion de la Cotizacion, Campos Invalidos.</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
     }
 }else if (isset($_GET['codigoCotizacionEliminar'])) {
     echo $_GET['codigoCotizacionEliminar'];
@@ -91,7 +97,8 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
     if ($cotizacion->deleteCotizacion($_GET['codigoCotizacionEliminar'])) {
         header('Location: ../view/gestionDeCotizacion/gestionCotizacion.php');
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        $errorMessage = "<b>Error en la Eliminacion de la Cotizacion.</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
     }
 }
 

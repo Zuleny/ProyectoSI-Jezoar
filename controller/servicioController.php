@@ -17,7 +17,8 @@ if (isset($_POST['nombre_servicio']) && isset($_POST['descripcion'])) {
             header('Location: ../view/Exceptions/exceptions.php');
         }
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        $errorMessage = "<b>Error en el registro de Servicio, Datos Invalidos.</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
     }
 }else if (isset($_GET['cod']) && isset($_GET['name']) && isset($_GET['description'])) {
     if ($_GET['cod']!="" && $_GET['name']!="" && $_GET['description']!="") {
