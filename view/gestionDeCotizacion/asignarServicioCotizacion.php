@@ -55,7 +55,7 @@
                                 </tbody>
                             </table>
                             <div class="col-lg-4 pull-right">
-                                <input type="hidden" name="codigo" value="<? echo $_GET['codigo'];?>">
+                                <input type="hidden" name="codigo" value="<?php echo $_GET['codigo'];?>">
                                 <br>
                                 <button type="submit" style="border-radius: 15px;" class="btn btn-block btn-success" title="Registrar Nota de Ingreso">
                                     Asiganr Servicios a Cotización

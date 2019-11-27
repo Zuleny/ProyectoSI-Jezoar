@@ -56,7 +56,8 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
                                     VALUES ('$username', 'Asignando servicios a cotizacion nro. $nroCotizacion', '$fecha_hora');");
             header("Location: http://localhost/ProyectoSI-Jezoar/view/gestionDeCotizacion/listaServiciosDeUnaCotizacion.php?codigo=$codigo");
         }else{
-            header('Location: ../view/Exceptions/exceptions.php');    
+            die('Murio');
+            //header('Location: ../view/Exceptions/exceptions.php');    
         }
     }else{
         header('Location: ../view/Exceptions/exceptions.php');
