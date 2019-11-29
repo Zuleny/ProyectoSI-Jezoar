@@ -75,7 +75,7 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
         header('Location: ../view/Exceptions/errorExterno.php');
     }
 }else if (isset($_POST['email']) && $_POST['email']!="") {
-    $mensaje = 123456;//rand(000000,999999);
+    $mensaje = rand(000000,999999);
     if (enviarEmail($_POST['email'], $mensaje, $_POST['nombrPersonal'])) {
         $personal = $_POST['nombrPersonal'];
         session_start();
