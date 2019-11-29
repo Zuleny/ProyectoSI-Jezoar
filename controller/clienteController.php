@@ -30,21 +30,46 @@ function getTableCliente(){
         $printer.=      '<td>'.pg_result($resultado,$nroTupla,1).'</td>';
         $printer.=      '<td>'.pg_result($resultado,$nroTupla,2).'</td>';
         $printer.=      '<td>'.pg_result($resultado,$nroTupla,3).'</td>';
-        $cod = pg_result($resultado,$nroTupla,0);
-        $var = $cliente1->getCantidadTelefono($cod);
-        $telefono=$cliente1->getTelefono($cod);
-        if($var == 1){
-            $printer.=      '<td>'.pg_result($telefono,0,0).'</td></tr>';
-        }
-        else{
-            if($var == 2){
-                $printer.=      '<td>'.pg_result($telefono,0,0).' - '.pg_result($telefono,1,0). '</td></tr>';
+            if (pg_result($resultado,$nroTupla,3)=="Persona") {
+                $printer.=  '<td>Persona</span></td>';
+            }else{
+                $printer.=  '<td>Empresa</span></td>';
             }
-        }
-
+            $cod = pg_result($resultado,$nroTupla,0);
+            $var = $cliente1->getCantidadTelefono($cod);
+            $telefono=$cliente1->getTelefono($cod);
+            if($var == 1){
+                $printer.=      '<td>'.pg_result($telefono,0,0).'</td>';
+            }
+            else{
+                if($var == 2){
+                    $printer.=      '<td>'.pg_result($telefono,0,0).' - '.pg_result($telefono,1,0). '</td>';
+                }
+            }
+        $printer.= '<td>
+                <class="btn-group">                                               
+                    <button type="button" class="btn bg-purple btn-xs" title="Editar">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                </td> 
+            </tr>';
     }
     return $printer;
-
+}
+function getListaClienteEditar(){
+    $cliente= new Cliente(0,"","","","","","","");
+    $result=$cliente->getListCliente();
+    $nroFilas=pg_num_rows($result);
+    $printer="";
+    for ($tupla=0; $tupla <$nroFilas ; $tupla++) { 
+        $printer.='<option value="'.pg_result($result,$tupla,0).'">'.pg_result($result,$tupla,0).'</option>';
+    }
+    return $printer;
+}
+function getDatosEditarCliente($codCliente) {
+    require '../../model/clienteModel.php';
+    $cliente = new Cliente();
+    return $cliente->getDatosClienteEditar($codCliente);
 }
 
 /*
