@@ -31,7 +31,6 @@
 <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
 <body class="hold-transition skin-blue layout-top-nav">
 <div class="wrapper">
-
   <header class="main-header">
     <nav class="navbar navbar-static-top">
       <div class="container">
@@ -46,7 +45,6 @@
       </div>
     </nav>
   </header>
-  <!-- Full Width Column -->
   <div class="content-wrapper">
     <div class="container">
       <section class="content-header">
@@ -62,19 +60,22 @@
           </div>
           <div class="box-body">
             <form class="form-group" action="../../controller/seguridadPasswordController.php" method="post">
+                <input type="hidden" value="<?php echo $_GET['nombrePersonal']; ?>" name="nombrPersonal">
                 <div class="col-lg-6">
-                    <label>Rescribir la Nueva Contraseña</label>
-                    <input type="password" class="form-control" name="retypePassword" placeholder="Máx. 6 caracteres">
-                    <br>
-                    <label>Nueva Contraseña</label>
-                    <input type="password" class="form-control" name="newPassword" placeholder="Máx. 6 caracteres">
+                    <p>
+                        Estimado(a) <?php echo $_GET['nombrePersonal']; ?>, se necesita un correo electronico para el envio de un codigo de verificación de que si es usted usuario de este sistema la reciba,y asi podrá restaurar su cuenta Jezoar.
+                        En esta dirección de correo electrónico, se le enviará un codigo de verificación.
+                    </p>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="text" class="form-control" placeholder="Codigo de Verificación" name="codigoVerif">
+                    </div>
                     <br>
                     <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">
-                        Guradar Nueva Contraseña
-                        <i class="fa fa-spin fa-check"></i>
+                        Confirmar Codigo de Verificación
+                        <i class="fa fa-w fa-check"></i>
                     </button>
                 </div>
-                <input type="hidden" value="<?php echo $_GET['nombrePersonal']; ?>" name="nombrPersonal">
             </form>
           </div>
         </div>

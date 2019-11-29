@@ -25,6 +25,10 @@ class NotaEgreso{
         }
     }
 
+    public function getConexion(){
+        return $this->conexion;
+    }
+
     public function getUltimoNroNota() {
         $result = $this->conexion->execute("SELECT nro_nota FROM nota ORDER BY nro_nota DESC LIMIT 1;");
         return pg_result($result, 0, 0);
@@ -42,6 +46,19 @@ class NotaEgreso{
             return "";
         }
     }
+
+    public function getDatosNotaEgresoEditar($nro_nota){
+        return $this->conexion->execute("SELECT p.nombre, n.fecha, a.nombre 
+                                         FROM nota as n, personal as p, almacen as a
+                                         WHERE n.cod_almacen=a.cod_almacen and 
+                                                p.id_personal=n.id_personal and 
+                                                n.nro_nota=$nro_nota;");
+    }
+
+    public function getListaAlmacenes(){
+        $result = $this->conexion->execute("SELECT nombre FROM almacen;");
+        return $result;
+    }   
 
     public function getListaPersonal() {
         return $this->conexion->execute("SELECT nombre 
@@ -80,7 +97,8 @@ class NotaEgreso{
                                          WHERE n.cod_almacen=a.cod_almacen and 
                                                 ia.cod_almacen=a.cod_almacen and 
                                                 ia.cod_insumo=i.cod_insumo and 
-                                                n.nro_nota=$nroNotaDetalle;");
+                                                n.nro_nota=$nroNotaDetalle
+                                          ORDER BY i.nombre;");
     }
 
     public function getListaInsumosDeNotaEgreso($nroNotaDetalle){
@@ -128,6 +146,17 @@ class NotaEgreso{
             return false;
         }
     }
+
+    public function updateNotaEgreso($nroNota, $personalEditar, $fechaEditar, $almacenEditar){
+        try {
+            $this->conexion->execute("UPDATE nota set fecha='$fechaEditar', cod_almacen=getcodalmacenonname('$almacenEditar'), id_personal=getidpersonal('$personalEditar') WHERE nro_nota=$nroNota;");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
 }
+
+
 
 ?>

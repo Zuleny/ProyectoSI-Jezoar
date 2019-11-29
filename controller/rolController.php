@@ -52,7 +52,8 @@ if (isset($_POST['descripcionRol'])) {
         $rol->insertNewRol();
         header('Location: ../view/GestionDeRol/gestionRol.php');
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        $errorMessage = "<b>Error en el registro de Rol, descripcion Invalido.</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
     }
 }else if ( isset($_GET['codRolEditar'])  && isset($_GET['descripcionRolEditar'])) {
     if ( $_GET['codRolEditar']!="" && $_GET['descripcionRolEditar']!="" ) {
@@ -64,7 +65,8 @@ if (isset($_POST['descripcionRol'])) {
             header('Location: ../view/Exceptions/exceptions.php');
         }
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        $errorMessage = "<b>Error en el modficacion de Rol ( ".$_GET['codRolEditar'].", ".$_GET['descripcionRolEditar']." ), Datos Invalidos.</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
     }
 }else if (isset($_POST['coRolPermiso']) && isset($_POST['idPermisos'])) {
     if ($_POST['coRolPermiso']!="" && count($_POST['idPermisos'])>0) {
@@ -76,7 +78,8 @@ if (isset($_POST['descripcionRol'])) {
             header('Location: ../view/Exceptions/exceptions.php');    
         }
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        $errorMessage = "<b>Error en la asignacion de Permisos a Rol, Datos Invalidos en algunos datos.</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
     }
 }
 

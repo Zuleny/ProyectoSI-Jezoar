@@ -23,13 +23,18 @@
                     <h6 class="headline text-yellow"> Error </h6>
                     <div class="error-content">
                         <h3>
-                            <i class="fa fa-warning text-yellow"></i> Oops! Transcurrió un error al realizar una actividad en el sistema <b>Jezoarcito :c </b>.
+                            <i class="fa fa-warning text-yellow"></i> Ups! Transcurrió un error al realizar una actividad en el sistema <b>Jezoar :c </b>.
                         </h3>
                         <p>
                             Puede haber ocurrido por : <br>
-                            * Talves ocurrio al registrar datos inconsistentes, tenga cuidado.<br>
-                            * Algun fallo en relacion al proceso que estaba realizando, si es eso, por favor comuniquese con los desarrolladores. <b>Tome en cuenta que ellos estan aprendiendo.  :3</b>  
-                            <a href="../../">Retornar al Inicio</a>
+                            <?php 
+                                if (isset($_GET['errorMessage'])) {
+                                    echo '* '.$_GET['errorMessage'];
+                                }
+                                echo '<br>* Talves ocurrio al registrar datos inconsistentes, tenga cuidado.<br>
+                                        * Algun fallo en relacion al proceso que estaba realizando, si es eso, por favor comuniquese con los desarrolladores. <b>Tome en cuenta que ellos estan aprendiendo. :3</b>  
+                                        <a href="../../">Retornar al Inicio</a>';
+                            ?>
                         </p>
                     </div>
                     <!-- /.error-content -->

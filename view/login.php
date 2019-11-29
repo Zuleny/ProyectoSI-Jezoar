@@ -22,7 +22,7 @@
         <a href="gestionDeUsuario/forgotMyPassword.php">
             <button type="button" class="btn btn-block">
                 <i class="fa fa-fw fa-frown-o"></i>
-                    I Forgot my password
+                    Forgot your password
             </button>
         </a>
         <a href="https://www.facebook.com/Jezoar-228770924276961/">

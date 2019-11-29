@@ -44,7 +44,7 @@
                   <li><a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeProveedor/gestionProveedor.php"><i class="fa fa-circle-o"></i> Gestionar Proveedores</a></li>
                   <li><a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeAlmacen/gestionAlmacen.php"><i class="fa fa-circle-o"></i>Gestionar Almacen</a></li>
                   <li><a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeNotaDeIngreso/gestionNotaIngreso.php"><i class="fa fa-circle-o"></i>Gestionar Notas de Ingreso</a></li>
-                  <li><a href="http://localhost/ProyectoSI-Jezoar/view/GetionarNotas/gestionarNotaDeEgreso.php"><i class="fa fa-circle-o"></i>Gestionar Notas de Egreso</a></li>
+                  <li><a href="http://localhost/ProyectoSI-Jezoar/view/GestionDeNotasEgreso/gestionarNotaDeEgreso.php"><i class="fa fa-circle-o"></i>Gestionar Notas de Egreso</a></li>
                   <li><a href="http://localhost/ProyectoSI-Jezoar/view/GestionDeNotasDevolucion/gestionNotasDevolucion.php"><i class="fa fa-circle-o"></i>Gestionar Notas de Devolucion</a></li>
               </ul>
             </li>
