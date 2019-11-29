@@ -1474,8 +1474,7 @@ language plpgsql;
 create trigger iDetalleIngreso 
 before insert on Detalle_Ingreso
 for each row 
-	execute procedure ingresoDetalle();
-
+	execute procedure ingresoDetalle()
 /*17. Funcion Auxiliar para el trigger dDetalleIngreso*/
 create or replace function dIngresoDetalle() returns trigger as 
 $$
@@ -1716,3 +1715,45 @@ as $$ begin
 			from almacen
 			where nombre=nombreAlmacen);
 end $$ language 'plpgsql';
+
+/*40. Funcion que retorna la cantidad de insumos que ingresan en un determinado detalle de ingreso de un determinado almacen y nro de ingreso*/
+create or replace function getCantidadDetalleIngreso(nroIngreso integer,idIngreso integer,codAlmacen integer) returns int as
+$BODY$
+ begin
+	return (select cantidad
+			from nota_ingreso,detalle_ingreso
+			where nota_ingreso.nro_ingreso=detalle_ingreso.nro_ingreso and
+		    cod_almacen=codAlmacen and id_ingreso=idingreso and detalle_ingreso.nro_ingreso=nroIngreso);
+end;
+$BODY$
+language plpgsql;
+
+/*41. Funcion auxiliar para el trigger uDetalleIngreso*/
+create or replace function uDetalleIngreso() returns trigger as
+$$
+    declare codInsumo integer;
+            codAlmacen integer;
+            cantidad integer;
+    begin
+		codInsumo:=getCodInsumo(new.nombre_insumo);
+		if(existeInsumo(codInsumo)) then
+		   codAlmacen:=getCodAlmacen(new.nro_ingreso);
+           cantidad:=getCantidadDetalleIngreso(new.nro_ingreso,new.id_ingreso,codAlmacen);
+		   update Insumo_Almacen set stock=(stock-cantidad)+new.cantidad
+		   where cod_insumo=codInsumo and cod_almacen=codAlmacen;
+		   raise notice 'Insumo actualizado exitosamente: insumo: % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
+
+		else
+		   raise notice 'Error: Insumo no encontrado, Registre el insumo';
+		   RAISE EXCEPTION 'Error: No se actualizo el detalle % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
+		end if;
+		return new;
+	end;
+$$
+language plpgsql;
+
+/*42. Trigger para actualizar el stock de un determinado insumo y almacen al momento de actualizar una fila en la tabla Detalle_Ingreso */
+create trigger uDetalleIngreso
+before update on Detalle_Ingreso
+for each row
+	execute procedure uDetalleIngreso();

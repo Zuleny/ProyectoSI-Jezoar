@@ -47,7 +47,7 @@ class Propuesta{
             $this->cantMeses=$cantMeses;
             $this->estado=$estado;
 
-            $this->conexion->execute("UPDATE Presentacion SET fecha='$this->fecha',cod_cliente_presentacion=$this->codCliente, estado=$this->estado where cod_presentacion=$codPropuesta;");
+            $this->conexion->execute("UPDATE Presentacion SET fecha='$this->fecha',cod_cliente_presentacion=$this->codCliente, estado='$this->estado' where cod_presentacion=$codPropuesta;");
             $this->conexion->execute("UPDATE Propuesta SET cant_meses=$this->cantMeses where cod_presentacion_propuesta=$codPropuesta;");
             return true;
         } catch (\Throwable $th) {
@@ -103,103 +103,106 @@ class Propuesta{
                                                 tipo_presentacion='P';");
         return $result;
     }
-
-
+    //Asignacion de Servicios
     /**
-     * Devuelve la Lista de Asignaciones de Servicio de una Cotizacion a traves de su Codigo
+     * Registra un Servicio y sus Detalles a una Propuesta
      */
-    public function getListaAsignacionServicio($codCotizacion){
-        return $this->conexion->execute("SELECT servicio.id_servicio, nombre, detalle 
-                                         FROM servicio,detalle_servicio 
-                                         WHERE servicio.id_servicio=detalle_servicio.id_servicio and 
-                                                servicio.id_servicio NOT IN (SELECT id_servicio 
-                                                                            FROM presentacion_servicio 
-                                                                            WHERE cod_presentacion=$codCotizacion);" );
-    }
-
-    /**
-     * Verificar si es Cotizacion a travez de su Codigo
-     */
-    private function esCotizacion($codPresentacion){
-        $result = $this->conexion->execute("SELECT tipo_presentacion 
-                                            FROM presentacion 
-                                            WHERE cod_presentacion=$codPresentacion;");
-        if (pg_result($result,0,0)==='C') {
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    /**
-     * Registra un Servicio y sus Detalles a una Cotrizacion
-     */
-    private function registrarServicioYDetalles($codCotizacion, $idServicio, $areaTrabajo, $cantidadPersonal, $precioUnitario){
+    public function agregarServicio($cod_presentacion,$nombreServicio,$area_trabajo,$cant_personal,$precio_unitario){
         try {
+            $id_servicio=$this->getIdServicio($nombreServicio);
             $this->conexion->execute("INSERT INTO presentacion_servicio(cod_presentacion, id_servicio, area_trabajo, cant_personal, precio_unitario) 
-                                      VALUES ($codCotizacion, $idServicio, '$areaTrabajo', $cantidadPersonal, $precioUnitario);");
+                                      VALUES ($cod_presentacion, $id_servicio, '$area_trabajo', $cant_personal, $precio_unitario);");
             return true;
         } catch (\Throwable $th) {
             return false;
         }
     }
 
-    /**
-     * Asigna una lista de Servicios con sus Detalles a una Cotizacion
-     */
-    public function asignarServicios($codigoCotizacion, $listaIdServicios, $listaAreasTrabajo, $listaCantidadPersonas, $listaPreciosUnitarios ){
-        if ($this->esCotizacion($codigoCotizacion)) {
-            $lenght = count($listaAreasTrabajo);
-            for ($dato=0; $dato < $lenght; $dato++) { 
-                if (! $this->registrarServicioYDetalles($codigoCotizacion, 
-                                                      $listaIdServicios[$dato], 
-                                                      $listaAreasTrabajo[$dato], 
-                                                      $listaCantidadPersonas[$dato], 
-                                                      $listaPreciosUnitarios[$dato])) {
-                    die("error en registrar datos");
-                }
-            }
+    public function actualizarServicio($cod_presentacion,$id_servicio,$area_trabajo,$cant_personal,$precio_unitario){
+        try {
+
+            $this->conexion->execute("UPDATE presentacion_servicio set area_trabajo='$area_trabajo', cant_personal='$cant_personal',precio_unitario=$precio_unitario where id_servicio=$id_servicio and cod_presentacion=$cod_presentacion;");
             return true;
-        }else{
+        } catch (\Throwable $th) {
             return false;
         }
     }
 
-    /**
-     * Devuelve una Lista de Datos Principales de una Cotizacion
-     */
-    public function getDatosDeCotizacion($codCotizacion){
-        $result = $this->conexion->execute("SELECT c.nombre, p.fecha, p.estado, p.precio_total 
-                                            FROM presentacion as p, cliente as c 
-                                            WHERE p.cod_cliente_presentacion=c.cod_cliente and 
-                                                  tipo_presentacion='C' and p.cod_presentacion=$codCotizacion;");
-        if (pg_num_rows($result)>0) {
-            return array(pg_result($result, 0, 0), pg_result($result,0, 1), pg_result($result, 0, 2), pg_result($result, 0, 3));  
-        }else{
-            die("error de Cotizacion");
+    public function eliminarServicio($cod_presentacion,$id_servicio){
+        try {
+            $this->conexion->execute("DELETE FROM presentacion_servicio where id_servicio=$id_servicio and cod_presentacion=$cod_presentacion;");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
         }
     }
 
+    private  function getIdServicio($nombreServicio){
+        $result=$this->conexion->execute("select id_servicio from servicio where nombre='$nombreServicio';");
+        return pg_result($result,0,0);
+    }
     /**
-     * Devuelve una lista de Servicios Detallados de una Cotizacion
+     * Devuelve una lista de Servicios
      */
-    public function getListaServiciosDeCotizacion($codCotizacion){
-        return $this->conexion->execute("SELECT s.id_servicio, s.nombre, ds.detalle, ps.area_trabajo, ps.cant_personal, ps.precio_unitario 
-                                        FROM presentacion_servicio as ps, servicio as s, detalle_servicio as ds 
-                                        WHERE ps.id_servicio=s.id_servicio and 
-                                                s.id_servicio=ds.id_servicio and 
-                                                ps.cod_presentacion=$codCotizacion;");
+    public function getListaServicios(){
+        return $this->conexion->execute("SELECT nombre from servicio;");
     }
 
+
+    public function getListaInsumos(){
+        return $this->conexion->execute("SELECT nombre from insumo;");
+    }
     /**
-     * Devuelve Datos actualies de una Cotizacion (Datos importantes para Editar)
+     * Devuelve la lista de servicios registrados de una determinada propuesta
      */
-    public function getDatosCotizacionEditar($codCotizacion) {
-        return $this->conexion->execute("SELECT p.fecha, c.nombre, co.cant_dias, p.precio_total, 
-                                                co.tipo_servicio, co.material, p.estado
-                                         FROM presentacion as p, cotizacion as co, cliente as c
-                                         WHERE p.cod_presentacion = co.cod_presentacion_cotizacion and 
-                                                c.cod_cliente=p.cod_cliente_presentacion and co.cod_presentacion_cotizacion=$codCotizacion;");
+    public function getListaServicioPropuesta($cod_propuesta){
+        $result=$this->conexion->getArrayAssoc("select servicio.id_servicio,servicio.nombre, presentacion_servicio.area_trabajo,presentacion_servicio.cant_personal,presentacion_servicio.precio_unitario from presentacion_servicio,servicio where presentacion_servicio.id_servicio=servicio.id_servicio and cod_presentacion=$cod_propuesta;");
+        return $result;
+    }
+
+
+    //Asigancion de insumos
+
+    public function agregarInsumo($cod_presentacion,$nombreInsumo,$cant_insumo){
+        try {
+            $cod_insumo=$this->getCodInsumo($nombreInsumo);
+            $this->conexion->execute("INSERT INTO propuesta_insumo values ($cod_presentacion,$cod_insumo,$cant_insumo);");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function actualizarInsumo($cod_presentacion,$cod_insumo,$cant_insumo){
+        try {
+
+            $this->conexion->execute("UPDATE propuesta_insumo set cant_insumo=$cant_insumo where cod_presentacion_propuesta=$cod_presentacion and cod_insumo=$cod_insumo;");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function eliminarInsumo($cod_presentacion,$cod_insumo){
+        try {
+            $this->conexion->execute("DELETE FROM propuesta_insumo where cod_presentacion_propuesta=$cod_presentacion and cod_insumo=$cod_insumo;");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+    /**
+     * Devuelve la lista de insumos registrados de una determinada propuesta
+     */
+    public function getListaInsumoPropuesta($cod_propuesta){
+        $result=$this->conexion->getArrayAssoc("select insumo.cod_insumo,insumo.nombre,propuesta_insumo.cant_insumo from insumo,propuesta_insumo
+                                                       where insumo.cod_insumo=propuesta_insumo.cod_insumo and propuesta_insumo.cod_presentacion_propuesta=$cod_propuesta;");
+        return $result;
+    }
+
+    public function getCodInsumo($nombreInsumo){
+        $result=$this->conexion->execute("select cod_insumo from insumo where nombre='$nombreInsumo';");
+        return pg_result($result,0,0);
     }
 
 }

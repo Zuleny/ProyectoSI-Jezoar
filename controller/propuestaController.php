@@ -16,17 +16,28 @@
         }
         header('Location: ../view/gestionDePropuesta/gestionPropuesta.php');
     }
-
+require "../../model/PropuestaModel.php";
 function getListaCliente(){
-    require "../../model/PropuestaModel.php";
+
     $propuesta= new Propuesta();
     $result=$propuesta->getListaCliente();
-    $nroFilas=pg_num_rows($result);
-    $printer="";
-    for ($tupla=0; $tupla <$nroFilas ; $tupla++) {
-        $printer.='<option value="'.pg_result($result,$tupla,0).'">'.pg_result($result,$tupla,0).'</option>';
-    }
-    return $printer;
+    return $result;
+}
+function getListaClientes(){
+    $propuesta= new Propuesta();
+    $result=$propuesta->getListaCliente();
+    return $result;
+}
+function getListaServicios(){
+    $propuesta1=new Propuesta();
+    $result=$propuesta1->getListaServicios();
+    return $result;
+}
+
+function getListaInsumos(){
+    $propuesta2= new Propuesta();
+    $result=$propuesta2->getListaInsumos();
+    return $result;
 }
     
 ?>

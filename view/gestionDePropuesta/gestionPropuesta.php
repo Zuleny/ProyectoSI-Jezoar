@@ -34,7 +34,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input type="date" class="form-control" name="fecha">
+                                <input type="date" class="form-control" name="fecha" required>
                             </div>
                         </div>
                         <div class="col-lg-3 form-group">
@@ -42,8 +42,11 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             <select class="form-control" name="nombreCliente" >
                                 <?php
                                 require "../../controller/propuestaController.php";
-                                $lista=getListaCliente();
-                                echo $lista;
+                                $result=getListaCliente();
+                                $nroFilas=pg_num_rows($result);
+                                for ($tupla=0; $tupla <$nroFilas ; $tupla++) {
+                                    echo '<option value="'.pg_result($result,$tupla,0).'">'.pg_result($result,$tupla,0).'</option>';
+                                }
                                 ?>
                             </select>
                         </div>
@@ -52,14 +55,14 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             <input type="number" id="cantidadMeses" name="cantidadMeses" min="1" class="form-control" placeholder="6" required>
                         </div>
 
-                        <div class="col-lg-7 form-group" style="background-color: #D4EFDF;" >
+                        <div class="col-lg-7 form-group" style="background-color: #D4EFDF;" required >
                             <label>Estado</label>
                             <br>
                             <div class="col-md-3">
                                 <p><input type="radio" name="estadoP" value="Aceptado">Aceptado</p>
                             </div>
                             <div class="col-md-3">
-                                <p><input type="radio" name="estadoP" value="Espera">En Espera</p>
+                                <p><input type="radio" name="estadoP" value="Espera" checked>En Espera</p>
                             </div>
                             <div class="col-md-3">
                                 <p><input type="radio" name="estadoP" value="Denegado">Denegado</p>
@@ -163,7 +166,15 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                         </div>
                                         <div class="form-group">
                                             <label for="nombre" class="col-form-label">Nombre Cliente:</label>
-                                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                            <select class="form-control" name="nombre" id="nombre">
+                                            <?php
+                                            $result=getListaClientes();
+                                            $nroFilas=pg_num_rows($result);
+                                            for ($tupla=0; $tupla <$nroFilas ; $tupla++) {
+                                                echo '<option  value="'.pg_result($result,$tupla,0).'" >'.pg_result($result,$tupla,0).'</option>';
+                                            }
+                                            ?>
+                                            </select>
                                         </div>
 
                                         <div class="form-group">
@@ -172,9 +183,15 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="estado" class="col-form-label">Estado:</label>
-                                            <input type="text" class="form-control" id="estado" name="estado" required>
-                                        </div>
+                                            <select class="form-control" name="estado" id="estado">
+                                                <?php
+                                                   echo '<option  value="Aceptado" >Aceptado</option>';
+                                                   echo '<option  value="Espera" >Espera</option>';
+                                                   echo '<option  value="Denegado" >Denegado</option>';
+                                                ?>
+                                            </select>
+                                         </div>
+
 
 
                                     </form>
@@ -225,12 +242,22 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 {"data":"fecha"},
                                 {"data":"getnombrecliente"},
                                 {"data":"cant_meses"},
-                                {"data":"estado"},
+                                {"data":"estado",
+                                        "render": function ( data ) {
+                                                      if(data=="Aceptado"){
+                                                          return "<span class='label label-success'>Aceptado</span>";
+                                                      }else if(data=="Espera"){
+                                                          return "<span class='label label-warning'>Espera</span>";
+                                                      }else{
+                                                          return "<span class='label label-danger'>Denegado</span>";
+                                                      }
+                                        }
+                                },
                                 {"data":"precio_total"},
-                                {"defaultContent":" <button type='button' class='insumo btn btn-xs bg-light-blue btn-sm' id='visualizar'><i class='fa fa-fw fa-cubes'></i></button>"+
-                                        "<button type='button' class='servicio btn btn-xs bg-light-blue btn-sm' id='visualizar'><i class='fa fa-fw fa-cubes'></i></button>"+
-                                        "<button type='button' class='editar btn bg-purple btn-xs' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square'></i></button>" +
-                                        "<button type='button' class='eliminar btn bg-red btn-xs' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
+                                {"defaultContent":" <button type='button' class='insumo btn bg-aqua btn-xs' id='visualizar' title='Agregar Insumos'><i class='fa fa-fw fa-cubes'></i></button>"+
+                                        "<button type='button' class='servicio btn btn-xs bg-light-blue btn-sm' id='visualizar' title='Agregar Servicios'><span class='glyphicon glyphicon-briefcase' aria-hidden='true'></span></button>"+
+                                        "<button type='button' class='editar btn bg-purple btn-xs' data-toggle='modal' data-target='#modalUpdate' title='Editar'><i class='fa fa-pencil-square'></i></button>" +
+                                        "<button type='button' class='eliminar btn bg-red btn-xs' data-toggle='modal' data-target='#modalEliminar' title='Eliminar'><i class='fa fa-trash-o'></i></button>"}
 
                             ],
                             "language":idioma_espanol
@@ -250,6 +277,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 nombre_cliente=$("#frmUpdatePropuesta #nombre").val(data.getnombrecliente),
                                 cant_meses=$("#frmUpdatePropuesta #cantidad").val(data.cant_meses),
                                 estado=$("#frmUpdatePropuesta #estado").val(data.estado);
+                            console.log(data.estado);
 
                         });
                     }
@@ -292,7 +320,6 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 cant_meses=$("#frmUpdatePropuesta #cantidad").val(),
                                 estado=$("#frmUpdatePropuesta #estado").val(),
                                 opcion=$("#frmUpdatePropuesta #opcion").val();
-
                             var row={cod_presentacion:cod_presentacion,fecha:fecha, nombre_cliente:nombre_cliente, cant_meses:cant_meses, estado:estado, opcion:opcion};
                             $.ajax({
                                 method:"POST",

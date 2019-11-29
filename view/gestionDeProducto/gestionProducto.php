@@ -105,9 +105,6 @@
                         </div>
                     </div>
                     <div>
-                        <form id="frmDeleteProducto" action="" method="POST">
-                            <input type="hidden" id="idProducto" name="idProducto" value="0">
-                            <input type="hidden" id="opcion" name="opcion" value="eliminar">
 
                         <!-- Modal Update-->
                         <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
@@ -188,7 +185,7 @@
                                 "language":idioma_espanol
                             });
                             getDataRow("#tabla1 tbody",table);
-                            getIdPersonalRow("#tabla1 tbody",table);
+
                         }
 
 

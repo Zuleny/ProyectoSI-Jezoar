@@ -13,7 +13,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
     <section class="content">
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">Detalle Servicios de Propuesta Nro:
+                <h3 class="box-title">Detalle Insumo de Propuesta Nro:
                     <b><?php echo $_GET['cod_presentacion']; ?></b>
                 </h3>
                 <div class="box-tools pull-right">
@@ -21,7 +21,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                         <span class="glyphicon glyphicon-home"></span></a>
                 </div>
 
-                <form id="frmInsertServicioPropuesta" action="" method="POST">
+                <form id="frmInsertInsumoPropuesta" action="" method="POST">
                     <input type="hidden" id="opcion" name="opcion" value="insertar">
                     <?php
                     $codPresentacion=$_GET['cod_presentacion'];
@@ -29,11 +29,11 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     ?>
                     <div class="form-group col-md-12">
                         <div class="col-lg-6">
-                            <label>Servicio</label>
-                            <select class="form-control" name="servicio" id="servicio">
+                            <label>Insumo</label>
+                            <select class="form-control" name="insumo" id="insumo">
                                 <?php
                                 require "../../controller/propuestaController.php";
-                                $result=getListaServicios();
+                                $result=getListaInsumos();
                                 $nroFilas=pg_num_rows($result);
                                 for ($tupla=0; $tupla <$nroFilas ; $tupla++) {
                                     echo '<option value="'.pg_result($result,$tupla,0).'">'.pg_result($result,$tupla,0).'</option>';
@@ -41,27 +41,24 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 ?>
                             </select>
                         </div>
+
                         <div class="col-lg-2">
-                            <label for="areaTrabajo">Area de Trabajo</label>
-                            <input type="text" class="form-control" name="area" id="area" required placeholder="Piso"/>
-                        </div>
-                        <div class="col-lg-2">
-                            <label>Cant. Personal</label>
-                            <input type="number" class="form-control" min="1" name="cantidad"  id="cantidad" required placeholder="7"/>
-                        </div>
-                        <div class="col-lg-2">
-                            <label>Precio Unitario</label>
-                            <input type="number" class="form-control" min="1" step=".01" name="precio" id="precio" required placeholder="9500"/>
+                            <label>Cant. Insumo</label>
+                            <input type="number" class="form-control" min="1" step=".01" name="cantInsumo" id="cantInsumo" required placeholder="5"/>
                         </div>
                     </div>
 
                     <div class="col-lg-3">
-                        <button type="button" class="btn btn-block btn-success" id="button1"  title="Registrar Servicio">Registrar Detalle</button>
+                        <button type="button" class="btn btn-block btn-success" id="button1"  title="Registrar Insumo">Registrar Detalle</button>
                     </div>
 
                     <div class="col-lg-3">
-                        <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeServicio/gestionServicio.php" target="_blank" id="etiqueta1">
-                            ¿No encontro el servicio en la lista?
+                        <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeProducto/gestionProducto.php" target="_blank" id="etiqueta1">
+                            ¿No encontro el producto en la lista?
+                        </a>
+                        <br>
+                        <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeHerramienta/gestionHerramienta.php" target="_blank" id="etiqueta1">
+                            ¿No encontro la Herramienta en la lista?
                         </a>
                     </div>
                 </form>
@@ -70,7 +67,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                 <div class="row">
                     <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
                         <div class="box-header">
-                            <h3 class="box-title">Lista de Servicios</h3>
+                            <h3 class="box-title">Lista de Insumos</h3>
                         </div>
                         <div class="col-sm-offset-2 col-sm-8">
                             <h3 class="text-center"> <small class="mensaje"></small></h3>
@@ -80,10 +77,8 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Servicio</th>
-                                    <th>Area de Trabajo</th>
-                                    <th>Cant. Personal</th>
-                                    <th>Precio Unitario</th>
+                                    <th>Insumo</th>
+                                    <th>Cant. Insumo</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -96,8 +91,8 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                 </div>
 
                 <div>
-                    <form id="frmDeleteServicioPropuesta" action="" method="POST">
-                        <input type="hidden" id="idServicioPropuesta" name="idServicioPropuesta" value="0">
+                    <form id="frmDeleteInsumoPropuesta" action="" method="POST">
+                        <input type="hidden" id="idInsumoPropuesta" name="idInsumoPropuesta" value="0">
                         <input type="hidden" id="opcion" name="opcion" value="eliminar">
                         <!-- Modal Delete-->
                         <div class="modal fade" data-backdrop=”static” id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
@@ -105,14 +100,14 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="modalEliminarLabel">Eliminar Servicio</h4>
+                                        <h4 class="modal-title" id="modalEliminarLabel">Eliminar Insumo</h4>
                                     </div>
 
                                     <div class="modal-body">
-                                        ¿Está seguro de eliminar el Servicio?<strong data-name=""></strong>
+                                        ¿Está seguro de eliminar el Insumo?<strong data-name=""></strong>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" id="deleteServicioPropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                        <button type="button" id="deleteInsumoPropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                     </div>
                                 </div>
@@ -130,39 +125,29 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="modalUpdateLabel">Actualizar Servicio</h4>
+                                    <h4 class="modal-title" id="modalUpdateLabel">Actualizar Insumo</h4>
                                 </div>
                                 <!--Modal Body Here-->
                                 <div class="modal-body">
-                                    <form id="frmUpdateServicioPropuesta" class="form-horizontal" action="" method="POST">
-                                        <input type="hidden" id="idServicioPropuesta" name="idServicioPropuesta" value="0">
+                                    <form id="frmUpdateInsumoPropuesta" class="form-horizontal" action="" method="POST">
+                                        <input type="hidden" id="idInsumoPropuesta" name="idInsumoPropuesta" value="0">
                                         <input type="hidden" id="opcion" name="opcion" value="actualizar">
 
                                         <div class="form-group">
-                                            <label for="servicio" class="col-form-label">Servicio:</label>
-                                            <input type="text" class="form-control" id="servicio" name="servicio" disabled>
+                                            <label for="insumo" class="col-form-label">Insumo:</label>
+                                            <input type="text" class="form-control" id="insumo" name="insumo" disabled>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="area" class="col-form-label">Area de Trabajo:</label>
-                                            <input type="text" class="form-control" id="area" name="area" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="cantidad" class="col-form-label">Cantidad Personal:</label>
-                                            <input type="number"  min="1" class="form-control" id="cantidad" name="cantidad" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="precio" class="col-form-label">Precio Unitario:</label>
-                                            <input type="number" step="0.01" class="form-control"  id="precio" name="precio" required>
+                                            <label for="cantInsumo" class="col-form-label">Cant. Insumo:</label>
+                                            <input type="number" step="0.01" class="form-control"  id="cantInsumo" name="cantInsumo" required>
                                         </div>
 
                                     </form>
                                 </div>
                                 <!--Modal Body-->
                                 <div class="modal-footer">
-                                    <button type="button" id="updateServicioPropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                    <button type="button" id="updateInsumoPropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                 </div>
                             </div>
@@ -176,7 +161,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     </h3>
                 </div>
                 <?php
-                    include "../../view/theme/AdminLTE/Additional/scripts.php";
+                     include "../../view/theme/AdminLTE/Additional/scripts.php";
                 ?>
 
                 <script>
@@ -190,7 +175,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
 
                     var listar= function(){
                         var cod_presentacion=document.getElementById("codPresentacion").value,
-                        opcion="servicio";
+                            opcion="insumo";
                         var d={"cod_presentacion":cod_presentacion,"opcion":opcion};
                         console.log(d);
                         var table=$("#tabla1").DataTable({
@@ -198,15 +183,13 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             "ajax":{
                                 "method":"POST",
                                 "data":d,
-                                "url":"listarDetalleServicioInsumo.php",
+                                "url":"listarDetalleInsumo.php",
                                 "dataSrc": "data"
                             },
                             "columns":[
-                                {"data":"id_servicio"},
+                                {"data":"cod_insumo"},
                                 {"data":"nombre"},
-                                {"data":"area_trabajo"},
-                                {"data":"cant_personal"},
-                                {"data":"precio_unitario"},
+                                {"data":"cant_insumo"},
                                 {"defaultContent":"<button type='button' class='editar btn bg-purple btn-xs' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square'></i></button>" +
                                         "<button type='button' class='eliminar btn bg-red btn-xs' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
 
@@ -214,44 +197,41 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             "language":idioma_espanol
                         });
                         getDataRow("#tabla1 tbody",table);
-                        getIdServicioPropuestaRow("#tabla1 tbody",table);
+                        getIdInsumoPropuestaRow("#tabla1 tbody",table);
                     }
 
 
                     var getDataRow=function (tbody,table) {
                         $(tbody).on("click","button.editar",function () {
                             var data=table.row($(this).parents("tr")).data();
-                            var id_servicio=$("#frmUpdateServicioPropuesta #idServicioPropuesta").val(data.id_servicio),
-                                nombre=$("#frmUpdateServicioPropuesta #servicio").val(data.nombre),
-                                area_trabajo=$("#frmUpdateServicioPropuesta #area").val(data.area_trabajo),
-                                cant_personal=$("#frmUpdateServicioPropuesta #cantidad").val(data.cant_personal),
-                                precio_unitario=$("#frmUpdateServicioPropuesta #precio").val(data.precio_unitario);
+                            console.log(data);
+                            var cod_insumo=$("#frmUpdateInsumoPropuesta #idInsumoPropuesta").val(data.cod_insumo),
+                                nombre=$("#frmUpdateInsumoPropuesta #insumo").val(data.nombre),
+                                cant_insumo=$("#frmUpdateInsumoPropuesta #cantInsumo").val(data.cant_insumo);
 
                         });
                     }
 
-                    var getIdServicioPropuestaRow=function (tbody,table) {
+                    var getIdInsumoPropuestaRow=function (tbody,table) {
                         $(tbody).on("click","button.eliminar",function () {
                             var data=table.row($(this).parents("tr")).data();
-                            var id_servicio=$("#frmDeleteServicioPropuesta #idServicioPropuesta").val(data.id_servicio);
+                            var cod_insumo=$("#frmDeleteInsumoPropuesta #idInsumoPropuesta").val(data.cod_insumo);
 
                         });
                     }
 
                     var insertar=function () {
                         $("#button1").on("click",function () {
-                            console.log("aqui");
-                            var cod_presentacion=$("#frmInsertServicioPropuesta #codPresentacion").val(),
-                                nombre=$("#frmInsertServicioPropuesta #servicio").val(),
-                                area_trabajo=$("#frmInsertServicioPropuesta #area").val(),
-                                cant_personal=$("#frmInsertServicioPropuesta #cantidad").val(),
-                                precio_unitario=$("#frmInsertServicioPropuesta #precio").val(),
-                                opcion=$("#frmInsertServicioPropuesta #opcion").val();
+                            var cod_presentacion=$("#frmInsertInsumoPropuesta #codPresentacion").val(),
+                                nombre=$("#frmInsertInsumoPropuesta #insumo").val(),
+                                cant_insumo=$("#frmInsertInsumoPropuesta #cantInsumo").val(),
+                                opcion=$("#frmInsertInsumoPropuesta #opcion").val();
                             console.log(nombre);
-                            var row={cod_presentacion:cod_presentacion,nombre:nombre,area_trabajo:area_trabajo,cant_personal:cant_personal,precio_unitario:precio_unitario,opcion:opcion};
+                            var row={};
+                            row={cod_presentacion:cod_presentacion,nombre:nombre,cant_insumo:cant_insumo,opcion:opcion};
                             $.ajax({
                                 method:"POST",
-                                url: "tableDetalleServicioInsumoController.php",
+                                url: "tableDetalleInsumoController.php",
                                 data: row,
                                 success: function (info) {
                                     console.log(info);
@@ -260,19 +240,18 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             listar();
                         });
                     }
-                    var actualizar=function () {
-                        $("#updateServicioPropuesta").on("click",function () {
-                            var cod_presentacion=$("#frmInsertServicioPropuesta #codPresentacion").val(),
-                                id_servicio=$("#frmUpdateServicioPropuesta #idServicioPropuesta").val(),
-                                area_trabajo=$("#frmUpdateServicioPropuesta #area").val(),
-                                cant_personal=$("#frmUpdateServicioPropuesta #cantidad").val(),
-                                precio_unitario=$("#frmUpdateServicioPropuesta #precio").val(),
-                                opcion=$("#frmUpdateServicioPropuesta #opcion").val();
 
-                            var row={cod_presentacion:cod_presentacion,id_servicio:id_servicio,area_trabajo:area_trabajo,cant_personal:cant_personal,precio_unitario:precio_unitario,opcion:opcion};
+                    var actualizar=function () {
+                        $("#updateInsumoPropuesta").on("click",function () {
+                            var cod_presentacion=$("#frmInsertInsumoPropuesta #codPresentacion").val(),
+                                cod_insumo=$("#frmUpdateInsumoPropuesta #idInsumoPropuesta").val(),
+                                cant_insumo=$("#frmUpdateInsumoPropuesta #cantInsumo").val(),
+                                opcion=$("#frmUpdateInsumoPropuesta #opcion").val();
+                            var row={};
+                            row={cod_presentacion:cod_presentacion,cod_insumo:cod_insumo,cant_insumo:cant_insumo,opcion:opcion};
                             $.ajax({
                                 method:"POST",
-                                url: "tableDetalleServicioInsumoController.php",
+                                url: "tableDetalleInsumoController.php",
                                 data: row,
                                 success: function (info) {
                                     console.log(info);
@@ -283,15 +262,16 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     }
 
                     var eliminar=function () {
-                        $("#deleteServicioPropuesta").on("click",function () {
-                            var cod_presentacion=$("#frmInsertServicioPropuesta #codPresentacion").val(),
-                                id_servicio=$("#frmDeleteServicioPropuesta #idServicioPropuesta").val(),
-                                opcion=$("#frmDeleteServicioPropuesta #opcion").val();
-                              console.log(cod_presentacion);
-                            var row={cod_presentacion:cod_presentacion,id_servicio:id_servicio,opcion:opcion};
+                        $("#deleteInsumoPropuesta").on("click",function () {
+                            var cod_presentacion=$("#frmInsertInsumoPropuesta #codPresentacion").val(),
+                                cod_insumo=$("#frmDeleteInsumoPropuesta #idInsumoPropuesta").val(),
+                                opcion=$("#frmDeleteInsumoPropuesta #opcion").val();
+                            console.log(cod_insumo);
+                            var row={};
+                            row={cod_presentacion:cod_presentacion,cod_insumo:cod_insumo,opcion:opcion};
                             $.ajax({
                                 method:"POST",
-                                url: "tableDetalleServicioInsumoController.php",
+                                url: "tableDetalleInsumoController.php",
                                 data: row,
                                 success: function (info) {
                                     console.log(info);
@@ -348,3 +328,4 @@ include "../../view/theme/AdminLTE/Additional/head.php";
         </a>
     </div>
 </footer>
+
