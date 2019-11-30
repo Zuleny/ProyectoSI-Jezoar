@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
     include "../../view/theme/AdminLTE/Additional/head.php";
     //require_once '../../vendor/autoload.php';
@@ -17,6 +18,37 @@
                 <div class="box-header">
                     <h3 class="box-title">Detalles de la culminacion de una obra terminada</h3>
                     <div class="box-tools pull-right">
+=======
+<!DOCTYPE html>
+<html>
+<head>
+    <?php
+        include "../../view/theme/AdminLTE/Additional/head.php";
+    ?>
+</head>
+<!-- the fixed layout is not compatible with sidebar-mini -->
+<body class="hold-transition skin-blue fixed sidebar-mini">
+    <div class="wrapper">
+        <?php
+            include "../../view/theme/AdminLTE/Additional/header.php";
+            include "../../view/theme/AdminLTE/Additional/aside.php";
+        ?>
+        <div class="content-wrapper">
+            <!-- Titulo de la cabecera -->
+            <section class="content-header">
+                <h1>
+                    Informe
+                    <!-- <small>Blank example to the fixed layout</small> -->
+                </h1>
+            </section>
+            <!-- Fin de la cabecera -->
+            <!-- contenido -->
+            <section class="content">
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">Gestion de informe</h3>
+                        <div class="box-tools pull-right">
+>>>>>>> origin
                             <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
@@ -28,6 +60,7 @@
                         <div class="box-body">
                             <div class="col-lg-5">
                                 <label>Nombre de cliente</label>
+<<<<<<< HEAD
                                 <select class="form-control" name="nombreCliente">
                                     <?php
                                     require "../../controller/informeController.php";
@@ -36,6 +69,26 @@
                                     echo $result;
                                     ?>
                                 </select>
+=======
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name = "nombre_cliente" >
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <label>Fecha</label>
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-calendar -o fa-fw" aria-hidden="true"></i></span>
+                                        <input type="text" name = "fecha_actual" class="form-control" placeholder="Fecha actual">
+                                </div>        
+                            </div>
+                            <div class="col-lg-2">
+                                <label>Codigo presentacion</label>
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-file fa-fw" aria-hidden="true"></i></span>
+                                        <input type="text" name = "cod_presentacion"class="form-control">
+                                </div>
+>>>>>>> origin
                             </div>
 
                         </div>

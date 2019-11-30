@@ -9,7 +9,8 @@ if (isset($_POST['nombre_categor'])) {
         $result = $categoria->insertarCategoria();
         header('Location: ../view/gestionDeCategoria/gestionCategoria.php');
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        $errorMessage = "<b>Nombre de Categoria vacia, tenga mucho cuidado</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
     }
 }else if (isset($_POST['nombreCategoria']) && isset($_POST['idCategoria'])) {
     if ($_POST['nombreCategoria']!="") {
@@ -18,10 +19,12 @@ if (isset($_POST['nombre_categor'])) {
         if ($categoria->updateCategoria($_POST['idCategoria'], $_POST['nombreCategoria'])) {
             header('Location: ../view/gestionDeCategoria/gestionCategoria.php');
         }else{
-            header('Location: ../view/Exceptions/exceptions.php');    
+            $errorMessage = "error en Modificacion de Categoria";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
         }
     }else{
-        header('Location: ../view/Exceptions/exceptions.php');
+        $errorMessage = "Error al Registrar Categoria Sin Nombre";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
     }
 }
 

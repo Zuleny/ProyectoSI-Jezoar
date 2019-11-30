@@ -99,7 +99,8 @@
                 </div>
                 <div class="box-body">
                     <div class="col-lg-4">
-                        <button type="submit" style="border-radius: 15px;" value="Agregar Cotizacion" class="btn btn-block btn-success" title="Agregar Cotizacion">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
+                        <br>
+                        <button type="submit" style="border-radius: 15px;" value="Agregar Cotizacion" class="btn btn-block btn-success" title="Agregar Cotizacion">Agregar Cotización <i class="fa fa-fw fa-check"></i></button>
                     </div>
 
 

@@ -45,7 +45,7 @@
                             <h3 class="box-title">Servicios de la Empresa Jezoar</h3>
                         </div>
                         <div class="box-body" id="tabla1">
-                            <table class="table table-bordered table-hover" method="POST">
+                            <table class="table table-bordered table-hover" method="POST" id="tabla1">
                                 <thead>
                                     <tr>
                                         <th>Id Servicio</th>

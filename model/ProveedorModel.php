@@ -26,12 +26,21 @@ class Proveedor{
         }
     }
     public function getListaProveedor(){
-        return $this->Conexion->execute("SELECT cod_proveedor,nombre_empresa,email,direccion,telefono,nombre_proveedor FROM Proveedor");
+        return $this->Conexion->getArrayAssoc("SELECT cod_proveedor,nombre_empresa,email,direccion,telefono,nombre_proveedor FROM Proveedor");
     }
     
     public function getCantidadProveedor(){
         $result = $this->Conexion->execute("select count(*) from Proveedor;");
         return pg_result($result,0,0);
+    }
+    
+    public function actualizarProveedor($codproveedor,$empresaproveedor,$emailproveedor,$direccionproveedor,$telefonoproveedor,$nombreproveedor){
+        try{
+            $this->Conexion->execute("UPDATE Proveedor SET nombre_empresa='$empresaproveedor', email='$emailproveedor',direccion='$direccionproveedor',telefono='$telefonoproveedor',nombre_proveedor='$nombreproveedor' where cod_proveedor=$codproveedor;");
+            return true;
+        }catch (\Throwable $th){
+            return false;
+        }   
     }
 }
 ?>

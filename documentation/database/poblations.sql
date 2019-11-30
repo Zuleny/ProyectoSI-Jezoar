@@ -1,3 +1,4 @@
+/*************************Poblacion**********************************************************************************/
 insert into Cliente values(1,'SERVITODO ','San Martin,2do Anillo','servitodo_100@gmail.com','E');
 insert into Cliente values(2,'Yerba Buena','Av. Roca y Coronado,3er Anillo','yerba.buena@gmail.bo','E');
 insert into Cliente values(3,'MBI ','Av. La Salle, 4to anillo','mbi.santacruz@gmail.com','E');
@@ -18,11 +19,11 @@ insert into Telefono(cod_cliente_telefono,telefono) values(6,'78964546');
 
 insert  into Empresa values (1,'2031215562');
 insert  into Empresa values (2,'3265412017');
-insert  into Empresa values (3,'3265412017');
-insert  into Empresa values (4,'3265412017');
+insert  into Empresa values (3,'2001457818');
+insert  into Empresa values (4,'1245653219');
 
-insert  into Persona values (5,1064211018);
-insert  into Persona values (6,2515421018);
+insert  into Persona values (5,'2189543');
+insert  into Persona values (6,'2198754');
 
 insert into Presentacion values(1,'2018/05/21','Aceptado',141000,1,'P');  
 insert into Presentacion values(2,'2018/05/25','Denegado',27500,2,'C');
@@ -37,56 +38,47 @@ insert into Presentacion values(10,'2019/02/20','Denegado',430000,6,'P');
 insert into Presentacion values(11,'2019/04/21','Espera',30000,5,'P');
 
 insert into Servicio values(1,'Limpieza general de oficinas');
-insert into Servicio values(2,'Limpieza de vidrios');
-insert into Servicio values(3,'Limpieza de pisos');
-insert into Servicio values(4,'Limpieza de escaleras');
-insert into Servicio values(5,'Limpieza general de postobra');
-insert into Servicio values(6,'Servicio de supervicion');
-insert into Servicio values(7,'Limpieza general profunda');
-insert into Servicio values(8,'Prestacion de materiales');
+insert into Servicio values(2,'Limpieza general de oficinas');
+insert into Servicio values(3,'Limpieza general de oficinas');
+insert into Servicio values(4,'Limpieza de vidrios');
+insert into Servicio values(5,'Limpieza de vidrios');
+insert into Servicio values(6,'Limpieza de vidrios');
+insert into Servicio values(7,'Limpieza de pisos');
+insert into Servicio values(8,'Limpieza de escaleras');
+insert into Servicio values(9,'Limpieza de escaleras');
+insert into Servicio values(10,'Limpieza general de postobra');
+insert into Servicio values(11,'Limpieza general de postobra');
+insert into Servicio values(12,'Limpieza general de postobra');
+insert into Servicio values(13,'Servicio de supervicion');
+insert into Servicio values(14,'Servicio de supervicion');
+insert into Servicio values(15,'Limpieza general profunda');
+insert into Servicio values(16,'Limpieza general profunda');
+insert into Servicio values(17,'Limpieza general profunda');
+insert into Servicio values(18,'Prestacion de materiales');
+insert into Servicio values(19,'Prestacion de materiales');
 
-insert into Detalle_Servicio values(1,1,'Incluye IVA');
-insert into Detalle_Servicio values(1,2,'Incluye materiales');
-insert into Detalle_Servicio values(1,3,'Mano de obra');
-insert into Detalle_Servicio values(2,1,'Incluye IVA');
-insert into Detalle_Servicio values(2,2,'Sin material');
-insert into Detalle_Servicio values(3,1,'Incluye IVA');
-insert into Detalle_Servicio values(3,2,'Sin material');
-insert into Detalle_Servicio values(4,1,'Sin material');
-insert into Detalle_Servicio values(4,2,'Incluye IVA');
-insert into Detalle_Servicio values(5,1,'Con material');
-insert into Detalle_Servicio values(5,2,'Incluye IVA');
-insert into Detalle_Servicio values(5,3,'Mano de obra');
-insert into Detalle_Servicio values(6,1,'Con material');
-insert into Detalle_Servicio values(6,2,'Incluye IVA');
-insert into Detalle_Servicio values(7,1,'Con material');
-insert into Detalle_Servicio values(7,2,'Incluye IVA');
-insert into Detalle_Servicio values(7,3,'Mano de obra');
-insert into Detalle_Servicio values(8,1,'Con material');
-insert into Detalle_Servicio values(8,2,'Mano de obra');
-
-insert into Presentacion_Servicio values(1,1,'Oficina',4,9750);
-insert into Presentacion_Servicio values(1,6,'Oficina',1,2000);
-insert into Presentacion_Servicio values(2,6,'Bloque',10,26900);
-insert into Presentacion_Servicio values(2,7,'Bloque',1,600);     
-insert into Presentacion_Servicio values(3,7,'Bloque',7,45250);
-insert into Presentacion_Servicio values(4,1,'Oficina',6,13919);
-insert into Presentacion_Servicio values(4,8,'Oficina',0,900); 
-insert into Presentacion_Servicio values(5,1,'Oficina',2,2913.3);
-insert into Presentacion_Servicio values(5,8,'Oficina',0,416.7);
-insert into Presentacion_Servicio values(6,1,'Oficina',8,28750);
-insert into Presentacion_Servicio values(6,8,'Oficina',0,2450);
-insert into Presentacion_Servicio values(7,7,'Bloque',3,11000);
-insert into Presentacion_Servicio values(7,8,'Bloque',4,1560);
-insert into Presentacion_Servicio values(8,5,'Oficina',0,11500);
-insert into Presentacion_Servicio values(8,8,'Oficina',0,2500);
-insert into Presentacion_Servicio values(9,2,'Oficina',1,3900);
-insert into Presentacion_Servicio values(9,3,'Oficina',2,4000);
-insert into Presentacion_Servicio values(9,8,'Oficina',0,300); 
-insert into Presentacion_Servicio values(10,1,'Oficina',9,33333.3);
-insert into Presentacion_Servicio values(10,8,'Oficina',0,2500); 
-insert into Presentacion_Servicio values(11,2,'Oficina',1,2000);
-insert into Presentacion_Servicio values(11,8,'Oficina',0,500); 
+insert into Presentacion_Servicio values(1,1,'Oficina',4,9750, 'Con Factura e Iva');
+insert into Presentacion_Servicio values(1,6,'Oficina',1,2000, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(2,6,'Bloque',10,26900, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(2,7,'Bloque',1,600, 'Incluye IVA, Mano de Obra');     
+insert into Presentacion_Servicio values(3,7,'Bloque',7,45250, 'Incluye IVA, No Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(4,1,'Oficina',6,13919, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(4,8,'Oficina',0,900, 'Incluye IVA, Incluye Materiales'); 
+insert into Presentacion_Servicio values(5,1,'Oficina',2,2913.3, 'Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(5,8,'Oficina',0,416.7, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(6,1,'Oficina',8,28750, 'Incluye IVA, Incluye Materiales');
+insert into Presentacion_Servicio values(6,8,'Oficina',0,2450 ,'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(7,7,'Bloque',3,11000, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(7,8,'Bloque',4,1560, 'Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(8,5,'Oficina',0,11500, 'Incluye IVA');
+insert into Presentacion_Servicio values(8,8,'Oficina',0,2500, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(9,2,'Oficina',1,3900, 'Incluye IVA, Mano de Obra');
+insert into Presentacion_Servicio values(9,3,'Oficina',2,4000, 'Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(9,8,'Oficina',0,300, 'Incluye IVA, Incluye Materiales'); 
+insert into Presentacion_Servicio values(10,1,'Oficina',9,33333.3, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(10,8,'Oficina',0,2500, 'Incluye IVA, Incluye Materiales'); 
+insert into Presentacion_Servicio values(11,2,'Oficina',1,2000, 'Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(11,8,'Oficina',0,500, 'Incluye IVA, No Incluye Materiales, Mano de Obra'); 
 
 insert into Propuesta values(1,12);
 insert into Propuesta values(4,12);
@@ -352,15 +344,15 @@ insert into Insumo_Almacen values(34,1,24);
 insert into Informe values(1,'2018/06/13','Informe de Trabajo Concluido 
 De mi consideración:
 Me dirijo a ustedes, a tiempo de saludarlos, hago llegar a su persona mis más sinceros deseos de éxitos en sus funciones.
-Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA POST OBRA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',3);
+Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA POST OBRA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',3,null,null);
 insert into Informe values(2,'2018/10/30','Informe de Trabajo Concluido 
 De mi consideración:
 Me dirijo a ustedes, a tiempo de saludarlos, hago llegar a su persona mis más sinceros deseos de éxitos en sus funciones.
-Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA PROFUNDA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',7);
+Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA PROFUNDA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',7, null, null);
 insert into Informe values(3,'2019/04/10','Informe de Trabajo Concluido 
 De mi consideración:
 Me dirijo a ustedes, a tiempo de saludarlos, hago llegar a su persona mis más sinceros deseos de éxitos en sus funciones.
-Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA POST OBRA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',8);
+Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA POST OBRA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',8,null,null);
 
 insert into Contrato values(1,'2018/05/23','2019/05/23',1);
 insert into Contrato values(2,'2018/07/25','2019/07/25',4);
@@ -553,35 +545,37 @@ insert into Detalle_Ingreso values(164,'Paños de algodon',12,7,9);
 insert into Detalle_Ingreso values(165,'Franelas',12,5,9);
 insert into Detalle_Ingreso values(166,'Esponja',10,5,9);
 
-insert into Personal values (1,'Leonor Claros Torrico','F','Gerente');
-insert into Personal values (2,'Stephani Heredia Claros','F','Administrador');
-insert into Personal values (3,'Divina Lino Cuellar','F','Operador de Limpieza');
-insert into Personal values (4,'Monica Kelly Heredia Zeballos','F','Supervisor');
-insert into Personal values (5,'Daniel Valda Torrez','E','Operador de Limpieza');
-insert into Personal values (6,'Sonia Arenas Estevez','F','Operador de Limpieza');
-insert into Personal values (7,'Adela Enriquez Cochegua','E','Operador de Limpieza');
-insert into Personal values (8,'Maria Gloria Aramendaro','E','1Operador de Limpieza');
-insert into Personal values (9,'Fernando Espinoza Ardaya','E','Operador de Limpieza');
-insert into Personal values (10,'Juan Espinoza Ardaya','E','Operador de Limpieza');
-insert into Personal values (11,'Leonarda Apaza','E','Operador de Limpieza');
-insert into Personal values (12,'Elsa Morales','E','Operador de Limpieza');
-insert into Personal values (13,'Raquel Estrada','E','Operador de Limpieza');
-insert into Personal values (14,'Marta Peñaranta','E','Operador de Limpieza');
-insert into Personal values (15,'Jorge Airese','E','Operador de Limpieza');
-insert into Personal values (16,'Crithian Aleman','E','Operador de Limpieza');
-insert into Personal values (17,'Goldy Bayaregua','E','Operador de Limpieza');
-insert into Personal values (18,'Alejandria Guancu','E','Operador de Limpieza');
-insert into Personal values (19,'Cristian Luna','F','Supervisor');
-insert into Personal values (20,'Maritza Lino','F','Supervisor');
-insert into Personal values (21,'Nadia Aleman','E','Operador de Limpieza');
-insert into Personal values (22,'Yessenia','E','Operador de Limpieza');
-insert into Personal values (23,'Veronica Castro','E','Operador de Limpieza');
-insert into Personal values (24,'Ines Garcia','E','Operador de Limpieza');
-insert into Personal values (25,'Marili Aguilar Sanchez','F','Supervisor');
+insert into Personal values (1,'leonor claros torrico','F','gerente');
+insert into Personal values (2,'stephani heredia claros','F','administrador');
+insert into Personal values (3,'divina lino cuellar','F','operador de limpieza');
+insert into Personal values (4,'monica kelly heredia zeballos','F','supervisor');
+insert into Personal values (5,'daniel valda torrez','E','operador de limpieza');
+insert into Personal values (6,'sonia arenas estevez','F','operador de limpieza');
+insert into Personal values (7,'adela enriquez cochegua','E','operador de limpieza');
+insert into Personal values (8,'maria gloria aramendaro','E','operador de limpieza');
+insert into Personal values (9,'fernando espinoza ardaya','E','operador de limpieza');
+insert into Personal values (10,'juan espinoza ardaya','E','operador de limpieza');
+insert into Personal values (11,'leonarda apaza','E','operador de limpieza');
+insert into Personal values (12,'elsa morales','E','operador de limpieza');
+insert into Personal values (13,'raquel estrada','E','operador de limpieza');
+insert into Personal values (14,'marta peñaranta','E','operador de limpieza');
+insert into Personal values (15,'jorge airese','E','operador de limpieza');
+insert into Personal values (16,'crithian aleman','E','operador de limpieza');
+insert into Personal values (17,'goldy bayaregua','E','operador de limpieza');
+insert into Personal values (18,'alejandria guancu','E','operador de limpieza');
+insert into Personal values (19,'cristian luna','F','supervisor');
+insert into Personal values (20,'maritza lino','F','supervisor');
+insert into Personal values (21,'nadia aleman','E','operador de limpieza');
+insert into Personal values (22,'yessenia','E','operador de limpieza');
+insert into Personal values (23,'veronica castro','E','operador de limpieza');
+insert into Personal values (24,'ines garcia','E','operador de limpieza');
+insert into Personal values (25,'marili aguilar sanchez','F','supervisor');
 
-insert into Usuario values (1,'Leonor','leonorCT71',1);
-insert into Usuario values (2,'Stephani','stephaniHC97',2);
-
+insert into Usuario(cod_usuario,nombre,contrasenia,question,answer,id_personal_usuario) values 
+(1,'leonor'  ,'4fc572104aefd0d77d3f730595f784f30e1a43be','Si a=b y b=c, entonces ¿a=c?','3a4b324ac68dd0bf2802abe457653208',1),
+--Contrasenia = 'leonorCT71' answer ='a=c'
+(2,'stephani','f4b968000b1905e24b45eaa516bdbfb0ccb3df4a','¿Cúal es mi nombre?'         ,'4a3a932425682c8b87dac8d9f2e0128f',2);
+--Contrasenia = 'stephaniHC97' answer = 'stephani'
 insert into Rol(cod_rol,descripcion) values (1,'Gerencia'),
 											(2,'Administracion');
 
@@ -589,17 +583,32 @@ insert into Usuario_Rol(cod_usuario,cod_rol) values (1,1),
 													(2,2);
 
 insert into Permiso(id_permiso,descripcion) values 
-(1,'Gestion de Servicios'),
-(2,'Gestion de Clientes'),
-(3,'Administracion de Bitacora'),
-(4,'Gestion de Presentacion(Propuestas y Cotizaciones)'),
-(5,'Gestion de Notas de Almacen'),
-(6,'Gestion de Insumos (Productos y Almacen)'),
-(7,'Gestion de Personal'),
-(8,'Gestion de Usuarios'),
-(9,'Gestion de Proveedores');
+(1,'Gestion de Propuestas'),
+(2,'Gestion de Cotizacion'),
+(3,'Gestion de Informes'),
+(4,'Administrar Contratos'),
+(5,'Gestion de Servicios'),
+(6,'Gestion de Clientes'),
 
-insert into Rol_Permiso(cod_rol,id_permiso) values 
+(7,'Gestion de Proveedores'),
+(8,'Gestion de Almacenes'),
+(9,'Gestion de Notas de Ingreso'),
+(10,'Gestion de Notas de Egreso'),
+(11,'Gestion de Notas de Devolucion'),
+
+(12,'Gestion de Usuarios'),
+(13,'Gestion de Roles'),
+(14,'Gestion de Permisos'),
+(15,'Administracion de Bitacora'),
+(16,'Gestion de Personal'),
+
+(17,'Gestion de Productos'),
+(18,'Gestion de Herramientas'),
+(19,'Gestion de Gestion de Categoria Productos'),
+(20,'Consultar Reportes de Productos'),
+(21,'Consultar Reportes de Herramientas');
+
+insert into Rol_Permiso(cod_rol,id_permiso) values
 (1,1),
 (1,2),
 (1,3),
@@ -609,17 +618,25 @@ insert into Rol_Permiso(cod_rol,id_permiso) values
 (1,7),
 (1,8),
 (1,9),
-(2,1),
-(2,2),
-(2,3),
-(2,4),
-(2,5),
-(2,6),
-(2,7),
+(1,10),
+(1,11),
+(1,12),
+(1,13),
+(1,14),
+(1,15),
+(1,16),
+(1,17),
+(1,18),
+(1,19),
+(1,20),
+(1,21),
 (2,8),
-(2,9);
+(2,9),
+(2,10),
+(2,16),
+(2,18);
 
-insert into Nota(nro_nota,fecha,tipo,cod_almacen,id_personal) values 
+insert into Nota(nro_nota,fecha,tipo,cod_almacen,id_personal) values
 (1 ,'2018/05/21','E',1,4),
 (2 ,'2018/06/21','E',1,4),
 (3 ,'2018/07/21','E',1,4),

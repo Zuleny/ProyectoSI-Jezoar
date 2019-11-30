@@ -1,16 +1,14 @@
--- Database: jezoar
+-- Database: jezoar----->30/11/2019
 
 -- DROP DATABASE jezoar;
+/*
+CREATE DATABASE jezoar 
+	with owner=jezoar 
+	encoding='UTF8' 
+	tablespace=pg_default 
+	CONNECTION LIMIT=-1;
 
-CREATE DATABASE jezoar
-    WITH 
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    LC_COLLATE = 'Spanish_Spain.1252'
-    LC_CTYPE = 'Spanish_Spain.1252'
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1;
-
+*/
 COMMENT ON DATABASE jezoar
     IS 'clean service Jezoar';
 	
@@ -76,6 +74,7 @@ create table Presentacion_Servicio(
    area_trabajo varchar(100),	--lugar a trabajar
    cant_personal int not null,
    precio_unitario decimal(12,2) not null,
+   descripcionservicios varchar(100) not null,
    foreign key(cod_presentacion) references Presentacion(cod_presentacion)
    on update cascade 
    on delete cascade,
@@ -83,15 +82,6 @@ create table Presentacion_Servicio(
    on update cascade 
    on delete cascade,
    primary key(cod_presentacion,id_servicio)   
-);
-
-create table Detalle_Servicio(
-   id_servicio int not null,
-   id_detalle int not null,
-   detalle varchar(500) not null,	--descripcion de servicions que solicita el cliente
-   foreign key (id_servicio) references Servicio(id_servicio)
-   on update cascade  on delete cascade,
-   primary key(id_servicio,id_detalle)
 );
 
 create table Propuesta(
@@ -301,6 +291,8 @@ create table Informe (
 	fecha date not null,
 	descripcion varchar(10000) not null,
 	cod_presentacion_cotizacion int not null,
+	imageBefore text null,
+	imageAfter text null,
 	foreign key (cod_presentacion_cotizacion) references Cotizacion(cod_presentacion_cotizacion)
 	on update cascade
 	on delete cascade
@@ -358,56 +350,47 @@ insert into Presentacion values(10,'2019/02/20','Denegado',430000,6,'P');
 insert into Presentacion values(11,'2019/04/21','Espera',30000,5,'P');
 
 insert into Servicio values(1,'Limpieza general de oficinas');
-insert into Servicio values(2,'Limpieza de vidrios');
-insert into Servicio values(3,'Limpieza de pisos');
-insert into Servicio values(4,'Limpieza de escaleras');
-insert into Servicio values(5,'Limpieza general de postobra');
-insert into Servicio values(6,'Servicio de supervicion');
-insert into Servicio values(7,'Limpieza general profunda');
-insert into Servicio values(8,'Prestacion de materiales');
+insert into Servicio values(2,'Limpieza general de oficinas');
+insert into Servicio values(3,'Limpieza general de oficinas');
+insert into Servicio values(4,'Limpieza de vidrios');
+insert into Servicio values(5,'Limpieza de vidrios');
+insert into Servicio values(6,'Limpieza de vidrios');
+insert into Servicio values(7,'Limpieza de pisos');
+insert into Servicio values(8,'Limpieza de escaleras');
+insert into Servicio values(9,'Limpieza de escaleras');
+insert into Servicio values(10,'Limpieza general de postobra');
+insert into Servicio values(11,'Limpieza general de postobra');
+insert into Servicio values(12,'Limpieza general de postobra');
+insert into Servicio values(13,'Servicio de supervicion');
+insert into Servicio values(14,'Servicio de supervicion');
+insert into Servicio values(15,'Limpieza general profunda');
+insert into Servicio values(16,'Limpieza general profunda');
+insert into Servicio values(17,'Limpieza general profunda');
+insert into Servicio values(18,'Prestacion de materiales');
+insert into Servicio values(19,'Prestacion de materiales');
 
-insert into Detalle_Servicio values(1,1,'Incluye IVA');
-insert into Detalle_Servicio values(1,2,'Incluye materiales');
-insert into Detalle_Servicio values(1,3,'Mano de obra');
-insert into Detalle_Servicio values(2,1,'Incluye IVA');
-insert into Detalle_Servicio values(2,2,'Sin material');
-insert into Detalle_Servicio values(3,1,'Incluye IVA');
-insert into Detalle_Servicio values(3,2,'Sin material');
-insert into Detalle_Servicio values(4,1,'Sin material');
-insert into Detalle_Servicio values(4,2,'Incluye IVA');
-insert into Detalle_Servicio values(5,1,'Con material');
-insert into Detalle_Servicio values(5,2,'Incluye IVA');
-insert into Detalle_Servicio values(5,3,'Mano de obra');
-insert into Detalle_Servicio values(6,1,'Con material');
-insert into Detalle_Servicio values(6,2,'Incluye IVA');
-insert into Detalle_Servicio values(7,1,'Con material');
-insert into Detalle_Servicio values(7,2,'Incluye IVA');
-insert into Detalle_Servicio values(7,3,'Mano de obra');
-insert into Detalle_Servicio values(8,1,'Con material');
-insert into Detalle_Servicio values(8,2,'Mano de obra');
-
-insert into Presentacion_Servicio values(1,1,'Oficina',4,9750);
-insert into Presentacion_Servicio values(1,6,'Oficina',1,2000);
-insert into Presentacion_Servicio values(2,6,'Bloque',10,26900);
-insert into Presentacion_Servicio values(2,7,'Bloque',1,600);     
-insert into Presentacion_Servicio values(3,7,'Bloque',7,45250);
-insert into Presentacion_Servicio values(4,1,'Oficina',6,13919);
-insert into Presentacion_Servicio values(4,8,'Oficina',0,900); 
-insert into Presentacion_Servicio values(5,1,'Oficina',2,2913.3);
-insert into Presentacion_Servicio values(5,8,'Oficina',0,416.7);
-insert into Presentacion_Servicio values(6,1,'Oficina',8,28750);
-insert into Presentacion_Servicio values(6,8,'Oficina',0,2450);
-insert into Presentacion_Servicio values(7,7,'Bloque',3,11000);
-insert into Presentacion_Servicio values(7,8,'Bloque',4,1560);
-insert into Presentacion_Servicio values(8,5,'Oficina',0,11500);
-insert into Presentacion_Servicio values(8,8,'Oficina',0,2500);
-insert into Presentacion_Servicio values(9,2,'Oficina',1,3900);
-insert into Presentacion_Servicio values(9,3,'Oficina',2,4000);
-insert into Presentacion_Servicio values(9,8,'Oficina',0,300); 
-insert into Presentacion_Servicio values(10,1,'Oficina',9,33333.3);
-insert into Presentacion_Servicio values(10,8,'Oficina',0,2500); 
-insert into Presentacion_Servicio values(11,2,'Oficina',1,2000);
-insert into Presentacion_Servicio values(11,8,'Oficina',0,500); 
+insert into Presentacion_Servicio values(1,1,'Oficina',4,9750, 'Con Factura e Iva');
+insert into Presentacion_Servicio values(1,6,'Oficina',1,2000, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(2,6,'Bloque',10,26900, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(2,7,'Bloque',1,600, 'Incluye IVA, Mano de Obra');     
+insert into Presentacion_Servicio values(3,7,'Bloque',7,45250, 'Incluye IVA, No Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(4,1,'Oficina',6,13919, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(4,8,'Oficina',0,900, 'Incluye IVA, Incluye Materiales'); 
+insert into Presentacion_Servicio values(5,1,'Oficina',2,2913.3, 'Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(5,8,'Oficina',0,416.7, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(6,1,'Oficina',8,28750, 'Incluye IVA, Incluye Materiales');
+insert into Presentacion_Servicio values(6,8,'Oficina',0,2450 ,'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(7,7,'Bloque',3,11000, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(7,8,'Bloque',4,1560, 'Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(8,5,'Oficina',0,11500, 'Incluye IVA');
+insert into Presentacion_Servicio values(8,8,'Oficina',0,2500, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(9,2,'Oficina',1,3900, 'Incluye IVA, Mano de Obra');
+insert into Presentacion_Servicio values(9,3,'Oficina',2,4000, 'Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(9,8,'Oficina',0,300, 'Incluye IVA, Incluye Materiales'); 
+insert into Presentacion_Servicio values(10,1,'Oficina',9,33333.3, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(10,8,'Oficina',0,2500, 'Incluye IVA, Incluye Materiales'); 
+insert into Presentacion_Servicio values(11,2,'Oficina',1,2000, 'Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(11,8,'Oficina',0,500, 'Incluye IVA, No Incluye Materiales, Mano de Obra'); 
 
 insert into Propuesta values(1,12);
 insert into Propuesta values(4,12);
@@ -673,15 +656,15 @@ insert into Insumo_Almacen values(34,1,24);
 insert into Informe values(1,'2018/06/13','Informe de Trabajo Concluido 
 De mi consideración:
 Me dirijo a ustedes, a tiempo de saludarlos, hago llegar a su persona mis más sinceros deseos de éxitos en sus funciones.
-Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA POST OBRA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',3);
+Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA POST OBRA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',3,null,null);
 insert into Informe values(2,'2018/10/30','Informe de Trabajo Concluido 
 De mi consideración:
 Me dirijo a ustedes, a tiempo de saludarlos, hago llegar a su persona mis más sinceros deseos de éxitos en sus funciones.
-Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA PROFUNDA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',7);
+Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA PROFUNDA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',7, null, null);
 insert into Informe values(3,'2019/04/10','Informe de Trabajo Concluido 
 De mi consideración:
 Me dirijo a ustedes, a tiempo de saludarlos, hago llegar a su persona mis más sinceros deseos de éxitos en sus funciones.
-Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA POST OBRA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',8);
+Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA POST OBRA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',8,null,null);
 
 insert into Contrato values(1,'2018/05/23','2019/05/23',1);
 insert into Contrato values(2,'2018/07/25','2019/07/25',4);
@@ -901,9 +884,10 @@ insert into Personal values (24,'ines garcia','E','operador de limpieza');
 insert into Personal values (25,'marili aguilar sanchez','F','supervisor');
 
 insert into Usuario(cod_usuario,nombre,contrasenia,question,answer,id_personal_usuario) values 
-(	1	   ,'leonor'  ,'leonorCT71'  ,'Si a=b y b=c, entonces ¿a=c?','a=c'	   ,1),
-(	2	   ,'stephani','stephaniHC97','¿Cúal es mi nombre?'         ,'stephani',2);
-
+(1,'leonor'  ,'4fc572104aefd0d77d3f730595f784f30e1a43be','Si a=b y b=c, entonces ¿a=c?','3a4b324ac68dd0bf2802abe457653208',1),
+--Contrasenia = 'leonorCT71' answer ='a=c'
+(2,'stephani','f4b968000b1905e24b45eaa516bdbfb0ccb3df4a','¿Cúal es mi nombre?'         ,'4a3a932425682c8b87dac8d9f2e0128f',2);
+--Contrasenia = 'stephaniHC97' answer = 'stephani'
 insert into Rol(cod_rol,descripcion) values (1,'Gerencia'),
 											(2,'Administracion');
 
@@ -911,17 +895,32 @@ insert into Usuario_Rol(cod_usuario,cod_rol) values (1,1),
 													(2,2);
 
 insert into Permiso(id_permiso,descripcion) values 
-(1,'Gestion de Servicios'),
-(2,'Gestion de Clientes'),
-(3,'Administracion de Bitacora'),
-(4,'Gestion de Presentacion(Propuestas y Cotizaciones)'),
-(5,'Gestion de Notas de Almacen'),
-(6,'Gestion de Insumos (Productos y Almacen)'),
-(7,'Gestion de Personal'),
-(8,'Gestion de Usuarios'),
-(9,'Gestion de Proveedores');
+(1,'Gestion de Propuestas'),
+(2,'Gestion de Cotizacion'),
+(3,'Gestion de Informes'),
+(4,'Administrar Contratos'),
+(5,'Gestion de Servicios'),
+(6,'Gestion de Clientes'),
 
-insert into Rol_Permiso(cod_rol,id_permiso) values 
+(7,'Gestion de Proveedores'),
+(8,'Gestion de Almacenes'),
+(9,'Gestion de Notas de Ingreso'),
+(10,'Gestion de Notas de Egreso'),
+(11,'Gestion de Notas de Devolucion'),
+
+(12,'Gestion de Usuarios'),
+(13,'Gestion de Roles'),
+(14,'Gestion de Permisos'),
+(15,'Administracion de Bitacora'),
+(16,'Gestion de Personal'),
+
+(17,'Gestion de Productos'),
+(18,'Gestion de Herramientas'),
+(19,'Gestion de Gestion de Categoria Productos'),
+(20,'Consultar Reportes de Productos'),
+(21,'Consultar Reportes de Herramientas');
+
+insert into Rol_Permiso(cod_rol,id_permiso) values
 (1,1),
 (1,2),
 (1,3),
@@ -931,17 +930,25 @@ insert into Rol_Permiso(cod_rol,id_permiso) values
 (1,7),
 (1,8),
 (1,9),
-(2,1),
-(2,2),
-(2,3),
-(2,4),
-(2,5),
-(2,6),
-(2,7),
+(1,10),
+(1,11),
+(1,12),
+(1,13),
+(1,14),
+(1,15),
+(1,16),
+(1,17),
+(1,18),
+(1,19),
+(1,20),
+(1,21),
 (2,8),
-(2,9);
+(2,9),
+(2,10),
+(2,16),
+(2,18);
 
-insert into Nota(nro_nota,fecha,tipo,cod_almacen,id_personal) values 
+insert into Nota(nro_nota,fecha,tipo,cod_almacen,id_personal) values
 (1 ,'2018/05/21','E',1,4),
 (2 ,'2018/06/21','E',1,4),
 (3 ,'2018/07/21','E',1,4),
@@ -1236,7 +1243,6 @@ insert into Detalle_Nota(nro_nota,id_detalle,nombre_insumo,cantidad_insumo) valu
 (46,5,'Avion',1);
 
 /******************************Funciones y Procedimientos Almacenados y Triggers*****************/
-/******************************Funciones y Procedimientos Almacenados y Triggers*****************/
 /*1. Funcion que Devuelve el stock de un insumo en un Almacen especifico
 	 (cantidad Disponible del Insumo)*/
 create or replace function getStockInsumo(nombreInsumo varchar(35), codAlmacen integer)returns int as $$
@@ -1303,8 +1309,7 @@ begin
 			raise notice 'Devolucion realizada correctamente :3';
 		else
 			raise notice 'Error... No existe el insumo a Devolver, registre el nuevo insumo';
-			raise notice 'No se registro el insumo % en la nota %',new.nombre_insumo,new.nro_nota;
-			rollback;
+			raise exception 'No se registro el insumo % en la nota %',new.nombre_insumo,new.nro_nota;
 		end if;
 	end if;
 	return new;
@@ -1340,8 +1345,8 @@ begin
 				raise notice 'Egreso realizado correctamente :3 Insumo: % en el NroNota: %',new.nombre_insumo,new.nro_nota;
 			else 
 				raise notice 'No se realizo el registro, Stock insuficiente en el almacen Nro %',codAlmacen;
-				raise notice 'No se registro el insumo: % en el nro de Nota: %',new.nombre_insumo,new.nro_nota;
-				rollback;
+				raise exception 'No se registro el insumo: % en el nro de Nota: %',new.nombre_insumo,new.nro_nota;
+				
 			end if;
 		else 
 			raise notice 'No se realizo el registro, Insumo % no registrado',new.nombre_insumo;
@@ -1394,7 +1399,8 @@ end;
 $$ language plpgsql;
 
 /*13. Funcion Trigger que Elimina una registro de una nota de Devolucion*/
-create or replace function detalleDevolucionAnulacion()returns trigger as $BODY$ 
+create or replace function detalleDevolucionAnulacion()returns trigger 
+as $BODY$ 
 declare codAlmacen INTEGER;
 		codInsumo INTEGER;
 		fechaNotaDevolucion DATE;
@@ -1407,9 +1413,13 @@ begin
 		codInsumo := getCodInsumo(old.nombre_insumo);
 		fechaNotaDevolucion := getFechaNota(old.nro_nota);
 		cantDiasLimite := fechaActual - fechaNotaDevolucion;
-		update insumo_almacen set stock = stock - old.cantidad_insumo 
-			where cod_almacen = codAlmacen and cod_insumo = codInsumo;
-			raise notice 'La anulacion del registro del insumo % fue exitoso. Nota nro: %',old.nombre_insumo,old.nro_nota;
+		if old.cantidad_insumo<getStockInsumo(old.nombre_insumo, codAlmacen) then
+			update insumo_almacen set stock = stock - old.cantidad_insumo 
+				where cod_almacen = codAlmacen and cod_insumo = codInsumo;
+				raise notice 'La anulacion del registro del insumo % fue exitoso. Nota nro: %',old.nombre_insumo,old.nro_nota;
+		else
+			raise exception 'Error en La Anulacion, stock negativo no ser posible';
+		end if;
 	end if;
 	return old;
 end;
@@ -1448,7 +1458,6 @@ create trigger iDetalleIngreso
 before insert on Detalle_Ingreso
 for each row 
 	execute procedure ingresoDetalle();
-
 /*17. Funcion Auxiliar para el trigger dDetalleIngreso*/
 create or replace function dIngresoDetalle() returns trigger as 
 $$
@@ -1690,7 +1699,53 @@ as $$ begin
 			where nombre=nombreAlmacen);
 end $$ language 'plpgsql';
 
+<<<<<<< HEAD
 /*40. Funcion que devuelve el devuelve el tipo de cliente de acuerdo a su codigo*/
+=======
+/*40. Funcion que retorna la cantidad de insumos que ingresan en un determinado detalle de ingreso de un determinado almacen y nro de ingreso*/
+create or replace function getCantidadDetalleIngreso(nroIngreso integer,idIngreso integer,codAlmacen integer) returns int as
+$BODY$
+ begin
+	return (select cantidad
+			from nota_ingreso,detalle_ingreso
+			where nota_ingreso.nro_ingreso=detalle_ingreso.nro_ingreso and
+		    cod_almacen=codAlmacen and id_ingreso=idingreso and detalle_ingreso.nro_ingreso=nroIngreso);
+end;
+$BODY$
+language plpgsql;
+
+/*41. Funcion auxiliar para el trigger uDetalleIngreso*/
+create or replace function uDetalleIngreso() returns trigger as
+$$
+    declare codInsumo integer;
+            codAlmacen integer;
+            cantidad integer;
+    begin
+		codInsumo:=getCodInsumo(new.nombre_insumo);
+		if(existeInsumo(codInsumo)) then
+		   codAlmacen:=getCodAlmacen(new.nro_ingreso);
+           cantidad:=getCantidadDetalleIngreso(new.nro_ingreso,new.id_ingreso,codAlmacen);
+		   update Insumo_Almacen set stock=(stock-cantidad)+new.cantidad
+		   where cod_insumo=codInsumo and cod_almacen=codAlmacen;
+		   raise notice 'Insumo actualizado exitosamente: insumo: % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
+
+		else
+		   raise notice 'Error: Insumo no encontrado, Registre el insumo';
+		   RAISE EXCEPTION 'Error: No se actualizo el detalle % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
+		end if;
+		return new;
+	end;
+$$
+language plpgsql;
+
+/*42. Trigger para actualizar el stock de un determinado insumo y almacen al momento de actualizar una fila en la tabla Detalle_Ingreso */
+create trigger uDetalleIngreso
+before update on Detalle_Ingreso
+for each row
+	execute procedure uDetalleIngreso();
+
+/*43. Funcion que devuelve el devuelve el tipo de cliente de acuerdo a su codigo*/
+>>>>>>> origin
 create or replace function esPersona(codCliente integer)
 returns integer
 as $BODY$
@@ -1704,7 +1759,12 @@ begin
 	end if;
 end;
 $BODY$ language 'plpgsql';
+<<<<<<< HEAD
 /*41. Funcion que devuelve el CI o Nit de acuerdo a su tipo*/
+=======
+
+/*44. Funcion que devuelve el CI o Nit de acuerdo a su tipo*/
+>>>>>>> origin
 create or replace function getNIT_CI_Cliente(codCliente integer)
 returns integer
 as $BODY$
@@ -1717,4 +1777,8 @@ begin
 	end if;
 return resultado;
 end;
+<<<<<<< HEAD
 $BODY$ language 'plpgsql';
+=======
+$BODY$ language 'plpgsql';
+>>>>>>> origin

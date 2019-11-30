@@ -1,6 +1,6 @@
 <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
@@ -14,6 +14,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MENÚ DE NAVEGACIÓN</li>
+<<<<<<< HEAD
             <!-- Servicios -->
             <li class="treeview">
               <a href="#">
@@ -82,14 +83,21 @@
                   <li><a href="http://localhost/ProyectoSI-Jezoar/view/GestionarReporteInventarioHermamienta/ListaAlmacenes.php"><i class="fa fa-circle-o"></i>Reportes de Herramientas</a></li>
               </ul>
             </li>
+=======
+            <?php 
+            
+              echo $_SESSION['listPermisos'];
+
+            ?>
+>>>>>>> origin
             <!-- Equipo de Trabajo -->
             <li>
-              <a href="http://localhost/ProyectoSI-Jezoar/view/DevelopersView/Developers.php">
+              <a href="../../view/DevelopersView/Developers.php">
                   <i class="fa fa-laptop"></i>
                   <span>Developers</span>
               </a>
             </li>
         </ul>
-    </section>
-    <!-- /.sidebar -->
-</aside>
+      </section>
+      <!-- /.sidebar -->
+    </aside>

@@ -55,7 +55,21 @@ function getTableCliente(){
 
     }
     return $printer;
-
+}
+function getListaClienteEditar(){
+    $cliente= new Cliente(0,"","","","","","","");
+    $result=$cliente->getListCliente();
+    $nroFilas=pg_num_rows($result);
+    $printer="";
+    for ($tupla=0; $tupla <$nroFilas ; $tupla++) { 
+        $printer.='<option value="'.pg_result($result,$tupla,0).'">'.pg_result($result,$tupla,0).'</option>';
+    }
+    return $printer;
+}
+function getDatosEditarCliente($codCliente) {
+    require '../../model/clienteModel.php';
+    $cliente = new Cliente();
+    return $cliente->getDatosClienteEditar($codCliente);
 }
 
 /*

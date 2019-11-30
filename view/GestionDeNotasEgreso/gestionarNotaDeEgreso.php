@@ -21,16 +21,16 @@
                 </div>
             </div>
             <!-- Inicia tu codigo aqui -->                    
-            <form role="form" action="../../controller/NotasController/notaEgresoController.php" method="post">
+            <form role="form" action="../../controller/notaEgresoController.php" method="post">
                 <div class="box-body">
                     <div class="col-lg-4">
                         <label>Nombre Personal Recibe</label>
                         <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="personalEgreso">
                             <?php 
-                                require '../../controller/NotasController/notaEgresoController.php';
+                                require '../../controller/notaEgresoController.php';
                                 $resultado = getNombresDePersonal();
                                  $nroFilas = pg_num_rows($resultado);
-                                     \FB::log($nroFilas);
+                                     //  \FB::log($nroFilas);
                                 for ($fila=0; $fila < $nroFilas; $fila++) { 
                                     echo '<option value="'.pg_result($resultado,$fila,0).'">'.pg_result($resultado,$fila,0).'</option>';
                                 }
@@ -104,7 +104,12 @@
                                                                 <i class="fa fa-fw fa-cubes"></i>
                                                             </button>
                                                         </a>
-                                                        <a href="../../controller/NotasController/notaEgresoController.php?nota='.pg_result($resultado,$fila,0).'">
+                                                        <a href="editartNotaEgreso.php?notaEditar='.pg_result($resultado,$fila,0).'">
+                                                            <button type="button" class="btn bg-purple btn-xs" title="Editar Nota">
+                                                                <i class="fa fa-fw fa-edit"></i>
+                                                            </button>
+                                                        </a>
+                                                        <a href="../../controller/notaEgresoController.php?nota='.pg_result($resultado,$fila,0).'">
                                                             <button type="button" class="btn bg-red btn-xs" title="Eliminar Nota">
                                                                 <i class="fa fa-fw fa-trash-o"></i>
                                                             </button>

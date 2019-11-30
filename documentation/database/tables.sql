@@ -1,3 +1,16 @@
+-- Database: jezoar----->30/11/2019
+
+-- DROP DATABASE jezoar;
+/*
+CREATE DATABASE jezoar 
+	with owner=jezoar 
+	encoding='UTF8' 
+	tablespace=pg_default 
+	CONNECTION LIMIT=-1;
+
+*/
+COMMENT ON DATABASE jezoar
+    IS 'clean service Jezoar';
 	
 create table Cliente (
 	cod_cliente int not null primary key,
@@ -61,6 +74,7 @@ create table Presentacion_Servicio(
    area_trabajo varchar(100),	--lugar a trabajar
    cant_personal int not null,
    precio_unitario decimal(12,2) not null,
+   descripcionservicios varchar(100) not null,
    foreign key(cod_presentacion) references Presentacion(cod_presentacion)
    on update cascade 
    on delete cascade,
@@ -68,15 +82,6 @@ create table Presentacion_Servicio(
    on update cascade 
    on delete cascade,
    primary key(cod_presentacion,id_servicio)   
-);
-
-create table Detalle_Servicio(
-   id_servicio int not null,
-   id_detalle int not null,
-   detalle varchar(500) not null,	--descripcion de servicions que solicita el cliente
-   foreign key (id_servicio) references Servicio(id_servicio)
-   on update cascade  on delete cascade,
-   primary key(id_servicio,id_detalle)
 );
 
 create table Propuesta(
@@ -180,15 +185,12 @@ create table Nota_Ingreso
 	fecha_ingreso date not null,
 	nombre_recibe varchar(25) not null,
 	cod_almacen integer not null,
-	cod_proveedor integer not null
+	cod_proveedor integer not null,
+	FOREIGN KEY(cod_almacen) REFERENCES Almacen(cod_almacen)
+	on update cascade on delete cascade,
+	FOREIGN KEY(cod_proveedor) REFERENCES Proveedor(cod_proveedor)
+	on update cascade on delete cascade
 );
-
-ALTER TABLE Nota_Ingreso add
-			FOREIGN KEY(cod_almacen)
-			REFERENCES Almacen(cod_almacen);
-ALTER TABLE Nota_Ingreso add 
-			FOREIGN KEY(cod_proveedor)
-			REFERENCES Proveedor(cod_proveedor);
 
 create table Detalle_Ingreso
 (
@@ -197,12 +199,10 @@ create table Detalle_Ingreso
 	cantidad decimal(12,2) not null,
 	precio_unitario decimal(12,2) not null,
 	nro_ingreso int not null,
-	primary key (id_ingreso,nro_ingreso)
+	primary key (id_ingreso,nro_ingreso),
+	FOREIGN KEY(nro_ingreso) REFERENCES Nota_Ingreso(nro_ingreso)
+	on update cascade on delete cascade
 );
-
-ALTER TABLE Detalle_Ingreso ADD
-			foreign key (nro_ingreso)
-			REFERENCES Nota_Ingreso(nro_ingreso);
 
 create table Personal
 (
@@ -218,6 +218,8 @@ create table Usuario
 	cod_usuario int not null primary key,
 	nombre varchar(25) not null,
 	contrasenia varchar(200) not null,
+	question varchar(200) not null,
+	answer varchar(200) not null,
 	id_personal_usuario int not null,
 	foreign key (id_personal_usuario) references Personal(id_personal)
 	on delete cascade
@@ -289,6 +291,8 @@ create table Informe (
 	fecha date not null,
 	descripcion varchar(10000) not null,
 	cod_presentacion_cotizacion int not null,
+	imageBefore text null,
+	imageAfter text null,
 	foreign key (cod_presentacion_cotizacion) references Cotizacion(cod_presentacion_cotizacion)
 	on update cascade
 	on delete cascade

@@ -14,7 +14,7 @@
     <section class="content">
         <div class="box box-info">
             <div class="box-header">
-                <h3 class="box-title">Lista de Servicios De La Cotización # <? echo $_GET['codigo']?></h3>
+                <h3 class="box-title">Lista de Servicios De La Cotización # <?php echo $_GET['codigo']?></h3>
                 <div class="box-tools pull-right">
                     <a href="gestionCotizacion.php" class="btn btn-primary" title="Volver Atras">
                     <span class="fa fa-fw fa-mail-reply"></span></a>
@@ -23,15 +23,23 @@
                 </div>
             </div>
             <div class="box-body">
-                <?
+                <?php
                     require '../../controller/cotizacionController.php';
                     $datos = getDatos($_GET['codigo']);
                 ?>
                 <p>
                     <b>Cliente: </b> <?php echo $datos[0]?> <br>
-                    <b>Fecha: </b> <? echo date('d F Y',strtotime($datos[1]));?> <br>
-                    <b>Estado: </b> <? echo $datos[2];?> <br>
-                    <b>Precio Total: : </b> <? echo $datos[3];?> Bs. <br>
+                    <b>Fecha: </b> <?php echo date('d F Y',strtotime($datos[1]));?> <br>
+                    <b>Estado: </b> <?php 
+                                        if ($datos[2]=="Denegado") {
+                                            echo '<td><span class="label label-danger">Denegado</span></td>';
+                                        }else if ($datos[2]=="Aceptado") {
+                                            echo '<td><span class="label label-success">Aceptado</span></td>';
+                                        }else{
+                                            echo '<td><span class="label label-warning">Espera</span></td>';
+                                        }
+                                    ?> <br>
+                    <b>Precio Total: : </b> <?php echo $datos[3];?> Bs. <br>
                 </p>
             </div>
             <!--  Tabla de Cotizaciones  -->

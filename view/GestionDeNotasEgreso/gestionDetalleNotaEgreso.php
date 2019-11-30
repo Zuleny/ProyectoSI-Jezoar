@@ -25,15 +25,15 @@
                     </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->                    
-                <form role="form" action="../../controller/NotasController/detalleNotaEgresoController.php" method="post">
+                <form role="form" action="../../controller/detalleNotaEgresoController.php" method="post">
                     <!--  Lugar de butons y label y textbox  -->
                     <div class="box-body">
                         <div class="col-lg-5">
                             <label>Insumo</label>
                             <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="nombreInsumo">
                             <?php 
-                                require '../../controller/NotasController/detalleNotaEgresoController.php';
-                                $resultado = getInsumos($_GET['nroNotaDetalle']);
+                                require '../../controller/detalleNotaEgresoController.php';
+                                $resultado = getListaInsumosAAgregar($_GET['nroNotaDetalle']);
                                 $nroFilas = pg_num_rows($resultado);
                                 for ($fila=0; $fila < $nroFilas; $fila++) { 
                                     echo '<option value="'.pg_result($resultado,$fila,0).'">'.pg_result($resultado,$fila,0).'</option>';
@@ -59,7 +59,7 @@
                             <h3 class="box-title">Lista de Insumos</h3>
                         </div>
                         <div class="box-body">
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover" id="tabla1">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -78,7 +78,7 @@
                                             echo   "<td>".pg_result($resultado,$fila,1)."</td>";
                                             echo   "<td>".pg_result($resultado,$fila,2)."</td>";
                                             echo   '<td> 
-                                                        <a href="../../controller/NotasController/detalleNotaEgresoController.php?nroNotaDetalle='.$_GET['nroNotaDetalle'].'&idDetalle='.pg_result($resultado,$fila,0).'">
+                                                        <a href="../../controller/detalleNotaEgresoController.php?nroNotaDetalle='.$_GET['nroNotaDetalle'].'&idDetalle='.pg_result($resultado,$fila,0).'">
                                                             <div class="btn-group">
                                                                 <button type="submit" class="btn bg-red btn-xs" title="Eliminar detalle">
                                                                     <i class="fa fa-fw fa-trash-o"></i>

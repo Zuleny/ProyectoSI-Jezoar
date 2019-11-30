@@ -24,6 +24,7 @@
                         &bull; Cerezo Calderon Margareth  <br>
                         &bull; Cruz Rodriguez Zuleny  <br>
                         &bull; Heredia Claros Stephani  <br>
+                        &bull; Nina Aguilar Cristian Yamil  <br>
                         &bull; Quispe Mamani Ruddy Bryan  <br>
                         <br>
                         <b>Versiones:</b> <br>
@@ -43,11 +44,11 @@
                 </div>
             </div>
             <div class="box-footer">
-                <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">
+                <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank" class="btn btn-block btn-social btn-facebook">
                     <i class="fa fa-facebook"></i>
                     Página de Facebook de Jezoar
                 </a>
-                <a href="#" class="btn btn-block btn-social btn-github">
+                <a href="https://github.com/Zuleny/ProyectoSI-Jezoar" target="_blank" class="btn btn-block btn-social btn-github">
                     <i class="fa fa-github"></i> 
                     Jezoar fué desarrollado bajo terminos de software libre
                 </a>

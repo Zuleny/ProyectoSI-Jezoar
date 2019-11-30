@@ -21,7 +21,7 @@
                 </div>
             </div>
             <!-- Inicia tu codigo aqui -->                    
-            <?
+            <?php
                 require "../../controller/usuarioController.php";
                 $lista = getListaPersonalEdit();
                 $resultado = getDatosUsuarioEditar( $_GET['codUser'] );
@@ -31,15 +31,15 @@
                 <div class="box-body">
                     <div class="col-lg-4">
                         <label>Nombre de Usuario</label>
-                        <input type="text" class="form-control" placeholder="Ej. messi" name="nombreEditar" value="<? echo pg_result($resultado,0,0); ?>">
+                        <input type="text" class="form-control" placeholder="Ej. messi" name="nombreEditar" value="<?php echo pg_result($resultado,0,0); ?>">
                     </div>
                     <div class="col-lg-4">
                         <label>Contraseña (OBLIGATORIO)</label>
                         <input type="password" class="form-control" placeholder="Contraseña Máx. 6 caracteres" name="passwordEditar">
-                        <input type="hidden" name="codUsuarioEditar" value="<? echo $_GET['codUser']; ?>">
+                        <input type="hidden" name="codUsuarioEditar" value="<?php echo $_GET['codUser']; ?>">
                     </div>
                     <div class="col-lg-4">
-                        <label><b>Personal: </b> <? echo strtoupper(pg_result($resultado,0,3)); ?></label>
+                        <label><b>Personal: </b> <?php echo strtoupper(pg_result($resultado,0,3)); ?></label>
                         <select class="form-control" name="nombrePEditar" >
                             <?php
                                 echo $lista;
@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-lg-5">
                         <label>Pregunta de Seguridad</label>
-                        <input type="text" class="form-control" placeholder="Ej. ¿Quién descubrió América?" name="pregEditar" value="<? echo pg_result($resultado,0,1); ?>">
+                        <input type="text" class="form-control" placeholder="Ej. ¿Quién descubrió América?" name="pregEditar" value="<?php echo pg_result($resultado,0,1); ?>">
                     </div>
                     <div class="col-lg-5">
                         <label>Respuesta de Seguridad</label>

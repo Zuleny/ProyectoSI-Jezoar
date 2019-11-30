@@ -46,7 +46,7 @@
                     <!-- FIN Boton NOTA INGRESO -->
                     <!-- Boton NOTA EGRESO -->
                     <div class="col-md-3 col-lg-4 col-12">
-                        <a href="../GetionarNotas/gestionarNotaDeEgreso.php">
+                        <a href="../GestionDeNotasEgreso/gestionarNotaDeEgreso.php">
                             <div class="info-box bg-blue-gradient">
                                 <span class="info-box-icon ">
                                     <i class="fa fa-bookmark-o"></i>

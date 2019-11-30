@@ -6,7 +6,7 @@
     <section class="content-header">
         <h1>
             Categoria de Productos
-            <!-- <small>Blank example to the fixed layout</small> -->
+            <small>Gestión De Insumos</small>
         </h1>
     </section>
     <!-- Fin de la cabecera -->
@@ -43,7 +43,7 @@
                         <h3 class="box-title">Categoria de Productos de la Empresa Jezoar</h3>
                     </div>
                     <div class="box-body">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover" id="tabla1">
                             <thead>
                                 <tr>
                                     <th>Codigo de Categoria</th>

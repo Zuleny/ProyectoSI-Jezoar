@@ -22,14 +22,13 @@
         $printer="";
             for ($tupla=0; $tupla < $countTuplas; $tupla++){ 
                 $printer.='<tr> <td>'. pg_result($result,$tupla,0).'</td>';
-                $printer.= '<td>'.'<div contentEditable="false">'. pg_result($result,$tupla,1).'</div></td>';
-                $printer.= '<td>'.'<div contentEditable="false">'. pg_result($result,$tupla,2).'</div></td>';
+                $printer.= '<td>'. pg_result($result,$tupla,1).'</td>';
+                $printer.= '<td>'. pg_result($result,$tupla,2).'</td>';
                 $printer.= '<td>
-                <div class="btn-group">                                               
-                    <button type="button" class="btn bg-purple btn-xs" data-toggle="modal" data-target="#modal-default "title="Editar">
+                <class="btn-group">                                               
+                    <button type="button" class="btn bg-purple btn-xs" title="Editar">
                         <i class="fa fa-edit"></i>
                     </button>
-                </div>
                 </td> 
                 </tr>'; 
             }

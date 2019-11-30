@@ -35,6 +35,14 @@ if (isset($_POST['nombreUser']) && isset($_POST['passwordUser']) && isset($_POST
     }else{
         header('Location: ../view/Exceptions/exceptions.php');
     }
+}else if (isset($_GET['codUsuarioEliminar']) && isset($_GET['codRolEliminar'])){
+    require '../model/UsuarioModel.php';
+    $user = new Usuario();
+    if ($user->deleteRolUsuario($_GET['codUsuarioEliminar'], $_GET['codRolEliminar'])){
+        header('Location: ../view/gestionDeUsuario/verRolesUsuario.php');
+    }else{
+        header('Location: ../view/Exceptions/exceptions.php');
+    }
 }
 
 function getListaPersonalEdit(){
