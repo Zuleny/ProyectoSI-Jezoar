@@ -45,18 +45,17 @@ class Herramienta{
     public function getDatosHerramientaEditar($codigo) {
         return $this->Conexion->execute("SELECT i.nombre,i.descripcion,h.estado
                                          FROM insumo as i, herramienta as h
-                                         WHERE i.cod_insumo=h.cod_insumo_herramienta and 
-                                                  i.tipo_insumo='H' and i.cod_insumo=$codigo;");
+                                         WHERE i.cod_insumo=h.cod_insumo_herramienta and h.cod_insumo_herramienta=$codigo;");
     }
 
     public function updateHerramienta($codigo, $nombre, $descripcion, $estado){
         try {
             $this->Conexion->execute("UPDATE herramienta 
-                                      SET estado=$estado
+                                      SET estado='$estado'
                                       WHERE cod_insumo_herramienta=$codigo;");
 
             $this->Conexion->execute("UPDATE insumo
-                                      SET nombre=$nombre and descripcion=$descripcion
+                                      SET nombre='$nombre', descripcion='$descripcion'
                                       WHERE cod_insumo=$codigo;");
             return true;
         } catch (\Throwable $th) {

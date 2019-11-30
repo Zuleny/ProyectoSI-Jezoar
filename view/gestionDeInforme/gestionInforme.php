@@ -91,6 +91,47 @@
                             <div class="box-header">
                                 <h3 class="box-title">Informes presentados</h3>
                             </div>
+                            <div class="box-body">
+                                <table class="table table-bordered table-hover" id="tabla1">
+                                    <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Cliente</th>
+                                        <th>Fecha</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $result = getListaInforme();
+                                    $countTuplas=pg_num_rows($result);
+                                    $printer='';
+                                    $datosParaPDF = visualizarDatosParaPDF();
+                                    for ($tupla=0; $tupla < $countTuplas; $tupla++) {
+                                        $printer=$printer.'<tr> <td>'.pg_result($result,$tupla,0).'</td>';
+                                        $printer=$printer.      '<td>'.pg_result($result,$tupla,1).'</td>';
+                                        $printer=$printer.      '<td>'.pg_result($result,$tupla,2).'</td>';
+                                        $printer=$printer.'     <td> <div class="btn-group">
+                                        <a href="../../controller/informeController.php?cod='.pg_result($result,$tupla,0).'">
+                                            <button type="button" class="btn bg-red btn-sm btn-xs" title="Eliminar">
+                                                <i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </a>   
+                                        <a href="../../view/gestionDeInforme/informe.php?cliente='.pg_result($datosParaPDF,$tupla,0).'&des='.pg_result($datosParaPDF,$tupla,1).'">
+                                                                    <button type="button" class="btn bg-primary btn-sm btn-xs" title="Ver PDF">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </a>                                 
+                                       
+                                     </div>
+                                </td>
+                            </tr>';
+                                    }
+                                    echo $printer;
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
                             
                         </div>
 

@@ -11,10 +11,9 @@ class Cliente{
     public $nit;
     public $conexion;
 
-    public function __construct($cod_cliente, $nombre,$direccion, $email,$tipo,$telefono,$telefono2,$nit) {
+    public function __construct($nombre,$direccion, $email,$tipo,$telefono,$telefono2,$nit) {
         $this->conexion = new Conexion();
-
-        $this->cod_cliente = $cod_cliente;
+        $this->cod_cliente = $this->getNewCodigoCliente();
         $this->nombre = $nombre;
         $this->email = $email;
         $this->direccion = $direccion;        
@@ -45,7 +44,7 @@ class Cliente{
         return $this->getCantidadCliente()+1;
     }
     public function getListaDeCliente(){
-        $resultado=$this->conexion->execute("SELECT distinct (cliente.cod_cliente), cliente.nombre,cliente.email, cliente.direccion FROM cliente order by cliente.cod_cliente;");
+        $resultado=$this->conexion->execute("SELECT cliente.cod_cliente, cliente.nombre,cliente.email, cliente.direccion,tipo  FROM cliente order by cliente.cod_cliente;");
         return $resultado;
     }
     public function getCantidadTelefono($codCliente){
@@ -56,6 +55,23 @@ class Cliente{
         $result = $this->conexion->execute("SELECT telefono.telefono FROM telefono  WHERE telefono.cod_cliente_telefono= $codCliente;");
         return  $result;
     }
-
+    public function actualizarCliente($codCliente,$nombre,$direccion, $email, $tipo,$nit,$telefono1, $telefono2){
+        $this->conexion->execute("update Cliente set cod_cliente=$codCliente, nombre='$nombre',direccion='$direccion', email='$email',tipo= '$tipo';");
+        $this->conexion->execute("update Empresa set cod_cliente_empresa=$codCliente, nit=$nit;");
+        $this->conexion->execute("update Persona set cod_cliente_persona=$codCliente, nro_carnet=$nit;");
+        $this->conexion->execute("update Telefono set cod_cliente_telefono=$codCliente, telefono=$telefono1;");
+        $this->conexion->execute("update Telefono set cod_cliente_telefono=$codCliente, telefono=$telefono2;");
+    }
+    public function getCI($codCliente){
+        $result = $this->conexion->execute("SELECT nit FROM cliente,empresa where cliente.cod_cliente=empresa.cod_cliente_empresa and empresa.cod_cliente_empresa=$codCliente;");
+        return pg_result($result,0,0);
+    }
+    public function getNit($codCliente){
+        $result = $this->conexion->execute("SELECT nro_carnet FROM cliente, persona where cliente.cod_cliente=persona.cod_cliente_persona and cliente.cod_cliente=$codCliente ;");
+        return pg_result($result,0,0);
+    }
+    public function datosAEditarCliente($codCliente){
+        return $result = $this->conexion->execute("select nombre,direccion,email,telefono from cliente, telefono");
+    }
 }
 ?>

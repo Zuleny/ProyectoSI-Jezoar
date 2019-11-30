@@ -8,7 +8,7 @@ if (isset($_POST['nombre_cliente']) && isset($_POST['direccion_cliente']) && iss
     $telefono = $_POST['telefono_cliente'];
     $telefono2 = $_POST['telefono2_cliente'];
     $nit  = $_POST['nit_cliente'];
-    $cliente = new Cliente(0, $nombreCliente, $direccion, $email, $tipo, $telefono, $telefono2, $nit);
+    $cliente = new Cliente($nombreCliente, $direccion, $email, $tipo, $telefono, $telefono2, $nit);
     $cliente->cod_cliente = $cliente->getNewCodigoCliente();
     $result1 = $cliente->insertarCliente();
     if($result1){
@@ -18,11 +18,13 @@ if (isset($_POST['nombre_cliente']) && isset($_POST['direccion_cliente']) && iss
         echo 'Espacio blacos';
     }
     header('Location: ../view/gestionDeCliente/gestionCliente.php');
+}else if(isset($_GET['cod'])){
+
 }
 function getTableCliente(){
     require "../../model/clienteModel.php";
-    $cliente1= new Cliente(0,"","","","","","","");
-    $resultado= $cliente1->getListaDeCliente();
+    $cliente1= new Cliente('','','','','','','');
+    $resultado= $cliente1->getListaDeCliente();//SELECT distinct (cliente.cod_cliente), cliente.nombre,cliente.email, cliente.direccion, tipo
     $nroFilas=pg_num_rows($resultado);
     $printer="";
     for ($nroTupla=0; $nroTupla < $nroFilas ; $nroTupla++){
@@ -34,13 +36,22 @@ function getTableCliente(){
         $var = $cliente1->getCantidadTelefono($cod);
         $telefono=$cliente1->getTelefono($cod);
         if($var == 1){
-            $printer.=      '<td>'.pg_result($telefono,0,0).'</td></tr>';
+            $printer.=      '<td>'.pg_result($telefono,0,0).'</td>';
         }
         else{
             if($var == 2){
-                $printer.=      '<td>'.pg_result($telefono,0,0).' - '.pg_result($telefono,1,0). '</td></tr>';
+                $printer.=      '<td>'.pg_result($telefono,0,0).' - '.pg_result($telefono,1,0). '</td>';
             }
         }
+        $printer.='<td>
+                            <div class="btn-group">
+                                <a href="editarCliente.php?cod='.pg_result($resultado,$nroTupla,0).'">
+                                    <button type="button" class="btn bg-blue btn-xs btn-sm" title="Editar Clientes">
+                                        <i class="fa fa-fw fa-edit"></i>
+                                    </button>                          
+                                </a>
+                             </div>
+                                <td></tr>';
 
     }
     return $printer;

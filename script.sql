@@ -319,10 +319,10 @@ create table Contrato (
 );
 
 /*************************Poblacion**********************************************************************************/
-insert into Cliente values(1,'SERVITODO ','San Martin,2do Anillo','servitodo_100@gmail.com','E');
+insert into Cliente values(1,'SERVITODO','San Martin,2do Anillo','servitodo_100@gmail.com','E');
 insert into Cliente values(2,'Yerba Buena','Av. Roca y Coronado,3er Anillo','yerba.buena@gmail.bo','E');
-insert into Cliente values(3,'MBI ','Av. La Salle, 4to anillo','mbi.santacruz@gmail.com','E');
-insert into Cliente values(4,'FONPLATA ','San Martin,2do Anillo','fonplataSC@gmail.com','E');
+insert into Cliente values(3,'MBI','Av. La Salle, 4to anillo','mbi.santacruz@gmail.com','E');
+insert into Cliente values(4,'FONPLATA','San Martin,2do Anillo','fonplataSC@gmail.com','E');
 insert into Cliente values(5,'Maria Leon Perez','Av. Centenario,1er anillo',null,'P');
 insert into Cliente values(6,'Michael Espada Lopez','Av. Noel Kempff Mercado','espada_michael@hotmail.com','P');
 
@@ -339,11 +339,11 @@ insert into Telefono(cod_cliente_telefono,telefono) values(6,'78964546');
 
 insert  into Empresa values (1,'2031215562');
 insert  into Empresa values (2,'3265412017');
-insert  into Empresa values (3,'3265412017');
-insert  into Empresa values (4,'3265412017');
+insert  into Empresa values (3,'2001457818');
+insert  into Empresa values (4,'1245653219');
 
-insert  into Persona values (5,1064211018);
-insert  into Persona values (6,2515421018);
+insert  into Persona values (5,'2189543');
+insert  into Persona values (6,'2198754');
 
 insert into Presentacion values(1,'2018/05/21','Aceptado',141000,1,'P');  
 insert into Presentacion values(2,'2018/05/25','Denegado',27500,2,'C');
@@ -1689,3 +1689,32 @@ as $$ begin
 			from almacen
 			where nombre=nombreAlmacen);
 end $$ language 'plpgsql';
+
+/*40. Funcion que devuelve el devuelve el tipo de cliente de acuerdo a su codigo*/
+create or replace function esPersona(codCliente integer)
+returns integer
+as $BODY$
+declare resultado char;
+begin
+	resultado:=(select tipo from cliente where cod_cliente=codCliente);
+	if resultado='E' then
+		return 0;
+	else
+		return 1;
+	end if;
+end;
+$BODY$ language 'plpgsql';
+/*41. Funcion que devuelve el CI o Nit de acuerdo a su tipo*/
+create or replace function getNIT_CI_Cliente(codCliente integer)
+returns integer
+as $BODY$
+declare resultado integer;
+begin
+	if esPersona(codCliente)=1 then
+		resultado:=(select nro_carnet from persona where cod_cliente_persona=codCliente);
+	else
+		resultado:=(select nit from empresa where cod_cliente_empresa=codCliente);
+	end if;
+return resultado;
+end;
+$BODY$ language 'plpgsql';

@@ -1,5 +1,5 @@
 <?php
-
+/*
 if (isset($_GET['nombre']) && isset($_GET['descripcion']) && isset($_GET['estado'])) {
     $nombre=$_GET['nombre'];
     $Descripcion=$_GET['descripcion'];
@@ -13,7 +13,7 @@ if (isset($_GET['nombre']) && isset($_GET['descripcion']) && isset($_GET['estado
     }
     header('Location: ../view/gestionDeHerramienta/gestionHerramienta.php');
 }
-
+*/
 
 if (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['estado'])) {
     if ($_POST['nombre']!="" && $_POST['descripcion']!="" && $_POST['estado']!="") {
@@ -37,16 +37,16 @@ if (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['est
         header('Location: ../view/Exceptions/exceptions.php');
     }
 }else if (isset($_POST['nombreEditar']) && isset($_POST['descripcionEditar']) && isset($_POST['estadoEditar'])) {
-    if ( $_POST['nombreEditar']!="" && $_POST['descripcionEditar']!="" && $_POST['estadoEditar']!="" ) {
+    if ( $_POST['nombreEditar']!="" && $_POST['descripcionEditar']!="" && $_POST['estadoEditar']!="" && isset($_POST['codigo']) ) {
         require '../model/HerramientaModel.php';
         session_start();
         $herramienta = new Herramienta();
         if ($herramienta->updateHerramienta($_POST['codigo'], $_POST['nombreEditar'], $_POST['descripcionEditar'], $_POST['estadoEditar'])) {
             $fecha_hora = date('j-n-Y G:i:s', time());
             $username = $_SESSION['user'];
-            $nroCotizacion = $_POST['codigo'];
+            $codHerramienta = $_POST['codigo'];
             $herramienta->Conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
-                                    VALUES ('$username', 'Modificando Herramienta Código . $nroCotizacion', '$fecha_hora');");
+                                    VALUES ('$username', 'Modificando Herramienta Código . $codHerramienta', '$fecha_hora');");
             header('Location: ../view/gestionDeHerramienta/gestionHerramienta.php');
         }else{
             header('Location: ../view/Exceptions/exceptions.php');

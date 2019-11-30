@@ -78,8 +78,8 @@
                   <li><a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeProducto/gestionProducto.php"><i class="fa fa-circle-o"></i>Gestionar Productos</a></li>
                   <li><a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeHerramienta/gestionHerramienta.php"><i class="fa fa-circle-o"></i>Gestionar Herramientas</a></li>
                   <li><a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeCategoria/gestionCategoria.php"><i class="fa fa-circle-o"></i>Categoria de Productos</a></li>
-                  <li><a href="http://localhost/ProyectoSI-Jezoar/view/GestionarResporteInvProducto/reporteInvProducto.php"><i class="fa fa-circle-o"></i>Reporte de Productos</a></li>
-                  <li><a href="http://localhost/ProyectoSI-Jezoar/view/GestionarReporteInventarioHermamienta/ReporteIventarioHerramienta.php"><i class="fa fa-circle-o"></i>Reportes de Herramientas</a></li>
+                  <li><a href="http://localhost/ProyectoSI-Jezoar/view/GestionarResporteInvProducto/listaAlmacen.php"><i class="fa fa-circle-o"></i>Reporte de Productos</a></li>
+                  <li><a href="http://localhost/ProyectoSI-Jezoar/view/GestionarReporteInventarioHermamienta/ListaAlmacenes.php"><i class="fa fa-circle-o"></i>Reportes de Herramientas</a></li>
               </ul>
             </li>
             <!-- Equipo de Trabajo -->

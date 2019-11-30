@@ -31,6 +31,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     <div class="col-lg-4">
                         <label>Nombre Herramienta</label>
                         <input type="text" class="form-control" name="nombreEditar" placeholder="Nombre de la herramienta" value="<?php echo pg_result($result,0,0) ?>">
+                        <input type="hidden" name="codigo" value="<?php echo $_GET['codigo']; ?>">
                     </div>
 
                 </div>

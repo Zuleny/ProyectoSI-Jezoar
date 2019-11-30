@@ -110,8 +110,7 @@
                                             <th>Correo</th>
                                             <th>Direccion</th>
                                             <th>Telefono</th>
-
-                                            
+                                            <th>Nit/CI</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -122,7 +121,8 @@
                                         ?>
                                     </tbody>
                                 </table>
-                            </div>
+                            </div>  
+
                           </div>
 
                     </form>

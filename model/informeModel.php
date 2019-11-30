@@ -53,6 +53,16 @@ class Informe{
         if ($type=="png"||$type=="jpeg"||$type=="gif") return array($pic, $type);
         return false;
     }
+    public function getListInforme(){
+        return $result = $this->conexion->execute("select cod_informe, nombre, informe.fecha from cliente,informe, presentacion where cod_cliente=cod_cliente_presentacion and cod_presentacion=informe.cod_presentacion_cotizacion order by cod_informe;");
+    }
+    public function deleteInforme($cod){
+        return $this->conexion->execute("delete from informe where cod_informe=$cod");
+    }
+    public function visualizarDatosParaPDF(){
+        return $result = $this->conexion->execute("select nombre,descripcion from cliente,informe, presentacion where cod_cliente=cod_cliente_presentacion and cod_presentacion=informe.cod_presentacion_cotizacion order by cod_informe;");
+
+    }
 
 }
 

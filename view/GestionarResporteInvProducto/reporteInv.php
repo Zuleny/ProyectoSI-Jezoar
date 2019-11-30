@@ -1,5 +1,6 @@
 <?php
     include "../../view/theme/AdminLTE/Additional/head.php";
+    include "../../model/Conexion.php";
 
 ?>
 <script type="text/javascript" src ="../../public/assets/reportes.js"> </script>
@@ -23,30 +24,19 @@
                         </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->
+                <form>
 
-
-                            <!--<input type="button" class="btn btn-block btn-primary" onclick="location.href='../GestionarResporteInvProducto/reporteTabla.php'">Exportar PDF <i class="fa fa-fw fa-file-pdf-o "></i>-->
-
-                    <!-- Lugar de butons y label y textbox  -->
-
-
-                     <!--   <div class="col-lg-2" >
-                            <button type="button" class="btn btn-block btn-primary" href="reporteTabla.php">Exportar PDF <i class="fa fa-fw fa-file-pdf-o "></i></button>
-                        </div>
-                        -->
                     <?php
-                    /*
-                    $nombreAlmv= $_POST['nombre'];
-                    echo $nombreAlmv;*/
-                    require "../../controller/reporteController.php";
-                    //$nombreAlm = getNombreAlmacen();
-                    $result = getStockActual('Almacen1');
-                        $arreglo = array();
-                        $arregloStock = array();
-                        for ($i=0; $i < pg_num_rows($result); $i++) { 
+                    $nombreAlmacen=$_GET['name'];
+                    $jezoar = new Conexion();
+                    $result = $jezoar->execute("SELECT InsumoNombre, stockInsumo from getInventarioDeProductos('$nombreAlmacen');");
+
+                    $arreglo = array();
+                    $arregloStock = array();
+                    for ($i=0; $i < pg_num_rows($result); $i++) {
                             $arreglo[$i] = pg_result($result,$i,0);
                             $arregloStock[$i] = pg_result($result,$i,1);
-                        }
+                    }
                     ?>
                     <div class="chart-container" style="position: relative; height:80vh; width:80vw">
                         <canvas id="myChart"></canvas>
@@ -78,13 +68,25 @@
                             });                                                                        
 
                         </script>  
-                    </div>  
+                    </div>
+                    <br>
+                    <div class="box-body">
+                        <div class="col-lg-2" >
+                            <a href="reporteTablaP.php/?nombre=<?php echo $nombreAlmacen ?>" class="btn btn-primary">Exportar a PDF</a>
+                        </div>
 
                     </div>
-                </section>
-                <!-- Termina tu codigo aqui -->
+
+                </form>
+                <div class="box-footer">
+                    <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">
+                        <i class="fa fa-facebook"></i>
+                        Página de Facebook de Jezoar
+                    </a>
+                </div>
             </div>
         </section>
+                <!-- Termina tu codigo aqui -->
         <!-- fin de contenido de mi Vista -->
     </div>
 <?php

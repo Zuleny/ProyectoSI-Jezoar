@@ -13,9 +13,6 @@ class Reporte{
         $result=$this->Conexion->execute("select nombre from almacen;");
         return $result;
     }
-    public function getStock($nombreAlmacen){
-        $result = $this->Conexion->execute("SELECT insumonombre, stockinsumo from getInventarioDeProductos('$nombreAlmacen');");
-        return $result;
-    }
+
 }
 ?>

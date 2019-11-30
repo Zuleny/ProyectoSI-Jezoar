@@ -1,15 +1,15 @@
 <?php
-if(isset($_POST["nombreCliente"]) && isset($_POST["fecha_inicial"]) && isset($_POST["fecha_final"]) ){
+if(isset($_POST["nombreCliente"]) && isset($_POST["fecha_inicial"]) && isset($_POST["fecha_final"]) && isset($_GET['cod_presetacionC']) ){
     $nombre = $_POST["nombreCliente"];
     //$codPresentacion = $_GET["codPresenacionC"];
     require "../model/contratoModel.php";
     $contrato = new Contrato($_POST["fecha_inicial"],$_POST["fecha_final"]);
-    $contrato->registrarContrato(2);
+    $contrato->registrarContrato($_GET['cod_presetacionC']);
     header('Location: ../view/gestionDeContrato/gestionContrato.php');
 }else{
     header('Location: ../view/Exceptions/exceptions.php');
-
-}/*else if (isset($_GET['codPresentacionC'])) {
+}
+/*else if (isset($_GET['codPresentacionC'])) {
     if ($_GET['codPresentacionC']!="") {
        // require '../model/NotaDevolucionModel.php';
         $contrato = new Contrato();

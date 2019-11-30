@@ -1,9 +1,8 @@
 <?php
-
 if(isset($_POST["listaAlmacen"])){
     //require_once "../../model/ReporteModel.php";
     $nombreAlmacen=$_POST["listaAlmacen"];
-    header("Location: ../view/GestionarResporteInvProducto/reporteInv.php?name=$nombreAlmacen");
+    header("Location: ../view/GestionarReporteInventarioHermamienta/ReporteIventarioHerramienta.php?name=$nombreAlmacen");
 }
 
 function getListaDeAlmacen(){
