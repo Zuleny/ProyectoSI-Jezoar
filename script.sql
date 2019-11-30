@@ -1,4 +1,4 @@
--- Database: jezoar
+-- Database: jezoar----->30/11/2019
 
 -- DROP DATABASE jezoar;
 /*
@@ -74,6 +74,7 @@ create table Presentacion_Servicio(
    area_trabajo varchar(100),	--lugar a trabajar
    cant_personal int not null,
    precio_unitario decimal(12,2) not null,
+   descripcionservicios varchar(100) not null,
    foreign key(cod_presentacion) references Presentacion(cod_presentacion)
    on update cascade 
    on delete cascade,
@@ -81,15 +82,6 @@ create table Presentacion_Servicio(
    on update cascade 
    on delete cascade,
    primary key(cod_presentacion,id_servicio)   
-);
-
-create table Detalle_Servicio(
-   id_servicio int not null,
-   id_detalle int not null,
-   detalle varchar(500) not null,	--descripcion de servicions que solicita el cliente
-   foreign key (id_servicio) references Servicio(id_servicio)
-   on update cascade  on delete cascade,
-   primary key(id_servicio,id_detalle)
 );
 
 create table Propuesta(
@@ -299,6 +291,8 @@ create table Informe (
 	fecha date not null,
 	descripcion varchar(10000) not null,
 	cod_presentacion_cotizacion int not null,
+	imageBefore text null,
+	imageAfter text null,
 	foreign key (cod_presentacion_cotizacion) references Cotizacion(cod_presentacion_cotizacion)
 	on update cascade
 	on delete cascade
@@ -335,11 +329,11 @@ insert into Telefono(cod_cliente_telefono,telefono) values(6,'78964546');
 
 insert  into Empresa values (1,'2031215562');
 insert  into Empresa values (2,'3265412017');
-insert  into Empresa values (3,'3265412017');
-insert  into Empresa values (4,'3265412017');
+insert  into Empresa values (3,'2001457818');
+insert  into Empresa values (4,'1245653219');
 
-insert  into Persona values (5,1064211018);
-insert  into Persona values (6,2515421018);
+insert  into Persona values (5,'2189543');
+insert  into Persona values (6,'2198754');
 
 insert into Presentacion values(1,'2018/05/21','Aceptado',141000,1,'P');  
 insert into Presentacion values(2,'2018/05/25','Denegado',27500,2,'C');
@@ -373,48 +367,28 @@ insert into Servicio values(17,'Limpieza general profunda');
 insert into Servicio values(18,'Prestacion de materiales');
 insert into Servicio values(19,'Prestacion de materiales');
 
-insert into Detalle_Servicio values(1,1,'Incluye IVA');
-insert into Detalle_Servicio values(2,1,'Incluye materiales');
-insert into Detalle_Servicio values(3,1,'Mano de obra');
-insert into Detalle_Servicio values(4,1,'Incluye IVA');
-insert into Detalle_Servicio values(5,1,'Sin material');
-insert into Detalle_Servicio values(6,1,'Incluye IVA');
-insert into Detalle_Servicio values(7,1,'Sin material');
-insert into Detalle_Servicio values(8,1,'Sin material');
-insert into Detalle_Servicio values(9,1,'Incluye IVA');
-insert into Detalle_Servicio values(10,1,'Con material');
-insert into Detalle_Servicio values(11,1,'Incluye IVA');
-insert into Detalle_Servicio values(12,1,'Mano de obra');
-insert into Detalle_Servicio values(13,1,'Con material');
-insert into Detalle_Servicio values(14,1,'Incluye IVA');
-insert into Detalle_Servicio values(15,1,'Con material');
-insert into Detalle_Servicio values(16,1,'Incluye IVA');
-insert into Detalle_Servicio values(17,1,'Mano de obra');
-insert into Detalle_Servicio values(18,1,'Con material');
-insert into Detalle_Servicio values(19,1,'Mano de obra');
-
-insert into Presentacion_Servicio values(1,1,'Oficina',4,9750);
-insert into Presentacion_Servicio values(1,6,'Oficina',1,2000);
-insert into Presentacion_Servicio values(2,6,'Bloque',10,26900);
-insert into Presentacion_Servicio values(2,7,'Bloque',1,600);     
-insert into Presentacion_Servicio values(3,7,'Bloque',7,45250);
-insert into Presentacion_Servicio values(4,1,'Oficina',6,13919);
-insert into Presentacion_Servicio values(4,8,'Oficina',0,900); 
-insert into Presentacion_Servicio values(5,1,'Oficina',2,2913.3);
-insert into Presentacion_Servicio values(5,8,'Oficina',0,416.7);
-insert into Presentacion_Servicio values(6,1,'Oficina',8,28750);
-insert into Presentacion_Servicio values(6,8,'Oficina',0,2450);
-insert into Presentacion_Servicio values(7,7,'Bloque',3,11000);
-insert into Presentacion_Servicio values(7,8,'Bloque',4,1560);
-insert into Presentacion_Servicio values(8,5,'Oficina',0,11500);
-insert into Presentacion_Servicio values(8,8,'Oficina',0,2500);
-insert into Presentacion_Servicio values(9,2,'Oficina',1,3900);
-insert into Presentacion_Servicio values(9,3,'Oficina',2,4000);
-insert into Presentacion_Servicio values(9,8,'Oficina',0,300); 
-insert into Presentacion_Servicio values(10,1,'Oficina',9,33333.3);
-insert into Presentacion_Servicio values(10,8,'Oficina',0,2500); 
-insert into Presentacion_Servicio values(11,2,'Oficina',1,2000);
-insert into Presentacion_Servicio values(11,8,'Oficina',0,500); 
+insert into Presentacion_Servicio values(1,1,'Oficina',4,9750, 'Con Factura e Iva');
+insert into Presentacion_Servicio values(1,6,'Oficina',1,2000, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(2,6,'Bloque',10,26900, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(2,7,'Bloque',1,600, 'Incluye IVA, Mano de Obra');     
+insert into Presentacion_Servicio values(3,7,'Bloque',7,45250, 'Incluye IVA, No Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(4,1,'Oficina',6,13919, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(4,8,'Oficina',0,900, 'Incluye IVA, Incluye Materiales'); 
+insert into Presentacion_Servicio values(5,1,'Oficina',2,2913.3, 'Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(5,8,'Oficina',0,416.7, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(6,1,'Oficina',8,28750, 'Incluye IVA, Incluye Materiales');
+insert into Presentacion_Servicio values(6,8,'Oficina',0,2450 ,'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(7,7,'Bloque',3,11000, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(7,8,'Bloque',4,1560, 'Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(8,5,'Oficina',0,11500, 'Incluye IVA');
+insert into Presentacion_Servicio values(8,8,'Oficina',0,2500, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(9,2,'Oficina',1,3900, 'Incluye IVA, Mano de Obra');
+insert into Presentacion_Servicio values(9,3,'Oficina',2,4000, 'Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(9,8,'Oficina',0,300, 'Incluye IVA, Incluye Materiales'); 
+insert into Presentacion_Servicio values(10,1,'Oficina',9,33333.3, 'Incluye IVA, Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(10,8,'Oficina',0,2500, 'Incluye IVA, Incluye Materiales'); 
+insert into Presentacion_Servicio values(11,2,'Oficina',1,2000, 'Incluye Materiales, Mano de Obra');
+insert into Presentacion_Servicio values(11,8,'Oficina',0,500, 'Incluye IVA, No Incluye Materiales, Mano de Obra'); 
 
 insert into Propuesta values(1,12);
 insert into Propuesta values(4,12);
@@ -680,15 +654,15 @@ insert into Insumo_Almacen values(34,1,24);
 insert into Informe values(1,'2018/06/13','Informe de Trabajo Concluido 
 De mi consideración:
 Me dirijo a ustedes, a tiempo de saludarlos, hago llegar a su persona mis más sinceros deseos de éxitos en sus funciones.
-Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA POST OBRA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',3);
+Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA POST OBRA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',3,null,null);
 insert into Informe values(2,'2018/10/30','Informe de Trabajo Concluido 
 De mi consideración:
 Me dirijo a ustedes, a tiempo de saludarlos, hago llegar a su persona mis más sinceros deseos de éxitos en sus funciones.
-Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA PROFUNDA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',7);
+Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA PROFUNDA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',7, null, null);
 insert into Informe values(3,'2019/04/10','Informe de Trabajo Concluido 
 De mi consideración:
 Me dirijo a ustedes, a tiempo de saludarlos, hago llegar a su persona mis más sinceros deseos de éxitos en sus funciones.
-Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA POST OBRA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',8);
+Al mismo tiempo INFORMALES QUE SE HA CONCLUIDO EL TRABAJO DE LIMPIEZA POST OBRA del area indicada y en el tiempo establecido, adjunto fotos del trabajo concluido.',8,null,null);
 
 insert into Contrato values(1,'2018/05/23','2019/05/23',1);
 insert into Contrato values(2,'2018/07/25','2019/07/25',4);
@@ -1267,7 +1241,6 @@ insert into Detalle_Nota(nro_nota,id_detalle,nombre_insumo,cantidad_insumo) valu
 (46,5,'Avion',1);
 
 /******************************Funciones y Procedimientos Almacenados y Triggers*****************/
-/******************************Funciones y Procedimientos Almacenados y Triggers*****************/
 /*1. Funcion que Devuelve el stock de un insumo en un Almacen especifico
 	 (cantidad Disponible del Insumo)*/
 create or replace function getStockInsumo(nombreInsumo varchar(35), codAlmacen integer)returns int as $$
@@ -1766,3 +1739,33 @@ create trigger uDetalleIngreso
 before update on Detalle_Ingreso
 for each row
 	execute procedure uDetalleIngreso();
+
+/*43. Funcion que devuelve el devuelve el tipo de cliente de acuerdo a su codigo*/
+create or replace function esPersona(codCliente integer)
+returns integer
+as $BODY$
+declare resultado char;
+begin
+	resultado:=(select tipo from cliente where cod_cliente=codCliente);
+	if resultado='E' then
+		return 0;
+	else
+		return 1;
+	end if;
+end;
+$BODY$ language 'plpgsql';
+
+/*44. Funcion que devuelve el CI o Nit de acuerdo a su tipo*/
+create or replace function getNIT_CI_Cliente(codCliente integer)
+returns integer
+as $BODY$
+declare resultado integer;
+begin
+	if esPersona(codCliente)=1 then
+		resultado:=(select nro_carnet from persona where cod_cliente_persona=codCliente);
+	else
+		resultado:=(select nit from empresa where cod_cliente_empresa=codCliente);
+	end if;
+return resultado;
+end;
+$BODY$ language 'plpgsql';

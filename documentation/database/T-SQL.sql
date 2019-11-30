@@ -102,8 +102,8 @@ begin
 				raise notice 'Egreso realizado correctamente :3 Insumo: % en el NroNota: %',new.nombre_insumo,new.nro_nota;
 			else 
 				raise notice 'No se realizo el registro, Stock insuficiente en el almacen Nro %',codAlmacen;
-				raise notice 'No se registro el insumo: % en el nro de Nota: %',new.nombre_insumo,new.nro_nota;
-				rollback;
+				raise exception 'No se registro el insumo: % en el nro de Nota: %',new.nombre_insumo,new.nro_nota;
+				
 			end if;
 		else 
 			raise notice 'No se realizo el registro, Insumo % no registrado',new.nombre_insumo;
@@ -156,7 +156,8 @@ end;
 $$ language plpgsql;
 
 /*13. Funcion Trigger que Elimina una registro de una nota de Devolucion*/
-create or replace function detalleDevolucionAnulacion()returns trigger as $BODY$ 
+create or replace function detalleDevolucionAnulacion()returns trigger 
+as $BODY$ 
 declare codAlmacen INTEGER;
 		codInsumo INTEGER;
 		fechaNotaDevolucion DATE;
@@ -169,14 +170,12 @@ begin
 		codInsumo := getCodInsumo(old.nombre_insumo);
 		fechaNotaDevolucion := getFechaNota(old.nro_nota);
 		cantDiasLimite := fechaActual - fechaNotaDevolucion;
-		if cantDiasLimite < 4 then
+		if old.cantidad_insumo<getStockInsumo(old.nombre_insumo, codAlmacen) then
 			update insumo_almacen set stock = stock - old.cantidad_insumo 
-				   where cod_almacen = codAlmacen and cod_insumo = codInsumo;
-			raise notice 'La anulacion del registro del insumo % fue exitoso. Nota nro: %',old.nombre_insumo,old.nro_nota;
-		else 
-			raise notice 'Registro de la nota de devolucion nro %, no puede ser eliminado',old.nro_nota;
-			raise notice 'Solo tiene permiso de eliminar antes de 3 dias del registro del insumo %',old.nombre_insumo;
-			rollback;
+				where cod_almacen = codAlmacen and cod_insumo = codInsumo;
+				raise notice 'La anulacion del registro del insumo % fue exitoso. Nota nro: %',old.nombre_insumo,old.nro_nota;
+		else
+			raise exception 'Error en La Anulacion, stock negativo no ser posible';
 		end if;
 	end if;
 	return old;
@@ -216,7 +215,6 @@ create trigger iDetalleIngreso
 before insert on Detalle_Ingreso
 for each row 
 	execute procedure ingresoDetalle();
-
 /*17. Funcion Auxiliar para el trigger dDetalleIngreso*/
 create or replace function dIngresoDetalle() returns trigger as 
 $$
@@ -410,6 +408,7 @@ as $$ begin
 			where id_personal=codigoPersonal);
 end; $$ 
 language plpgsql;
+
 /* 35. Funcion que devuelve el id Persona de una persona llevando como parametro su nombre*/
 create or replace function getIdPersonal(nombrePersonal text)returns integer 
 as $$ begin
@@ -426,6 +425,7 @@ as $$ begin
 			where cod_cliente=codigoCliente);
 end; $$ 
 language plpgsql;
+
 /* 37. Funcion que devuelve el Codigo Cliente de una persona llevando como parametro su nombre*/
 create or replace function getCodCliente(nombreCliente text)returns integer 
 as $$ begin
@@ -433,6 +433,7 @@ as $$ begin
 			from cliente
 			where nombre=nombreCliente );
 end $$ language plpgsql;
+
 /*38. Devolver Lista de Notas de Devoluciones*/
 create or replace function getListaDeNotasDeDevolucion()
 returns table (nro_nota integer, nombre_personal varchar, fecha date,nombre_almacen varchar,
@@ -454,3 +455,75 @@ as $$ begin
 			from almacen
 			where nombre=nombreAlmacen);
 end $$ language 'plpgsql';
+
+/*40. Funcion que retorna la cantidad de insumos que ingresan en un determinado detalle de ingreso de un determinado almacen y nro de ingreso*/
+create or replace function getCantidadDetalleIngreso(nroIngreso integer,idIngreso integer,codAlmacen integer) returns int as
+$BODY$
+ begin
+	return (select cantidad
+			from nota_ingreso,detalle_ingreso
+			where nota_ingreso.nro_ingreso=detalle_ingreso.nro_ingreso and
+		    cod_almacen=codAlmacen and id_ingreso=idingreso and detalle_ingreso.nro_ingreso=nroIngreso);
+end;
+$BODY$
+language plpgsql;
+
+/*41. Funcion auxiliar para el trigger uDetalleIngreso*/
+create or replace function uDetalleIngreso() returns trigger as
+$$
+    declare codInsumo integer;
+            codAlmacen integer;
+            cantidad integer;
+    begin
+		codInsumo:=getCodInsumo(new.nombre_insumo);
+		if(existeInsumo(codInsumo)) then
+		   codAlmacen:=getCodAlmacen(new.nro_ingreso);
+           cantidad:=getCantidadDetalleIngreso(new.nro_ingreso,new.id_ingreso,codAlmacen);
+		   update Insumo_Almacen set stock=(stock-cantidad)+new.cantidad
+		   where cod_insumo=codInsumo and cod_almacen=codAlmacen;
+		   raise notice 'Insumo actualizado exitosamente: insumo: % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
+
+		else
+		   raise notice 'Error: Insumo no encontrado, Registre el insumo';
+		   RAISE EXCEPTION 'Error: No se actualizo el detalle % en el Nro de Ingreso: %',new.nombre_insumo,new.nro_ingreso;
+		end if;
+		return new;
+	end;
+$$
+language plpgsql;
+
+/*42. Trigger para actualizar el stock de un determinado insumo y almacen al momento de actualizar una fila en la tabla Detalle_Ingreso */
+create trigger uDetalleIngreso
+before update on Detalle_Ingreso
+for each row
+	execute procedure uDetalleIngreso();
+
+/*43. Funcion que devuelve el devuelve el tipo de cliente de acuerdo a su codigo*/
+create or replace function esPersona(codCliente integer)
+returns integer
+as $BODY$
+declare resultado char;
+begin
+	resultado:=(select tipo from cliente where cod_cliente=codCliente);
+	if resultado='E' then
+		return 0;
+	else
+		return 1;
+	end if;
+end;
+$BODY$ language 'plpgsql';
+
+/*44. Funcion que devuelve el CI o Nit de acuerdo a su tipo*/
+create or replace function getNIT_CI_Cliente(codCliente integer)
+returns integer
+as $BODY$
+declare resultado integer;
+begin
+	if esPersona(codCliente)=1 then
+		resultado:=(select nro_carnet from persona where cod_cliente_persona=codCliente);
+	else
+		resultado:=(select nit from empresa where cod_cliente_empresa=codCliente);
+	end if;
+return resultado;
+end;
+$BODY$ language 'plpgsql';
