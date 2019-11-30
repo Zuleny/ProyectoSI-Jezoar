@@ -1474,7 +1474,7 @@ language plpgsql;
 create trigger iDetalleIngreso 
 before insert on Detalle_Ingreso
 for each row 
-	execute procedure ingresoDetalle()
+	execute procedure ingresoDetalle();
 /*17. Funcion Auxiliar para el trigger dDetalleIngreso*/
 create or replace function dIngresoDetalle() returns trigger as 
 $$
