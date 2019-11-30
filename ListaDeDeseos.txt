@@ -1,22 +1,169 @@
-Lista de Trabajo
+<!-- Primera Fila -->
+        <div class="col-lg-3">
+          <!-- Servicio1 -->
+          <div class="form-group">
+            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDePropuesta/gestionPropuesta.php">
+              <div class="info-box">
+                <span class="info-box-icon bg-green-gradient"><i class="ion ion-ios-cart-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"style="color: black;"><b>Gestionar</b></span>
+                  <span class="info-box-text"style="color: black;"><b>Propuesta</b></span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- Servicio2 -->
+          <div class="form-group">
+            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeCotizacion/gestionCotizacion.php">
+              <div class="info-box">
+                <span class="info-box-icon bg-green-gradient"><i class="ion ion-ios-cart-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text" style="color: black;"><b>Gestionar</b></span>
+                  <span class="info-box-text" style="color: black;"><b>Cotizacion</b></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+            </a>
+          </div>
+          <!-- Servicio3 -->
+          <div class="form-group">
+            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeServicio/gestionServicio.php">
+              <div class="info-box">
+                <span class="info-box-icon bg-green-gradient"><i class="ion ion-ios-cart-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"style="color: black;"><b>Gestionar</b></span>
+                  <span class="info-box-text"style="color: black;"><b>Servicio</b></span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- FIN Primera Fila -->
 
-*   Lista de Propuestas
-    Detalle: Visualizar y eliminar alguna de ellas
+        <!-- Segunda Fila -->
+        <div class="col-lg-3">
+          <!-- Servicio1 -->
+          <div class="form-group">
+            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeAlmacen/gestionAlmacen.php">
+              <div class="info-box">
+                <span class="info-box-icon bg-red-gradient"><i class="fa fa-files-o"></i></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text" style="color: black;"><b>Gestionar</b></span>
+                  <span class="info-box-text" style="color: black;"><b>Almacen</b></span>
+                </div>
+              <!-- /.info-box-content -->
+              </div>
+            </a>
+          </div>
+          <!-- Servicio2 -->
+          <div class="form-group">
+            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeProveedor/gestionProveedor.php">
+              <div class="info-box">
+                <span class="info-box-icon bg-red-gradient"><i class="fa fa-files-o"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"style="color: black;"><b>Gestionar</b></span>
+                  <span class="info-box-text"style="color: black;"><b>Proveedor</b></span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- Servicio3 -->
+          <div class="form-group">
+            <a href="view/MenuNotaDeInventario/listNotasInventario.php">
+              <div class="info-box">
+                <span class="info-box-icon bg-red-gradient"><i class="fa fa-files-o"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"style="color: black;"><b>Gestion de</b></span>
+                  <span class="info-box-text"style="color: black;"><b>Notas de</b></span>
+                  <span class="info-box-text"style="color: black;"><b>Inventarios</b></span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- FIN Segunda Fila -->
 
-*   Verificacion de permisos de los actores
-    Detalle: en cada CRUD verificar los permisos de un usuario
-                sessionstart()
+        <!-- Tercera Fila -->
+        <div class="col-lg-3">
+          <!-- Servicio1 -->
+          <div class="form-group">
+            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeUsuario/gestionUsuario.php">
+              <div class="info-box">
+                <span class="info-box-icon bg-light-blue-gradient"><i class="ion ion-ios-people-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"style="color: black;">
+                    <b>Gestionar</b><br>
+                    <b>Usuario</b>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- Servicio2 -->
+          <div class="form-group">
+            <a href="http://localhost/ProyectoSI-Jezoar/view/GestionDeRol/gestionRol.php">
+              <div class="info-box">
+                <span class="info-box-icon bg-light-blue-gradient"><i class="ion ion-ios-people-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"style="color: black;"><b>Gestionar</b></span>
+                  <span class="info-box-text"style="color: black;"><b>Rol</b></span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- Servicio3 -->
+          <div class="form-group">
+            <a href="http://localhost/ProyectoSI-Jezoar/view/GestionDePermiso/gestionPermiso.php">
+              <div class="info-box">
+                <span class="info-box-icon bg-light-blue-gradient"><i class="ion ion-ios-people-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"style="color: black;"><b>Gestionar</b></span>
+                  <span class="info-box-text"style="color: black;"><b>Permiso</b></span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- FIN Tercera Fila -->
 
-*   Estudiar sobre permisos de usuario para los procesos del sistema
-    Detalle: como hacer la verificacion de permisos para cada proceso
-
-**************************************************************************************************
-Lista de Procesos Terminados
-*   Gestionar Cotizacion
-*   Gestionar Servicio
-*   Gestionar Nota Devolucion
-*   Gestionar Usuario
-*   Gestionar Rol
-*   Gestionar Permisos
-*   Administrar Bitacora
-*   Gestionar Categoria
+        <!-- Cuarta Fila-->
+        <div class="col-lg-3">
+          <!-- Servicio1 -->
+          <div class="form-group">
+            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeProducto/gestionProducto.php">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow-gradient"><i class="ion ion-ios-gear-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"style="color: black;"><b>Gestionar</b></span>
+                  <span class="info-box-text"style="color: black;"><b>Producto</b></span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- Servicio2 -->
+          <div class="form-group">
+            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeHerramienta/gestionHerramienta.php">  
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow-gradient"><i class="ion ion-ios-gear-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"style="color: black;"><b>Gestionar</b></span>
+                  <span class="info-box-text"style="color: black;"><b>Herramienta</b></span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- Servicio3 -->
+          <div class="form-group">
+            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeCategoria/gestionCategoria.php">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow-gradient"><i class="ion ion-ios-gear-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"style="color: black;"><b>Gestionar</b></span>
+                  <span class="info-box-text"style="color: black;"><b>Categoria de</b></span>
+                  <span class="info-box-text"style="color: black;"><b>Productos</b></span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- FIN Cuarta Fila-->
