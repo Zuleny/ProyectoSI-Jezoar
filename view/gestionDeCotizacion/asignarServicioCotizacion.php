@@ -14,7 +14,7 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Asignación de Servicios a la Cotizacion # <? echo $_GET['codigo']?></h3>
+                    <h3 class="box-title">Asignación de Servicios a la Cotizacion # <?php echo $_GET['codigo']?></h3>
                     <div class="box-tools pull-right">
                         <a href="gestionCotizacion.php" class="btn btn-primary" title="Volver Atras">
                         <span class="fa fa-fw fa-mail-reply"></span></a>

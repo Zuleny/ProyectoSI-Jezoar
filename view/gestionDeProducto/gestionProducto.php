@@ -31,21 +31,21 @@
                             
                             <div class="col-lg-5">
                                 <label>Nombre de Producto</label>
-                                <input type="text" class="form-control" placeholder="Esponja" name="txtNombreProd">
+                                <input type="text" class="form-control" placeholder="Esponja" name="txtNombreProd" required>
                             </div>
                             <div class="col-lg-5">
                                 <label>Marca</label>
-                                <input type="text" class="form-control" placeholder="Marca del producto" name="txtMarca">
+                                <input type="text" class="form-control" placeholder="Marca del producto" name="txtMarca" required>
                             </div>
                             <div class="col-lg-2">
                                 <label>Precio Unitario</label>
-                                <input type="number" step="0.01" class="form-control" placeholder="7.50" name="txtPrecioUnitario">
+                                <input type="number" step="0.01" class="form-control" placeholder="7.50" name="txtPrecioUnitario" required>
                             </div>
                         </div>
                         <div class="box-body">
                             <div class="col-lg-8">
                                 <label>Descripcion de Producto</label>
-                                <textarea class="form-control" name="txtDescripcion" rows="4" placeholder="Escriba una breve descripcion del la utilidad del producto"></textarea>
+                                <textarea class="form-control" name="txtDescripcion" required rows="4" placeholder="Escriba una breve descripcion del la utilidad del producto"></textarea>
                             </div>
                             <div class="col-lg-4">
                            <div class="form-group" data-select2-id="13">
@@ -90,11 +90,11 @@
                                     <tr>
                                         <th class="col-lg-1">#</th>
                                         <th class="col-lg-2">Nombre</th>
-                                        <th class="col-lg-3">Descripcion</th>
+                                        <th class="col-lg-4">Descripcion</th>
                                         <th class="col-lg-1">Marca</th>
                                         <th class="col-lg-1">Categoria</th>
                                         <th class="col-lg-1">Precio</th>
-                                        <th class="col-lg-2"></th>
+                                        <th class="col-lg-1"></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -105,33 +105,6 @@
                         </div>
                     </div>
                     <div>
-                        <form id="frmDeleteProducto" action="" method="POST">
-                            <input type="hidden" id="idProducto" name="idProducto" value="0">
-                            <input type="hidden" id="opcion" name="opcion" value="eliminar">
-                            <!-- Modal Delete-->
-                            <div class="modal fade" data-backdrop=”static” id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="modalEliminarLabel">Eliminar Producto</h4>
-                                        </div>
-
-                                        <div class="modal-body">
-                                            ¿Está seguro de eliminar el producto?<strong data-name=""></strong>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" onclick="" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div>
-
 
                         <!-- Modal Update-->
                         <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
@@ -149,30 +122,30 @@
 
                                             <div class="form-group">
                                                 <label for="nombre" class="col-form-label">Nombre:</label>
-                                                <input type="text" class="form-control" id="nombre" name="nombre">
+                                                <input type="text" class="form-control" id="nombre" name="nombre" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="descripcion" class="col-form-label">Descripcion:</label>
-                                                <textarea class="form-control" rows="4" id="descripcion" name="descripcion"></textarea>
+                                                <textarea class="form-control" rows="4" id="descripcion" name="descripcion" required></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label for="marca" class="col-form-label">Marca:</label>
-                                                <input type="text" class="form-control" id="marca" name="marca">
+                                                <input type="text" class="form-control" id="marca" name="marca" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="categoria" class="col-form-label">Categoria:</label>
-                                                <input type="text" class="form-control" id="categoria" name="categoria">
+                                                <input type="text" class="form-control" id="categoria" name="categoria" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="precio" class="col-form-label">Precio:</label>
-                                                <input type="number" step="0.01" class="form-control" placeholder="7.50" id="precio" name="precio">
+                                                <input type="number" step="0.01" class="form-control" placeholder="7.50" id="precio" name="precio" required>
                                             </div>
 
                                         </form>
                                     </div>
                                     <!--Modal Body-->
                                     <div class="modal-footer">
-                                        <button type="button" id="updateProducto" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                        <button type="button" onclick="location.reload()" id="updateProducto" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                     </div>
                                 </div>
@@ -206,14 +179,13 @@
                                     {"data":"marcaproducto"},
                                     {"data":"categoriaproducto"},
                                     {"data":"precioproducto"},
-                                    {"defaultContent":"<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square-o'></i></button>" +
-                                            "<button type='button' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}
+                                    {"defaultContent":"<button type='button' class='editar btn bg-purple btn-xs' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square-o'></i></button>"}
 
                                 ],
                                 "language":idioma_espanol
                             });
                             getDataRow("#tabla1 tbody",table);
-                            getIdPersonalRow("#tabla1 tbody",table);
+
                         }
 
 
@@ -232,12 +204,7 @@
                             });
                         }
 
-                        var getIdPersonalRow=function (tbody,table) {
-                            $(tbody).on("click","button.eliminar",function () {
-                                var data=table.row($(this).parents("tr")).data();
-                                var id_personal=$("#frmDeletePersonal #idPersonal").val(data.id_personal);
-                            });
-                        }
+
 
                         var actualizar=function () {
                             $("#updateProducto").on("click",function () {

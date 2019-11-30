@@ -69,11 +69,11 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                     <thead>
                                         <tr>
                                             <th class="col-lg-1">Codigo</th>
-                                            <th class="col-lg-1">Empresa</th>
-                                            <th class="col-lg-3">Correo electrónico</th>
-                                            <th class="col-lg-4">Direccion</th>
+                                            <th class="col-lg-2">Empresa</th>
+                                            <th class="col-lg-2">Correo electrónico</th>
+                                            <th class="col-lg-3">Direccion</th>
                                             <th class="col-lg-1">Telefono</th>
-                                            <th class="col-lg-1">Nombre</th>
+                                            <th class="col-lg-2">Nombre</th>
                                             <th class="col-lg-1"></th>
                                         </tr>
                                     </thead>
@@ -85,189 +85,177 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                         </div>
                     </div> 
                     <div>
-                        <form id="frmDeleteProveedor" action="" method="POST">
-                            <input type="hidden" id="idProveedor" name="idProveedor" value="0">
-                            <input type="hidden" id="opcion" name="opcion" value="eliminar">
-                            <!-- Modal Delete-->
-                            <div class="modal fade" data-backdrop=”static” id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
+
+                    <form id="frmDeleteProveedor" action="" method="POST">
+                                    <input type="hidden" id="idProveedor" name="idProveedor" value="0">
+                                    <input type="hidden" id="opcion" name="opcion" value="eliminar">
+                                    <!-- Modal Delete-->
+                                    <div class="modal fade" data-backdrop=”static” id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-footer">
+                                                    <button type="button" onclick="" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div>
+                            <!-- Modal Update-->
+                            <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="modalEliminarLabel">Eliminar Proveedor</h4>
+                                            <h4 class="modal-title" id="modalUpdateLabel">Actualizar Proveedor</h4>
                                         </div>
+                                        <!--Modal Body Here-->
                                         <div class="modal-body">
-                                            ¿Está seguro de eliminar el Proveedor?<strong data-name=""></strong>
+                                            <form id="frmUpdateProveedor" class="form-horizontal" action="" method="POST">
+                                                <input type="hidden" id="idProveedorFrmUpdate" name="idProveedorFrmUpdate" value="">
+                                                <input type="hidden" id="opcion" name="opcion" value="actualizar">
+
+                                                <div class="form-group">
+                                                    <label for="empresa" class="col-form-label">Nombre de Empresa:</label>
+                                                    <input type="text" class="form-control" id="empresa" name="empresa">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="email" class="col-form-label">Email:</label>
+                                                    <input type="text" class="form-control" id="email" name="email">
+                                                </div>
+                                            
+                                                <div class="form-group">
+                                                    <label for="direccion" class="col-form-label">Direccion:</label>
+                                                    <input type="text" class="form-control" id="direccion" name="direccion">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="telefono" class="col-form-label">Telefono:</label>
+                                                    <input type="text" class="form-control" id="telefono" name="telefono">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="nombreProveedor" class="col-form-label">Nombre del Proveedor:</label>
+                                                    <input type="text" class="form-control" id="nombre" name="nombreProveedor">
+                                                </div>
+
+                                            </form>
                                         </div>
+                                        <!--Modal Body-->
                                         <div class="modal-footer">
-                                            <button type="button" onclick="" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                            <button type="button" id="updateProveedor" onclick="location.reload()" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
-                <div>
-                <!-- Modal Update-->
-                    <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="modalUpdateLabel">Actualizar Proveedor</h4>
-                                </div>
-                                <!--Modal Body Here-->
-                                <div class="modal-body">
-                                    <form id="frmUpdateProveedor" class="form-horizontal" action="" method="POST">
-                                        <input type="hidden" id="idProveedorFrmUpdate" name="idProveedorFrmUpdate" value="">
-                                        <input type="hidden" id="opcion" name="opcion" value="actualizar">
-
-                                        <div class="form-group">
-                                            <label for="empresa" class="col-form-label">Empresa:</label>
-                                            <input type="text" class="form-control" id="empresa" name="empresa">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="email" class="col-form-label">Correo electrónico:</label>
-                                            <input type="text" class="form-control" id="email" name="email">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="direccion" class="col-form-label">Direccion:</label>
-                                            <input type="text" class="form-control" id="direccion" name="direccion">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="telefono" class="col-form-label">Telefono:</label>
-                                            <input type="text" class="form-control" id="telefono" name="telefono">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="nombre" class="col-form-label">Nombre:</label>
-                                            <input type="text" class="form-control" id="nombre" name="nombre">
-                                        </div>
-
-                                    </form>
-                                </div>
-                                    <!--Modal Body-->
-                                <div class="modal-footer">
-                                    <button type="button" id="updateProveedor" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                </div>
-                <?php
-                    include "../../view/theme/AdminLTE/Additional/scripts.php";
-                ?>
-                <script>
-                    $(document).ready(function(){
-                        listar();
-                        actualizar();
+                        <?php
+                            include "../../view/theme/AdminLTE/Additional/scripts.php";
+                            ?>
+                        <script>
+                            $(document).ready(function(){
+                                listar();
+                                actualizar();
                                 
-                    });
-
-                    var listar= function(){
-                        var table=$('#tabla1').DataTable({
-                            "destroy":true,
-                            "ajax":{
-                                "method":"POST",
-                                "url":"listarProveedor.php",
-                                "dataSrc": "data"
-                            },
-                            "columns":[
-                                {"data":"cod_proveedor"}, //nombre del data del navegador del listar
-                                {"data":"nombre_empresa"},
-                                {"data":"email"}, 
-                                {"data":"direccion"},
-                                {"data":"telefono"},
-                                {"data":"nombre_proveedor"},
-                                {"defaultContent":"<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square-o'></i></button>"}
-
-                            ],
-                            "language":idioma_espanol
-                        });
-                        getDataRow("#tabla1 tbody",table);
-                        getIdProveedorRow("#tabla1 tbody",table);
-                    }
-
-                    var getDataRow=function (tbody,table) {
-                        console.log("entro");
-                        $(tbody).on("click","button.editar",function () {
-                            console.log("aqui");
-                            var data=table.row($(this).parents("tr")).data();
-                            console.log(data);
-                            var codproveedor=$("#frmUpdateProveedor #idProveedorFrmUpdate").val(data.cod_proveedor),
-                                empresa=$("#frmUpdateProveedor #empresa").val(data.nombre_empresa),
-                                email=$("#frmUpdateProveedor #email").val(data.email),
-                                direccion=$("#frmUpdateProveedor #direccion").val(data.direccion),
-                                telefono=$("#frmUpdateProveedor #telefono").val(data.telefono),
-                                nombre=$("#frmUpdateProveedor #nombre").val(data.nombre_proveedor);
-                        });
-                    }
-
-                    var getIdProveedorRow=function (tbody,table) {
-                        $(tbody).on("click","button.eliminar",function () {
-                            var data=table.row($(this).parents("tr")).data();
-                            var id_personal=$("#frmDeleteProveedor #idProveedor").val(data.cod_proveedor);
-                        });
-                    }
-
-                    var actualizar=function () {
-                        $("#updateProveedor").on("click",function () {
-                            var codproveedor=$("#frmUpdateProveedor #idProveedorFrmUpdate").val(),
-                                empresa=$("#frmUpdateProveedor #nombre_empresa").val(),
-                                email=$("#frmUpdateProveedor #email").val(),
-                                direccion=$("#frmUpdateProveedor #direccion").val(),
-                                telefono=$("#frmUpdateProveedor #telefono").val(),
-                                nombre=$("#frmUpdateProveedor #nombre_proveedor").val(),
-                                opcion=$("#frmUpdateProveedor #opcion").val(); //actualizar o
-                            console.log(opcion);
-                            var row={codproveedor:codproveedor,empresa:empresa,email:email,direccion:direccion,telefono:telefono,nombre:nombre,opcion:opcion};
-                            $.ajax({
-                                method:"POST",
-                                url: "tableProveedorController.php",
-                                data: row,
-                                success: function (info) {
-                                    console.log(info);
-                                }
                             });
-                            listar();
-                        });
-                    }
 
-                    var idioma_espanol={
-                        "sProcessing":     "Procesando...",
-                        "sLengthMenu":     "Mostrar _MENU_ registros",
-                        "sZeroRecords":    "No se encontraron resultados",
-                        "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
-                        "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                        "sInfoPostFix":    "",
-                        "sSearch":         "Buscar:",
-                        "sUrl":            "",
-                        "sInfoThousands":  ",",
-                        "sLoadingRecords": "Cargando...",
-                        "oPaginate": {
-                            "sFirst":    "Primero",
-                            "sLast":     "Último",
-                            "sNext":     "Siguiente",
-                            "sPrevious": "Anterior"
-                        },
-                        "oAria": {
-                            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-                        },
-                        "buttons": {
-                            "copy": "Copiar",
-                            "colvis": "Visibilidad"
-                        }
-                    }
-                </script>
+                            var listar= function(){
+                                var table=$('#tabla1').DataTable({
+                                    "destroy":true,
+                                    "ajax":{
+                                        "method":"POST",
+                                        "url":"listarProveedor.php",
+                                        "dataSrc": "data"
+                                    },
+                                    "columns":[
+                                        {"data":"cod_proveedor"}, //nombre del data del navegador del listar
+                                        {"data":"nombre_empresa"},
+                                        {"data":"email"},
+                                        {"data":"direccion"},
+                                        {"data":"telefono"},
+                                        {"data":"nombre_proveedor"},
+                                        {"defaultContent":"<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square-o'></i></button>"}
+
+                                    ],
+                                    "language":idioma_espanol
+                                });
+                                console.log("nino");
+                                getDataRow("#tabla1 tbody",table);
+                            }
+
+                            var getDataRow=function (tbody,table) {
+                                console.log("entro");
+                                $(tbody).on("click","button.editar",function () {
+                                    console.log("aqui");
+                                    var data=table.row($(this).parents("tr")).data();
+                                    console.log(data);
+                                    var codProveedor=$("#frmUpdateProveedor #idProveedorFrmUpdate").val(data.cod_proveedor),
+                                        empresa=$("#frmUpdateProveedor #empresa").val(data.nombre_empresa),
+                                        email=$("#frmUpdateProveedor #email").val(data.email),
+                                        direccion=$("#frmUpdateProveedor #direccion").val(data.direccion),
+                                        telefono=$("#frmUpdateProveedor #telefono").val(data.telefono),
+                                        nombre=$("#frmUpdateProveedor #nombre").val(data.nombre_proveedor);
+                                });
+                            }
+
+                            var actualizar=function () {
+                                $("#updateProveedor").on("click",function () {
+                                    var codProveedor=$("#frmUpdateProveedor #idProveedorFrmUpdate").val(),
+                                        empresa=$("#frmUpdateProveedor #empresa").val(),
+                                        email=$("#frmUpdateProveedor #email").val(),
+                                        direccion=$("#frmUpdateProveedor #direccion").val(),
+                                        telefono=$("#frmUpdateProveedor #telefono").val(),
+                                        nombre=$("#frmUpdateProveedor #nombre").val(),
+                                        opcion=$("#frmUpdateProveedor #opcion").val(); 
+                                    console.log(opcion);
+                                    var row={cod_proveedor:codProveedor,empresa:empresa,email:email,direccion:direccion,telefono:telefono,nombre:nombre,opcion:opcion};
+                                    $.ajax({
+                                        method:"POST",
+                                        url: "tableProveedorController.php",
+                                        data: row,
+                                        success: function (info) {
+                                            console.log(info);
+                                        }
+                                    });
+                                    listar();
+                                });
+                            }
+
+                            var idioma_espanol={
+                                "sProcessing":     "Procesando...",
+                                "sLengthMenu":     "Mostrar _MENU_ registros",
+                                "sZeroRecords":    "No se encontraron resultados",
+                                "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
+                                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                                "sInfoPostFix":    "",
+                                "sSearch":         "Buscar:",
+                                "sUrl":            "",
+                                "sInfoThousands":  ",",
+                                "sLoadingRecords": "Cargando...",
+                                "oPaginate": {
+                                    "sFirst":    "Primero",
+                                    "sLast":     "Último",
+                                    "sNext":     "Siguiente",
+                                    "sPrevious": "Anterior"
+                                },
+                                "oAria": {
+                                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                },
+                                "buttons": {
+                                    "copy": "Copiar",
+                                    "colvis": "Visibilidad"
+                                }
+                            }
+
+                        </script>
             </form>
                 <!--Datatable termina aqui-->
         </div>  

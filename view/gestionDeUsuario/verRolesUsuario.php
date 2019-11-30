@@ -46,9 +46,12 @@
                                                 <td>'.pg_result($resultado,$nroFila,3).'</td>
                                                 <td>'.pg_result($resultado,$nroFila,4).'</td>
                                                 <td> 
-                                                    <div class="btn-group">                                                      <button type="button" class="btn btn-danger btn-xs"    title="Eliminar">
+                                                    <div class="btn-group">                                                      
+                                                        <a href="../../controller/usuarioController.php?codUsuarioEliminar='.pg_result($resultado,$nroFila,0).'&codRolEliminar='.pg_result($resultado,$nroFila,2).'">
+                                                            <button type="button" class="btn btn-danger btn-xs" title="Eliminar">
                                                                 <i class="fa fa-fw fa-trash-o"></i>
                                                             </button>
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>';

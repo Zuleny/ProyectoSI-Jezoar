@@ -31,7 +31,7 @@
                             <div class="box-body">
                                 <div class="col-lg-5">
                                     <label>Nombre</label>
-                                    <input type="text" class="form-control" placeholder="Escriba nombres y apellidos de quien recibe" name="nombreRecibe">
+                                    <input type="text" class="form-control" placeholder="Escriba nombres y apellidos de quien recibe" name="nombreRecibe" required>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group" data-select2-id="13">
@@ -78,10 +78,10 @@
                                     <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
                                         <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Fecha</th>
-                                            <th>Nombre Recibe</th>
-                                            <th></th>
+                                            <th class="col-lg-1">#</th>
+                                            <th class="col-lg-2">Fecha</th>
+                                            <th class="col-lg-7">Nombre Recibe</th>
+                                            <th class="col-lg-2"><th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -136,7 +136,7 @@
 
                                                 <div class="form-group">
                                                     <label for="nombre" class="col-form-label">Nombre:</label>
-                                                    <input type="text" class="form-control" id="nombre" name="nombre">
+                                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
                                                 </div>
 
                                             </form>

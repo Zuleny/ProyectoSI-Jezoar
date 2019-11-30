@@ -1,6 +1,6 @@
 <?php
 
-    $codproveedor = $_POST['codproveedor'];
+    $codproveedor = $_POST['cod_proveedor'];
     $empresa= $_POST['empresa'];
     $email= $_POST['email'];
     $direccion= $_POST['direccion'];
