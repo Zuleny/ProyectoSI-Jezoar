@@ -65,8 +65,7 @@ begin
 			raise notice 'Devolucion realizada correctamente :3';
 		else
 			raise notice 'Error... No existe el insumo a Devolver, registre el nuevo insumo';
-			raise notice 'No se registro el insumo % en la nota %',new.nombre_insumo,new.nro_nota;
-			rollback;
+			raise exception 'No se registro el insumo % en la nota %',new.nombre_insumo,new.nro_nota;
 		end if;
 	end if;
 	return new;
