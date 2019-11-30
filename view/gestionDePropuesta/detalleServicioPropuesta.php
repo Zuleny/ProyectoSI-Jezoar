@@ -112,7 +112,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                         ¿Está seguro de eliminar el Servicio?<strong data-name=""></strong>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" id="deleteServicioPropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                        <button type="button" onclick="location.reload()" id="deleteServicioPropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 </div>
                                 <!--Modal Body-->
                                 <div class="modal-footer">
-                                    <button type="button" id="updateServicioPropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                    <button type="button" onclick="location.reload()" id="updateServicioPropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                 </div>
                             </div>

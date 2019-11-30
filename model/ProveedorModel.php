@@ -36,7 +36,7 @@ class Proveedor{
     
     public function actualizarProveedor($codproveedor,$empresaproveedor,$emailproveedor,$direccionproveedor,$telefonoproveedor,$nombreproveedor){
         try{
-            $this->Conexion->execute("UPDATE Proveedor SET nombre_empresa='$empresaproveedor', email='$emailproveedor',direccion='$direccionproveedor',telefono='$telefonoproveedor',nombre_proveedor='$nombreproveedor' ,where cod_proveedor=$codproveedor;");
+            $this->Conexion->execute("UPDATE Proveedor SET nombre_empresa='$empresaproveedor', email='$emailproveedor',direccion='$direccionproveedor',telefono='$telefonoproveedor',nombre_proveedor='$nombreproveedor' where cod_proveedor=$codproveedor;");
             return true;
         }catch (\Throwable $th){
             return false;

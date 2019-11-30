@@ -152,7 +152,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 <!--Modal Body Here-->
                                 <div class="modal-body">
                                     <form id="frmUpdatePropuesta" class="form-horizontal" action="" method="POST">
-                                        <input type="hidden" id="idPropuesta" name="idPropuesta" value="">
+                                        <input type="hidden"  id="idPropuesta" name="idPropuesta" value="">
                                         <input type="hidden" id="opcion" name="opcion" value="actualizar">
 
                                         <div class="form-group">
@@ -198,7 +198,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 </div>
                                 <!--Modal Body-->
                                 <div class="modal-footer">
-                                    <button type="button" id="updatePropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                    <button type="button" id="updatePropuesta" onclick="location.reload()" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                 </div>
                             </div>

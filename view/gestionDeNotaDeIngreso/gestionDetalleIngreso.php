@@ -50,7 +50,7 @@
                       <div class="col-lg-3">
                         <button type="submit" class="btn btn-block btn-success" id="button1" style="border-radius: 15px;" title="Registrar Detalle de Ingreso">Registrar Detalle</button>
                       </div>
-
+                      <div class="col-lg-6"></div>
                       <div class="col-lg-3">
                         <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeProducto/gestionProducto.php" target="_blank" id="etiqueta1">
                         ¿No encontro el producto en la lista?

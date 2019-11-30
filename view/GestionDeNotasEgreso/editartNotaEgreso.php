@@ -14,8 +14,8 @@
     <section class="content">
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">Editar Nota de Egreso # <? echo $_GET['notaEditar'] ?> (Nota: Asigne los nuevos datos de la Nota de Egreso a modificar)</h3>
-                <?
+                <h3 class="box-title">Editar Nota de Egreso # <?php echo $_GET['notaEditar'] ?> (Nota: Asigne los nuevos datos de la Nota de Egreso a modificar)</h3>
+                <?php
                     require '../../controller/notaEgresoController.php';
                     $resultado = getPersonal();
                     $datos = getDatosNotaEgresoEditar($_GET['notaEditar']);
@@ -30,7 +30,7 @@
                 <!--  Lugar de butons y label y textbox  -->
                 <div class="box-body">
                     <div class="col-lg-6">
-                        <label><b>Nombre Personal: </b> <? echo strtoupper(pg_result($datos,0,0)); ?></label>
+                        <label><b>Nombre Personal: </b> <?php echo strtoupper(pg_result($datos,0,0)); ?></label>
                         <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="personalEditar">
                             <?php 
                                 $nroFilas = pg_num_rows($resultado);
@@ -52,7 +52,7 @@
                 </div>
                 <div class="box-body">
                     <div class="col-lg-6">
-                        <label> <b>Almacen Correspondiente: </b> <? echo strtoupper(pg_result($datos,0,2)); ?> </label>
+                        <label> <b>Almacen Correspondiente: </b> <?php echo strtoupper(pg_result($datos,0,2)); ?> </label>
                         <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" name="almacenEditar">
                             <?php 
                                 $resultado = getAlmacenes();

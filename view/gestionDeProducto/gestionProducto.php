@@ -145,7 +145,7 @@
                                     </div>
                                     <!--Modal Body-->
                                     <div class="modal-footer">
-                                        <button type="button" id="updateProducto" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                        <button type="button" onclick="location.reload()" id="updateProducto" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                     </div>
                                 </div>

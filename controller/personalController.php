@@ -14,19 +14,8 @@
    header('Location: ../view/gestionDePersonal/gestionDePersonal.php');
 }
 
-function getListaTipoDePersonal(){
-   require "../../model/personalModel.php"; 
-   $personal1=new Personal("","","");
-   $result=$personal1->getListaTipoDePersonal();
-   $lista="";
-   $nroFilas=pg_num_rows($result);
-   if ($nroFilas>0) {
-       for ($nroTupla=0; $nroTupla < $nroFilas; $nroTupla++){ 
-           $lista.='<option>'.pg_result($result,$nroTupla,0).'</option>';
-       }
-   }
-   return $lista;
-}
+require "../../model/personalModel.php";
+
 
 function getListaCargoDePersonal(){
   

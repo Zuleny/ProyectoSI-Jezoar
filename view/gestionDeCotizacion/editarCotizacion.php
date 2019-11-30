@@ -55,7 +55,7 @@
                     <div class="col-lg-4">
                         <label>Precio Total</label>
                         <input type="text" class="form-control" step="0.01" placeholder="Precio Total" disabled value="<?php echo pg_result($result,0,3);?> Bs.">
-                        <input type="hidden" name="codigo" value="<? echo $_GET['codigo']; ?>">
+                        <input type="hidden" name="codigo" value="<?php echo $_GET['codigo']; ?>">
                     </div>
                     <div class="col-lg-4 form-group">
                         <label for="option"> <b>Tipo de Servicio: </b> <?php echo "Limpieza ".pg_result($result,0,4) ?> </label>
