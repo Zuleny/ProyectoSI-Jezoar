@@ -99,12 +99,12 @@
                         }
                                 echo '<td> 
                                                     <div class="btn-group">                                                        
-                                                        <a href="editarNotaDevolucion.php?contratoEditar='.pg_result($resultado,$fila,0).'">
+                                                        <a href="editarcontrato.php?contratoEditar='.pg_result($resultado,$fila,0).'">
                                                             <button type="button" class="btn bg-purple btn-xs" title="Editar contrato">
                                                                 <i class="fa fa-fw fa-edit"></i>
                                                             </button>
                                                         </a>
-                                                        <a href="../../controller/notaDevolucionController.cphp?nota='.pg_result($resultado,$fila,0).'">
+                                                        <a href="../../controller/contratoController.php?cod=g'.pg_result($resultado,$fila,0).'">
                                                             <button type="button" class="btn bg-red btn-xs" title="Eliminar contrato">
                                                                 <i class="fa fa-fw fa-trash-o"></i>
                                                             </button>

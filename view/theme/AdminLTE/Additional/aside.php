@@ -14,7 +14,6 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MENÚ DE NAVEGACIÓN</li>
-<<<<<<< HEAD
             <!-- Servicios -->
             <li class="treeview">
               <a href="#">
@@ -83,13 +82,6 @@
                   <li><a href="http://localhost/ProyectoSI-Jezoar/view/GestionarReporteInventarioHermamienta/ListaAlmacenes.php"><i class="fa fa-circle-o"></i>Reportes de Herramientas</a></li>
               </ul>
             </li>
-=======
-            <?php 
-            
-              echo $_SESSION['listPermisos'];
-
-            ?>
->>>>>>> origin
             <!-- Equipo de Trabajo -->
             <li>
               <a href="../../view/DevelopersView/Developers.php">

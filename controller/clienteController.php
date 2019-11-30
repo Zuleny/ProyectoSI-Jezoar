@@ -28,10 +28,11 @@ function getTableCliente(){
     $nroFilas=pg_num_rows($resultado);
     $printer="";
     for ($nroTupla=0; $nroTupla < $nroFilas ; $nroTupla++){
-        $printer.='<tr> <td>'.pg_result($resultado,$nroTupla,0).'</td>';
-        $printer.=      '<td>'.pg_result($resultado,$nroTupla,1).'</td>';
+        $printer.='<tr> <td>'.pg_result($resultado,$nroTupla,1).'</td>';
         $printer.=      '<td>'.pg_result($resultado,$nroTupla,2).'</td>';
         $printer.=      '<td>'.pg_result($resultado,$nroTupla,3).'</td>';
+        $printer.=      '<td>'.pg_result($resultado,$nroTupla,4).'</td>';
+
         $cod = pg_result($resultado,$nroTupla,0);
         $var = $cliente1->getCantidadTelefono($cod);
         $telefono=$cliente1->getTelefono($cod);
@@ -43,6 +44,7 @@ function getTableCliente(){
                 $printer.=      '<td>'.pg_result($telefono,0,0).' - '.pg_result($telefono,1,0). '</td>';
             }
         }
+        $printer.=      '<td>'.pg_result($resultado,$nroTupla,5).'</td>';
         $printer.='<td>
                             <div class="btn-group">
                                 <a href="editarCliente.php?cod='.pg_result($resultado,$nroTupla,0).'">

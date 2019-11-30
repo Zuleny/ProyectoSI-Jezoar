@@ -1699,9 +1699,6 @@ as $$ begin
 			where nombre=nombreAlmacen);
 end $$ language 'plpgsql';
 
-<<<<<<< HEAD
-/*40. Funcion que devuelve el devuelve el tipo de cliente de acuerdo a su codigo*/
-=======
 /*40. Funcion que retorna la cantidad de insumos que ingresan en un determinado detalle de ingreso de un determinado almacen y nro de ingreso*/
 create or replace function getCantidadDetalleIngreso(nroIngreso integer,idIngreso integer,codAlmacen integer) returns int as
 $BODY$
@@ -1745,7 +1742,7 @@ for each row
 	execute procedure uDetalleIngreso();
 
 /*43. Funcion que devuelve el devuelve el tipo de cliente de acuerdo a su codigo*/
->>>>>>> origin
+
 create or replace function esPersona(codCliente integer)
 returns integer
 as $BODY$
@@ -1759,16 +1756,12 @@ begin
 	end if;
 end;
 $BODY$ language 'plpgsql';
-<<<<<<< HEAD
-/*41. Funcion que devuelve el CI o Nit de acuerdo a su tipo*/
-=======
 
 /*44. Funcion que devuelve el CI o Nit de acuerdo a su tipo*/
->>>>>>> origin
 create or replace function getNIT_CI_Cliente(codCliente integer)
-returns integer
+returns text
 as $BODY$
-declare resultado integer;
+declare resultado text;
 begin
 	if esPersona(codCliente)=1 then
 		resultado:=(select nro_carnet from persona where cod_cliente_persona=codCliente);
@@ -1777,8 +1770,5 @@ begin
 	end if;
 return resultado;
 end;
-<<<<<<< HEAD
 $BODY$ language 'plpgsql';
-=======
-$BODY$ language 'plpgsql';
->>>>>>> origin
+
