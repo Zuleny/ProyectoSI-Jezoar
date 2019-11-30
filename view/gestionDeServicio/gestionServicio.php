@@ -24,15 +24,11 @@
                 <form role="form" action="../../controller/servicioController.php" method="post">
                     <!--  Lugar de butons y label y textbox  -->
                     <div class="box-body">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <label>Nombre del Servicio</label>
                             <input type="text" class="form-control" placeholder="Limpieza general de oficinas" name="nombre_servicio">
                         </div>
-                        <div class="col-lg-5">
-                            <label>Descripcion</label>
-                            <input type="text" class="form-control" placeholder="Descripcion del servicio" name="descripcion">
-                        </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-4 pull-right">
                             <br>
                             <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" name=InsertarAlmacen" title="Agregar Servicio">Agregar Servicio
                                 <i class="fa fa-fw fa-cart-plus"></i>
@@ -48,11 +44,9 @@
                             <table class="table table-bordered table-hover" method="POST" id="tabla1">
                                 <thead>
                                     <tr>
-                                        <th>Id Servicio</th>
-                                        <th>Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th>Modificaciones</th>
-                                        <th></th>
+                                        <th>#</th>
+                                        <th>Nombre de Servicio</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
