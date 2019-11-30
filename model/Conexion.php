@@ -77,4 +77,3 @@ class Conexion {
     $arr=$conexion->getArray("select* from personal;");
     echo json_encode($arr),"\n";
     */
-?>

@@ -78,10 +78,36 @@
                             <div class="col-lg-3">
                                 <p><input type="radio" name="tipo" value="P"> Persona</p>
                             </div>
-                            <div class="col-md-3">
-                                <p><input type="radio" name="tipo" value="E"> Empresa</p>
-                            </div>
-                        </div>                        
+                            <div class="box-body">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Cod Cliente</th>
+                                            <th>Nombre</th>
+                                            <th>Correo</th>
+                                            <th>Direccion</th>
+                                            <th>Telefono</th>
+                                            <th>Nit/CI</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            require "../../controller/clienteController.php";
+                                            $printer=getTableCliente();
+                                            echo $printer;
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>  
+
+                          </div>
+
+                    </form>
+                    <div>
+                         <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">
+                            <i class="fa fa-facebook"></i>
+                            Página de Facebook de Jezoar
+                        </a>
                     </div>
                     <div class="box-body">
                         <div class="col-lg-9"></div>

@@ -46,7 +46,7 @@ class Cotizacion{
      * Devuelve el codigo de Cliente de su nombre Completo (nombre de Personal)
      */
     public function getCodCliente($nombrePersona){
-        $result = $this->conexion->execute("select getCodCliente('$nombrePersona');");
+        $result = $this->conexion->execute("select getCodCliente($nombrePersona);");
         return pg_result($result,0,0);
     }
 

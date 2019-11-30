@@ -35,7 +35,7 @@ $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Times','',12);
-for($i=1;$i<=40;$i++)
+for($i=1;$i<=20;$i++)
 	$pdf->Cell(0,10,'Imprimiendo l�nea n�mero '.$i,0,1);
 $pdf->Output();
 ?>

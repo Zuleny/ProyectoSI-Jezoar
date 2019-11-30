@@ -29,6 +29,10 @@ include "../../view/theme/AdminLTE/Additional/head.php";
 
                     <div class="box-body">
                         <div class="col-lg-4">
+<<<<<<< HEAD
+                            <label>Nombre Cliente</label>
+                            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Yerba Buena">
+=======
                             <label>Fecha</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
@@ -36,6 +40,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 </div>
                                 <input type="date" class="form-control" name="fecha" required>
                             </div>
+>>>>>>> origin
                         </div>
                         <div class="col-lg-3 form-group">
                             <label>Nombre Cliente</label>

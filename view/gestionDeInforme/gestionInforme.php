@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+<?php
+    include "../../view/theme/AdminLTE/Additional/head.php";
+    //require_once '../../vendor/autoload.php';
+?>
+    <div class="content-wrapper">
+        <!-- Titulo de la cabecera -->
+        <section class="content-header">
+            <h1>
+                Informe
+                <!-- <small>Blank example to the fixed layout</small> -->
+            </h1>
+        </section>
+        <!-- Fin de la cabecera -->
+        <!-- contenido de mi Vista -->
+        <section class="content">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Detalles de la culminacion de una obra terminada</h3>
+                    <div class="box-tools pull-right">
+=======
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +48,10 @@
                     <div class="box-header">
                         <h3 class="box-title">Gestion de informe</h3>
                         <div class="box-tools pull-right">
+>>>>>>> origin
                             <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
-                        </div>s
+                        </div>
                     </div>
                    <!-- Inicia tu codigo aqui -->                    
                     <form role="form" action="../../controller/informeController.php" method="post" enctype="multipart/form-data" >
@@ -38,6 +60,16 @@
                         <div class="box-body">
                             <div class="col-lg-5">
                                 <label>Nombre de cliente</label>
+<<<<<<< HEAD
+                                <select class="form-control" name="nombreCliente">
+                                    <?php
+                                    require "../../controller/informeController.php";
+                                    $result=getClienteInforme();
+                                    //\FB::log($result);
+                                    echo $result;
+                                    ?>
+                                </select>
+=======
                                 <div class="input-group margin-bottom-sm"> 
                                     <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
                                         <input type="text" class="form-control" name = "nombre_cliente" >
@@ -56,6 +88,7 @@
                                     <span class="input-group-addon"><i class="fa fa-file fa-fw" aria-hidden="true"></i></span>
                                         <input type="text" name = "cod_presentacion"class="form-control">
                                 </div>
+>>>>>>> origin
                             </div>
 
                         </div>
@@ -93,7 +126,7 @@
                         </div>
 
                         <div class="box-body">
-                            <div class="col-lg-10">
+                            <div class="col-lg-9">
                                 <label>Descripcion del informe</label>
                                 <textarea class="form-control" rows="5" name = "descripcion"></textarea>
                             </div>
@@ -110,6 +143,47 @@
                         <div class="box box-info">
                             <div class="box-header">
                                 <h3 class="box-title">Informes presentados</h3>
+                            </div>
+                            <div class="box-body">
+                                <table class="table table-bordered table-hover" id="tabla1">
+                                    <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Cliente</th>
+                                        <th>Fecha</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $result = getListaInforme();
+                                    $countTuplas=pg_num_rows($result);
+                                    $printer='';
+                                    $datosParaPDF = visualizarDatosParaPDF();
+                                    for ($tupla=0; $tupla < $countTuplas; $tupla++) {
+                                        $printer=$printer.'<tr> <td>'.pg_result($result,$tupla,0).'</td>';
+                                        $printer=$printer.      '<td>'.pg_result($result,$tupla,1).'</td>';
+                                        $printer=$printer.      '<td>'.pg_result($result,$tupla,2).'</td>';
+                                        $printer=$printer.'     <td> <div class="btn-group">
+                                        <a href="../../controller/informeController.php?cod='.pg_result($result,$tupla,0).'">
+                                            <button type="button" class="btn bg-red btn-sm btn-xs" title="Eliminar">
+                                                <i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </a>   
+                                        <a href="../../view/gestionDeInforme/informe.php?cliente='.pg_result($datosParaPDF,$tupla,0).'&des='.pg_result($datosParaPDF,$tupla,1).'">
+                                                                    <button type="button" class="btn bg-primary btn-sm btn-xs" title="Ver PDF">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </a>                                 
+                                       
+                                     </div>
+                                </td>
+                            </tr>';
+                                    }
+                                    echo $printer;
+                                    ?>
+                                    </tbody>
+                                </table>
                             </div>
                             
                         </div>
