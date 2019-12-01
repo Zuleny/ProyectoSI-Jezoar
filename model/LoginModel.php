@@ -33,11 +33,17 @@ class Login{
      * Devuelve una Lista de Permisos de Una usuario a traves de su Nombre
      */
     public function getListaPermisos($usuario){
-        $result = $this->conexion->execute("SELECT DISTINCT p.descripcion 
-                                        FROM usuario as u,rol as r,permiso as p,rol_permiso as rp,usuario_rol as ur 
-                                        WHERE u.cod_usuario=ur.cod_usuario and p.id_permiso=rp.id_permiso and rp.cod_rol=r.cod_rol and u.nombre='$usuario';
-        ");
-        return pg_fetch_all($result);
+        $result = $this->conexion->execute("SELECT id_permiso 
+                                            FROM usuario as u, usuario_rol as ur, rol as r, rol_permiso as rp 
+                                            WHERE u.cod_usuario=ur.cod_usuario and 
+                                                    ur.cod_rol=r.cod_rol and 
+                                                    r.cod_rol=rp.cod_rol and 
+                                                    u.nombre='$usuario'; ");
+        $arrayOfPermisos = array();
+        for ($i=0; $i < pg_num_rows($result) ; $i++) { 
+            $arrayOfPermisos[$i] = pg_result($result,$i,0);
+        }
+        return $arrayOfPermisos;
     }
 
     /**

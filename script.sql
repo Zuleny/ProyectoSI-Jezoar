@@ -919,24 +919,30 @@ insert into Usuario_Rol(cod_usuario,cod_rol) values (1,1),
 													(2,2);
 
 insert into Permiso(id_permiso,descripcion) values 
-(1,'Gestion de Presentacion(Propuestas y Cotizaciones)'),
-(2,'Gestion de Informes'),
-(3,'Administrar Contratos'),
-(4,'Gestion de Servicios'),
-(5,'Gestion de Clientes'),
-(6,'Gestion de Proveedores'),
-(7,'Gestion de Almacenes'),
-(8,'Gestion de Notas de Ingreso'),
-(9,'Gestion de Notas de Egreso'),
-(10,'Gestion de Notas de Devolucion'),
-(11,'Gestion de Usuarios'),
-(12,'Gestion de Roles'),
-(13,'Gestion de Permisos'),
-(14,'Administracion de Bitacora'),
-(15,'Gestion de Personal'),
-(16,'Gestion de Insumos (Productos y Almacen)'),
-(17,'Gestion de Gestion de Categoria Productos'),
-(18,'Consultar Reportes');
+(1,'Gestion de Propuestas'),
+(2,'Gestion de Cotizacion'),
+(3,'Gestion de Informes'),
+(4,'Administrar Contratos'),
+(5,'Gestion de Servicios'),
+(6,'Gestion de Clientes'),
+
+(7,'Gestion de Proveedores'),
+(8,'Gestion de Almacenes'),
+(9,'Gestion de Notas de Ingreso'),
+(10,'Gestion de Notas de Egreso'),
+(11,'Gestion de Notas de Devolucion'),
+
+(12,'Gestion de Usuarios'),
+(13,'Gestion de Roles'),
+(14,'Gestion de Permisos'),
+(15,'Administracion de Bitacora'),
+(16,'Gestion de Personal'),
+
+(17,'Gestion de Productos'),
+(18,'Gestion de Herramientas'),
+(19,'Gestion de Gestion de Categoria Productos'),
+(20,'Consultar Reportes de Productos'),
+(21,'Consultar Reportes de Herramientas');
 
 insert into Rol_Permiso(cod_rol,id_permiso) values
 (1,1),
@@ -957,6 +963,9 @@ insert into Rol_Permiso(cod_rol,id_permiso) values
 (1,16),
 (1,17),
 (1,18),
+(1,19),
+(1,20),
+(1,21),
 (2,8),
 (2,9),
 (2,10),
@@ -1474,7 +1483,7 @@ language plpgsql;
 create trigger iDetalleIngreso 
 before insert on Detalle_Ingreso
 for each row 
-	execute procedure ingresoDetalle()
+	execute procedure ingresoDetalle();
 /*17. Funcion Auxiliar para el trigger dDetalleIngreso*/
 create or replace function dIngresoDetalle() returns trigger as 
 $$
