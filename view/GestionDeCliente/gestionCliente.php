@@ -72,45 +72,16 @@
                                 <input type="text" name="direccion_cliente" class="form-control" >
                             </div>
                         </div>
-                        <div class="col-lg-5 form-group" >
+                        <div class="col-lg-3">
                             <label>Tipo de cliente:</label>
-                            <br>
-                            <div class="col-lg-3">
-                                <p><input type="radio" name="tipo" value="P"> Persona</p>
-                            </div>
-                            <div class="box-body">
-                                <table class="table table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Cod Cliente</th>
-                                            <th>Nombre</th>
-                                            <th>Correo</th>
-                                            <th>Direccion</th>
-                                            <th>Telefono</th>
-                                            <th>Nit/CI</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                            require "../../controller/clienteController.php";
-                                            $printer=getTableCliente();
-                                            echo $printer;
-                                        ?>
-                                    </tbody>
-                                </table>
-                            </div>  
-
-                          </div>
-
-                    </form>
-                    <div>
-                         <a href="https://www.facebook.com/Jezoar-228770924276961/" target="_blank"class="btn btn-block btn-social btn-facebook">
-                            <i class="fa fa-facebook"></i>
-                            Página de Facebook de Jezoar
-                        </a>
+                            <p><input type="radio" name="tipo" value="P">Persona</p>
+                            <p><input type="radio" name="tipo" value="E">Empresa</p>
+                        </div>
                     </div>
+                </form>
+
+
                     <div class="box-body">
-                        <div class="col-lg-9"></div>
                         <div class="col-lg-3">                 
                             <button type="submit" name ="agregar_cliente" class="btn btn-block btn-success" style="border-radius: 15px;" title="Agregar Servicio">Agregar cliente <i class="fa fa-fw fa-user-plus"></i></button>
                         </div>
@@ -120,25 +91,25 @@
                         <div class="box-header">
                             <h3 class="box-title">Clientes de la Empresa Jezoar</h3>
                         </div>
-                        <div class="box-body" id="tabla1">
-                            <table class="table table-bordered table-hover" id="tabla1">
+                        <div class="box-body">
+                            <table class="table table-bordered table-hover">
                                 <thead>
-                                    <tr>
-                                        <th class="col-lg-1">#</th>
-                                        <th class="col-lg-2">Nombre</th>
-                                        <th class="col-lg-2">Correo</th>
-                                        <th class="col-lg-3">Direccion</th>
-                                        <th class="col-lg-1">Tipo de Cliente</th>
-                                        <th class="col-lg-2">Telefono</th> 
-                                        <th class="col-lg-1"></th>                                    
-                                    </tr>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Correo</th>
+                                    <th>Direccion</th>
+                                    <th>Tipo</th>
+                                    <th>Telefono</th>
+                                    <th>Nit/CI</th>
+                                    <th>Acción</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                        require "../../controller/clienteController.php";
-                                        $printer=getTableCliente();
-                                        echo $printer;
-                                    ?>
+                                <?php
+                                require "../../controller/clienteController.php";
+                                $printer=getTableCliente();
+                                echo $printer;
+                                ?>
                                 </tbody>
                             </table>
                         </div>
