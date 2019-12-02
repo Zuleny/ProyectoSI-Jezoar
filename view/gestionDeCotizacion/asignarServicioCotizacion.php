@@ -14,7 +14,7 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Asignación de Servicios a la Cotizacion # <?php echo $_GET['codigo']?></h3>
+                    <h3 class="box-title">Asignación de Servicios a la Cotizacion # <?php echo $_GET['codigo']; ?></h3>
                     <div class="box-tools pull-right">
                         <a href="gestionCotizacion.php" class="btn btn-primary" title="Volver Atras">
                         <span class="fa fa-fw fa-mail-reply"></span></a>
@@ -23,46 +23,96 @@
                     </div>
                     <div class="box-body">
                         <form class="box-body" action="../../controller/cotizacionController.php" method="get">
-                            <table class="table table-bordered table-hover" id="tabla1">
-                                <thead>
-                                    <tr>
-                                        <th> </th>
-                                        <th>#</th>
-                                        <th>Nombre Servicio</th>
-                                        <th>Descripción</th>
-                                        <th>Area Trabajo</th>
-                                        <th>Cantidad Personal</th>
-                                        <th>Precio Unitario</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        require "../../controller/cotizacionController.php";
-                                        $result = getListaAsignacionServicioCotizacion($_GET['codigo']);
-                                        $nroFilas = pg_num_rows($result);
-                                        for ($i=0; $i < $nroFilas ; $i++) { 
-                                            echo '<tr>';
-                                            echo    '<td> <input type="checkbox" name=idServicio[] value="'.pg_result($result,$i,0).'"> </td>';
-                                            echo    '<td>'.pg_result($result,$i,0).'</td>';
-                                            echo    '<td>'.pg_result($result,$i,1).'</td>';
-                                            echo    '<td>'.pg_result($result,$i,2).'</td>';
-                                            echo    '<td> <input type="text" name="areaTrabajo[]" class="form-control" placeholder="Lugar de Trabajo de Trabajo"> </td>';
-                                            echo    '<td> <input type="number" min="0" name="cantPersonas[]" class="form-control" placeholder="0"> </td>';
-                                            echo    '<td><input type="number" step="0.01" min="0" name="precioUnitario[]" class="form-control" placeholder="0.0"> </td>';
-                                            echo '</tr>';
-                                        }
-                                    ?>
-                                </tbody>
-                            </table>
-                            <div class="col-lg-4 pull-right">
-                                <input type="hidden" name="codigo" value="<?php echo $_GET['codigo'];?>">
-                                <br>
-                                <button type="submit" style="border-radius: 15px;" class="btn btn-block btn-success" title="Registrar Nota de Ingreso">
-                                    Asiganr Servicios a Cotización
-                                <i class="fa fa-fw fa-cart-plus"></i>
-                                </button>
+                            <div class="box-body">
+                                <div class="col-lg-3">
+                                    <label>Servicios</label>
+                                    <select class="form-control" name="servicio">
+                                        <?php 
+                                            require '../../controller/cotizacionController.php';
+                                            $datos = getDatos($_GET['codigo']);
+                                            $resultado = getListaServiciosOfrecerCotizacion($_GET['codigo']);
+                                            for ($nroServicio=0; $nroServicio < pg_num_rows($resultado); $nroServicio++) { 
+                                                echo '<option value="'.pg_result($resultado,$nroServicio,0).'">'.pg_result($resultado,$nroServicio,1).'</option>';
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>Area Trabajo</label>
+                                    <input type="text" class="form-control" placeholder="Ej. Oficinas" name="areaTrabajo">
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>Cantidad de Personas</label>
+                                    <input type="number" class="form-control" min="1" value="1" name="cantPersonas">
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>Precio Unitario</label>
+                                    <input type="number" class="form-control" step="0.01" min="0.00" value="0.00" name="precioUnitario">
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <div class="col-lg-3">
+                                    <input type="hidden" name="codCotizacion" value="<?php echo $_GET['codigo']; ?>">
+                                    <button type="submit" style="border-radius: 15px;" value="Agregar Servicio" name="asignarServicioCotizacion" class="btn btn-block btn-success" title="Agregar Servicio">
+                                        Agregar Cotización 
+                                        <i class="fa fa-fw fa-check"></i>
+                                    </button>
+                                </div>
                             </div>
                         </form>
+                        <div class="box box-success">
+                            <div class="box-header">
+                                <h3 class="box-title">Lista de Cotizaciones</h3>
+                            </div>
+                            <div class="box-body">
+                                <div class="col-lg-3">
+                                    <p>
+                                        <b>Detalles: </b><br>
+                                        <b>Cliente: </b> <?php echo $datos[0]?> <br>
+                                        <b>Fecha: </b> <?php echo date('d F Y',strtotime($datos[1]));?> <br>
+                                        <b>Estado: </b> <?php 
+                                                            if ($datos[2]=="Denegado") {
+                                                                echo '<td><span class="label label-danger">Denegado</span></td>';
+                                                            }else if ($datos[2]=="Aceptado") {
+                                                                echo '<td><span class="label label-success">Aceptado</span></td>';
+                                                            }else{
+                                                                echo '<td><span class="label label-warning">Espera</span></td>';
+                                                            }
+                                                        ?> <br>
+                                        <b>Precio Total: </b> <?php echo $datos[3];?> Bs. <br>
+                                        <b>Descripción:  </b><br> <?php echo $datos[4];?><br>
+                                    </p>
+                                </div>
+                                <div class="col-lg-9">
+                                    <table class="table table-bordered table-hover" id="tabla1">
+                                        <thead>
+                                            <tr>
+                                                <th> # </th>
+                                                <th> Nombre </th>
+                                                <th> Area de Trabajo </th>
+                                                <th> Cantidad De Personal </th>
+                                                <th> Precio Unitario </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                                $listaServicios = getListaServiciosCotizacion($_GET['codigo']);
+                                                $nroFilas = pg_num_rows($listaServicios);
+                                                for ($tupla = 0; $tupla < $nroFilas ; $tupla++) { 
+                                                    echo '<tr>';
+                                                    echo '<td>'.pg_result($listaServicios,$tupla,0).'</td>';
+                                                    echo '<td>'.pg_result($listaServicios,$tupla,1).'</td>';
+                                                    echo '<td>'.pg_result($listaServicios,$tupla,2).'</td>';
+                                                    echo '<td>'.pg_result($listaServicios,$tupla,3).'</td>';
+                                                    echo '<td>'.pg_result($listaServicios,$tupla,4).'</td>';
+                                                    echo '</tr>';
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="box-footer">

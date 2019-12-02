@@ -10,12 +10,13 @@ class Cotizacion{
     public $cantDias;
     public $tipoServicio;
     public $material;
+    public $descripcionServicio;
     public $conexion;
 
     /**
      * Constructor
      */
-    public function __construct($codCotizacion = -1 , $fecha = "01/01/2001" , $estado = "", $precioTotal ="0", $nombreCliente = "", $cantDias = 0, $tipoServicio = "",$material =""){
+    public function __construct($codCotizacion = -1 , $fecha = "01/01/2001" , $estado = "", $precioTotal ="0", $nombreCliente = "", $cantDias = 0, $tipoServicio = "",$material ="", $descripcionServicio = ""){
         $this->conexion = new Conexion();
         $this->codCotizacion = $codCotizacion;
         $this->fecha = $fecha;
@@ -25,6 +26,7 @@ class Cotizacion{
         $this->cantDias = $cantDias;
         $this->tipoServicio = $tipoServicio;
         $this->material = $material;
+        $this->descripcionServicio = $descripcionServicio;
     }
 
     /**
@@ -33,9 +35,10 @@ class Cotizacion{
      */
     public function insertarCotizacion(){
         try {
-            $this->conexion->execute("insert into Presentacion(cod_presentacion,fecha,estado,precio_total,cod_cliente_presentacion,tipo_presentacion) values ($this->codCotizacion,'$this->fecha','$this->estado',$this->precioTotal,$this->codCliente,'C');
-            insert into Cotizacion(cod_presentacion_cotizacion,cant_dias,tipo_servicio,material) values ($this->codCotizacion,$this->cantDias,'$this->tipoServicio','$this->material');
-            ");
+            $this->conexion->execute("INSERT INTO presentacion(cod_presentacion,fecha,estado,precio_total,cod_cliente_presentacion,descripcion_servicios,tipo_presentacion) 
+                                        VALUES ($this->codCotizacion,'$this->fecha','$this->estado',$this->precioTotal,$this->codCliente,'$this->descripcionServicio','C');
+                                      INSERT INTO cotizacion(cod_presentacion_cotizacion,cant_dias,tipo_servicio,material) 
+                                        VALUES ($this->codCotizacion,$this->cantDias,'$this->tipoServicio','$this->material');");
             return true;
         } catch (\Throwable $th) {
             return false;
@@ -46,8 +49,12 @@ class Cotizacion{
      * Devuelve el codigo de Cliente de su nombre Completo (nombre de Personal)
      */
     public function getCodCliente($nombrePersona){
-        $result = $this->conexion->execute("select getCodCliente($nombrePersona);");
-        return pg_result($result,0,0);
+        if ($nombrePersona!="") {
+            $result = $this->conexion->execute("select getCodCliente('$nombrePersona');");
+            return pg_result($result,0,0);
+        }else{
+            return -1;
+        }
     }
 
     public function getNewCodCotizacion(){
@@ -68,16 +75,17 @@ class Cotizacion{
      * Devuelve una Lista de Cotizaciones con sus datos Completos
      */
     public function getListaCotizaciones(){
-        return $this->conexion->execute("SELECT cod_presentacion,
-                                                fecha,
-                                                estado,
-                                                precio_total,
-                                                getNombreCliente(cod_cliente_presentacion),
-                                                cant_dias,
-                                                tipo_servicio,material 
-                                         FROM presentacion,cotizacion 
-                                         WHERE cod_presentacion=cod_presentacion_cotizacion and 
-                                                tipo_presentacion='C';");
+        return $this->conexion->execute("SELECT p.cod_presentacion, 
+                                                fecha, 
+                                                estado, 
+                                                precio_total, 
+                                                getnombrecliente(cod_cliente_presentacion),
+                                                cant_dias, 
+                                                tipo_servicio, 
+                                                material, 
+                                                descripcion_servicios 
+                                         FROM presentacion as p, cotizacion as c 
+                                         WHERE p.cod_presentacion=c.cod_presentacion_cotizacion;");
     }
 
     /**
@@ -131,19 +139,13 @@ class Cotizacion{
     /**
      * Asigna una lista de Servicios con sus Detalles a una Cotizacion
      */
-    public function asignarServicios($codigoCotizacion, $listaIdServicios, $listaAreasTrabajo, $listaCantidadPersonas, $listaPreciosUnitarios ){
+    public function asignarServicios($codigoCotizacion, $servicio, $areaTrabajo, $cantidadPersonas, $precioUnitario){
         if ($this->esCotizacion($codigoCotizacion)) {
-            $lenght = count($listaAreasTrabajo);
-            for ($dato=0; $dato < $lenght; $dato++) { 
-                if (! $this->registrarServicioYDetalles($codigoCotizacion, 
-                                                      $listaIdServicios[$dato], 
-                                                      $listaAreasTrabajo[$dato], 
-                                                      $listaCantidadPersonas[$dato], 
-                                                      $listaPreciosUnitarios[$dato])) {
-                    die("error en registrar datos");
-                }
+            if ($this->registrarServicioYDetalles($codigoCotizacion, $servicio, $areaTrabajo, $cantidadPersonas, $precioUnitario)) {
+                return true;
+            }else{
+                return false;
             }
-            return true;
         }else{
             return false;
         }
@@ -153,12 +155,12 @@ class Cotizacion{
      * Devuelve una Lista de Datos Principales de una Cotizacion
      */
     public function getDatosDeCotizacion($codCotizacion){
-        $result = $this->conexion->execute("SELECT c.nombre, p.fecha, p.estado, p.precio_total 
+        $result = $this->conexion->execute("SELECT c.nombre, p.fecha, p.estado, p.precio_total, p.descripcion_servicios
                                             FROM presentacion as p, cliente as c 
                                             WHERE p.cod_cliente_presentacion=c.cod_cliente and 
                                                   tipo_presentacion='C' and p.cod_presentacion=$codCotizacion;");
         if (pg_num_rows($result)>0) {
-            return array(pg_result($result, 0, 0), pg_result($result,0, 1), pg_result($result, 0, 2), pg_result($result, 0, 3));  
+            return array(pg_result($result, 0, 0), pg_result($result,0, 1), pg_result($result, 0, 2), pg_result($result, 0, 3), pg_result($result, 0, 4));  
         }else{
             die("error de Cotizacion");
         }
@@ -168,11 +170,9 @@ class Cotizacion{
      * Devuelve una lista de Servicios Detallados de una Cotizacion
      */
     public function getListaServiciosDeCotizacion($codCotizacion){
-        return $this->conexion->execute("SELECT s.id_servicio, s.nombre, ds.detalle, ps.area_trabajo, ps.cant_personal, ps.precio_unitario 
-                                        FROM presentacion_servicio as ps, servicio as s, detalle_servicio as ds 
-                                        WHERE ps.id_servicio=s.id_servicio and 
-                                                s.id_servicio=ds.id_servicio and 
-                                                ps.cod_presentacion=$codCotizacion;");
+        return $this->conexion->execute("SELECT ps.id_servicio, nombre, area_trabajo, cant_personal, precio_unitario 
+                                         FROM presentacion_servicio as ps, servicio as s 
+                                         WHERE ps.id_servicio=s.id_servicio and ps.cod_presentacion=$codCotizacion;");
     }
 
     /**
@@ -180,7 +180,7 @@ class Cotizacion{
      */
     public function getDatosCotizacionEditar($codCotizacion) {
         return $this->conexion->execute("SELECT p.fecha, c.nombre, co.cant_dias, p.precio_total, 
-                                                co.tipo_servicio, co.material, p.estado
+                                                co.tipo_servicio, co.material, p.estado, p.descripcion_servicios
                                          FROM presentacion as p, cotizacion as co, cliente as c
                                          WHERE p.cod_presentacion = co.cod_presentacion_cotizacion and 
                                                 c.cod_cliente=p.cod_cliente_presentacion and co.cod_presentacion_cotizacion=$codCotizacion;");
@@ -189,15 +189,20 @@ class Cotizacion{
     /**
      * Modificar los atributos Principales de una Cotizacion a traves de su código
      */
-    public function updateCotizacion($codigo, $fecha, $nombreCliente, $cantDias, $tipoServicio, $estadoMaterial, $estadoCotizacion){
+    public function updateCotizacion($codigo, $fecha, $nombreCliente, $cantDias, $tipoServicio, $estadoMaterial, $estadoCotizacion, $descripcionServicio){
         try {
             $this->conexion->execute("UPDATE cotizacion 
-                                      SET cant_dias=$cantDias, tipo_servicio = '$tipoServicio', material='$estadoMaterial' 
-                                      WHERE cod_presentacion_cotizacion=$codigo;");
-
-            $this->conexion->execute("UPDATE presentacion 
-                                      SET fecha='$fecha', estado='$estadoCotizacion', cod_cliente_presentacion=getcodcliente('$nombreCliente') 
-                                      WHERE cod_presentacion=$codigo;");
+                                             SET cant_dias=$cantDias, 
+                                                 tipo_servicio = '$tipoServicio', 
+                                                 material='$estadoMaterial' 
+                                             WHERE cod_presentacion_cotizacion=$codigo;
+                                      UPDATE presentacion 
+                                             SET fecha='$fecha', 
+                                                 estado='$estadoCotizacion', 
+                                                 cod_cliente_presentacion=getcodcliente('$nombreCliente'), 
+                                                 descripcion_servicios='$descripcionServicio'
+                                             WHERE cod_presentacion=$codigo;
+                                    ");
             return true;
         } catch (\Throwable $th) {
             return false;
@@ -218,6 +223,15 @@ class Cotizacion{
         } catch (\Throwable $th) {
             return false;
         }
+    }
+
+    public function getListaServiciosOfrecer($codCotizacion){
+        return $this->conexion->execute("SELECT * 
+                                         FROM servicio 
+                                         WHERE id_servicio NOT IN (SELECT id_servicio 
+                                                                   FROM presentacion_servicio 
+                                                                   WHERE cod_presentacion=$codCotizacion)
+                                         ORDER BY nombre;");
     }
 }
 ?>
