@@ -107,7 +107,7 @@
                                             ¿Está seguro de eliminar el Detalle de Ingreso?<strong data-name=""></strong>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" id="deleteDetalleIngreso" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                            <button type="button" id="deleteDetalleIngreso" class="btn btn-primary" onclick="location.reload()" name=""  data-dismiss="modal">Aceptar</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                         </div>
                                     </div>
@@ -152,7 +152,7 @@
                                     </div>
                                     <!--Modal Body-->
                                     <div class="modal-footer">
-                                        <button type="button" id="updateDetalleIngreso" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                        <button type="button" id="updateDetalleIngreso" class="btn btn-primary" onclick="location.reload()" data-dismiss="modal">Aceptar</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                     </div>
                                 </div>
