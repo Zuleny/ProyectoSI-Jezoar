@@ -14,7 +14,7 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Editar Servicio # <? echo $_GET['codServicio'] ?></h3>
+                    <h3 class="box-title">Editar Servicio # <?php echo $_GET['codServicio'] ?></h3>
                     <div class="box-tools pull-right">
                         <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                         <span class="glyphicon glyphicon-home"></span></a>

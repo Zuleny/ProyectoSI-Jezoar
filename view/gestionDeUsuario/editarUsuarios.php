@@ -14,7 +14,7 @@
     <section class="content">
         <div class="box box-info">
             <div class="box-header">
-                <h3 class="box-title">Modificación del Usuario # <? echo $_GET['codUser']; ?></h3>
+                <h3 class="box-title">Modificación del Usuario # <?php echo $_GET['codUser']; ?></h3>
                 <div class="box-tools pull-right">
                     <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
                     <span class="glyphicon glyphicon-home"></span></a>

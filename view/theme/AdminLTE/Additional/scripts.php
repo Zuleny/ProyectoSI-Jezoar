@@ -200,15 +200,12 @@
 <script src="../../public/assets/AdminLTE/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../public/assets/AdminLTE/dist/js/demo.js"></script>
-<<<<<<< HEAD
     <script src ="../../public/assets/reportes.js"> </script>
-=======
 
 
     <!-- DataTables -->
     <script src="../../public/assets/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../../public/assets/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
->>>>>>> origin
 
 <script src="../../public/assets/AdminLTE/dist/js/custom.js"></script>
 <script src="../../public/assets/AdminLTE/dist/js/custom2.js"></script>

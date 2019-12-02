@@ -23,7 +23,7 @@ if (isset($_POST['nombreInsumo']) && isset($_POST['stock']) && isset($_POST['nro
             $username = $_SESSION['user'];
             $nota->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                                      VALUES ('$username', 'Inserción del insumo $insumo en Nota de Devolución nro. $nroNota', '$fecha_hora');");
-            header("Location: http://localhost/ProyectoSI-Jezoar/view/GestionDeNotasDevolucion/gestionDetalleNotaDevolucion.php?nroNotaDetalle=$nroNota");
+            header("Location: ../view/GestionDeNotasDevolucion/gestionDetalleNotaDevolucion.php?nroNotaDetalle=$nroNota");
         }else{
             $errorMessage = "<b>Error en el registro de ".$_POST['nombreInsumo'].", ".$_POST['stock']." y ".$_POST['nroNota']." en Nota Devolución.</b>";
             header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
@@ -43,7 +43,7 @@ if (isset($_POST['nombreInsumo']) && isset($_POST['stock']) && isset($_POST['nro
         $username = $_SESSION['user'];
         $nota->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                                      VALUES ('$username', 'Eliminacion del insumo $insumo en Nota de Devolución nro. $nroNota', '$fecha_hora');");
-        header("Location: http://localhost/ProyectoSI-Jezoar/view/GestionDeNotasDevolucion/gestionDetalleNotaDevolucion.php?nroNotaDetalle=$nroNota");
+        header("Location: ../view/GestionDeNotasDevolucion/gestionDetalleNotaDevolucion.php?nroNotaDetalle=$nroNota");
     }else{
         $errorMessage = "<b>Error en el eliminacion de ".$_GET['nroNotaDetalle']." en Nota Devolución.</b>";
         header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  

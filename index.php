@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php 
+session_start();
+if ( isset($_SESSION['user'])  ) {
+  echo $_SESSION['user'];
+}else{
+  header("Location: view/login.php");
+}
+?>
 <html>
 <head>
   <meta charset="utf-8">
@@ -61,7 +69,7 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="documentation/jezoar.png" class="user-image" alt="User Image">
-                <span class="hidden-xs"><?php session_start(); echo $_SESSION['user']?></span>
+                <span class="hidden-xs"><?php echo $_SESSION['user']?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->

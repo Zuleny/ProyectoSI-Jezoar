@@ -38,7 +38,7 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
         if ($personalSinPasswd->existePersonalUsuario(strtolower($_POST['nombrePersonalOvidado']), strtolower($_POST['cargoPersonalOvidado']))) {
             $resultado = $personalSinPasswd->getQuestionPersonalUsuario(strtolower($_POST['nombrePersonalOvidado']));
             $nombre = $_POST['nombrePersonalOvidado'];
-            header("Location: http://localhost/ProyectoSI-Jezoar/view/gestionDeUsuario/verificacionDeUsuarioLogin.php?question=$resultado&nombpersonal=$nombre");
+            header("Location: ../view/gestionDeUsuario/verificacionDeUsuarioLogin.php?question=$resultado&nombpersonal=$nombre");
         }else{
             header('Location: ../view/Exceptions/errorExterno.php');
         }
@@ -51,7 +51,7 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
         $user = new Usuario();
         if ($user->verificarUsuarioSeguridad(strtolower($_GET['nombre']), strtolower($_GET['respuestaPersonalOvidado']))) {
             $user = strtolower($_GET['nombre']);
-            header("Location: http://localhost/ProyectoSI-Jezoar/view/gestionDeUsuario/solicitarEmail.php?nombrePersonal=$user");
+            header("Location: ../view/gestionDeUsuario/solicitarEmail.php?nombrePersonal=$user");
         }else{
             die("Respuesta incorrecta. Estamos llamando a la policia, corre!!");
         }
@@ -89,7 +89,7 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
     if ( $_POST['codigoVerif']>0 ) {
         session_start();
         if ($_POST['codigoVerif']==$_SESSION['verifCode']) {
-            header("Location: http://localhost/ProyectoSI-Jezoar/view/gestionDeUsuario/nuevoPassword.php?nombrePersonal=".$_POST['nombrPersonal']);
+            header("Location: ../view/gestionDeUsuario/nuevoPassword.php?nombrePersonal=".$_POST['nombrPersonal']);
         }else{
             echo "Codigo de Verificacion Ingresada: ".$_POST['codigoVerif'].'<br>';
             echo "Codigo de Verificacion enviada por correo: ".$_SESSION['verifCode'].'<br>';

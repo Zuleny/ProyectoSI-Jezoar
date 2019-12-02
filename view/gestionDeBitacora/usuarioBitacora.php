@@ -20,7 +20,7 @@
                         <div class="box-tools pull-right">
                             <a href="administrarBitacora.php" class="btn btn-primary" title="Volver a Adm. Bitacora">
                             <span class="fa fa-fw fa-mail-reply"></span></a>
-                            <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
+                            <a href="../../index.php" class="btn btn-primary" title="Menú Inicio">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                     </div>
