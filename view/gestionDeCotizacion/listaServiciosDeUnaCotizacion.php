@@ -39,7 +39,8 @@
                                             echo '<td><span class="label label-warning">Espera</span></td>';
                                         }
                                     ?> <br>
-                    <b>Precio Total: : </b> <?php echo $datos[3];?> Bs. <br>
+                    <b>Precio Total: </b> <?php echo $datos[3];?> Bs. <br>
+                    <b>Descripción:  </b> <?php echo $datos[4];?><br>
                 </p>
             </div>
             <!--  Tabla de Cotizaciones  -->
@@ -49,7 +50,6 @@
                         <tr>
                             <th> # </th>
                             <th> Nombre </th>
-                            <th> Detalle </th>
                             <th> Area de Trabajo </th>
                             <th> Cantidad De Personal </th>
                             <th> Precio Unitario </th>
@@ -66,7 +66,6 @@
                                 echo '<td>'.pg_result($listaServicios,$tupla,2).'</td>';
                                 echo '<td>'.pg_result($listaServicios,$tupla,3).'</td>';
                                 echo '<td>'.pg_result($listaServicios,$tupla,4).'</td>';
-                                echo '<td>'.pg_result($listaServicios,$tupla,5).'</td>';
                                 echo '</tr>';
                             }
                         ?>
