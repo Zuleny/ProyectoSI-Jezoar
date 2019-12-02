@@ -29,7 +29,8 @@ if (  isset($_POST['registrar'])  ) {
             $cotizacion = new Cotizacion();
             if (  $cotizacion->asignarServicios($_GET['codCotizacion'], $_GET['servicio'], $_GET['areaTrabajo'], $_GET['cantPersonas'], $_GET['precioUnitario'])  ) {
                 $codigo = $_GET['codCotizacion'];
-                $fecha_hora = date('j-n-Y G:i:s', time());
+                $fechaPhp = getDate();
+                $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
                 $username = $_SESSION['user'];
                 $cotizacion->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                         VALUES ('$username', 'Asignando servicios a cotizacion nro. $codigo', '$fecha_hora');");
