@@ -58,13 +58,8 @@ if (isset($_POST['fecha']) && isset($_POST['estadoP']) && isset($_POST['nombreCl
                                     VALUES ('$username', 'Asignando servicios a cotizacion nro. $nroCotizacion', '$fecha_hora');");
             header("Location: http://localhost/ProyectoSI-Jezoar/view/gestionDeCotizacion/listaServiciosDeUnaCotizacion.php?codigo=$codigo");
         }else{
-<<<<<<< HEAD
             die('Murio');
             //header('Location: ../view/Exceptions/exceptions.php');    
-=======
-            $errorMessage = "<b>Problemas en la Asignacion de Servicios a Cotización.</b>";
-            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
->>>>>>> 84d68ff90e23189bc5f646c5e16c6f9c81e0368f
         }
     }else{
         $errorMessage = "<b>Valores Invalidos en los campos de Asignacion de Servicios.</b>";
