@@ -137,7 +137,7 @@ function getListaDeCotizaciones(){
                                         <i class="fa fa-edit"></i>
                                     </button>
                                 </a>
-                                <a href="../gestionDeInforme/gestionInforme.php">
+                                <a href="../gestionDeInforme/gestionInforme.php?codCotizacion='.pg_result($result,$tupla,0).'">
                                     <button type="button" class="btn bg-green btn-xs btn-sm" title="Gestionar Informe">
                                         <i class="fa fa-fw fa-file-text-o"></i>
                                     </button>

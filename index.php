@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <?php 
 session_start();
-if ( isset($_SESSION['user'])  ) {
-  echo $_SESSION['user'];
-}else{
+if ( !isset($_SESSION['user'])  ) {
   header("Location: view/login.php");
 }
 ?>
