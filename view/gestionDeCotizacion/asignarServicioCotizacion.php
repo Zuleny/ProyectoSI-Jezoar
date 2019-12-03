@@ -16,7 +16,7 @@
                 <div class="box-header">
                     <h3 class="box-title">Asignación de Servicios a la Cotizacion # <?php echo $_GET['codigo']; ?></h3>
                     <div class="box-tools pull-right">
-                        <a href="gestionCotizacion.php" class="btn btn-primary" title="Volver Atras">
+                        <a onclick="history.back();" class="btn btn-primary" title="Volver Atras">
                         <span class="fa fa-fw fa-mail-reply"></span></a>
                         <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
                         <span class="glyphicon glyphicon-home"></span></a>
@@ -105,6 +105,13 @@
                                                     echo '<td>'.pg_result($listaServicios,$tupla,2).'</td>';
                                                     echo '<td>'.pg_result($listaServicios,$tupla,3).'</td>';
                                                     echo '<td>'.pg_result($listaServicios,$tupla,4).'</td>';
+                                                    echo '<td>
+                                                            <a href="../../controller/cotizacionController.php?codigoCotDelete='.$_GET['codigo'].'&idDetService='.pg_result($listaServicios,$tupla,0).'">
+                                                                <button type="button" class="btn bg-red btn-xs btn-sm" title="Eliminar Servicio de Cotizacion">
+                                                                    <i class="fa fa-fw fa-trash-o"></i>
+                                                                </button>
+                                                            </a>
+                                                          </td>';
                                                     echo '</tr>';
                                                 }
                                             ?>

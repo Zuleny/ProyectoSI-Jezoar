@@ -94,10 +94,24 @@
         }
 
         public function getListaPermisosRol($codRol){
-            return $this->conexion->execute("SELECT descripcion 
+            return $this->conexion->execute("SELECT descripcion, permiso.id_permiso 
                                              FROM rol_permiso, permiso 
                                              WHERE rol_permiso.id_permiso=permiso.id_permiso AND
                                                    cod_rol=$codRol;");
+        }
+
+        public function eliminarPermisoDeRol($idPermiso, $idRol){
+            try {
+                $this->conexion->execute("DELETE FROM rol_permiso WHERE id_permiso=$idPermiso AND cod_rol=$idRol;");
+                return true;
+            } catch (\Throwable $th) {
+                return false;
+            }
+        }
+
+        public function getNombreRol($codRol){
+            $result = $this->conexion->execute("SELECT descripcion FROM rol WHERE cod_rol=$codRol;");
+            return pg_result($result,0,0);
         }
     }
 

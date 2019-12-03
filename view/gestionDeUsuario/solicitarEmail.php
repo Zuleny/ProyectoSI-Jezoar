@@ -54,9 +54,9 @@
         </h1>
       </section>
       <section class="content">
-        <div class="box box-danger">
+        <div class="box box-danger" >
           <div class="box-header with-border">
-            <h3 class="box-title">Asignacion de Nueva Contraseña para el(la) usuario:  <? echo strtoupper($_GET['nombrePersonal']); ?></h3>
+            <h3 class="box-title">Asignacion de Codigo de Verificación para el(la) usuario: <b><? echo strtoupper($_GET['nombrePersonal']); ?></b> </h3>
           </div>
           <div class="box-body">
             <form class="form-group" action="../../controller/seguridadPasswordController.php" method="post">
@@ -68,11 +68,11 @@
                     </p>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                        <input type="email" class="form-control" placeholder="Enviar la contraseña por correo(OBLIGATORIO)" name="email">
+                        <input type="email" class="form-control" placeholder="@gmail.com" name="email">
                     </div>
                     <br>
                     <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">
-                        Guradar Nueva Contraseña
+                        Confirmar Codigo de Verificación
                         <i class="fa fa-check"></i>
                     </button>
                 </div>
