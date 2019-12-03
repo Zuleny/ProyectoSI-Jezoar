@@ -17,8 +17,9 @@
        $fecha=$_POST['fecha'];
        $nombre_cliente=$_POST['nombre_cliente'];
        $cant_meses=$_POST['cant_meses'];
+       $descripcion_servicio=$_POST['descripcion_servicio'];
        $estado=$_POST['estado'];
-       $b=$propuesta->actualizarPropuesta($cod_presentacion,$fecha,$nombre_cliente,$cant_meses,$estado);
+       $b=$propuesta->actualizarPropuesta($cod_presentacion,$fecha,$nombre_cliente,$cant_meses,$descripcion_servicio,$estado);
         if($b){
             echo json_encode("Actualizado Correctamente");
         }else{

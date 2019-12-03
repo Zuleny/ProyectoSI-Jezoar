@@ -56,7 +56,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     </div>
 
                     <div class="col-lg-3">
-                        <button type="button" class="btn btn-block btn-success" id="button1"  title="Registrar Servicio">Registrar Detalle</button>
+                        <button type="button" class="btn btn-block btn-success" id="button1"  onclick="location.reload()" title="Registrar Servicio">Registrar Detalle</button>
                     </div>
 
                     <div class="col-lg-3">

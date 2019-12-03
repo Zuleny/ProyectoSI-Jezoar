@@ -1,14 +1,15 @@
 <?php
-    if (isset($_POST['fecha']) && isset($_POST['nombreCliente'])&& isset($_POST['cantidadMeses']) && isset($_POST['estadoP']) && isset($_POST['precio'])) {
+    if (isset($_POST['fecha']) && isset($_POST['nombreCliente'])&& isset($_POST['cantidadMeses']) && isset($_POST['estadoP']) && isset($_POST['precio']) && isset($_POST['descripcionServicio'])) {
         $fecha=$_POST['fecha'];
         $nombreCliente=$_POST['nombreCliente'];
         $cantidadMeses=$_POST['cantidadMeses'];
         $estado=$_POST['estadoP'];
         $precio=$_POST['precio'];
+        $descripcionServicio=$_POST['descripcionServicio'];
 
         require "../model/PropuestaModel.php";
         $propuesta= new Propuesta();
-        $b=$propuesta->insertarPropuesta($fecha,$nombreCliente,$cantidadMeses,$estado);
+        $b=$propuesta->insertarPropuesta($fecha,$nombreCliente,$cantidadMeses,$descripcionServicio,$estado);
         if($b){
             echo "Insertado Correctamente";
         }else{
