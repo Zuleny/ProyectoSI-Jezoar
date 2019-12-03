@@ -86,7 +86,6 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     </div>
 
                     <!--  Lugar de butons y label y textbox  -->
-
                 </form>
                 <!--Aqui Inicia Datatable-->
                 <div class="row">
