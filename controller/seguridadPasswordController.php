@@ -20,7 +20,36 @@ function enviarEmail($emailToSend, $mensaje, $personal){
 
         $mail->isHTML(true);
         $mail->Subject = "Restauracion de Usuario jezoar";
-        $mail->Body = "Codigo de verificación para la restauracion de usuario para:".$personal."<br>Codigo de verificacion <b>".$mensaje."</b>";
+        $mail->Body = '<!DOCTYPE html>
+        <html lang="es_ES">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <!-- Bootstrap CSS -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        </head>
+        <body>
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 class="box-title">Código de Verificación Usuario Jezoar</h3>
+                </div>
+                <div class="box-group">
+                    <img src="jezoar.herokuapp.com/documentation/jezoar.png" alt="MDN" style="vertical-align: baseline;">
+                    <p>Buenos dias integrante del equipo Jezoar: '.$personal.', enviamos este mensaje de 
+                        seguridad para la restauración de su usuario en el sistema Jezoar. Por ello necesitamos toda su atención,
+                        <br>
+                        Código de verificación para la restauracion de usuario para el personal: '.$personal.' 
+                        <br>
+                        Codigo de verificacion <b>'.$mensaje.'</b>.<br>
+                        Que tengas un Buen dia, Te desea Jezoar!!!.
+                    </p>
+                </div>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        </body>
+        </html>';
         if ($mail->send()){
             return true;
         }else{
@@ -74,11 +103,14 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
     }else{
         header('Location: ../view/Exceptions/errorExterno.php');
     }
-}else if (isset($_POST['email']) && $_POST['email']!="") {
-    $mensaje = rand(000000,999999);
+}else if (isset($_POST['email'])) {
+    if ($_POST['email']=="") {
+        header('Location: ../view/Exceptions/errorExterno.php');
+    }
+    $mensaje = dechex(rand(000000,9999999));
     if (enviarEmail($_POST['email'], $mensaje, $_POST['nombrPersonal'])) {
-        $personal = $_POST['nombrPersonal'];
         session_start();
+        $personal = $_POST['nombrPersonal'];
         $_SESSION['verifCode'] = $mensaje;
         header('Location: ../view/gestionDeUsuario/codigodeVerificacion.php?nombrePersonal='.$personal);
     }else{

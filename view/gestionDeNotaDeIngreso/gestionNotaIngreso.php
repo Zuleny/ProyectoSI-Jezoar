@@ -108,7 +108,7 @@
                                                 ¿Está seguro de eliminar la Nota de Ingreso?<strong data-name=""></strong>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" id="deleteNotaIngreso" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                                <button type="button" id="deleteNotaIngreso" onclick="location.reload()" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                             </div>
                                         </div>
@@ -143,7 +143,7 @@
                                         </div>
                                         <!--Modal Body-->
                                         <div class="modal-footer">
-                                            <button type="button" id="updateNotaIngreso" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                            <button type="button" id="updateNotaIngreso" class="btn btn-primary" onclick="location.reload()" data-dismiss="modal">Aceptar</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                         </div>
                                     </div>

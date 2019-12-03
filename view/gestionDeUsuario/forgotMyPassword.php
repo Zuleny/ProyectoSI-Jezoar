@@ -51,7 +51,7 @@
     <div class="container">
       <section class="content-header">
         <h1>
-          Configuración de Usuario
+          Restauracion de Usuario
           <small>Sistema Jezoar</small>
         </h1>
       </section>
@@ -67,7 +67,7 @@
                     <input type="text" class="form-control" placeholder="Juanito Perez Carrasco" name="nombrePersonalOvidado">
                 </div>
                 <div class="col-lg-6">
-                    <label>Cargo</label>
+                    <label>Cargo del Personal</label>
                     <input type="text" class="form-control" placeholder="Animador de fiestas" name="cargoPersonalOvidado">
                 </div>
             </div>
@@ -75,7 +75,7 @@
                 <br>
                 <a href="#">
                     <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">Verificar Usuario
-                        <i class="fa fa-spin fa-check"></i>
+                        <i class="fa fa-check"></i>
                     </button>
                 </a>
             </div>

@@ -233,5 +233,23 @@ class Cotizacion{
                                                                    WHERE cod_presentacion=$codCotizacion)
                                          ORDER BY nombre;");
     }
+
+    public function eliminarServicioDeCotizacion($codCotizacion, $idServicio){
+        try {
+            $this->conexion->execute("DELETE FROM presentacion_servicio WHERE cod_presentacion=$codCotizacion AND id_servicio=$idServicio;");
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function getNamesServicio($idServicio){
+        try {
+            $result = $this->conexion->execute("SELECT nombre FROM servicio WHERE id_servicio=$idServicio;");
+            return pg_result($result, 0, 0);
+        } catch (\Throwable $th) {
+            return null;
+        }
+    }
 }
 ?>

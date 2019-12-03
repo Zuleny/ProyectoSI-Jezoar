@@ -7,6 +7,7 @@ class Propuesta{
     public $codCliente;
     public $cantMeses;
     public $estado;
+    public $descripcionServicio;
     public $precioTotal;
     public $conexion;
 
@@ -22,16 +23,17 @@ class Propuesta{
      * Registrar nueva Propuesta
      * a la BD tablas: Presentacion, Propuesta
      */
-    public function insertarPropuesta($fecha,$nombreCliente,$cantMeses,$estado){
+    public function insertarPropuesta($fecha,$nombreCliente,$cantMeses,$descripcionServicio,$estado){
         try {
             $this->codPropuesta=$this->getCodigoPropuesta();
             $this->fecha=$fecha;
             $this->codCliente=$this->getCodCliente($nombreCliente);
             $this->cantMeses=$cantMeses;
             $this->estado=$estado;
+            $this->descripcionServicio=$descripcionServicio;
             $this->precioTotal=$this->getTotal();
 
-            $this->conexion->execute("insert into Presentacion(cod_presentacion,fecha,estado,precio_total,cod_cliente_presentacion,tipo_presentacion) values ($this->codPropuesta,'$this->fecha','$this->estado',$this->precioTotal,$this->codCliente,'P');");
+            $this->conexion->execute("insert into Presentacion(cod_presentacion,fecha,estado,precio_total,cod_cliente_presentacion,descripcion_servicios,tipo_presentacion) values ($this->codPropuesta,'$this->fecha','$this->estado',$this->precioTotal,$this->codCliente,'$this->descripcionServicio','P');");
             $this->conexion->execute("insert into Propuesta(cod_presentacion_propuesta,cant_meses) values ($this->codPropuesta,$this->cantMeses);");
             return true;
         } catch (\Throwable $th) {
@@ -39,7 +41,7 @@ class Propuesta{
         }
     }
 
-    public function actualizarPropuesta($codPropuesta,$fecha,$nombreCliente,$cantMeses,$estado){
+    public function actualizarPropuesta($codPropuesta,$fecha,$nombreCliente,$cantMeses,$descripcionServicio,$estado){
         try {
 
             $this->fecha=$fecha;
@@ -47,7 +49,7 @@ class Propuesta{
             $this->cantMeses=$cantMeses;
             $this->estado=$estado;
 
-            $this->conexion->execute("UPDATE Presentacion SET fecha='$this->fecha',cod_cliente_presentacion=$this->codCliente, estado='$this->estado' where cod_presentacion=$codPropuesta;");
+            $this->conexion->execute("UPDATE Presentacion SET fecha='$this->fecha',cod_cliente_presentacion=$this->codCliente, descripcion_servicios='$descripcionServicio', estado='$this->estado' where cod_presentacion=$codPropuesta;");
             $this->conexion->execute("UPDATE Propuesta SET cant_meses=$this->cantMeses where cod_presentacion_propuesta=$codPropuesta;");
             return true;
         } catch (\Throwable $th) {
@@ -97,6 +99,7 @@ class Propuesta{
                                                 getNombreCliente(cod_cliente_presentacion),
                                                 cant_meses,
                                                 estado,
+                                                descripcion_servicios,
                                                 precio_total 
                                          FROM presentacion,propuesta 
                                          WHERE cod_presentacion=cod_presentacion_propuesta and 
