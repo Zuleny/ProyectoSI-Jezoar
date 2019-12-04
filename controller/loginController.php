@@ -1,6 +1,5 @@
 <?php
 require "../model/LoginModel.php";
-require_once '../vendor/autoload.php';
 define('ARRAY_OF_PACKAGES', 
     $arrayOfPackages = array(
         '<li class="treeview">

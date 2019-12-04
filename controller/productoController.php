@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if(isset($_POST["txtNombreProd"]) &&
    isset($_POST["txtMarca"]) && isset($_POST["txtPrecioUnitario"]) &&
    isset($_POST["txtDescripcion"]) && isset($_POST["listaDeCategoria"])){
@@ -13,9 +13,17 @@ if(isset($_POST["txtNombreProd"]) &&
     $producto = new Producto($nombreProducto,$marca,$precioUnitario,$descripcion,$listaDeCategoria);
     $b=$producto->insertarProducto();
     if(!$b){
-       echo "Producto no insertado";
+        $errorMessage = "<b>Error en proceso de Registro de productos</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
+    }else{
+        $fecha_hora = date('j-n-Y G:i:s', time());
+        $username = $_SESSION['user'];
+        $producto->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                    VALUES ('$username', 'Registro de Producto Cod. $producto->codigo', '$fecha_hora');");
+        header('Location: ../view/gestionDeProducto/gestionProducto.php');
     }
-    header('Location: ../view/gestionDeProducto/gestionProducto.php');
+
+
 }
 function getListaDeCategoria(){
     require "../../model/productoModel.php"; 
@@ -29,33 +37,6 @@ function getListaDeCategoria(){
         }
     }
     return $lista;
-}
-
-function getListaDeProductos(){
-    
-    $producto1=new Producto("","",0,"","");
-    $result=$producto1->getListaDeProductos();
-    $nroFilas=pg_num_rows($result);
-    $printer="";
-    if ($nroFilas>0) {
-        for ($tupla=0; $tupla < $nroFilas; $tupla++){ 
-
-            $printer.='<tr> <td >'.pg_result($result,$tupla,0).'</td>';
-            $printer.='<td >'.pg_result($result,$tupla,1).'</td>';
-            $printer.='<td >'.pg_result($result,$tupla,2).'</td>';
-            $printer.='<td >'.pg_result($result,$tupla,3).'</td>';
-            $printer.='<td >'.pg_result($result,$tupla,4).'</td>';
-            $printer.='<td >'.pg_result($result,$tupla,5).'</td>';
-            $printer.='<td > <div class="btn-group">                                               
-            <button type="button" class="btn btn-warning btn-xs" title="Actualizar">
-                <i class="fa fa-fw fa-refresh"></i>
-            </button>
-            <button type="button" class="btn bg-purple btn-xs" title="Editar">
-                <i class="fa fa-edit"></i>
-            </button></div></td> </tr>';            
-        }
-    }
-    return $printer;
 }
 
 function getListaAlmacenes(){

@@ -225,13 +225,14 @@
 
                         var actualizar=function () {
                             $("#updateDetalleIngreso").on("click",function () {
-                                var id_ingreso=$("#frmUpdateDetalleIngreso #idDetalleIngresoFrmUpdate").val(),
+                                var nro_ingreso=$("#nroIngreso").val(),
+                                    id_ingreso=$("#frmUpdateDetalleIngreso #idDetalleIngresoFrmUpdate").val(),
                                     nombre_insumo=$("#frmUpdateDetalleIngreso #nombre").val(),
                                     cantidad=$("#frmUpdateDetalleIngreso #cantidad").val(),
                                     precio=$("#frmUpdateDetalleIngreso #precio").val(),
                                     opcion=$("#frmUpdateDetalleIngreso #opcion").val();
 
-                                var row={id_ingreso:id_ingreso,nombre_insumo:nombre_insumo,cantidad:cantidad,precio:precio,opcion:opcion};
+                                var row={nro_ingreso:nro_ingreso,id_ingreso:id_ingreso,nombre_insumo:nombre_insumo,cantidad:cantidad,precio:precio,opcion:opcion};
                                 $.ajax({
                                     method:"POST",
                                     url: "tableDetalleIngresoController.php",
@@ -246,10 +247,11 @@
 
                         var eliminar=function () {
                             $("#deleteDetalleIngreso").on("click",function () {
-                                var id_ingreso=$("#frmDeleteDetalleIngreso #idDetalleIngreso").val(),
+                                var nro_ingreso=$("#nroIngreso").val(),
+                                    id_ingreso=$("#frmDeleteDetalleIngreso #idDetalleIngreso").val(),
                                     opcion=$("#frmDeleteDetalleIngreso #opcion").val();
 
-                                var row={id_ingreso:id_ingreso,opcion:opcion};
+                                var row={nro_ingreso:nro_ingreso,id_ingreso:id_ingreso,opcion:opcion};
                                 $.ajax({
                                     method:"POST",
                                     url: "tableDetalleIngresoController.php",

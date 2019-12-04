@@ -14,6 +14,11 @@
     if(!$b) {
         echo json_encode("Error: No actualizado");
     }else{
+        session_start();
+        $fecha_hora = date('j-n-Y G:i:s', time());
+        $username = $_SESSION['user'];
+        $producto->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                    VALUES ('$username', 'Actualizacion de Producto Cod. $codproducto', '$fecha_hora');");
         echo  json_encode("Actualizado Correctamente");
     }
 
