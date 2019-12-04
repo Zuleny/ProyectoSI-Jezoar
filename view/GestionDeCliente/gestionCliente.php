@@ -17,7 +17,7 @@
                 <div class="box-header">
                     <h3 class="box-title">Gestion de Clientes</h3>
                     <div class="box-tools pull-right">
-                        <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                        <a href="../view/index.php" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span>
                         </a>
                     </div>
@@ -60,7 +60,7 @@
                             <label>Correo electronico</label>
                             <div class="input-group margin-bottom-sm"> 
                                 <span class="input-group-addon"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
-                                <input type="text" name ="correo_cliente"class="form-control" >
+                                <input type="email" name ="correo_cliente"class="form-control" >
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -78,22 +78,21 @@
                             <p><input type="radio" name="tipo" value="E">Empresa</p>
                         </div>
                     </div>
-                </form>
-
 
                     <div class="box-body">
                         <div class="col-lg-3">                 
                             <button type="submit" name ="agregar_cliente" class="btn btn-block btn-success" style="border-radius: 15px;" title="Agregar Servicio">Agregar cliente <i class="fa fa-fw fa-user-plus"></i></button>
                         </div>
-                    </div>                             
+                    </div>
+                </form>
                     <!--  Lugar de butons y label y textbox  -->   
-                    <div class="box box-success">
+                    <div class="box box-info">
                         <div class="box-header">
                             <h3 class="box-title">Clientes de la Empresa Jezoar</h3>
                         </div>
                         <div class="box-body">
                             <table class="table table-bordered table-hover">
-                                <thead>
+                                <thead class="box-info">
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Correo</th>

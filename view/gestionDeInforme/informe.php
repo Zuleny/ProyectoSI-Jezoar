@@ -58,20 +58,17 @@ $pdf->AddPage();
 $pdf->SetFont('Arial', '', 12);
 $pdf->SetMargins(15, 30, 5);
 $pdf->Ln();
-//recuperando texto de informacion
-$desc = $_REQUEST['des'];
-/*$desc = stripslashes($desc);
-$desc = iconv('UTF-8', 'windows-1252',$desc);*/
+
 $nombre = $_REQUEST['cliente'];
 
-//$nombre = $_POST['nombreCliente'];
 $pdf->SetFont('Times','',12);
 //$pdf->Write(5,'El cliete '.$nombre.' solicito los servicios de limpieza profunda');
     $pdf->SetFont('Times','',12);
     // Imprimimos el texto justificado
 $parte2 = '';
     $pdf->Write(7,'De mi consideracion, me dirijo a usted(es) '.$nombre);
-    $pdf->Write(7,' '.$desc);
+    $desc = $_REQUEST['des'];
+    $pdf->Write(7,' '.utf8_decode($desc));
     // Salto de línea
     $pdf->Ln();
 $pdf->cell(0, 10, 'Santa Cruz de la Sierra, ' . $hour, 0, 1);
@@ -103,60 +100,5 @@ if($imagen2 != null){
 }
 session_abort();
 
-//TABLA DE SERVICIOS PRIVADOS
-//$pdf->cell(0, 10, 'VENTAS', 0, 1);
-// Anchuras de las columnas
-//$w = array(20,20,10,30,20,25,30,25,-180);
-// Cabeceras
-//$pdf->SetFillColor(50, 50, 50); // Color de la cabecera
-//$pdf->SetTextColor(225, 225, 225);
-//$pdf->Cell($w[2], 7, 'Nit', 1, 0, 'C', true);
-/* Datos
-if (session_status() == PHP_SESSION_NONE) {
-ob_start();
-session_start();
-}
-$reporte=array();*/
-//$pdf->Cell($w[0], 6, 'hola', 'LR', 0, 'C');
-   // foreach ($reporte as $row) {
-       // $pdf->Cell($w[0], 6, $row[0], 'LR', 0, 'C');
-
-   // }
-
-//    if (!empty($_POST['check_list1'])) {
-//$pdf->Cell(0, 10, '', 0, 0, 'C');
-//$pdf->Ln();
-//
-//        //TABLA DE SERVICIOS ADICIONALES
-//        $pdf->cell(0, 10, 'SERVICIOS ADICIONALES', 0, 1);
-//       // $monto = $_POST['total_list1'];
-//        $i=0;
-//        $pdf->Cell($w[0], 7, 'Nro', 1, 0, 'C');
-//        $pdf->Cell($w[1], 7, 'Servicio adicional', 1, 0, 'C');
-//        $pdf->Cell($w[2], 7, 'Monto (Bs.)', 1, 0, 'C');
-//        $pdf->Ln();
-//        $totalAdicional = 0;
-//        foreach ($_POST['check_list1'] as $row) {
-//            $totalAdicional = $totalAdicional + $monto[$i];
-//                $pdf->Cell($w[0], 6, $i + 1, 'LR', 0, 'C');
-//                $pdf->Cell($w[1], 6, $row, 'LR');
-//                $pdf->Cell($w[2], 6, $monto[$i], 'LR', 0, 'C');
-//            $pdf->Ln();
-//            $i = $i + 1;
-//        }
-
-//    $pdf->SetY(215);
-//    $pdf->Cell(0, 10, '', 0, 0, 'C');
-//    $pdf->Ln();
-//    //$pdf->cell(0, 8, 'TOTAL = Bs. ' . $_POST['total'] . '.-', 0, 1);
-//    $pdf->SetFont('Arial', '', 8);
-//    $pdf->cell(0, 4, iconv("UTF-8", "CP1250//TRANSLIT",'Una vez determinado el paquete se realizará la reserva de fecha con el 50% del costo del servicio.'), 0, 1);
-//    $pdf->cell(0, 4, iconv("UTF-8", "CP1250//TRANSLIT",'El costo de cada opción no es por hora, si no por servicio.'), 0, 1);
-//}
-//$this->SetFont('Helvetica', 'I', 20);
-//$this->Cell(0, 3, $descripcion, 0, 1, 'C');
-
-
-//$pdf->Cell(0, 10, 'Cotizacion generada el dia '.strftime("%d de %B del %Y").' a horas '.$hoy, 0, 1);
 $pdf->Output();
 ?>
