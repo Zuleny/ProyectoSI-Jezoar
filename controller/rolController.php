@@ -81,6 +81,27 @@ if (isset($_POST['descripcionRol'])) {
         $errorMessage = "<b>Error en la asignacion de Permisos a Rol, Datos Invalidos en algunos datos.</b>";
         header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
     }
+}else if (  isset($_GET['idPermisoE']) && isset($_GET['idRolE'])  ) {
+    if ($_GET['idPermisoE']!="" && $_GET['idRolE']!="") {
+        require '../model/RolModel.php';
+        $rol = new Rol();
+        if ($rol->eliminarPermisoDeRol($_GET['idPermisoE'], $_GET['idRolE'])) {
+            session_start();
+            $hoy = getdate();
+            $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+            $user = $_SESSION['user'];
+            $idPermiso = $_GET['idPermisoE'];
+            $nombreRol = $rol->getNombreRol($_GET['idRolE']);
+            $rol->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) VALUES ('$user','eliminacion del permiso con ID: $idPermiso del rol: $nombreRol', '$fecha_hora');");
+            header('Location: ../view/GestionDeRol/asignarPermisos.php?codigoRolPermiso='.$_GET['idRolE'].'&nombRol='.$nombreRol);
+        }else{
+            $errorMessage = "<b>Error en la eliminacion de permisos en roles, consulte a soporte urgentemente.</b>";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
+        }
+    }else{
+        $errorMessage = "<b>Problemas con eliminar permisos de un Rol, Datos invalidos.</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
+    }
 }
 
 ?>

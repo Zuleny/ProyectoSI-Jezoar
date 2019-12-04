@@ -70,7 +70,7 @@
                     <input type="password" class="form-control" name="newPassword" placeholder="Máx. 6 caracteres">
                     <br>
                     <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">
-                        Guradar Nueva Contraseña
+                        Guardar Nueva Contraseña
                         <i class="fa fa-spin fa-check"></i>
                     </button>
                 </div>

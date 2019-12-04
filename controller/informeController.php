@@ -10,7 +10,7 @@ function getClienteInforme(){
     }
     return $printer;
 }
-echo $_POST["cod"];
+
 if(isset($_POST["nombreCliente"]) && isset($_POST["descripcion"]) ) {
     $nombreCliente = $_POST["nombreCliente"];
     $descripcion = $_POST["descripcion"];
@@ -41,6 +41,7 @@ if(isset($_POST["nombreCliente"]) && isset($_POST["descripcion"]) ) {
     }
 }
     function getListaInforme(){
+        require "../../model/informeModel.php";
         $informe = new Informe();
         $result = $informe->getListInforme();
         return $result;

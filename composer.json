@@ -1,6 +1,0 @@
-{
-    "require": {
-        "firephp/firephp-core": "^0.5.2",
-      "ext-pgsql": "*"
-    }
-}

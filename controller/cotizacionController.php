@@ -29,7 +29,8 @@ if (  isset($_POST['registrar'])  ) {
             $cotizacion = new Cotizacion();
             if (  $cotizacion->asignarServicios($_GET['codCotizacion'], $_GET['servicio'], $_GET['areaTrabajo'], $_GET['cantPersonas'], $_GET['precioUnitario'])  ) {
                 $codigo = $_GET['codCotizacion'];
-                $fecha_hora = date('j-n-Y G:i:s', time());
+                $fechaPhp = getDate();
+                $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
                 $username = $_SESSION['user'];
                 $cotizacion->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                         VALUES ('$username', 'Asignando servicios a cotizacion nro. $codigo', '$fecha_hora');");
@@ -67,13 +68,33 @@ if (  isset($_POST['registrar'])  ) {
         header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
     }
 }else if (isset($_GET['codigoCotizacionEliminar'])) {
-    echo $_GET['codigoCotizacionEliminar'];
     require '../model/CotizacionModel.php';
     $cotizacion = new Cotizacion();
     if ($cotizacion->deleteCotizacion($_GET['codigoCotizacionEliminar'])) {
         header('Location: ../view/gestionDeCotizacion/gestionCotizacion.php');
     }else{
         $errorMessage = "<b>Error en la Eliminacion de la Cotizacion.</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
+    }
+}else if ( isset($_GET['codigoCotDelete']) && isset($_GET['idDetService'])  ) {
+    if ($_GET['idDetService']>0 && $_GET['codigoCotDelete']>0) {
+        require '../model/CotizacionModel.php';
+        $cotizacion = new Cotizacion();
+        if ($cotizacion->eliminarServicioDeCotizacion($_GET['codigoCotDelete'], $_GET['idDetService'])) {
+            session_start();
+            $hoy = getdate();
+            $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+            $user = $_SESSION['user'];
+            $nameServicio = $cotizacion->getNamesServicio($_GET['idDetService']);
+            $codCotizacion = $_GET['codigoCotDelete'];
+            $cotizacion->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) VALUES ('$user','eliminacion del servicio $nameServicio de la cotizacion nro: $codCotizacion', '$fecha_hora');");
+            header('Location: ../view/gestionDeCotizacion/asignarServicioCotizacion.php?codigo='.$_GET['codigoCotDelete']);
+        }else{
+            $errorMessage = "<b>Datos invalidos al eliminar servicio de una cotizacion.</b>";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);    
+        }
+    }else{
+        $errorMessage = "<b>Error al eliminar un servicio de un a cotización.</b>";
         header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
     }
 }
@@ -146,12 +167,7 @@ function getListaDeCotizaciones(){
                                     <button type="button" style="border-radius: 3px;" class="btn bg-orange btn-flat btn-sm btn-xs" title="Registrar contrato">
                                         <i class="fa fa-fw fa-list-alt"></i>
                                     </button>
-                                </a>
-                                <a href="../../controller/cotizacionController.php?codigoCotizacionEliminar='.pg_result($result,$tupla,0).'">
-                                    <button type="button" class="btn bg-red btn-xs btn-sm" title="Eliminar Cotizacion">
-                                        <i class="fa fa-fw fa-trash-o"></i>
-                                    </button>
-                                </a>                                
+                                </a>                     
                               </div>
                         </td>
                     </tr>';
