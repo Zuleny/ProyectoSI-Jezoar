@@ -131,23 +131,28 @@ function getListProcess($listaPermisos){
     }
     return $stringOfProcessList;
 }
-
-
+echo 'INicias aqui <br>';
 if ( isset($_GET['username']) && isset($_GET['password']) ) {
-    $username=$_GET['username'];
-    $password=$_GET['password'];
-    $login=new Login(strtolower($username),sha1($password));
+    echo 'login iniciando... <br>';
+    $username = $_GET['username'];
+    $password = $_GET['password'];
+    echo $_GET['username'];
+    echo '<br>';
+    echo $_GET['password'];
+    $login = new Login(strtolower($username),sha1($password));
     if($login->existeUser()){
         session_start();
-        $_SESSION['user']=strtolower($username);
+        $_SESSION['user'] = strtolower($username);
         $_SESSION['cod_usuario'] = $login->getCodigoUsuario();
         $listaDePermisos = $login->getListaPermisos($username);
         $fecha_hora = date('j-n-Y G:i:s', time());
         $login->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                     VALUES ('$username', 'Inicio de Sesión de $username', '$fecha_hora');");
         $_SESSION['listPermisos'] = getListProcess($listaDePermisos);
+        echo 'deberias iniciar <br>';
         header('Location: ../index.php');
     }else{
+        echo 'no login rechazado<br>';
        header('Location: ../view/login.php');
     }
 }else if ( isset($_GET['user']) ) {
@@ -158,4 +163,5 @@ if ( isset($_GET['username']) && isset($_GET['password']) ) {
                                 VALUES ('$username', 'Cierre de Sesión de $username', '$fecha_hora');");
     header('Location: ../view/login.php');
 }
+echo 'lastima <br>';
 ?>
