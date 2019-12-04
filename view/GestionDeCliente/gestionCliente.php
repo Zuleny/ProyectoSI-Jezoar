@@ -86,12 +86,12 @@
                     </div>
                 </form>
                     <!--  Lugar de butons y label y textbox  -->   
-                    <div class="box box-info">
+                    <div class="box box-success">
                         <div class="box-header">
                             <h3 class="box-title">Clientes de la Empresa Jezoar</h3>
                         </div>
                         <div class="box-body">
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover" id="tabla1">
                                 <thead class="box-info">
                                 <tr>
                                     <th>Nombre</th>

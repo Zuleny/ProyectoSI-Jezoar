@@ -44,7 +44,7 @@ class Cliente{
         return $this->getCantidadCliente()+1;
     }
     public function getListaDeCliente(){
-        $resultado=$this->conexion->execute("SELECT cliente.cod_cliente, cliente.nombre,cliente.email, cliente.direccion,tipo, getNIT_CI_Cliente(cliente.cod_cliente) FROM cliente order by cliente.cod_cliente;");
+        $resultado=$this->conexion->execute("SELECT cliente.cod_cliente, cliente.nombre,cliente.email, cliente.direccion,tipo,getNIT_CI_Cliente(cliente.cod_cliente) FROM cliente order by cliente.cod_cliente;");
         return $resultado;
     }
     public function getCantidadTelefono($codCliente){
@@ -64,7 +64,7 @@ class Cliente{
         return true;
     }
      public function getDatosClienteEditar($codCliente){
-        return $result = $this->conexion->execute("SELECT cliente.nombre,cliente.direccion,cliente.email, tipo,telefono, getNIT_CI_Cliente(cliente.cod_cliente),cod_cliente FROM cliente, telefono where cod_cliente = cod_cliente_telefono and cod_cliente= $codCliente;");
+        return $result = $this->conexion->execute("SELECT cliente.nombre,cliente.direccion,cliente.email, tipo, getNIT_CI_Cliente(cliente.cod_cliente),cod_cliente FROM cliente where cod_cliente= $codCliente;");
     }
     public function getNIT_CI_Cliente($codCliente){
          $resutl = $this->conexion->execute("select getNIT_CI_Cliente($codCliente);");

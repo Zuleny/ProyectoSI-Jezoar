@@ -7,7 +7,7 @@ if(isset($_POST["nombreCliente"]) && isset($_POST["fecha_inicial"]) && isset($_P
     $contrato->registrarContrato($_GET['cod_presetacionC']);
     header('Location: ../view/gestionDeContrato/gestionContrato.php');
 }else{
-    header('Location: ../view/Exceptions/exceptions.php');
+    //header('Location: ../view/Exceptions/exceptions.php');
 }
 /*else if (isset($_GET['codPresentacionC'])) {
     if ($_GET['codPresentacionC']!="") {
