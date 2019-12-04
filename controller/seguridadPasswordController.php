@@ -21,7 +21,6 @@ function enviarEmail($emailToSend, $mensaje, $personal){
         $mail->isHTML(true);
         $mail->Subject = "Restauracion de Usuario jezoar";
         $menssageEmail = "<p>
-                            <img src='jezoar.herokuapp.com/documentation/jezoar.png' alt='MDN'>
                             Buenos dias integrante del equipo Jezoar: $personal, enviamos este mensaje de 
                             seguridad para la restauración de su usuario en el sistema Jezoar. Por ello necesitamos toda su atención,
                             <br>
