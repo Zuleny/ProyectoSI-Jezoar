@@ -15,6 +15,9 @@
             header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
         }else{
             session_start();
+            setlocale(LC_ALL, "es_ES");
+            date_default_timezone_set('America/La_Paz');
+            setlocale(LC_CTYPE, 'en_US');
             $fecha_hora = date('j-n-Y G:i:s', time());
             $username = $_SESSION['user'];
             $almacen->Conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
