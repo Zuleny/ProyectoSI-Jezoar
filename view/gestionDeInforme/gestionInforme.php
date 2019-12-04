@@ -28,7 +28,10 @@
                         <div class="box-body">
                             <div class="col-lg-5">
                                 <label>Nombre de cliente</label>
-                                
+                                <div class="input-group margin-bottom-sm">
+                                    <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                                    <input type="text" name = "nombre_cliente" value ="Miau" class="form-control" >
+                                </div>
                             </div>
 
                         </div>

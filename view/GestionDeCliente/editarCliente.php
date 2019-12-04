@@ -27,6 +27,7 @@
             <?php
             require "../../controller/clienteController.php";
             $resultado =  getDatosEditarCliente($_GET['cod']);
+            $telefono = getTelefono($_GET['cod']);
             ?>
             <div class="box box-info">
                 <div class="box-header">
@@ -53,14 +54,14 @@
                             <label>Telefono </label>
                             <div class="input-group margin-bottom-sm">
                                 <span class="input-group-addon"><i class="fa fa-phone fa-fw" aria-hidden="true"></i></span>
-                                <input type="text" name = "telefono_cliente"class="form-control" value="<?php echo pg_result($resultado,0,4) ?>">
+                                <input type="text" name = "telefono_cliente"class="form-control" value="<?php echo pg_result($telefono,0,0) ?>">
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <label>Telefono(2)</label>
                             <div class="input-group margin-bottom-sm">
                                 <span class="input-group-addon"><i class="fa fa-phone fa-fw" aria-hidden="true"></i></span>
-                                <input type="text" name = "telefono2_cliente" class="form-control" value="<?php if(pg_result($resultado,1,4)!=null){ echo pg_result($resultado,1,4);} ?>">
+                                <input type="text" name = "telefono2_cliente" class="form-control" value="<?php  pg_result($telefono,1,0);?>">
                             </div>
                         </div>
                     </div>
