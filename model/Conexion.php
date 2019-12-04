@@ -16,6 +16,7 @@ class Conexion {
         $this->ConexionDB = pg_connect("host=$host dbname=$nameDB port=$port user=$user password=$passwd") or die("Error de conexion Equipo_Jezoar ".pg_last_error());
     }
 
+
     /**
      * Metodo que manda a Ejecutar una Consulta
      */

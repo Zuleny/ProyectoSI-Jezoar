@@ -20,7 +20,7 @@
                     <div class="box-header">
                         <h3 class="box-title">Gestion de Nota de Ingreso</h3>
                         <div class="box-tools pull-right">
-                            <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                            <a href="../../index.php" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
 
@@ -31,29 +31,38 @@
                             <div class="box-body">
                                 <div class="col-lg-5">
                                     <label>Nombre</label>
-                                    <input type="text" class="form-control" placeholder="Escriba nombres y apellidos de quien recibe" name="nombreRecibe" required>
+                                    <div class="input-group margin-bottom-sm"> 
+                                        <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" placeholder="Escriba nombres y apellidos de quien recibe" name="nombreRecibe" required>
+                                    </div> 
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group" data-select2-id="13">
                                         <label>Nombre de Proveedor</label>
-                                        <select class="form-control select2 select2-hidden-accessible" name="listaProveedor">
-                                        <?php
-                                            require "../../controller/notaIngresoController.php";
-                                            $printer=getlistaProveedor();
-                                            echo $printer;             
-                                        ?>
-                                        </select>
+                                        <div class="input-group margin-bottom-sm"> 
+                                            <span class="input-group-addon"><i class="fa fa-street-view fa-fw" aria-hidden="true"></i></span>
+                                            <select class="form-control select2 select2-hidden-accessible" name="listaProveedor">
+                                                <?php
+                                                    require "../../controller/notaIngresoController.php";
+                                                    $printer=getlistaProveedor();
+                                                    echo $printer;             
+                                                ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div> 
                                 <div class="col-lg-4">
                                     <div class="form-group" data-select2-id="13">
                                         <label>Almacen</label>
-                                        <select class="form-control select2 select2-hidden-accessible" name="listaAlmacen">
-                                        <?php
-                                            $printer=getlistaAlmacen();
-                                            echo $printer;             
-                                        ?> 
-                                        </select>
+                                        <div class="input-group margin-bottom-sm"> 
+                                            <span class="input-group-addon"><i class="fa fa-home fa-fw" aria-hidden="true"></i></span>
+                                            <select class="form-control select2 select2-hidden-accessible" name="listaAlmacen">
+                                            <?php
+                                                $printer=getlistaAlmacen();
+                                                echo $printer;             
+                                            ?> 
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4" >
@@ -66,98 +75,100 @@
                         
                     </form>
                         <!--Aqui Inicia Datatable-->
-                        <div class="row">
-                            <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
-                                <div class="box-header">
-                                    <h3 class="box-title">Lista de detalles</h3>
-                                </div>
-                                <div class="col-sm-offset-2 col-sm-8">
-                                    <h3 class="text-center"> <small class="mensaje"></small></h3>
-                                </div>
-                                <div class="table-responsive col-sm-12">
-                                    <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
-                                        <thead>
-                                        <tr>
-                                            <th class="col-lg-1">#</th>
-                                            <th class="col-lg-2">Fecha</th>
-                                            <th class="col-lg-7">Nombre Recibe</th>
-                                            <th class="col-lg-2"><th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
+                        <div class= "box box-success">
+                            <div class="box-header">
+                                <h3 class="box-title">Lista de detalles</h3>
+                            </div>
+                            <div class="row">
+                                <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
+                                    <div class="col-sm-offset-2 col-sm-8">
+                                        <h3 class="text-center"> <small class="mensaje"></small></h3>
+                                    </div>
+                                    <div class="table-responsive col-sm-12">
+                                        <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
+                                            <thead>
+                                            <tr>
+                                                <th class="col-lg-1">#</th>
+                                                <th class="col-lg-2">Fecha</th>
+                                                <th class="col-lg-7">Nombre Recibe</th>
+                                                <th class="col-lg-2"><th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div>
-                            <form id="frmDeleteNotaIngreso" action="" method="POST">
-                                <input type="hidden" id="idNotaIngreso" name="idNotaIngreso" value="0">
-                                <input type="hidden" id="opcion" name="opcion" value="eliminar">
-                                <!-- Modal Delete-->
-                                <div class="modal fade" data-backdrop=”static” id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
+                            <div>
+                                <form id="frmDeleteNotaIngreso" action="" method="POST">
+                                    <input type="hidden" id="idNotaIngreso" name="idNotaIngreso" value="0">
+                                    <input type="hidden" id="opcion" name="opcion" value="eliminar">
+                                    <!-- Modal Delete-->
+                                    <div class="modal fade" data-backdrop=”static” id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title" id="modalEliminarLabel">Eliminar Detalle de Ingreso</h4>
+                                                </div>
+
+                                                <div class="modal-body">
+                                                    ¿Está seguro de eliminar la Nota de Ingreso?<strong data-name=""></strong>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" id="deleteNotaIngreso" onclick="location.reload()" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div>
+
+
+                                <!-- Modal Update-->
+                                <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="modalEliminarLabel">Eliminar Detalle de Ingreso</h4>
+                                                <h4 class="modal-title" id="modalUpdateLabel">Actualizar Nota Ingreso</h4>
                                             </div>
-
+                                            <!--Modal Body Here-->
                                             <div class="modal-body">
-                                                ¿Está seguro de eliminar la Nota de Ingreso?<strong data-name=""></strong>
+                                                <form id="frmUpdateNotaIngreso" class="form-horizontal" action="" method="POST">
+                                                    <input type="hidden" id="idNotaIngreso" name="idNotaIngreso" value="">
+                                                    <input type="hidden" id="opcion" name="opcion" value="actualizar">
+
+                                                    <div class="form-group">
+                                                        <label for="nombre" class="col-form-label">Nombre:</label>
+                                                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                                    </div>
+
+                                                </form>
                                             </div>
+                                            <!--Modal Body-->
                                             <div class="modal-footer">
-                                                <button type="button" id="deleteNotaIngreso" onclick="location.reload()" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                                <button type="button" id="updateNotaIngreso" class="btn btn-primary" onclick="location.reload()" data-dismiss="modal">Aceptar</button>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
 
-                        <div>
-
-
-                            <!-- Modal Update-->
-                            <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="modalUpdateLabel">Actualizar Nota Ingreso</h4>
-                                        </div>
-                                        <!--Modal Body Here-->
-                                        <div class="modal-body">
-                                            <form id="frmUpdateNotaIngreso" class="form-horizontal" action="" method="POST">
-                                                <input type="hidden" id="idNotaIngreso" name="idNotaIngreso" value="">
-                                                <input type="hidden" id="opcion" name="opcion" value="actualizar">
-
-                                                <div class="form-group">
-                                                    <label for="nombre" class="col-form-label">Nombre:</label>
-                                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                        <!--Modal Body-->
-                                        <div class="modal-footer">
-                                            <button type="button" id="updateNotaIngreso" class="btn btn-primary" onclick="location.reload()" data-dismiss="modal">Aceptar</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
-                        </div>
+                            <div>
+                                <form id="frmVisualizarNotaIngreso" action="" method="POST">
+                                <input type="hidden" id="idFrmNotaIngreso" name="idFrmNotaIngreso" value="0">
+                                <input type="hidden" id="opcion" name="opcion" value="visualizar">
+                                </form>
 
-                        <div>
-                            <form id="frmVisualizarNotaIngreso" action="" method="POST">
-                               <input type="hidden" id="idFrmNotaIngreso" name="idFrmNotaIngreso" value="0">
-                               <input type="hidden" id="opcion" name="opcion" value="visualizar">
-                            </form>
-
+                            </div>
                         </div>
 
                         <?php

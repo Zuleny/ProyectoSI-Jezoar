@@ -16,7 +16,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
             <div class="box-header">
                 <h3 class="box-title">Gestion de Proveedor</h3>
                 <div class="box-tools pull-right">
-                    <a href="http://jezoar.herokuapp.com/index.php" class="btn btn-primary" title="Volver Atras">
+                    <a href="../../index.php" class="btn btn-primary" title="Volver Atras">
                         <span class="glyphicon glyphicon-home"></span></a>
                 </div>
             </div>
@@ -26,25 +26,42 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                 <div class="box-body">
                     <div class="col-lg-4">
                         <label>Empresa</label>
-                        <input type="text" class="form-control" name="empresaProv" placeholder="Empresa para la que trabaja"method="post">
+                        <div class="input-group margin-bottom-sm"> 
+                            <span class="input-group-addon"><i class="fa fa-building-o fa-fw" aria-hidden="true"></i></span>
+                            <input type="text" name ="empresaProv"class="form-control" placeholder="Empresa para la que trabaja"method="post" >
+                        </div>
                     </div>
                     <div class="col-lg-4">
                         <label>Correo electrónico</label>
-                        <input type="email" class="form-control" name="emailProv" placeholder="Ej.: usuario@servidor.com">
+                        <div class="input-group margin-bottom-sm"> 
+                            <span class="input-group-addon"><i class="fa fa-at fa-fw" aria-hidden="true"></i></span>
+                            <input type="email" name ="emailProv"class="form-control" placeholder="Ej.: usuario@servidor.com" >
+                        </div>
                     </div>
                     <div class="col-lg-2">
                         <label>Telefono</label>
-                        <input type="text" class="form-control" name="telProv" placeholder="Telefono de la empresa">
+                        <div class="input-group margin-bottom-sm"> 
+                            <span class="input-group-addon"><i class="fa fa-phone fa-fw" aria-hidden="true"></i></span>
+                            <input type="text" name = "telProv"class="form-control" placeholder="Telefono de la empresa">
+                        </div>
                     </div>
                 </div>
                 <div class="box-body">
                     <div class="col-lg-4">
                         <label>Direccion</label>
-                        <input type="text" class="form-control" name="dirProv" placeholder="Direccion">
+                            <div class="input-group margin-bottom-sm"> 
+                                <span class="input-group-addon">
+                                    <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
+                                </span>
+                                <input type="text" name="dirProv" placeholder="Direccion" class="form-control" >
+                            </div>
                     </div>
                     <div class="col-lg-4">
                         <label>Nombre del Proveedor</label>
-                        <input type="text" class="form-control" name="nameProv" placeholder="nombre del proveedor">
+                        <div class="input-group margin-bottom-sm"> 
+                            <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                            <input type="text" name = "nameProv" class="form-control" placeholder="nombre del proveedor" >
+                        </div> 
                     </div>
                     <div class="col-lg-3">
                         <br>

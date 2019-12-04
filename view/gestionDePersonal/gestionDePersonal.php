@@ -20,7 +20,7 @@
                     <div class="box-header">
                         <h3 class="box-title">Gestion de Personal</h3>
                         <div class="box-tools pull-right">
-                            <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                            <a href="../../index.php"" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                     </div>
@@ -31,38 +31,39 @@
                             
                             <div class="col-lg-5">
                                 <label>Nombre de Personal</label>
-                                <input type="text" class="form-control" placeholder="Escriba nombres y apellidos" name="txtNombrePersonal">
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" placeholder="Escriba nombres y apellidos" name="txtNombrePersonal">
+                                </div>
                             </div>
-
                             <div class="col-lg-3">
                              <div class="form-group" data-select2-id="13">
                                <label>Tipo de Personal</label>
-                               <select class="form-control select2 select2-hidden-accessible" name="listaTipoDePersonal">
-                                   <option value="F">Fijo</option>
-                                   <option value="E">Eventual</option>
-
-                               </select>
+                               <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-user-plus" aria-hidden="true"></i></span>
+                                    <select class="form-control select2 select2-hidden-accessible" name="listaTipoDePersonal">
+                                        <option value="F">Fijo</option>
+                                        <option value="E">Eventual</option>
+                                    </select>
+                                </div>
                              </div>
                             </div> 
 
                             <div class="col-lg-4">
                              <div class="form-group" data-select2-id="13">
                                <label>Cargo</label>
-                               <select class="form-control select2 select2-hidden-accessible" name="listaDeCargo">
-                               <?php
-                                      require "../../controller/personalController.php";
-                                      $printer=getlistaCargoDePersonal();
-                                      echo $printer;      
-                                            
-                                ?>
-                                    
-                               </select>
-                             </div>
-                             </div>
-                            
+                               <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-user-secret fa-fw" aria-hidden="true"></i></span>
+                                    <select class="form-control select2 select2-hidden-accessible" name="listaDeCargo">
+                                        <?php
+                                            require "../../controller/personalController.php";
+                                            $printer=getlistaCargoDePersonal();
+                                            echo $printer;                                                           
+                                        ?>      
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                            
-                        
                         <div class="box-body">
                             <div class="col-lg-9"></div>
                             <div class="col-lg-3">
@@ -73,54 +74,58 @@
                         <!--  Lugar de butons y label y textbox  -->
 
                     </form>
+                    <div class="box box-success">
+                        <div class="box-header">
+                            <h3 class="box-title">Lista de Personal</h3>
+                        </div>
+                        <div class="row">
+                            <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="col-sm-offset-2 col-sm-8">
+                                    <h3 class="text-center"> <small class="mensaje"></small></h3>
+                                </div>
+                                <div class="table-responsive col-sm-12">
+                                    <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-lg-1">Codigo</th>
+                                            <th class="col-lg-6">Nombre</th>
+                                            <th class="col-lg-1">Tipo</th>
+                                            <th class="col-lg-2">Cargo</th>
+                                            <th class="col-lg-2"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
 
-                    <div class="row">
-                        <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="col-sm-offset-2 col-sm-8">
-                                <h3 class="text-center"> <small class="mensaje"></small></h3>
-                            </div>
-                            <div class="table-responsive col-sm-12">
-                                <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
-                                    <thead>
-                                    <tr>
-                                        <th class="col-lg-1">Codigo</th>
-                                        <th class="col-lg-6">Nombre</th>
-                                        <th class="col-lg-1">Tipo</th>
-                                        <th class="col-lg-2">Cargo</th>
-                                        <th class="col-lg-2"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <form id="frmDeletePersonal" action="" method="POST">
-                            <input type="hidden" id="idPersonal" name="idPersonal" value="0">
-                            <input type="hidden" id="opcion" name="opcion" value="eliminar">
-                            <!-- Modal Delete-->
-                            <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title" id="modalEliminarLabel">Eliminar Usuario</h4>
-                                        </div>
+                        <div>
+                            <form id="frmDeletePersonal" action="" method="POST">
+                                <input type="hidden" id="idPersonal" name="idPersonal" value="0">
+                                <input type="hidden" id="opcion" name="opcion" value="eliminar">
+                                <!-- Modal Delete-->
+                                <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="modalEliminarLabel">Eliminar Usuario</h4>
+                                            </div>
 
-                                        <div class="modal-body">
-                                            ¿Está seguro de eliminar al personal?<strong data-name=""></strong>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" onclick="location.reload()" id="deletePersonal" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                            <div class="modal-body">
+                                                ¿Está seguro de eliminar al personal?<strong data-name=""></strong>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" onclick="location.reload()" id="deletePersonal" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
 
                     <div>

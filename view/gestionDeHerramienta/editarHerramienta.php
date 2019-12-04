@@ -16,7 +16,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
             <div class="box-header">
                 <h3 class="box-title">Modificación de Herramienta Código# <?php echo $_GET['codigo']; ?> (Nota: Asigne los nuevos datos de la herramienta a modificar)</h3>
                 <div class="box-tools pull-right">
-                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
+                    <a href="../../index.php" class="btn btn-primary" title="Menú Inicio">
                         <span class="glyphicon glyphicon-home"></span></a>
                 </div>
             </div>
