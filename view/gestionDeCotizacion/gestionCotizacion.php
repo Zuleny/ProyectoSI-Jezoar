@@ -16,7 +16,7 @@
             <div class="box-header">
                 <h3 class="box-title">Gestionar Cotización</h3>
                 <div class="box-tools pull-right">
-                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
+                    <a href="../../index.php" class="btn btn-primary" title="Menú Inicio">
                     <span class="glyphicon glyphicon-home"></span></a>
                 </div>
             </div>
