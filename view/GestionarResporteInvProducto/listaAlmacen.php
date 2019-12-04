@@ -28,16 +28,19 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     <div class="box-body">
                         <div class="col-lg-4">
                             <label>Lista de Almacenes</label>
-                            <select class="form-control" name="listaAlmacen">
-                                <?php
-                                require "../../controller/reporteController.php";
-                                $result=getListaDeAlmacen();
-                                echo $result;
-                                ?>
-                            </select>
+                            <div class="input-group margin-bottom-sm"> 
+                                <span class="input-group-addon"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i></span>
+                                <select class="form-control" name="listaAlmacen">
+                                    <?php
+                                    require "../../controller/reporteController.php";
+                                    $result=getListaDeAlmacen();
+                                    echo $result;
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                           <br>
-                        <div class="col-lg-1" >
+                        <div class="col-lg-2" >
                             <button type="submit" name ="cargar" class="btn btn-block btn-primary" title="Cargar">Mostrar</button>
                         </div>
                     </div>

@@ -17,7 +17,9 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     <b><?php echo $_GET['cod_presentacion']; ?></b>
                 </h3>
                 <div class="box-tools pull-right">
-                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                    <a onclick="history.go(-1)" class="btn btn-primary" title="Volver Atras">
+                        <span class="fa fa-fw fa-mail-reply"></span></a>
+                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menu Inicio">
                         <span class="glyphicon glyphicon-home"></span></a>
                 </div>
 
@@ -27,138 +29,133 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     $codPresentacion=$_GET['cod_presentacion'];
                     echo '<input type="hidden" id="codPresentacion" name="codPresentacion" value="'.$codPresentacion.'">'
                     ?>
-                    <div class="form-group col-md-12">
+                    <div class="box-body">
                         <div class="col-lg-6">
                             <label>Insumo</label>
-                            <select class="form-control" name="insumo" id="insumo">
-                                <?php
-                                require "../../controller/propuestaController.php";
-                                $result=getListaInsumos();
-                                $nroFilas=pg_num_rows($result);
-                                for ($tupla=0; $tupla <$nroFilas ; $tupla++) {
-                                    echo '<option value="'.pg_result($result,$tupla,0).'">'.pg_result($result,$tupla,0).'</option>';
-                                }
-                                ?>
-                            </select>
+                            <div class="input-group margin-bottom-sm"> 
+                            <span class="input-group-addon"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i></span>
+                                <select class="form-control" name="insumo" id="insumo">
+                                    <?php
+                                    require "../../controller/propuestaController.php";
+                                    $result=getListaInsumos();
+                                    $nroFilas=pg_num_rows($result);
+                                    for ($tupla=0; $tupla <$nroFilas ; $tupla++) {
+                                        echo '<option value="'.pg_result($result,$tupla,0).'">'.pg_result($result,$tupla,0).'</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="col-lg-2">
                             <label>Cant. Insumo</label>
-                            <input type="number" class="form-control" min="1" step=".01" name="cantInsumo" id="cantInsumo" required placeholder="5"/>
+                            <div class="input-group margin-bottom-sm"> 
+                                <span class="input-group-addon"><i class="fa fa-plus fa-fw" aria-hidden="true"></i></span>
+                                <input type="number" class="form-control" min="1" step=".01" name="cantInsumo" id="cantInsumo" required placeholder="5"/>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-3">
-                        <button type="button" class="btn btn-block btn-success" id="button1"  onclick="location.reload()" title="Registrar Insumo">Registrar Detalle</button>
-                    </div>
-
-                    <div class="col-lg-3">
-                        <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeProducto/gestionProducto.php" target="_blank" id="etiqueta1">
-                            ¿No encontro el producto en la lista?
-                        </a>
-                        <br>
-                        <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeHerramienta/gestionHerramienta.php" target="_blank" id="etiqueta1">
-                            ¿No encontro la Herramienta en la lista?
-                        </a>
+                    <div class="box-body">
+                        <div class="col-lg-3">
+                            <button type="button" class="btn btn-block btn-success" id="button1"  onclick="location.reload()" title="Registrar Insumo">Registrar Detalle</button>
+                        </div>
+                        <div class="col-lg-5">
+                            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeProducto/gestionProducto.php" target="_blank" id="etiqueta1">¿No encontro el producto en la lista?
+                            </a>
+                            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeHerramienta/gestionHerramienta.php" target="_blank" id="etiqueta1">¿No encontro la Herramienta en la lista?
+                            </a>
+                        </div>
                     </div>
                 </form>
 
                 <!--Aqui Inicia Datatable-->
-                <div class="row">
-                    <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
-                        <div class="box-header">
-                            <h3 class="box-title">Lista de Insumos</h3>
-                        </div>
-                        <div class="col-sm-offset-2 col-sm-8">
-                            <h3 class="text-center"> <small class="mensaje"></small></h3>
-                        </div>
-                        <div class="table-responsive col-sm-12">
-                            <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Insumo</th>
-                                    <th>Cant. Insumo</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                <div class="box box-success">
+                    <div class="box-header">
+                        <h3 class="box-title">Lista de Insumos</h3>
+                    </div>
+                    <div class="row">
+                        <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-sm-offset-2 col-sm-8">
+                                <h3 class="text-center"> <small class="mensaje"></small></h3>
+                            </div>
+                            <div class="table-responsive col-sm-12">
+                                <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Insumo</th>
+                                        <th>Cant. Insumo</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div>
+                        <form id="frmDeleteInsumoPropuesta" action="" method="POST">
+                            <input type="hidden" id="idInsumoPropuesta" name="idInsumoPropuesta" value="0">
+                            <input type="hidden" id="opcion" name="opcion" value="eliminar">
+                            <!-- Modal Delete-->
+                            <div class="modal fade" data-backdrop=”static” id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="modalEliminarLabel">Eliminar Insumo</h4>
+                                        </div>
 
-                <div>
-                    <form id="frmDeleteInsumoPropuesta" action="" method="POST">
-                        <input type="hidden" id="idInsumoPropuesta" name="idInsumoPropuesta" value="0">
-                        <input type="hidden" id="opcion" name="opcion" value="eliminar">
-                        <!-- Modal Delete-->
-                        <div class="modal fade" data-backdrop=”static” id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
+                                        <div class="modal-body">
+                                            ¿Está seguro de eliminar el Insumo?<strong data-name=""></strong>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" onclick="location.reload()" id="deleteInsumoPropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <!-- Modal Update-->
+                        <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="modalEliminarLabel">Eliminar Insumo</h4>
+                                        <h4 class="modal-title" id="modalUpdateLabel">Actualizar Insumo</h4>
                                     </div>
-
+                                    <!--Modal Body Here-->
                                     <div class="modal-body">
-                                        ¿Está seguro de eliminar el Insumo?<strong data-name=""></strong>
+                                        <form id="frmUpdateInsumoPropuesta" class="form-horizontal" action="" method="POST">
+                                            <input type="hidden" id="idInsumoPropuesta" name="idInsumoPropuesta" value="0">
+                                            <input type="hidden" id="opcion" name="opcion" value="actualizar">
+
+                                            <div class="form-group">
+                                                <label for="insumo" class="col-form-label">Insumo:</label>
+                                                <input type="text" class="form-control" id="insumo" name="insumo" disabled>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="cantInsumo" class="col-form-label">Cant. Insumo:</label>
+                                                <input type="number" step="0.01" class="form-control"  id="cantInsumo" name="cantInsumo" required>
+                                            </div>
+
+                                        </form>
                                     </div>
+                                    <!--Modal Body-->
                                     <div class="modal-footer">
-                                        <button type="button" onclick="location.reload()" id="deleteInsumoPropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                        <button type="button" onclick="location.reload()" id="updateInsumoPropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-
-                <div>
-
-
-                    <!-- Modal Update-->
-                    <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="modalUpdateLabel">Actualizar Insumo</h4>
-                                </div>
-                                <!--Modal Body Here-->
-                                <div class="modal-body">
-                                    <form id="frmUpdateInsumoPropuesta" class="form-horizontal" action="" method="POST">
-                                        <input type="hidden" id="idInsumoPropuesta" name="idInsumoPropuesta" value="0">
-                                        <input type="hidden" id="opcion" name="opcion" value="actualizar">
-
-                                        <div class="form-group">
-                                            <label for="insumo" class="col-form-label">Insumo:</label>
-                                            <input type="text" class="form-control" id="insumo" name="insumo" disabled>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="cantInsumo" class="col-form-label">Cant. Insumo:</label>
-                                            <input type="number" step="0.01" class="form-control"  id="cantInsumo" name="cantInsumo" required>
-                                        </div>
-
-                                    </form>
-                                </div>
-                                <!--Modal Body-->
-                                <div class="modal-footer">
-                                    <button type="button" onclick="location.reload()" id="updateInsumoPropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
-                </div>
-                <div>
-                    <h3>
-                        <b></b>
-                    </h3>
                 </div>
                 <?php
                      include "../../view/theme/AdminLTE/Additional/scripts.php";

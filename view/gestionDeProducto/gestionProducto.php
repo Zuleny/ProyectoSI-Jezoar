@@ -31,15 +31,24 @@
                             
                             <div class="col-lg-5">
                                 <label>Nombre de Producto</label>
-                                <input type="text" class="form-control" placeholder="Esponja" name="txtNombreProd" required>
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" placeholder="Esponja" name="txtNombreProd" required>
+                                </div>
                             </div>
                             <div class="col-lg-5">
                                 <label>Marca</label>
-                                <input type="text" class="form-control" placeholder="Marca del producto" name="txtMarca" required>
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-meetup fa-fw" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" placeholder="Marca del producto" name="txtMarca" required>
+                                </div>
                             </div>
                             <div class="col-lg-2">
                                 <label>Precio Unitario</label>
-                                <input type="number" step="0.01" class="form-control" placeholder="7.50" name="txtPrecioUnitario" required>
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-dollar fa-fw" aria-hidden="true"></i></span>
+                                    <input type="number" step="0.01" class="form-control" placeholder="7.50" name="txtPrecioUnitario" required>
+                                </div>
                             </div>
                         </div>
                         <div class="box-body">
@@ -48,24 +57,23 @@
                                 <textarea class="form-control" name="txtDescripcion" required rows="4" placeholder="Escriba una breve descripcion del la utilidad del producto"></textarea>
                             </div>
                             <div class="col-lg-4">
-                           <div class="form-group" data-select2-id="13">
-                               <label>Categoria</label>
-                               <select class="form-control select2 select2-hidden-accessible" name="listaDeCategoria">
-                               <?php
-                                      require "../../controller/productoController.php";
-                                      $printer=getListaDeCategoria();
-                                      echo $printer;      
-                                            
-                                ?>
-                                    
-                               </select>
-
+                                <div class="form-group" data-select2-id="13">
+                                    <label>Categoria</label>
+                                    <div class="input-group margin-bottom-sm"> 
+                                        <span class="input-group-addon"><i class="fa fa-cube fa-fw" aria-hidden="true"></i></span>
+                                        <select class="form-control select2 select2-hidden-accessible" name="listaDeCategoria">
+                                            <?php
+                                                require "../../controller/productoController.php";
+                                                $printer=getListaDeCategoria();
+                                                echo $printer;                          
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
                            </div>
-                           </div>
-                        <div class="col-lg-4" >
+                            <div class="col-lg-4" >
                                 <button type="submit" class="btn btn-block btn-success" id="button1" name="btnInsertarProducto" title="Agregar Servicio">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
-                        </div>
-                            
+                            </div>
                         </div>
                         <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeAlmacen/asignacionProductoAlmacen.php" target="_blank" id="etiqueta1">
                             Ir a: Registrar Producto en un almacen 

@@ -31,38 +31,39 @@
                             
                             <div class="col-lg-5">
                                 <label>Nombre de Personal</label>
-                                <input type="text" class="form-control" placeholder="Escriba nombres y apellidos" name="txtNombrePersonal">
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" placeholder="Escriba nombres y apellidos" name="txtNombrePersonal">
+                                </div>
                             </div>
-
                             <div class="col-lg-3">
                              <div class="form-group" data-select2-id="13">
                                <label>Tipo de Personal</label>
-                               <select class="form-control select2 select2-hidden-accessible" name="listaTipoDePersonal">
-                                   <option value="F">Fijo</option>
-                                   <option value="E">Eventual</option>
-
-                               </select>
+                               <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-user-plus" aria-hidden="true"></i></span>
+                                    <select class="form-control select2 select2-hidden-accessible" name="listaTipoDePersonal">
+                                        <option value="F">Fijo</option>
+                                        <option value="E">Eventual</option>
+                                    </select>
+                                </div>
                              </div>
                             </div> 
 
                             <div class="col-lg-4">
                              <div class="form-group" data-select2-id="13">
                                <label>Cargo</label>
-                               <select class="form-control select2 select2-hidden-accessible" name="listaDeCargo">
-                               <?php
-                                      require "../../controller/personalController.php";
-                                      $printer=getlistaCargoDePersonal();
-                                      echo $printer;      
-                                            
-                                ?>
-                                    
-                               </select>
-                             </div>
-                             </div>
-                            
+                               <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-user-secret fa-fw" aria-hidden="true"></i></span>
+                                    <select class="form-control select2 select2-hidden-accessible" name="listaDeCargo">
+                                        <?php
+                                            require "../../controller/personalController.php";
+                                            $printer=getlistaCargoDePersonal();
+                                            echo $printer;                                                           
+                                        ?>      
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                            
-                        
                         <div class="box-body">
                             <div class="col-lg-9"></div>
                             <div class="col-lg-3">

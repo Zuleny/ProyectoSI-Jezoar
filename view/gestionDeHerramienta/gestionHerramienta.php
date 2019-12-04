@@ -28,9 +28,11 @@
                         <div class="box-body">
                             <div class="col-lg-4">
                                 <label>Nombre Herramienta</label>
-                                <input type="text" class="form-control" name="nombre" placeholder="Nombre de la herramienta">
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="nombre" placeholder="Nombre de la herramienta">
+                                </div>
                             </div>
-
                         </div>
                         <div class="box-body">
                             <div class="col-lg-7">

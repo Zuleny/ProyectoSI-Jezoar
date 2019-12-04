@@ -19,6 +19,8 @@
                 <div class="box-header">
                     <h3 class="box-title">Productos</h3>
                         <div class="box-tools pull-right">
+                            <a onclick="history.go(-1)" class="btn btn-primary" title="Volver Atras">
+                                <span class="fa fa-fw fa-mail-reply"></span></a>
                             <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>

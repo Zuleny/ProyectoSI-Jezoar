@@ -18,7 +18,7 @@
                     <div class="box-header">
                         <h3 class="box-title">Almacen</h3>
                         <div class="box-tools pull-right">
-                            <a onclick="history.go(-1)" class="btn btn-primary" title="Volver Atras">
+                            <a onclick="history.go(-1);" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                     </div>
@@ -28,11 +28,19 @@
                         <div class="box-body">
                             <div class="col-lg-4">
                                 <label>Nombre de Almacen</label>
-                                <input type="text" class="form-control" name="Almacen" placeholder="nombre del almacen" method="post">
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-home fa-fw" aria-hidden="true"></i></span>
+                                    <input type="text" name ="Almacen"class="form-control" placeholder="nombre del almacen" method="post" method="post" >
+                                </div>
                             </div>
                             <div class="col-lg-4">
                                 <label>Direccion</label>
-                                <input type="text" class="form-control" name="Dir" placeholder="Direccion del Almacen">
+                                <div class="input-group margin-bottom-sm"> 
+                                <span class="input-group-addon">
+                                    <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
+                                </span>
+                                <input type="text" name="Dir" placeholder="Direccion del Almacen" class="form-control" >
+                            </div>
                             </div>
                         </div>
                         <div class="box-body">
