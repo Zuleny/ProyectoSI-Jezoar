@@ -1,5 +1,5 @@
 <?php
-include "../../view/theme/AdminLTE/Additional/head.php";
+  include "../../view/theme/AdminLTE/Additional/head.php";
 ?>
 
 <!-- the fixed layout is not compatible with sidebar-mini -->

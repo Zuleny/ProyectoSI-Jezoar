@@ -44,7 +44,7 @@ class Cliente{
         return $this->getCantidadCliente()+1;
     }
     public function getListaDeCliente(){
-        $resultado=$this->conexion->execute("SELECT cliente.cod_cliente, cliente.nombre,cliente.email, cliente.direccion,tipo, getNIT_CI_Cliente(cliente.cod_cliente) FROM cliente order by cliente.cod_cliente;");
+        $resultado=$this->conexion->execute("SELECT cliente.cod_cliente, cliente.nombre,cliente.email, cliente.direccion,tipo,getNIT_CI_Cliente(cliente.cod_cliente) FROM cliente order by cliente.cod_cliente;");
         return $resultado;
     }
     public function getCantidadTelefono($codCliente){
@@ -61,21 +61,15 @@ class Cliente{
         $this->conexion->execute("update Persona set cod_cliente_persona=$codCliente, nro_carnet=$nit;");
         $this->conexion->execute("update Telefono set cod_cliente_telefono=$codCliente, telefono=$telefono1;");
         $this->conexion->execute("update Telefono set cod_cliente_telefono=$codCliente, telefono=$telefono2;");
+        return true;
     }
-    public function getCI($codCliente){
-        $result = $this->conexion->execute("SELECT nit FROM cliente,empresa where cliente.cod_cliente=empresa.cod_cliente_empresa and empresa.cod_cliente_empresa=$codCliente;");
-        return pg_result($result,0,0);
-    }
-    public function getNit($codCliente){
-        $result = $this->conexion->execute("SELECT nro_carnet FROM cliente, persona where cliente.cod_cliente=persona.cod_cliente_persona and cliente.cod_cliente=$codCliente ;");
-        return pg_result($result,0,0);
-    }
-    public function datosAEditarCliente($codCliente){
-        return $result = $this->conexion->execute("select nombre,direccion,email,telefono from cliente, telefono");
+     public function getDatosClienteEditar($codCliente){
+        return $result = $this->conexion->execute("SELECT cliente.nombre,cliente.direccion,cliente.email, tipo, getNIT_CI_Cliente(cliente.cod_cliente),cod_cliente FROM cliente where cod_cliente= $codCliente;");
     }
     public function getNIT_CI_Cliente($codCliente){
          $resutl = $this->conexion->execute("select getNIT_CI_Cliente($codCliente);");
          return pg_result($resutl,0,0);
     }
+
 }
 ?>
