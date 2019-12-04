@@ -40,7 +40,6 @@ class PDF extends FPDF
         $this->SetFont('Helvetica', 'I', 8);
 
         $this->Cell(0, 3, 'Empreza de Limpieza Jezoar', 0, 1, 'C');
-        $this->Cell(0, 3, '+591 3445925', 0, 1, 'C');
     }
 }
 
@@ -107,74 +106,6 @@ $nro=0;
         $pdf->Ln();
     }
 
-    /*$pdf->Cell($w[0], 6, '', 'T');
-$pdf->Cell($w[1], 6, '', 'T');
-$pdf->Cell($w[2], 6, '', 'T');
-
-$pdf->Cell($w[3], 6, '', 'T');
-$pdf->Cell($w[4], 6, '', 'T');
-$pdf->Cell($w[5], 6, '', 'T');
-$pdf->Cell($w[6], 6, '', 'T');
-$pdf->Cell($w[7], 6, '', 'T');
-$pdf->Cell($w[8], 6, '', 'T');*/
-
-
-
-
-
-// Total de servicios privados
-//$pdf->Cell($w[0], 6, '', 'T');
-//$pdf->SetFont('Arial', 'B', 12);
-//$pdf->Cell($w[1], 6, 'Total', '1');
-//$pdf->Cell($w[2], 6, $totalPrivado, 1, 0, 'C');
-//$pdf->Ln();
-//
-//$pdf->SetFont('Arial', '', 12);
-
-
-//    if (!empty($_POST['check_list1'])) {
-//$pdf->Cell(0, 10, '', 0, 0, 'C');
-//$pdf->Ln();
-//
-//        //TABLA DE SERVICIOS ADICIONALES
-//        $pdf->cell(0, 10, 'SERVICIOS ADICIONALES', 0, 1);
-//       // $monto = $_POST['total_list1'];
-//        $i=0;
-//        $pdf->Cell($w[0], 7, 'Nro', 1, 0, 'C');
-//        $pdf->Cell($w[1], 7, 'Servicio adicional', 1, 0, 'C');
-//        $pdf->Cell($w[2], 7, 'Monto (Bs.)', 1, 0, 'C');
-//        $pdf->Ln();
-//        $totalAdicional = 0;
-//        foreach ($_POST['check_list1'] as $row) {
-//            $totalAdicional = $totalAdicional + $monto[$i];
-//                $pdf->Cell($w[0], 6, $i + 1, 'LR', 0, 'C');
-//                $pdf->Cell($w[1], 6, $row, 'LR');
-//                $pdf->Cell($w[2], 6, $monto[$i], 'LR', 0, 'C');
-//            $pdf->Ln();
-//            $i = $i + 1;
-//        }
-// Total de servicios adicionales
-//
-//        $pdf->Cell($w[0], 6, '', 'T');
-//        $pdf->SetFont('Arial', 'B', 12);
-//        $pdf->Cell($w[1], 6, 'Total', 1);
-//        $pdf->Cell($w[2], 6, $totalAdicional, 1, 0, 'C');
-//        $pdf->Ln();
-//        $pdf->SetFont('Arial', '', 12);
-
-//  }
-//    $pdf->SetY(215);
-//    $pdf->Cell(0, 10, '', 0, 0, 'C');
-//    $pdf->Ln();
-//    //$pdf->cell(0, 8, 'TOTAL = Bs. ' . $_POST['total'] . '.-', 0, 1);
-//    $pdf->SetFont('Arial', '', 8);
-//    $pdf->cell(0, 4, iconv("UTF-8", "CP1250//TRANSLIT",'Una vez determinado el paquete se realizará la reserva de fecha con el 50% del costo del servicio.'), 0, 1);
-//    $pdf->cell(0, 4, iconv("UTF-8", "CP1250//TRANSLIT",'El costo de cada opción no es por hora, si no por servicio.'), 0, 1);
-//    $pdf->cell(0, 4, iconv("UTF-8", "CP1250//TRANSLIT",'De 0 a 120 minutos el costo es el mismo.'), 0, 1);
-//    $pdf->cell(0, 4, iconv("UTF-8", "CP1250//TRANSLIT",'En todas las opciones, el tiempo máximo de interpretación es de 120 minutos.'), 0, 1);
-//    $pdf->cell(0, 4, iconv("UTF-8", "CP1250//TRANSLIT",'Para garantizar la calidad del servicio la "Camerata del Oriente" cuenta con su propio equipo de audio, no es factible utilizar equipo de otra empresa.'), 0, 1);
-//    $pdf->cell(0, 4, iconv("UTF-8", "CP1250//TRANSLIT",'Todos los costos son facturados.'), 0, 1);
-//}
 
 
 //$pdf->SetFont('Helvetica', 'I', 8);

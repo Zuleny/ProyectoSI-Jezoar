@@ -17,9 +17,9 @@
                         <b><?php echo $_GET['nro_ingreso']; ?></b>
                     </h3>
                     <div class="box-tools pull-right">
-                        <a onclick="history.go(-1)" class="btn btn-primary" title="Volver Atras">
+                        <a onclick="history.back();" class="btn btn-primary" title="Volver Atras">
                             <span class="fa fa-fw fa-mail-reply"></span></a>
-                        <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                        <a href="../../index.php" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                     </div>
 
@@ -63,11 +63,11 @@
                       </div>
                       <div class="col-lg-6"></div>
                       <div class="col-lg-3">
-                        <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeProducto/gestionProducto.php" target="_blank" id="etiqueta1">
+                        <a href="../../view/gestionDeProducto/gestionProducto.php" target="_blank" id="etiqueta1">
                         ¿No encontro el producto en la lista?
                         </a>
                         <br>
-                        <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeHerramienta/gestionHerramienta.php" target="_blank" id="etiqueta1">
+                        <a href="../../view/gestionDeHerramienta/gestionHerramienta.php" target="_blank" id="etiqueta1">
                         ¿No encontro la Herramienta en la lista?
                         </a>
                       </div>

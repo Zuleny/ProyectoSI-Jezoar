@@ -17,9 +17,9 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     <b><?php echo $_GET['cod_presentacion']; ?></b>
                 </h3>
                 <div class="box-tools pull-right">
-                    <a onclick="history.go(-1)" class="btn btn-primary" title="Volver Atras">
+                    <a onclick="history.back();" class="btn btn-primary" title="Volver Atras">
                         <span class="fa fa-fw fa-mail-reply"></span></a>
-                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menu Inicio">
+                    <a href="../../index.php" class="btn btn-primary" title="Menu Inicio">
                         <span class="glyphicon glyphicon-home"></span></a>
                 </div>
 
@@ -60,9 +60,9 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             <button type="button" class="btn btn-block btn-success" id="button1"  onclick="location.reload()" title="Registrar Insumo">Registrar Detalle</button>
                         </div>
                         <div class="col-lg-5">
-                            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeProducto/gestionProducto.php" target="_blank" id="etiqueta1">¿No encontro el producto en la lista?
+                            <a href="../../view/gestionDeProducto/gestionProducto.php" target="_blank" id="etiqueta1">¿No encontro el producto en la lista?
                             </a>
-                            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeHerramienta/gestionHerramienta.php" target="_blank" id="etiqueta1">¿No encontro la Herramienta en la lista?
+                            <a href="../../view/gestionDeHerramienta/gestionHerramienta.php" target="_blank" id="etiqueta1">¿No encontro la Herramienta en la lista?
                             </a>
                         </div>
                     </div>

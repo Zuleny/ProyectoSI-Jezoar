@@ -19,35 +19,33 @@ include "../../model/Conexion.php";
                 <div class="box-header">
                     <h3 class="box-title">Reporte de Herramienta</h3>
                     <div class="box-tools pull-right">
-                        <a onclick="history.go(-1)" class="btn btn-primary" title="Volver Atras">
+                        <a onclick="history.back();" class="btn btn-primary" title="Volver Atras">
                             <span class="fa fa-fw fa-mail-reply"></span></a>
-                        <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                        <a href=a href="../../index.php" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                     </div>
                 </div>
                 <!-- Inicia tu codigo aqui -->
                 <form>
-                    <div class="input-group margin-bottom-sm"> 
-                        <span class="input-group-addon"><i class="fa fa-home fa-fw" aria-hidden="true"></i></span>
+                    <!-- Lugar de butons y label y textbox  -->
 
-                        <?php
-                        $nombreAlmacen=$_GET['name'];
-                        $jezoar = new Conexion();
-                        $result = $jezoar->execute("SELECT nombre, stock from getHerramientaStock('$nombreAlmacen');");
-                        /*
-                        $nombreAlmv= $_POST['nombre'];
-                        echo $nombreAlmv;*/
-                        //require "../../controller/reporteController.php";
-                        //$nombreAlm = getNombreAlmacen();
-                        //$result = getStockActual();
-                        $arreglo = array();
-                        $arregloStock = array();
-                        for ($i=0; $i < pg_num_rows($result); $i++) {
-                            $arreglo[$i] = pg_result($result,$i,0);
-                            $arregloStock[$i] = pg_result($result,$i,1);
-                        }
-                        ?>
-                    </div>
+                    <?php
+                    $nombreAlmacen=$_GET['name'];
+                    $jezoar = new Conexion();
+                    $result = $jezoar->execute("SELECT nombre, stock from getHerramientaStock('$nombreAlmacen');");
+                    /*
+                    $nombreAlmv= $_POST['nombre'];
+                    echo $nombreAlmv;*/
+                    //require "../../controller/reporteController.php";
+                    //$nombreAlm = getNombreAlmacen();
+                    //$result = getStockActual();
+                    $arreglo = array();
+                    $arregloStock = array();
+                    for ($i=0; $i < pg_num_rows($result); $i++) {
+                        $arreglo[$i] = pg_result($result,$i,0);
+                        $arregloStock[$i] = pg_result($result,$i,1);
+                    }
+                    ?>
                     <div class="chart-container" style="position: relative; height:80vh; width:80vw">
                         <canvas id="myChart"></canvas>
                         <script>
