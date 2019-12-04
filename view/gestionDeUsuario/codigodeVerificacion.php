@@ -56,7 +56,7 @@
       <section class="content">
         <div class="box box-danger">
           <div class="box-header with-border">
-            <h3 class="box-title">Asignacion de Nueva Contraseña para el(la) usuario:  <? echo strtoupper($_GET['nombrePersonal']); ?></h3>
+            <h3 class="box-title">Asignacion de Nueva Contraseña para el(la) usuario:  <?php echo strtoupper($_GET['nombrePersonal']); ?></h3>
           </div>
           <div class="box-body">
             <form class="form-group" action="../../controller/seguridadPasswordController.php" method="post">

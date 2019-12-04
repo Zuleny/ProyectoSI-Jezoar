@@ -27,19 +27,37 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 <b>Nota: </b> <br>
                                 Usuario: <b><?php echo $_SESSION['user']?></b>, los permisos que se realizarán
                                 en el rol <b><?php echo $_GET['nombRol'];?></b> son para las actividades que realiza los usuarios que estan acoplados en el rol de <b><?php echo $_GET['nombRol'];?></b>, por favor tome en cuenta el riesgo de uso de esta actividad. <br> <br>
+                            </p>
                                 <b>Lista de Permisos de <? echo strtoupper($_GET['nombRol']);?><br></b>
                                 <?php
                                     require '../../controller/rolController.php';
                                     $resultado = getListaPermisosDeRol($_GET['codigoRolPermiso']);
-                                    if (pg_num_rows($resultado)<=0) {
-                                        echo '&bull;    Lista Vacia<br>';
-                                    }else{
-                                        for ($permiso=0; $permiso < pg_num_rows($resultado); $permiso++) { 
-                                            echo '&bull;    '.pg_result($resultado,$permiso,0).'<br>';
-                                        }
-                                    }
                                 ?>
-                            </p>
+                            <table class="table table-bordered table-hover" style="background-color: #F1948A">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Permisos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        if (pg_num_rows($resultado)<=0) {
+                                            echo '<tr><td>Lista Vacia</td></tr>';
+                                        }else{
+                                            for ($permiso=0; $permiso < pg_num_rows($resultado); $permiso++) { 
+                                                echo '<tr class="text-center">'.
+                                                            '<td>'.pg_result($resultado,$permiso,0).'</td>
+                                                            <td>'.'<a href="../../controller/rolController.php?idPermisoE='.pg_result($resultado,$permiso,1).'&idRolE='.$_GET['codigoRolPermiso'].'">
+                                                            <button type="button" class="btn bg-red btn-xs btn-sm" title="Eliminar Servicio de Cotizacion">
+                                                                <i class="fa fa-fw fa-trash-o"></i>
+                                                            </button>
+                                                        </a>'.'</td>'
+                                                    .'</tr>';
+                                            }
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
                             <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" title="Agregar Servicio">
                                 Asignar Permisos a <?php echo $_GET['nombRol'];?>
                                 <i class="fa fa-fw fa-check"></i>

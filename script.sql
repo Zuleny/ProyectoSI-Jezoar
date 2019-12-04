@@ -34,6 +34,7 @@ create table Presentacion (
 	estado varchar(10) not null,	--Aceptado,Denegado,Rechazado
 	precio_total decimal(12,2) not null,
 	cod_cliente_presentacion int not null,
+	descripcion_servicios varchar(100) not null,
 	tipo_presentacion char(1) not null,	--P:Propuesta;O:Cotizacion 
 	foreign key (cod_cliente_presentacion) references Cliente (cod_cliente)
 	on update cascade
@@ -74,7 +75,6 @@ create table Presentacion_Servicio(
    area_trabajo varchar(100),	--lugar a trabajar
    cant_personal int not null,
    precio_unitario decimal(12,2) not null,
-   descripcionservicios varchar(100) not null,
    foreign key(cod_presentacion) references Presentacion(cod_presentacion)
    on update cascade 
    on delete cascade,
@@ -297,8 +297,6 @@ create table Informe (
 	on update cascade
 	on delete cascade
 );
-alter table informe add column imageAfter text;
-alter table informe add column imageBefore text;
 
 create table Contrato (
 	cod_contrato int not null primary key,
@@ -337,60 +335,48 @@ insert  into Empresa values (4,'1245653219');
 insert  into Persona values (5,'2189543');
 insert  into Persona values (6,'2198754');
 
-insert into Presentacion values(1,'2018/05/21','Aceptado',141000,1,'P');  
-insert into Presentacion values(2,'2018/05/25','Denegado',27500,2,'C');
-insert into Presentacion values(3,'2018/05/29','Aceptado',45250,2,'C');
-insert into Presentacion values(4,'2018/07/21','Aceptado',180220,3,'P'); 
-insert into Presentacion values(5,'2018/08/11','Aceptado',40000,4,'P');
-insert into Presentacion values(6,'2018/09/15','Denegado',374400,4,'P');
-insert into Presentacion values(7,'2018/10/02','Aceptado',12560,3,'C');
-insert into Presentacion values(8,'2019/01/10','Aceptado',13500,5,'C');
-insert into Presentacion values(9,'2019/02/05','Denegado',11500,2,'P');
-insert into Presentacion values(10,'2019/02/20','Denegado',430000,6,'P');
-insert into Presentacion values(11,'2019/04/21','Espera',30000,5,'P');
+insert into Presentacion values(1,'2018/05/21','Aceptado',141000,1, 'Incluye IVA, Incluye Materiales, Mano de Obra','P');  
+insert into Presentacion values(2,'2018/05/25','Denegado',27500,2, 'Incluye IVA, Incluye Materiales','C');
+insert into Presentacion values(3,'2018/05/29','Aceptado',45250,2, 'Incluye IVA, Mano de Obra','C');
+insert into Presentacion values(4,'2018/07/21','Aceptado',180220,3, 'Incluye Materiales, Mano de Obra','P'); 
+insert into Presentacion values(5,'2018/08/11','Aceptado',40000,4, 'Incluye IVA, Incluye Materiales, Mano de Obra','P');
+insert into Presentacion values(6,'2018/09/15','Denegado',374400,4, 'Incluye IVA','P');
+insert into Presentacion values(7,'2018/10/02','Aceptado',12560,3, 'Incluye IVA','C');
+insert into Presentacion values(8,'2019/01/10','Aceptado',13500,5, 'Incluye IVA, Incluye Materiales, Mano de Obra','C');
+insert into Presentacion values(9,'2019/02/05','Denegado',11500,2, 'Incluye IVA, Mano de Obra','P');
+insert into Presentacion values(10,'2019/02/20','Denegado',430000,6, 'Incluye IVA, Incluye Materiales, Mano de Obra','P');
+insert into Presentacion values(11,'2019/04/21','Espera',30000,5, 'Mano de Obra','P');
 
 insert into Servicio values(1,'Limpieza general de oficinas');
-insert into Servicio values(2,'Limpieza general de oficinas');
-insert into Servicio values(3,'Limpieza general de oficinas');
-insert into Servicio values(4,'Limpieza de vidrios');
-insert into Servicio values(5,'Limpieza de vidrios');
-insert into Servicio values(6,'Limpieza de vidrios');
-insert into Servicio values(7,'Limpieza de pisos');
-insert into Servicio values(8,'Limpieza de escaleras');
-insert into Servicio values(9,'Limpieza de escaleras');
-insert into Servicio values(10,'Limpieza general de postobra');
-insert into Servicio values(11,'Limpieza general de postobra');
-insert into Servicio values(12,'Limpieza general de postobra');
-insert into Servicio values(13,'Servicio de supervicion');
-insert into Servicio values(14,'Servicio de supervicion');
-insert into Servicio values(15,'Limpieza general profunda');
-insert into Servicio values(16,'Limpieza general profunda');
-insert into Servicio values(17,'Limpieza general profunda');
-insert into Servicio values(18,'Prestacion de materiales');
-insert into Servicio values(19,'Prestacion de materiales');
+insert into Servicio values(2,'Limpieza de vidrios');
+insert into Servicio values(3,'Limpieza de pisos');
+insert into Servicio values(4,'Limpieza general de postobra');
+insert into Servicio values(5,'Servicio de supervicion');
+insert into Servicio values(6,'Limpieza general profunda');
+insert into Servicio values(7,'Prestacion de materiales');
 
-insert into Presentacion_Servicio values(1,1,'Oficina',4,9750, 'Con Factura e Iva');
-insert into Presentacion_Servicio values(1,6,'Oficina',1,2000, 'Incluye IVA, Incluye Materiales, Mano de Obra');
-insert into Presentacion_Servicio values(2,6,'Bloque',10,26900, 'Incluye IVA, Incluye Materiales, Mano de Obra');
-insert into Presentacion_Servicio values(2,7,'Bloque',1,600, 'Incluye IVA, Mano de Obra');     
-insert into Presentacion_Servicio values(3,7,'Bloque',7,45250, 'Incluye IVA, No Incluye Materiales, Mano de Obra');
-insert into Presentacion_Servicio values(4,1,'Oficina',6,13919, 'Incluye IVA, Incluye Materiales, Mano de Obra');
-insert into Presentacion_Servicio values(4,8,'Oficina',0,900, 'Incluye IVA, Incluye Materiales'); 
-insert into Presentacion_Servicio values(5,1,'Oficina',2,2913.3, 'Incluye Materiales, Mano de Obra');
-insert into Presentacion_Servicio values(5,8,'Oficina',0,416.7, 'Incluye IVA, Incluye Materiales, Mano de Obra');
-insert into Presentacion_Servicio values(6,1,'Oficina',8,28750, 'Incluye IVA, Incluye Materiales');
-insert into Presentacion_Servicio values(6,8,'Oficina',0,2450 ,'Incluye IVA, Incluye Materiales, Mano de Obra');
-insert into Presentacion_Servicio values(7,7,'Bloque',3,11000, 'Incluye IVA, Incluye Materiales, Mano de Obra');
-insert into Presentacion_Servicio values(7,8,'Bloque',4,1560, 'Incluye Materiales, Mano de Obra');
-insert into Presentacion_Servicio values(8,5,'Oficina',0,11500, 'Incluye IVA');
-insert into Presentacion_Servicio values(8,8,'Oficina',0,2500, 'Incluye IVA, Incluye Materiales, Mano de Obra');
-insert into Presentacion_Servicio values(9,2,'Oficina',1,3900, 'Incluye IVA, Mano de Obra');
-insert into Presentacion_Servicio values(9,3,'Oficina',2,4000, 'Incluye Materiales, Mano de Obra');
-insert into Presentacion_Servicio values(9,8,'Oficina',0,300, 'Incluye IVA, Incluye Materiales'); 
-insert into Presentacion_Servicio values(10,1,'Oficina',9,33333.3, 'Incluye IVA, Incluye Materiales, Mano de Obra');
-insert into Presentacion_Servicio values(10,8,'Oficina',0,2500, 'Incluye IVA, Incluye Materiales'); 
-insert into Presentacion_Servicio values(11,2,'Oficina',1,2000, 'Incluye Materiales, Mano de Obra');
-insert into Presentacion_Servicio values(11,8,'Oficina',0,500, 'Incluye IVA, No Incluye Materiales, Mano de Obra'); 
+insert into Presentacion_Servicio values(1,1,'Oficina',4,9750);
+insert into Presentacion_Servicio values(1,2,'Oficina',1,2000);
+insert into Presentacion_Servicio values(2,6,'Bloque',10,26900);
+insert into Presentacion_Servicio values(2,7,'Bloque',1,600);     
+insert into Presentacion_Servicio values(3,7,'Bloque',7,45250);
+insert into Presentacion_Servicio values(4,1,'Oficina',6,13919);
+insert into Presentacion_Servicio values(4,5,'Oficina',1,900); 
+insert into Presentacion_Servicio values(5,1,'Oficina',2,2913.3);
+insert into Presentacion_Servicio values(5,2,'Oficina',1,416.7);
+insert into Presentacion_Servicio values(6,1,'Oficina',8,28750);
+insert into Presentacion_Servicio values(6,5,'Oficina',1,2450);
+insert into Presentacion_Servicio values(7,7,'Bloque',3,11000);
+insert into Presentacion_Servicio values(7,6,'Bloque',4,1560);
+insert into Presentacion_Servicio values(8,5,'Oficina',1,11500);
+insert into Presentacion_Servicio values(8,3,'Oficina',1,2500);
+insert into Presentacion_Servicio values(9,1,'Oficina',1,3900);
+insert into Presentacion_Servicio values(9,2,'Oficina',2,4000);
+insert into Presentacion_Servicio values(9,6,'Oficina',2,300); 
+insert into Presentacion_Servicio values(10,1,'Oficina',9,33333.3);
+insert into Presentacion_Servicio values(10,2,'Oficina',1,2500); 
+insert into Presentacion_Servicio values(11,2,'Oficina',1,2000);
+insert into Presentacion_Servicio values(11,5,'Oficina',1,500); 
 
 insert into Propuesta values(1,12);
 insert into Propuesta values(4,12);
@@ -1742,7 +1728,6 @@ for each row
 	execute procedure uDetalleIngreso();
 
 /*43. Funcion que devuelve el devuelve el tipo de cliente de acuerdo a su codigo*/
-
 create or replace function esPersona(codCliente integer)
 returns integer
 as $BODY$
@@ -1771,4 +1756,3 @@ begin
 return resultado;
 end;
 $BODY$ language 'plpgsql';
-

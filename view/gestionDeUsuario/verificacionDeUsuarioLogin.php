@@ -52,45 +52,47 @@
         </header>
         <div class="content-wrapper">
             <div class="container">
-            <section class="content-header">
-                <h1>
-                Verificación de Usuario
-                <small>Sistema Jezoar</small>
-                </h1>
-            </section>
-            <section class="content">
-                <div class="box box-danger">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Pregunta Gestionada por el Usuario</h3>
-                </div>
-                <form class="box-body" action="../../controller/seguridadPasswordController.php" method="get">
-                    <div class="col-lg-4">
-                        <h4>Nota:</h4>
-                        <p>
-                            Querido(a) <b><?php echo strtoupper($_GET['nombpersonal']); ?></b>, esta pregunta fué creada por <b>usted</b>, al momento de crear su usuario de uso para este sistema, por favor responda la siguiente pregunta. <br> 
-                            <b>Si responde correctamente esta pregunta, podrá recuperar su usuario de uso.</b>
-                        </p>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-8">
-                            <label>Pregunta de Verificación</label>
-                            <br>
-                            <label> <?php echo $_GET['question']; ?> </label>
+                <section class="content-header">
+                    <h1>
+                    Verificación de Usuario
+                    <small>Sistema Jezoar</small>
+                    </h1>
+                </section>
+                <section class="content">
+                    <div class="box box-danger">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Pregunta Gestionada por el Usuario</h3>
                         </div>
-                        <input type="hidden" class="form-control" placeholder="Juanito Perez" name="nombre" value="<?php echo $_GET['nombpersonal']; ?>">
-                        <div class="col-lg-8">
-                            <label>Respuesta: </label>
-                            <input type="text" class="form-control" placeholder="Las respuesta es..." name="respuestaPersonalOvidado">
-                        </div>
+                        <form class="box-body" action="../../controller/seguridadPasswordController.php" method="get">
+                            <div class="col-lg-4">
+                                <h4>Nota:</h4>
+                                <p>
+                                    Querido(a) <b><?php echo strtoupper($_GET['nombpersonal']); ?></b>, esta pregunta fué creada por <b>usted</b>, al momento de crear su usuario de uso para este sistema, por favor responda la siguiente pregunta. <br> 
+                                    <b>Si responde correctamente esta pregunta, podrá recuperar su usuario de uso.</b>
+                                </p>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="row-border">
+                                    <label>Pregunta de Verificación</label>
+                                    <br>
+                                    <label> <?php echo $_GET['question']; ?> </label>
+                                </div>
+                                <input type="hidden" class="form-control" placeholder="Juanito Perez" name="nombre" value="<?php echo $_GET['nombpersonal']; ?>">
+                                <div class="row-border">
+                                    <label>Respuesta: </label>
+                                    <br>
+                                    <input type="text" class="form-control" placeholder="Las respuesta es..." name="respuestaPersonalOvidado">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <br>
+                                <button type="submit" class="btn btn-block btn-success" title="Confirmar Respuesta">Confirmar Respuesta
+                                    <i class="fa fa-check"></i>
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="col-lg-4">
-                        <br>
-                        <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">Confirmar Respuesta
-                            <i class="fa fa-spin fa-check"></i>
-                        </button>
-                    </div>
-                </form>
-            </section>
+                </section>
             </div>
         </div>
         <footer class="main-footer">

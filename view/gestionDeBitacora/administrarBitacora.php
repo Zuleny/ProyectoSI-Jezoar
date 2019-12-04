@@ -18,7 +18,7 @@
                     <div class="box-header">
                         <h3 class="box-title">Registro de Actividades</h3>
                         <div class="box-tools pull-right">
-                            <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
+                            <a href="../../index.php" class="btn btn-primary" title="Menú Inicio">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                         <br>
@@ -27,7 +27,7 @@
                                 <br>
                                 <div class="col-lg-4">
                                     <p>
-                                        <b><? echo $_SESSION['user'] ?></b>, en esta parte del sistema 
+                                        <b><?php echo $_SESSION['user'] ?></b>, en esta parte del sistema 
                                         se visualiza las actividades que se realizaron por parte de 
                                         todos los usuarios en general, incluyendote, <br>
                                         asi que mucho cuidado XD

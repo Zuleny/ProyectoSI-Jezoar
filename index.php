@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php 
+session_start();
+if ( !isset($_SESSION['user'])  ) {
+  header("Location: view/login.php");
+}
+?>
 <html>
 <head>
   <meta charset="utf-8">
@@ -42,7 +48,7 @@
   <div class="wrapper">
     <header class="main-header">
       <!-- Logo -->
-      <a href="http://localhost/ProyectoSI-Jezoar/" class="logo">
+      <a href="#" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>J</b>ZR</span>
         <!-- logo for regular state and mobile devices -->
@@ -61,7 +67,7 @@
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="documentation/jezoar.png" class="user-image" alt="User Image">
-                <span class="hidden-xs"><?php session_start(); echo $_SESSION['user']?></span>
+                <span class="hidden-xs"><?php echo $_SESSION['user']?></span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
@@ -180,23 +186,6 @@
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <!-- No responde este fragmento ni en chrome ni firefox
-              <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-fw fa-users"></i>
-                    <span>Usuario</span>
-                    <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeUsuario/gestionUsuario.php"><i class="fa fa-circle-o"></i> Gestion de Usuarios</a></li>
-                    <li><a href="http://localhost/ProyectoSI-Jezoar/view/GestionDeRol/gestionRol.php"><i class="fa fa-circle-o"></i>Gestion de Rol</a></li>
-                    <li><a href="http://localhost/ProyectoSI-Jezoar/view/GestionDePermiso/gestionPermiso.php"><i class="fa fa-circle-o"></i>Notas de Permiso</a></li>
-                    <li><a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeBitacora/administrarBitacora.php"><i class="fa fa-circle-o"></i>Administración de Bitacora</a></li>
-                    <li><a href="http://localhost/ProyectoSI-Jezoar/view/gestionDePersonal/gestionDePersonal.php"><i class="fa fa-circle-o"></i>Gestion de Personal</a></li>
-                </ul>
-              </li> -->
               <br>
             </div>
           </div>

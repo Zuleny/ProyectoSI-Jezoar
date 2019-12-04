@@ -29,8 +29,18 @@ include "../../view/theme/AdminLTE/Additional/head.php";
 
                     <div class="box-body">
                         <div class="col-lg-4">
+<<<<<<< HEAD
                             <label>Nombre Cliente</label>
                             <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Yerba Buena">
+=======
+                            <label>Fecha</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="date" class="form-control" name="fecha" required>
+                            </div>
+>>>>>>> b80a70a1fd7643ec43b7082cf189c118fb80ff24
                         </div>
                         <div class="col-lg-3 form-group">
                             <label>Nombre Cliente</label>
@@ -50,7 +60,18 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             <input type="number" id="cantidadMeses" name="cantidadMeses" min="1" class="form-control" placeholder="6" required>
                         </div>
 
-                        <div class="col-lg-7 form-group" style="background-color: #D4EFDF;" required >
+                        <div class="col-lg-2">
+                            <label>Precio Total</label>
+                            <input type="text" class="form-control" step="0.01" placeholder="Precio Total" value="0.0 Bs." disabled>
+                            <input type="hidden" name="precio" value="0.0">
+                        </div>
+
+                        <div class="col-lg-12">
+                            <label>Descripcion de Servicios</label>
+                            <textarea class="form-control" name="descripcionServicio" id="descripcionServicio" required="" rows="2" placeholder="Descripcion de la Propuesta: ej. Incluye Materia o Incluye IVA"></textarea>
+                        </div>
+
+                        <div class="col-lg-9 form-group" style="background-color: #D4EFDF;" required >
                             <label>Estado</label>
                             <br>
                             <div class="col-md-3">
@@ -63,11 +84,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 <p><input type="radio" name="estadoP" value="Denegado">Denegado</p>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <label>Precio Total</label>
-                            <input type="text" class="form-control" step="0.01" placeholder="Precio Total" value="0.0 Bs." disabled>
-                            <input type="hidden" name="precio" value="0.0">
-                        </div>
+
                         <div class="col-lg-3">
                             <button type="submit" class="btn btn-block btn-success" id="button1" name="InsertarPropuesta" title="Agregar Propuesta">Agregar Registro
                                 <i class="fa fa-fw fa-check"></i>
@@ -91,12 +108,13 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Fecha</th>
-                                    <th>Nombre Cliente</th>
-                                    <th>Cant Meses</th>
-                                    <th>Estado</th>
-                                    <th>Total</th>
+                                    <th >#</th>
+                                    <th >Fecha</th>
+                                    <th >Nombre Cliente</th>
+                                    <th >Cant Meses</th>
+                                    <th >Estado</th>
+                                    <th >Descripcion Servicio</th>
+                                    <th >Total</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -107,34 +125,8 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                         </div>
                     </div>
                 </div>
-                <div>
-                    <form id="frmDeletePropuesta" action="" method="POST">
-                        <input type="hidden" id="idPropuesta" name="idPropuesta" value="0">
-                        <input type="hidden" id="opcion" name="opcion" value="eliminar">
-                        <!-- Modal Delete-->
-                        <div class="modal fade" data-backdrop=”static” id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="modalEliminarLabel">Eliminar Propuesta</h4>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        ¿Está seguro de eliminar la Propuesta?<strong data-name=""></strong>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" id="deletePropuesta" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
 
                 <div>
-
 
                     <!-- Modal Update-->
                     <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
@@ -178,6 +170,11 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                         </div>
 
                                         <div class="form-group">
+                                            <label for="descripcionServicio">Descripcion de Servicios</label>
+                                            <textarea class="form-control" name="descripcionServicio" id="descripcionServicio" required="" rows="2" placeholder="Descripcion de la Propuesta: ej. Incluye Materia o Incluye IVA"></textarea>
+                                        </div>
+
+                                        <div class="form-group">
                                             <select class="form-control" name="estado" id="estado">
                                                 <?php
                                                    echo '<option  value="Aceptado" >Aceptado</option>';
@@ -206,6 +203,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     <form id="frmPropuesta" action="" method="POST">
                         <input type="hidden" id="idFrmPropuestaInsumo" name="idFrmPropuestaInsumo" value="0">
                         <input type="hidden" id="idFrmPropuestaServicio" name="idFrmPropuestaServicio" value="0">
+                        <input type="hidden" id="idFrmPropuestaContrato" name="idFrmPropuestaServicio" value="0">
                         <input type="hidden" id="opcion" name="opcion" value="visualizar">
                     </form>
 
@@ -248,19 +246,20 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                                       }
                                         }
                                 },
+                                {"data":"descripcion_servicios"},
                                 {"data":"precio_total"},
                                 {"defaultContent":" <button type='button' class='insumo btn bg-aqua btn-xs' id='visualizar' title='Agregar Insumos'><i class='fa fa-fw fa-cubes'></i></button>"+
                                         "<button type='button' class='servicio btn btn-xs bg-light-blue btn-sm' id='visualizar' title='Agregar Servicios'><span class='glyphicon glyphicon-briefcase' aria-hidden='true'></span></button>"+
                                         "<button type='button' class='editar btn bg-purple btn-xs' data-toggle='modal' data-target='#modalUpdate' title='Editar'><i class='fa fa-pencil-square'></i></button>" +
-                                        "<button type='button' class='eliminar btn bg-red btn-xs' data-toggle='modal' data-target='#modalEliminar' title='Eliminar'><i class='fa fa-trash-o'></i></button>"}
+                                        "<button type='button' class='contrato btn bg-orange btn-flat btn-sm btn-xs' title='Registrar contrato'> <i class='fa fa-fw fa-list-alt'></i> </button>"}
 
                             ],
                             "language":idioma_espanol
                         });
                         getDataRow("#tabla1 tbody",table);
-                        getIdPropuestaRow("#tabla1 tbody",table);
                         getIdPropuestaServicio("#tabla1 tbody",table);
                         getIdPropuestaInsumo("#tabla1 tbody",table);
+                        getIdPropuestaContrato("#tabla1 tbody",table);
                     }
 
                     //Settear los valores devueltos por el servidor(database) al sus respectivos inputs del modal editar
@@ -271,21 +270,24 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 fecha=$("#frmUpdatePropuesta #fecha").val(data.fecha),
                                 nombre_cliente=$("#frmUpdatePropuesta #nombre").val(data.getnombrecliente),
                                 cant_meses=$("#frmUpdatePropuesta #cantidad").val(data.cant_meses),
-                                estado=$("#frmUpdatePropuesta #estado").val(data.estado);
+                                estado=$("#frmUpdatePropuesta #estado").val(data.estado),
+                                descripcion_servicios=$("#frmUpdatePropuesta #descripcionServicio").val(data.descripcion_servicios);
                             console.log(data.estado);
-
                         });
                     }
 
-                    //Settear los valores devueltos por el servidor(database) al sus respectivos inputs del modal eliminar
-                    var getIdPropuestaRow=function (tbody,table) {
-                        $(tbody).on("click","button.eliminar",function () {
+                    //Settear los valores devueltos por el servidor(database) al sus respectivos inputs para visualizar el contrato de dicho nro de Ingreeso
+                    var getIdPropuestaContrato=function (tbody,table) {
+                        $(tbody).on("click","button.contrato",function () {
                             var data=table.row($(this).parents("tr")).data();
-                            var cod_presentacion=$("#frmDeletePropuesta #idPropuesta").val(data.cod_presentacion);
+                            var cod_presentacion=$("#frmPropuesta #idFrmPropuestaContrato").val(data.cod_presentacion);
+                            var porId=document.getElementById("idFrmPropuestaContrato").value;
+                            console.log(porId);
+                            location.href = "../gestionDeContrato/gestionContrato.php?cod_presentacion=" + porId;
                         });
                     }
 
-                    //Settear los valores devueltos por el servidor(database) al sus respectivos inputs para visualizar los detalles de dico nro de Ingreeso
+                    //Settear los valores devueltos por el servidor(database) al sus respectivos inputs para visualizar los detalles de dicho nro de Ingreeso
                     var getIdPropuestaServicio=function (tbody,table) {
                         $(tbody).on("click","button.servicio",function () {
                             var data=table.row($(this).parents("tr")).data();
@@ -313,9 +315,10 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 fecha=$("#frmUpdatePropuesta #fecha").val(),
                                 nombre_cliente=$("#frmUpdatePropuesta #nombre").val(),
                                 cant_meses=$("#frmUpdatePropuesta #cantidad").val(),
+                                descripcion_servicio=$("#frmUpdatePropuesta #descripcionServicio").val(),
                                 estado=$("#frmUpdatePropuesta #estado").val(),
                                 opcion=$("#frmUpdatePropuesta #opcion").val();
-                            var row={cod_presentacion:cod_presentacion,fecha:fecha, nombre_cliente:nombre_cliente, cant_meses:cant_meses, estado:estado, opcion:opcion};
+                            var row={cod_presentacion:cod_presentacion,fecha:fecha, nombre_cliente:nombre_cliente, cant_meses:cant_meses, descripcion_servicio:descripcion_servicio,estado:estado, opcion:opcion};
                             $.ajax({
                                 method:"POST",
                                 url: "tablePropuestaController.php",
@@ -327,26 +330,6 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             listar();
                         });
                     }
-
-                    //Metodo Eliminar ( hace una peticion al servidor)
-                    var eliminar=function () {
-                        $("#deletePropuesta").on("click",function () {
-                            var cod_presentacion=$("#frmDeletePropuesta #idPropuesta").val();
-                                opcion=$("#frmDeletePropuesta #opcion").val();
-                            console.log(cod_presentacion);
-                            var row={cod_presentacion:cod_presentacion,opcion:opcion};
-                            $.ajax({
-                                method:"POST",
-                                url: "tablePropuestaController.php",
-                                data: row,
-                                success: function (info) {
-                                    console.log(info);
-                                }
-                            });
-                            listar();
-                        });
-                    }
-
 
                     var idioma_espanol={
                         "sProcessing":     "Procesando...",

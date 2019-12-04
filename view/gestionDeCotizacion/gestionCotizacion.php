@@ -36,10 +36,10 @@
                     <div class="col-lg-3 form-group">
                         <label>Nombre Cliente</label>
                         <select class="form-control" name="nombreCliente" >
-                            <?php/*
+                            <?php
                                 require "../../controller/cotizacionController.php";
                                 $lista=getListaCliente();
-                                echo $lista;*/
+                                echo $lista
                             ?>
                         </select>
                     </div>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-lg-4">
                         <label>Cantidad de Dias</label>
-                        <input type="number" class="form-control" placeholder="Ingrese Cantidad" name="dias">
+                        <input type="number" class="form-control" placeholder="Ingrese Cantidad" name="dias" value="1" min="1">
                     </div>
                 </div>
                 <div class="box-body">
@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-lg-4 form-group">
                         <label for="option">Tipo de Servicio</label>
-                        <select class="form-control" name="Servicio">
+                        <select class="form-control" name="servicio">
                             <option value="Profunda">Limpieza Profunda</option>
                             <option value="Post-Obra">Limpieza Post-Obra</option>
                             <option value="Oficinas">Limpieza de Oficinas</option>
@@ -82,7 +82,8 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    <div class="col-lg-8 form-group" style="background-color: #D4EFDF;">
+                    <div class="col-lg-7" style="background-color: #D4EFDF;">
+                        <br>
                         <label>Estado</label>
                         <br>
                             <div class="col-md-4">
@@ -95,15 +96,16 @@
                                 <p><input type="radio" name="estadoP" value="Denegado"> Cotización Denegado</p>    
                             </div>
                     </div>
+                    <div class="col-lg-5">
+                        <label>Descripcion de Servicios</label>
+                        <textarea class="form-control" name="descripcionServicio" required rows="2" placeholder="Descripcion de la Cotizacion: ej. Incluye Materia o Incluye IVA"></textarea>
+                    </div>
 
                 </div>
                 <div class="box-body">
                     <div class="col-lg-4">
-                        <br>
-                        <button type="submit" style="border-radius: 15px;" value="Agregar Cotizacion" class="btn btn-block btn-success" title="Agregar Cotizacion">Agregar Cotización <i class="fa fa-fw fa-check"></i></button>
+                        <button type="submit" style="border-radius: 15px;" value="Agregar Cotizacion" name="registrar" class="btn btn-block btn-success" title="Agregar Cotizacion">Agregar Cotización <i class="fa fa-fw fa-check"></i></button>
                     </div>
-
-
                 </div>
             </form>
             <!--  Tabla de Cotizaciones  -->
@@ -120,9 +122,10 @@
                                 <th>Estado</th>
                                 <th>Precio</th>
                                 <th>Cliente</th>
-                                <th>Cantidad Dias</th>
-                                <th>Tipo Servicio</th>
+                                <th>Dias</th>
+                                <th>Servicio</th>
                                 <th>Material</th>
+                                <th>Descripción</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
