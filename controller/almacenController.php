@@ -18,7 +18,7 @@
             setlocale(LC_ALL, "es_ES");
             date_default_timezone_set('America/La_Paz');
             setlocale(LC_CTYPE, 'en_US');
-            $fecha_hora = date('j-n-Y G:i:s', time());
+            $fecha_hora = date('j-n-Y G:i:s',gmmktime());
             $username = $_SESSION['user'];
             $almacen->Conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                     VALUES ('$username', 'Registro de Almacen: $nombre', '$fecha_hora');");
