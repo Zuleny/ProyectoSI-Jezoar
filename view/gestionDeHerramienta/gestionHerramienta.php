@@ -30,15 +30,15 @@
                                 <label>Nombre Herramienta</label>
                                 <div class="input-group margin-bottom-sm"> 
                                     <span class="input-group-addon"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="nombre" placeholder="Nombre de la herramienta">
+                                    <input type="text" class="form-control" name="nombre" required placeholder="Nombre de la herramienta">
                                 </div>
                             </div>
                         </div>
                         <div class="box-body">
                             <div class="col-lg-7">
                                 <label>Descripcion</label>
-                                <textarea class="form-control" name="descripcion" rows="3" placeholder="Escriba una breve descripcion"></textarea>
-                            </div>
+                                <textarea class="form-control" name="descripcion" rows="3" required placeholder="Escriba una breve descripcion"></textarea>
+                            </div>  
 
                             <a href="../../view/gestionDeAlmacen/asignacionProductoAlmacen.php" target="_blank" id="etiqueta1">
                             Ir a: Registrar Herramienta en un almacen 
@@ -49,7 +49,7 @@
                                 <label>Estado</label>
                                 <br>
                                 <div class="col-md-4">
-                                    <p><input type="radio" name="estado" value="D"> Disponible</p>
+                                    <p><input type="radio" name="estado" value="D" checked> Disponible</p>
                                 </div>
                                 <div class="col-md-4">
                                     <p><input type="radio" name="estado" value="N"> No Disponible</p>
