@@ -25,6 +25,10 @@ class NotaEgreso{
         }
     }
 
+    public function getNroNotaEgreso(){
+        return $this->nroNotaEgreso;
+    }
+
     public function getConexion(){
         return $this->conexion;
     }

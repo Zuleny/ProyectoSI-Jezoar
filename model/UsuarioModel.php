@@ -36,6 +36,14 @@ class Usuario {
         $this->codUsuario = $nuevoCodigoUsuario;
     }
 
+    public function getConexion(){
+        return $this->conexion;
+    }
+
+    public function getCodUsuarioActual(){
+        return $this->codUsuario;
+    }
+
     /**
      * Inserta un Usuario con sus correspondientes campos
      */
@@ -245,6 +253,15 @@ class Usuario {
         }catch (Exception $ex){
             return false;
         }
+    }
+
+    public function getNombreUsuarioBitacora($codRolE, $codUsuarioE){
+        $result = $this->conexion->execute("SELECT u.nombre 
+                                            FROM usuario_rol as ur, usuario as u 
+                                            WHERE u.cod_usuario=ur.cod_usuario AND 
+                                                    cod_rol=$codRolE AND
+                                                    ur.cod_usuario= $codUsuarioE;");
+        return pg_result($result,0,0);
     }
 }
 ?>

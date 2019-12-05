@@ -26,8 +26,7 @@ function enviarEmail($emailToSend, $mensaje, $personal){
                             <br>
                             Código de verificación para la restauracion de usuario para el personal: $personal
                             <br>
-                            Codigo de verificacion <b>
-                            $mensaje </b>.<br>
+                            <h1>Codigo de verificacion <b>$mensaje</b>.<br></h1>
                             Que tengas un Buen dia, Te desea Jezoar!!!.
                           </p>";
         $mail->Body = $menssageEmail;
@@ -100,7 +99,7 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
 }else if ( isset($_POST['codigoVerif']) ) {
     if ( $_POST['codigoVerif']>0 ) {
         session_start();
-        if (sha1($_POST['codigoVerif'])==sha1($_SESSION['verifCode'])) {
+        if ($_POST['codigoVerif']==$_SESSION['verifCode']) {
             header("Location: ../view/gestionDeUsuario/nuevoPassword.php?nombrePersonal=".$_POST['nombrPersonal']);
         }else{
             echo "Codigo de Verificacion Ingresada: ".$_POST['codigoVerif'].'<br>';
