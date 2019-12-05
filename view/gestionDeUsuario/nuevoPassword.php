@@ -63,15 +63,15 @@
           <div class="box-body">
             <form class="form-group" action="../../controller/seguridadPasswordController.php" method="post">
                 <div class="col-lg-6">
-                    <label>Rescribir la Nueva Contraseña</label>
-                    <input type="password" class="form-control" name="retypePassword" placeholder="Máx. 6 caracteres">
-                    <br>
                     <label>Nueva Contraseña</label>
-                    <input type="password" class="form-control" name="newPassword" placeholder="Máx. 6 caracteres">
+                    <input type="password" class="form-control" name="retypePassword" placeholder="Min. 6 caracteres">
+                    <br>
+                    <label>Rescribir la Nueva Contraseña</label>
+                    <input type="password" class="form-control" name="newPassword" placeholder="Min. 6 caracteres">
                     <br>
                     <button type="submit" class="btn btn-block btn-success" title="Agregar Usuario">
                         Guardar Nueva Contraseña
-                        <i class="fa fa-spin fa-check"></i>
+                        <i class="fa fa-check"></i>
                     </button>
                 </div>
                 <input type="hidden" value="<?php echo $_GET['nombrePersonal']; ?>" name="nombrPersonal">
