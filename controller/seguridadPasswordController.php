@@ -46,11 +46,12 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
         if ($personalSinPasswd->existePersonalUsuario(strtolower($_POST['nombrePersonalOvidado']), strtolower($_POST['cargoPersonalOvidado']))) {
             $resultado = $personalSinPasswd->getQuestionPersonalUsuario(strtolower($_POST['nombrePersonalOvidado']));
             $nombre = strtolower($_POST['nombrePersonalOvidado']);
+            $cargoB = strtolower($_POST['cargoPersonalOvidado']);
             $hoy = getdate();
             $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
             $name = 'Anónimo';
             $personalSinPasswd->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
-                                                     VALUES ('$name','Solicitud de Restauracion de Usuario para $nombre con Cargo $resultado.', '$fecha_hora');");
+                                                     VALUES ('$name','Solicitud de Restauracion de Usuario para $nombre con Cargo $cargoB.', '$fecha_hora');");
             header("Location: ../view/gestionDeUsuario/verificacionDeUsuarioLogin.php?question=$resultado&nombpersonal=$nombre");
         }else{
             header('Location: ../view/Exceptions/errorExterno.php');
