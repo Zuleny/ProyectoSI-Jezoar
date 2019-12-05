@@ -7,13 +7,22 @@ class Conexion {
     /**
      * Constructor
      */
+
+    /*public function __construct($host="localhost",$port="5432",$nameDB="jezoar",$user="jezoar",$passwd="123456"){
+         $this->ConexionDB = pg_connect("host=$host dbname=$nameDB port=$port user=$user password=$passwd") or die("Error de conexion Equipo_Jezoar ".pg_last_error());
+    }*/
+    
     public function __construct($host="ec2-107-22-239-155.compute-1.amazonaws.com",$port="5432",$nameDB="dcmtu74347cn3i",$user="vjupnqjdgkmakv",$passwd="02cc0fbb5e169cbf2410ac807d175097354ba81ab7e29cf03968841e62ce1991"){
         $this->ConexionDB = pg_connect("host=$host dbname=$nameDB port=$port user=$user password=$passwd") or die("Error de conexion Equipo_Jezoar ".pg_last_error());
     }
-    
+
+
     /**
      * Metodo que manda a Ejecutar una Consulta
      */
+    /*public function __construct($host="localhost",$port="5432",$nameDB="jezoar",$user="jezoar",$passwd="123456"){
+        $this->ConexionDB = pg_connect("host=$host dbname=$nameDB port=$port user=$user password=$passwd") or die("Error de conexion Equipo_Jezoar ".pg_last_error());
+    }*/
     public function execute($query) {
         
             $result = pg_query($this->ConexionDB,$query);

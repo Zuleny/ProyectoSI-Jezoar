@@ -1,12 +1,12 @@
 <?php
 require "Conexion.php";
 class NotaIngreso{
-    private $nroIngreso;
+    public $nroIngreso;
     private $fechaIngreso;
     private $nombreRecibe;
     private $codAlmacen;
     private $codProveedor;
-    private $conexion;
+    public $conexion;
     public function __construct(){
         $this->conexion=new Conexion();
          
@@ -89,9 +89,8 @@ class NotaIngreso{
         }
     }
 
-    public function actualizarDetalle($id_ingreso,$nombre_insumo,$cantidad,$precio){
+    public function actualizarDetalle($nroIngreso,$id_ingreso,$nombre_insumo,$cantidad,$precio){
         try{
-            $nroIngreso=$this->getNroIngreso();
             $this->conexion->execute("UPDATE detalle_ingreso SET nombre_insumo='$nombre_insumo',cantidad=$cantidad,precio_unitario=$precio where id_ingreso=$id_ingreso and nro_ingreso=$nroIngreso;");
             return true;
         }catch(\Throwable $th){
@@ -99,9 +98,8 @@ class NotaIngreso{
         }
     }
 
-    public function eliminarDetalleIngreso($id_ingreso){
+    public function eliminarDetalleIngreso($nroIngreso,$id_ingreso){
         try{
-            $nroIngreso=$this->getNroIngreso();
             $this->conexion->execute("DELETE FROM detalle_ingreso where id_ingreso=$id_ingreso and nro_ingreso=$nroIngreso;");
             return true;
         }catch(\Throwable $th){

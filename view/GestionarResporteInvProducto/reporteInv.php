@@ -9,6 +9,7 @@
         <section class="content-header">
             <h1>
                 Reporte de Productos en almacen
+                <small>Gestión de Insumo</small>
                 <!-- <small>Blank example to the fixed layout</small> -->
             </h1>
         </section>
@@ -17,9 +18,11 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Productos</h3>
+                    <h3 class="box-title">Reporte de Producto</h3>
                         <div class="box-tools pull-right">
-                            <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                            <a onclick="history.back();" class="btn btn-primary" title="Volver Atras"> 
+                                <span class="fa fa-fw fa-mail-reply"></span></a>
+                            <a href="../../index.php" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                 </div>
@@ -38,6 +41,11 @@
                             $arregloStock[$i] = pg_result($result,$i,1);
                     }
                     ?>
+                    <div class="box-header">
+                        <h3>       
+                        <?php echo $nombreAlmacen ?>
+                        </h3>
+                    </div>  
                     <div class="chart-container" style="position: relative; height:80vh; width:80vw">
                         <canvas id="myChart"></canvas>
                             <script>

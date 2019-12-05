@@ -11,8 +11,20 @@
         if (!$almacen->insertarAlmacen()) {
             echo "Error No se pudo registrar al nuevo almacen
                     vuelva a interntarlo";
+            $errorMessage = "<b>Error en proceso de Registro de almacen</b>";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
+        }else{
+            session_start();
+            setlocale(LC_ALL, "es_ES");
+            date_default_timezone_set('America/La_Paz');
+            setlocale(LC_CTYPE, 'en_US');
+            $fecha_hora = date('j-n-Y G:i:s',gmmktime());
+            $username = $_SESSION['user'];
+            $almacen->Conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                    VALUES ('$username', 'Registro de Almacen: $nombre', '$fecha_hora');");
+            header('Location: ../view/gestionDeAlmacen/gestionAlmacen.php');
         }
-        header('Location: ../view/gestionDeAlmacen/gestionAlmacen.php');
+
     }    
     function getListaDeAlmacen(){
         require_once "../../model/AlmacenModel.php"; 

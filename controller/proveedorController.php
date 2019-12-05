@@ -16,8 +16,17 @@
         if (!$proveedor->insertarProveedor()) {
             echo "Error No se pudo registrar al nuevo proveedor
                     vuelva a interntarlo";
+            $errorMessage = "<b>Error en proceso de Registro de Proveedor</b>";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
+        }else{
+            session_start();
+            $fecha_hora = date('j-n-Y G:i:s', time());
+            $username = $_SESSION['user'];
+            $proveedor->Conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                    VALUES ('$username', 'Registro de Proveedor: $nombre_proveedor de la empresa: $nombre_empresa', '$fecha_hora');");
+            header('Location: ../view/gestionDeProveedor/gestionProveedor.php');
         }
-        header('Location: ../view/gestionDeProveedor/gestionProveedor.php');
+
     }
     function getListaDeProveedor(){
         require "../../model/ProveedorModel.php";

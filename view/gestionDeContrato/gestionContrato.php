@@ -31,15 +31,12 @@
                     <!--  Lugar de butons y label y textbox  -->
 
                         <div class="box-body">
-                            <div class="col-lg-4">
+                            <div class="col-lg-5">
                                 <label>Nombre de cliente</label>
-                                <select class="form-control" name="nombreCliente" >
-                                    <?php
-                                    require "../../controller/contratoController.php";
-                                    $lista=getClienteContrato();
-                                    echo $lista;
-                                    ?>
-                                </select>
+                                <div class="input-group margin-bottom-sm">
+                                    <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                                    <input type="text" name = "nombre_cliente" value ="SERVITODO" class="form-control" >
+                                </div>
                             </div>
                             <div class="col-lg-4">
                                 <label>Fecha inicial</label>
@@ -84,6 +81,7 @@
                         </thead>
                         <tbody>
                         <?php
+                        require "../../controller/contratoController.php";
                         $resultado = getListaContratos();
                         $nroFilas = pg_num_rows($resultado);
                         for ($fila=0; $fila < $nroFilas; $fila++) {

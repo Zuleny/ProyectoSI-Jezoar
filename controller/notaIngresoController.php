@@ -8,11 +8,18 @@ isset($_POST["listaProveedor"]) && isset($_POST["listaAlmacen"])){
     $notaIngreso=new NotaIngreso($nombreRecibe,$nombreAlmacen,$nombreProveedor);
     $b=$notaIngreso->insertarNotaIngreso($nombreRecibe,$nombreAlmacen,$nombreProveedor);
     if($b){
-        echo '<script language="javascript">alert("Nota De Ingreso Registrada Exitosamente");</script>';
+        echo "Nota De Ingreso Registrada Exitosamente";
+        session_start();
+        $fecha_hora = date('j-n-Y G:i:s', time());
+        $username = $_SESSION['user'];
+        $notaIngreso->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                    VALUES ('$username', 'Registro de Nota de Ingreso Nro. $notaIngreso->nroIngreso', '$fecha_hora');");
+        header('Location: ../view/gestionDeNotaDeIngreso/gestionNotaIngreso.php');
     }else{
-        echo '<script language="javascript">alert("Error al Insertar la Nota De Ingreso");</script>';
+        $errorMessage = "<b>Error en proceso de Registro de Nota de Ingreso</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
     }
-    header('Location: ../view/gestionDeNotaDeIngreso/gestionNotaIngreso.php');
+
 }
 
 function getListaProveedor(){

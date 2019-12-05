@@ -1,19 +1,4 @@
 <?php
-/*
-if (isset($_GET['nombre']) && isset($_GET['descripcion']) && isset($_GET['estado'])) {
-    $nombre=$_GET['nombre'];
-    $Descripcion=$_GET['descripcion'];
-    $Estado=$_GET['estado'];
-    require "../model/HerramientaModel.php";
-    $user = new Herramienta(0,$nombre,$Descripcion,$Estado);
-    $user->codigo = $user->getCantidadHerramienta()+1;
-    if (!$user->insertarHerramienta()) {
-        echo "Error No se pudo registrar la nueva herramienta
-                vuelva a interntarlo";
-    }
-    header('Location: ../view/gestionDeHerramienta/gestionHerramienta.php');
-}
-*/
 
 if (isset($_POST['nombre']) && isset($_POST['descripcion']) && isset($_POST['estado'])) {
     if ($_POST['nombre']!="" && $_POST['descripcion']!="" && $_POST['estado']!="") {
