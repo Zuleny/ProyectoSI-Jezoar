@@ -113,6 +113,20 @@
             $result = $this->conexion->execute("SELECT descripcion FROM rol WHERE cod_rol=$codRol;");
             return pg_result($result,0,0);
         }
+
+        private function getNamePermiso($idPermiso){
+            $result = $this->conexion->execute("SELECT descripcion FROM permiso WHERE id_permiso=$idPermiso;");
+            return pg_result($result,0,0);
+        }
+
+        public function getListaPermisosString($array){
+            $listPermisos = "[";
+            foreach ($array as $permiso) {
+                $listPermisos.= $this->getNamePermiso($permiso) ."-";
+            }
+            $listPermisos.="]";
+            return $listPermisos;
+        }
     }
 
 ?>

@@ -6,8 +6,20 @@ if (isset($_POST['nombre_categor'])) {
         require "../model/CategoriaModel.php";
         $categoria = new Categoria(0,$nombreCategoria);
         $categoria->codCategoria=$categoria->getNewCodigoCategoria();
-        $result = $categoria->insertarCategoria();
-        header('Location: ../view/gestionDeCategoria/gestionCategoria.php');
+        if ($categoria->insertarCategoria()) {
+            session_start();
+            $hoy = getdate();
+            $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+            $name = $_SESSION['user'];
+            $codidgo = $categoria->codCategoria;
+            $nombre = $categoria->nombreCategoria;
+            $categoria->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                     VALUES ('$name','Registro de Categoria de Producto codigo: $codidgo y nombre $nombre.', '$fecha_hora');");
+            header('Location: ../view/gestionDeCategoria/gestionCategoria.php');
+        }else{
+            $errorMessage = "<b>Problemas al registro de Categoria, Comuniquese con Mantenimiento.</b>";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
+        }
     }else{
         $errorMessage = "<b>Nombre de Categoria vacia, tenga mucho cuidado</b>";
         header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
@@ -17,6 +29,14 @@ if (isset($_POST['nombre_categor'])) {
         require '../model/CategoriaModel.php';
         $categoria = new Categoria();
         if ($categoria->updateCategoria($_POST['idCategoria'], $_POST['nombreCategoria'])) {
+            session_start();
+            $hoy = getdate();
+            $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+            $name = $_SESSION['user'];
+            $codidgo = $_POST['idCategoria'];
+            $nombre = $_POST['nombreCategoria'];
+            $categoria->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                     VALUES ('$name','Modificacion de Categoria de Producto codigo: $codidgo y nombre $nombre.', '$fecha_hora');");
             header('Location: ../view/gestionDeCategoria/gestionCategoria.php');
         }else{
             $errorMessage = "error en Modificacion de Categoria";
