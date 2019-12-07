@@ -15,7 +15,7 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Detalles de la culminacion de una obra terminada</h3>
+                    <h3 class="box-title">Detalles de la culminacion de una obra para el cliente: </h3>
                     <div class="box-tools pull-right">
                             <a href="../view/index.php" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
@@ -25,16 +25,6 @@
                     <form role="form" action="../../controller/informeController.php" method="post" enctype="multipart/form-data" >
                         <!--  Lugar de butons y label y textbox  -->
 
-                        <div class="box-body">
-                            <div class="col-lg-5">
-                                <label>Nombre de cliente</label>
-                                <div class="input-group margin-bottom-sm">
-                                    <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                    <input type="text" name = "nombre_cliente" value ="Miau" class="form-control" >
-                                </div>
-                            </div>
-
-                        </div>
                         <div class="box-body">
                                 <div class="col-md-6">
                                     <div class="form-group">

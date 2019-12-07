@@ -36,5 +36,9 @@ class Contrato{
         $this->conexion->execute("insert into contrato(cod_contrato, fecha_inicio, fecha_fin, cod_presentacion) values($this->codContrato,'$this->fechaInicial','$this->fechaFinal',$codPresentacion);");
         return true;
     }
+    public function getNombreCliente($cod){
+        $result= $this->conexion->execute("select nombre from presentacion,cliente where cod_cliente=cod_cliente_presentacion and cod_cliente=$cod;");
+        return pg_result($result,0,0);
+    }
 }
 ?>

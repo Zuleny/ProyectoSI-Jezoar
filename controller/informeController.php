@@ -1,16 +1,4 @@
 <?php
-function getClienteInforme(){
-    require "../../model/informeModel.php";
-    $informes=new Informe();
-    $result1=$informes->listaCliente();
-    $rows=pg_num_rows($result1);
-    $printer="";
-    for($i=0;$i<$rows;$i++){
-        $printer.='<option>'.pg_result($result1,$i,0).'</option>';
-    }
-    return $printer;
-}
-
 if(isset($_POST["nombreCliente"]) && isset($_POST["descripcion"]) ) {
     $nombreCliente = $_POST["nombreCliente"];
     $descripcion = $_POST["descripcion"];
@@ -39,7 +27,7 @@ if(isset($_POST["nombreCliente"]) && isset($_POST["descripcion"]) ) {
             header('Location: ../view/Exceptions/exceptions.php');
         }
     }
-}
+}       /*--- image after = 3 imageBefore =4*/
     function getListaInforme(){
         require "../../model/informeModel.php";
         $informe = new Informe();

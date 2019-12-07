@@ -54,7 +54,7 @@ class Informe{
         return false;
     }
     public function getListInforme(){
-        return $result = $this->conexion->execute("select cod_informe, nombre, informe.fecha from cliente,informe, presentacion where cod_cliente=cod_cliente_presentacion and cod_presentacion=informe.cod_presentacion_cotizacion order by cod_informe;");
+        return $result = $this->conexion->execute("select cod_informe, nombre, informe.fecha,imageafter, imagebefore from cliente,informe, presentacion where cod_cliente=cod_cliente_presentacion and cod_presentacion=informe.cod_presentacion_cotizacion order by cod_informe;");
     }
     public function deleteInforme($cod){
         return $this->conexion->execute("delete from informe where cod_informe=$cod");

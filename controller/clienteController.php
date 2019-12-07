@@ -11,25 +11,26 @@ if (isset($_POST['nombre_cliente']) && isset($_POST['direccion_cliente']) && iss
     $nit  = $_POST['nit_cliente'];
     $cliente = new Cliente($nombreCliente, $direccion, $email, $tipo, $telefono, $telefono2, $nit);
     $cliente->cod_cliente = $cliente->getNewCodigoCliente();
-    $result1 = $cliente->insertarCliente();
+    $result1 = $cliente->registrarCliente();
     if($result1){
         echo '<script language="javascript">alert("Cliente registrado exitosamente");</script>';
+        header('Location: ../view/gestionDeCliente/gestionCliente.php'); 
     }else{
         echo '<script language="javascript">alert("Error registrar cliente");</script>';
         echo 'Espacio blacos';
     }
-    header('Location: ../view/gestionDeCliente/gestionCliente.php');
+   
     
-}else if(isset($_GET['cod']) && isset($_GET['nombre_cliente']) && isset($_GET['direccion_cliente']) && isset($_GET['correo_cliente']) && isset($_GET['telefono_cliente']) && isset($_GET['telefono2_cliente'] )) {
+}else if(isset($_GET['cod']) && isset($_GET['nombre_cliente']) && isset($_GET['direccion_cliente']) && isset($_GET['correo_cliente']) && isset($_GET['nit_cliente']) && isset($_GET['telefono_cliente']) && isset($_GET['telefono2_cliente'] ) && isset($_GET['tipo'])) {
     require "../model/clienteModel.php";
     $cliente2 = new Cliente('', '', '', '', '', '', '');
-    $result = $cliente2->actualizarCliente($_GET['cod'], '$nombreCliente', '$direccion', '$email', $tipo, '$nit', '$telefono', '$telefono2');
+    $result = $cliente2->editarCliente($_GET['cod'], $_GET['nombre_cliente'], $_GET['direccion_cliente'], $_GET['correo_cliente'], $_GET['tipo'],$_GET['nit_cliente'] , $_GET['telefono_cliente'], $_GET['telefono2_cliente']);
     if ($result) {
         echo '<script language="javascript">alert("Cliente actualizado exitosamente");</script>';
     } else {
         echo '<script language="javascript">alert("Error al actualizar el cliente");</script>';
     }
-header('Location: ../view/gestionDeCliente/gestionCliente.php');
+    header('Location: ../view/gestionDeCliente/gestionCliente.php');
 }
 
 function getTableCliente(){
@@ -104,9 +105,5 @@ function getDatosEditarCliente($codCliente)
     $codCliente = $_GET['cod'];
     return $cliente->getDatosClienteEditar($codCliente);
 }
-function getTelefono($codCliente){
-    require '../../model/clienteModel.php';
-    $cliente =  new Cliente(0, '', '', '', '', '', '');
-    return $cliente->getTelefono($codCliente);
-}
+
 ?>

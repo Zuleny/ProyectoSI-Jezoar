@@ -61,7 +61,7 @@ define('ARRAY_OF_PROCESS_LINKS',
 $arrayOfProcessLinks = array(
     1 => '<li><a  href="'.$addres.'view/gestionDePropuesta/gestionPropuesta.php"><i class="fa fa-circle-o"></i> Gestionar Propuestas</a></li>'                                ,
     2 => '<li><a  href="'.$addres.'view/gestionDeCotizacion/gestionCotizacion.php"><i class="fa fa-circle-o"></i> Gestionar Cotizacion</a></li>'                              ,
-    3 => '<li><a  href="'.$addres.'view/gestionDeInforme/gestionInforme.php"><i class="fa fa-circle-o"></i> Gestionar Informes</a></li>'                                      ,
+    3 => '<li><a  href="'.$addres.'view/gestionDeInforme/gestionInformePrincipal.php"><i class="fa fa-circle-o"></i> Gestionar Informes</a></li>'                                      ,
     4 => '<li><a  href="'.$addres.'view/gestionDeContrato/gestionContrato.php"><i class="fa fa-circle-o"></i> Administrar Contratos</a></li>'                                 ,
     5 => '<li><a  href="'.$addres.'view/gestionDeServicio/gestionServicio.php"><i class="fa fa-circle-o"></i> Gestionar Servicios</a></li>'                                   ,
     6 => '<li><a  href="'.$addres.'view/GestionDeCliente/gestionCliente.php"><i class="fa fa-circle-o"></i> Gestionar Clientes</a></li>'                                      ,
