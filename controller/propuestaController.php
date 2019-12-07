@@ -11,11 +11,18 @@
         $propuesta= new Propuesta();
         $b=$propuesta->insertarPropuesta($fecha,$nombreCliente,$cantidadMeses,$descripcionServicio,$estado);
         if($b){
+            session_start();
+            $fecha_hora = date('j-n-Y G:i:s', time());
+            $username = $_SESSION['user'];
+            $propuesta->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                    VALUES ('$username', 'Registro de Propuesta Cod. $propuesta->codPropuesta', '$fecha_hora');");
             echo "Insertado Correctamente";
+            header('Location: ../view/gestionDePropuesta/gestionPropuesta.php');
         }else{
-            echo "No insertado";
+            $errorMessage = "<b>Error en proceso de Registro de Propuesta</b>";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
         }
-        header('Location: ../view/gestionDePropuesta/gestionPropuesta.php');
+
     }
 require "../../model/PropuestaModel.php";
 function getListaCliente(){

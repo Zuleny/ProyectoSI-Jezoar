@@ -34,8 +34,15 @@ function getListaNotasDevolucion(){
 if (isset($_POST['fechaEgreso'])  &&  isset($_POST['personalEgreso'])  &&  isset($_POST['almacenEgreso'])) {
     if ($_POST['fechaEgreso']!="" && $_POST['personalEgreso']!="" && $_POST['almacenEgreso']!="") {
         require '../model/notaEgresoModel.php';
+        session_start();
         $notaEgreso = new NotaEgreso($_POST['fechaEgreso'], $_POST['personalEgreso'], $_POST['almacenEgreso']);
         if ($notaEgreso->insertNotaEgreso()) {
+            $fechaPhp = getDate();
+            $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
+            $user = $_SESSION['user'];
+            $nro = $notaEgreso->getNroNotaEgreso();
+            $notaEgreso->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                VALUES ('$user', 'Registro de Nota de Egreso nro. $nro', '$fecha_hora');");
             header('Location: ../view/GestionDeNotasEgreso/gestionarNotaDeEgreso.php');
         }else{
             header('Location: ../view/Exceptions/exceptions.php');
@@ -48,6 +55,13 @@ if (isset($_POST['fechaEgreso'])  &&  isset($_POST['personalEgreso'])  &&  isset
         require '../model/notaEgresoModel.php';
         $nota = new NotaEgreso();
         if ($nota->deleteNotaDevolucion($_GET['nota'])) {
+            session_start();
+            $nroNota = $_GET['nota'];
+            $fechaPhp = getDate();
+            $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
+            $user = $_SESSION['user'];
+            $nota->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                VALUES ('$user', 'Eliminacion de Nota de Egreso nro. $nroNota', '$fecha_hora');");
             header('Location: ../view/GestionDeNotasEgreso/gestionarNotaDeEgreso.php');
         }else{
             header('Location: ../view/Exceptions/exceptions.php');

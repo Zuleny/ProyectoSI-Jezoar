@@ -26,8 +26,7 @@ function enviarEmail($emailToSend, $mensaje, $personal){
                             <br>
                             Código de verificación para la restauracion de usuario para el personal: $personal
                             <br>
-                            Codigo de verificacion <b>
-                            $mensaje </b>.<br>
+                            <h1>Codigo de verificacion <b>$mensaje</b>.<br></h1>
                             Que tengas un Buen dia, Te desea Jezoar!!!.
                           </p>";
         $mail->Body = $menssageEmail;
@@ -46,7 +45,13 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
         $personalSinPasswd = new Personal();
         if ($personalSinPasswd->existePersonalUsuario(strtolower($_POST['nombrePersonalOvidado']), strtolower($_POST['cargoPersonalOvidado']))) {
             $resultado = $personalSinPasswd->getQuestionPersonalUsuario(strtolower($_POST['nombrePersonalOvidado']));
-            $nombre = $_POST['nombrePersonalOvidado'];
+            $nombre = strtolower($_POST['nombrePersonalOvidado']);
+            $cargoB = strtolower($_POST['cargoPersonalOvidado']);
+            $hoy = getdate();
+            $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+            $name = 'Anónimo';
+            $personalSinPasswd->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                     VALUES ('$name','Solicitud de Restauracion de Usuario para $nombre con Cargo $cargoB.', '$fecha_hora');");
             header("Location: ../view/gestionDeUsuario/verificacionDeUsuarioLogin.php?question=$resultado&nombpersonal=$nombre");
         }else{
             header('Location: ../view/Exceptions/errorExterno.php');
@@ -59,8 +64,13 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
         require '../model/UsuarioModel.php';
         $user = new Usuario();
         if ($user->verificarUsuarioSeguridad(strtolower($_GET['nombre']), strtolower($_GET['respuestaPersonalOvidado']))) {
-            $user = strtolower($_GET['nombre']);
-            header("Location: ../view/gestionDeUsuario/solicitarEmail.php?nombrePersonal=$user");
+            $nombre = strtolower($_GET['nombre']);
+            $hoy = getdate();
+            $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+            $name = 'Anónimo';
+            $user->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                     VALUES ('$name','Verificacion de Usuario(Respuesta de Seguridad) para $nombre', '$fecha_hora');");
+            header("Location: ../view/gestionDeUsuario/solicitarEmail.php?nombrePersonal=$nombre");
         }else{
             die("Respuesta incorrecta. Estamos llamando a la policia, corre!!");
         }
@@ -73,6 +83,13 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
         $user = new Usuario();
         if (sha1($_POST['newPassword'])===sha1($_POST['retypePassword'])) {
             if ($user->updatePasswordUser($_POST['nombrPersonal'], $_POST['newPassword'])) {
+                $hoy = getdate();
+                $personal = $_POST['nombrPersonal'];
+                $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+                $name = 'Anónimo';
+                $user->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                            VALUES ('$name','Actualizacion de Password por Codigo de Seguridad para $personal.', '$fecha_hora');");
+
                 header('Location: ../view/login.php');
             }else{
                 die("Escriba bien los datos por favor....");
@@ -92,6 +109,17 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
     if (enviarEmail($_POST['email'], $mensaje, $_POST['nombrPersonal'])) {
         $personal = $_POST['nombrPersonal'];
         $_SESSION['verifCode'] = $mensaje;
+
+        $emailB = $_POST['email'];
+
+        require '../model/UsuarioModel.php';
+        $user = new Usuario();
+        $hoy = getdate();
+        $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+        $name = 'Anónimo';
+        $user->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                    VALUES ('$name','Envío de Código de Seguridad a: $emailB para el personal: $personal.', '$fecha_hora');");
+
         header('Location: ../view/gestionDeUsuario/codigodeVerificacion.php?nombrePersonal='.$personal);
     }else{
         $emailUsuario = $_POST['email'];
@@ -100,7 +128,17 @@ if (isset($_POST['nombrePersonalOvidado']) && isset($_POST['cargoPersonalOvidado
 }else if ( isset($_POST['codigoVerif']) ) {
     if ( $_POST['codigoVerif']>0 ) {
         session_start();
-        if (sha1($_POST['codigoVerif'])==sha1($_SESSION['verifCode'])) {
+        if ($_POST['codigoVerif']==$_SESSION['verifCode']) {
+
+            require '../model/UsuarioModel.php';
+            $user = new Usuario();
+            $hoy = getdate();
+            $personal = $_POST['nombrPersonal'];
+            $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+            $name = 'Anónimo';
+            $user->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                        VALUES ('$name','Confirmacion de Código de Seguridad para el personal: $personal.', '$fecha_hora');");
+
             header("Location: ../view/gestionDeUsuario/nuevoPassword.php?nombrePersonal=".$_POST['nombrPersonal']);
         }else{
             echo "Codigo de Verificacion Ingresada: ".$_POST['codigoVerif'].'<br>';

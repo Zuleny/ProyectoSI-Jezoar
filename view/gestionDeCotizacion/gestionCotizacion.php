@@ -74,7 +74,7 @@
                         <label>Material</label>
                             <br>
                             <div class="col-md-6">
-                                <p><input type="radio" name="estadoM" value="S"> Con Material</p>
+                                <p><input type="radio" name="estadoM" value="S" checked> Con Material</p>
                             </div>
                             <div class="col-md-6">
                                 <p><input type="radio" name="estadoM" value="N"> Sin Material</p>
@@ -90,7 +90,7 @@
                                 <p><input type="radio" name="estadoP" value="Aceptado"> Cotización Aceptado</p>
                             </div>
                             <div class="col-md-3">
-                                <p><input type="radio" name="estadoP" value="Espera"> En Espera</p>
+                                <p><input type="radio" name="estadoP" value="Espera" checked> En Espera</p>
                             </div>
                             <div class="col-md-4">
                                 <p><input type="radio" name="estadoP" value="Denegado"> Cotización Denegado</p>    

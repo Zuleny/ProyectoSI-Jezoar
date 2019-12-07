@@ -49,8 +49,20 @@ if (isset($_POST['descripcionRol'])) {
         $descripcion=$_POST['descripcionRol'];
         $rol=new Rol(0,$descripcion);
         $rol->codRol=$rol->getNewCodigoRol();
-        $rol->insertNewRol();
-        header('Location: ../view/GestionDeRol/gestionRol.php');
+        if ($rol->insertNewRol()) {
+            session_start();
+            $hoy = getdate();
+            $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+            $name = $_SESSION['user'];
+            $codidgo = $rol->codRol;
+            $descripcion = $rol->descripcion;
+            $rol->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                            VALUES ('$name','Registro de nuevo Rol codigo: $codidgo y nombre $descripcion.', '$fecha_hora');");
+            header('Location: ../view/GestionDeRol/gestionRol.php');
+        }else{
+            $errorMessage = "<b>Problemas al registrar rol, llame al mantenimiento.</b>";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);      
+        }
     }else{
         $errorMessage = "<b>Error en el registro de Rol, descripcion Invalido.</b>";
         header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
@@ -60,9 +72,18 @@ if (isset($_POST['descripcionRol'])) {
         require_once '../model/RolModel.php';
         $rol =new Rol();
         if ($rol->updateRol($_GET['codRolEditar'], $_GET['descripcionRolEditar'])) {
+            session_start();
+            $hoy = getdate();
+            $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+            $name = $_SESSION['user'];
+            $codidgo = $_GET['codRolEditar'];
+            $descripcion = $_GET['descripcionRolEditar'];
+            $rol->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                VALUES ('$name','Modificaion de Rol nro: $codidgo y descripcion: $descripcion.', '$fecha_hora');");
             header('Location: ../view/GestionDeRol/gestionRol.php');
         }else{
-            header('Location: ../view/Exceptions/exceptions.php');
+            $errorMessage = "<b>Error en el registro de Rol, descripcion Invalido.</b>";
+            header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
         }
     }else{
         $errorMessage = "<b>Error en el modficacion de Rol ( ".$_GET['codRolEditar'].", ".$_GET['descripcionRolEditar']." ), Datos Invalidos.</b>";
@@ -73,8 +94,17 @@ if (isset($_POST['descripcionRol'])) {
         require '../model/RolModel.php';
         $rol = new Rol();
         if ($rol->asignarPermisosARol($_POST['coRolPermiso'], $_POST['idPermisos'])) {
-            header('Location: ../view/GestionDeRol/gestionRol.php');
+            session_start();
+            $hoy = getdate();
+            $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+            $name = $_SESSION['user'];
+            $codidgo = $_POST['coRolPermiso'];
+            $listPermisos = $rol->getListaPermisosString($_POST['idPermisos']);
+            $rol->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                VALUES ('$name','Asignacion de permisos: $listPermisos a Rol nro: $codidgo.', '$fecha_hora');");
+            header('Location: ../view/GestionDeRol/asignarPermisos.php?codigoRolPermiso='.$_POST['coRolPermiso'].'&nombRol='.$rol->getNombreRol($_POST['coRolPermiso']));
         }else{
+            $errorMessage = "<b>Error en la asignacion de Permisos a Rol, Datos Invalidos en algunos datos.</b>";
             header('Location: ../view/Exceptions/exceptions.php');    
         }
     }else{

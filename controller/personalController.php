@@ -9,9 +9,17 @@
    $personal=new Personal($nombrePersonal,$tipoDePersonal,$cargo);
    $b=$personal->insertarPersonal();
    if(!$b){
-      echo "Personal no registrado";
+       $errorMessage = "<b>Error en proceso de Registro de personal</b>";
+       header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
+   }else{
+       session_start();
+       $fecha_hora = date('j-n-Y G:i:s', time());
+       $username = $_SESSION['user'];
+       $personal->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                    VALUES ('$username', 'Registro de Personal Cod. $personal->idPersonal', '$fecha_hora');");
+       header('Location: ../view/gestionDePersonal/gestionDePersonal.php');
    }
-   header('Location: ../view/gestionDePersonal/gestionDePersonal.php');
+
 }
 
 require "../../model/personalModel.php";

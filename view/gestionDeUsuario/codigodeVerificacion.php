@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Nuevo Password</title>
+  <title>Código de Verificación</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -56,7 +56,7 @@
       <section class="content">
         <div class="box box-danger">
           <div class="box-header with-border">
-            <h3 class="box-title">Asignacion de Nueva Contraseña para el(la) usuario:  <?php echo strtoupper($_GET['nombrePersonal']); ?></h3>
+            <h3 class="box-title">Codigo de Verificación para: <?php echo strtoupper($_GET['nombrePersonal']); ?></h3>
           </div>
           <div class="box-body">
             <form class="form-group" action="../../controller/seguridadPasswordController.php" method="post">

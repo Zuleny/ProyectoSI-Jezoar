@@ -16,7 +16,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
             <div class="box-header">
                 <h3 class="box-title">Modificación de Herramienta Código# <?php echo $_GET['codigo']; ?> (Nota: Asigne los nuevos datos de la herramienta a modificar)</h3>
                 <div class="box-tools pull-right">
-                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Menú Inicio">
+                    <a href="../../index.php" class="btn btn-primary" title="Menú Inicio">
                         <span class="glyphicon glyphicon-home"></span></a>
                 </div>
             </div>
@@ -30,7 +30,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                 <div class="box-body">
                     <div class="col-lg-4">
                         <label>Nombre Herramienta</label>
-                        <input type="text" class="form-control" name="nombreEditar" placeholder="Nombre de la herramienta" value="<?php echo pg_result($result,0,0) ?>">
+                        <input type="text" class="form-control" name="nombreEditar" required placeholder="Nombre de la herramienta" value="<?php echo pg_result($result,0,0) ?>">
                         <input type="hidden" name="codigo" value="<?php echo $_GET['codigo']; ?>">
                     </div>
 
@@ -39,7 +39,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                 <div class="box-body">
                     <div class="col-lg-7">
                         <label>Descripcion</label>
-                        <input type="text" class="form-control" name="descripcionEditar" placeholder="Descripcion de la herramienta" value="<?php echo pg_result($result,0,1) ?>">
+                        <input type="text" class="form-control" name="descripcionEditar" required placeholder="Descripcion de la herramienta" value="<?php echo pg_result($result,0,1) ?>">
                     </div>
                 </div>
 
@@ -57,7 +57,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                         <label> <b>Estado: </b> <?php echo $printer; ?> </label>
                         <br>
                         <div class="col-md-4">
-                            <p><input type="radio" name="estadoEditar" value="D"> Disponible </p>
+                            <p><input type="radio" name="estadoEditar" value="D" checked> Disponible </p>
                         </div>
                         <div class="col-md-4">
                             <p><input type="radio" name="estadoEditar" value="N"> No Disponible </p>

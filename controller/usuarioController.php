@@ -11,6 +11,13 @@ if (isset($_POST['nombreUser']) && isset($_POST['passwordUser']) && isset($_POST
         $user = new Usuario(0,$nombreUser,$passwordUser,$question,$answer,$nombrePersonal);
         $user->setCodUsuario($user->getCantidadUsuarios()+1);
         if ($user->insertarUsuario()) {
+            session_start();
+            $usuario = $_SESSION['user'];
+            $codigo = $user->getCodUsuarioActual();
+            $fechaPhp = getDate();
+            $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
+            $user->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                        VALUES ('$usuario', 'Creacion de un nuveo usuario nro. $codigo. Nombre: $nombreUser', '$fecha_hora');");
             header('Location: ../view/gestionDeUsuario/gestionUsuario.php');
         }else{
             header('Location: ../view/Exceptions/exceptions.php');
@@ -28,6 +35,13 @@ if (isset($_POST['nombreUser']) && isset($_POST['passwordUser']) && isset($_POST
         require "../model/UsuarioModel.php";
         $user = new Usuario();
         if ($user->updateUsuario($_POST['codUsuarioEditar'] ,$nombreUser, $passwordUser, $question, $answer, $nombrePersonal)) {
+            session_start();
+            $usuario = $_SESSION['user'];
+            $codigo = $_POST['codUsuarioEditar'];
+            $fechaPhp = getDate();
+            $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
+            $user->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                        VALUES ('$usuario', 'Modificacion de usuario nro. $codigo. Nuevo nombre: $nombreUser', '$fecha_hora');");
             header('Location: ../view/gestionDeUsuario/gestionUsuario.php');
         }else{
             header('Location: ../view/Exceptions/exceptions.php');
@@ -39,6 +53,13 @@ if (isset($_POST['nombreUser']) && isset($_POST['passwordUser']) && isset($_POST
     require '../model/UsuarioModel.php';
     $user = new Usuario();
     if ($user->deleteRolUsuario($_GET['codUsuarioEliminar'], $_GET['codRolEliminar'])){
+        session_start();
+        $usuario = $_SESSION['user'];
+        $fechaPhp = getDate();
+        $name = $user->getNombreUsuarioBitacora($_GET['codRolEliminar'], $_GET['codUsuarioEliminar']);
+        $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
+        $user->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                    VALUES ('$usuario', 'Eliminacion de roles a Usuario, al usuario: $name', '$fecha_hora');");
         header('Location: ../view/gestionDeUsuario/verRolesUsuario.php');
     }else{
         header('Location: ../view/Exceptions/exceptions.php');

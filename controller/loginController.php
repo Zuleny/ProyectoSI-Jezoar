@@ -1,6 +1,5 @@
 <?php
 require "../model/LoginModel.php";
-
 define('ARRAY_OF_PACKAGES', 
     $arrayOfPackages = array(
         '<li class="treeview">
@@ -52,7 +51,7 @@ define('ARRAY_OF_PACKAGES',
  */
 $jezoarLocalhost = 'http://localhost/ProyectoSI-Jezoar/';
 $jezoarHeroku = 'http://jezoar.herokuapp.com/';
-if (false) {
+if (true) {
     $addres = $jezoarHeroku;
 }else{
     $addres = $jezoarLocalhost;

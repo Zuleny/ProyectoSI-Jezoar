@@ -1,9 +1,6 @@
 <?php
 require_once('../fpdf/fpdf.php');
 require ('../../model/Conexion.php');
-//require_once('admin/Modelo/categoria.php');
-//require_once('admin/connection.php');
-
 
 class PDF extends FPDF
 {
@@ -24,7 +21,7 @@ class PDF extends FPDF
         $this->Ln(7);
         $this->Cell(0, 3, 'DE PRODUCTOS', 0, 1, 'C');
         // Salto de l�nea
-        $this->Ln(20);
+        $this->Ln(10);
     }
 
 // Pie de p�gina
@@ -40,7 +37,6 @@ class PDF extends FPDF
         $this->SetFont('Helvetica', 'I', 8);
 
         $this->Cell(0, 3, 'Empreza de Limpieza Jezoar', 0, 1, 'C');
-        $this->Cell(0, 3, '+591 3445925', 0, 1, 'C');
     }
 }
 
@@ -58,22 +54,23 @@ $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Arial', '', 12);
 $pdf->SetMargins(15, 30, 5);
-//$pdf->Image('Pagina.jpg',10,55);
-//if (!empty($_POST['check_list'])) { // VERIFICA QUE SE HAYAN SELECCIONADO ALGUN CHECKBOX
+
 //LUGAR Y FECHA
 $pdf->SetFont('Arial', '', 9);
 $pdf->cell(0, 10, 'Santa Cruz de la Sierra, ' . $hour, 0, 1);
-$pdf->Ln(5);
+$pdf->Ln(6);
 
-//TABLA DE SERVICIOS PRIVADOS
-$pdf->cell(0, 10, 'TABLA DE PRODUCTOS', 0, 1,'C');
+//TABLA DE INVENTARIO
+$pdf->SetFont('Helvetica', 'B', 10);
+$nombreAlmacen=$_GET['nombre'];
+$pdf->cell(0, 10, 'TABLA DE PRODUCTOS EN EL ALMACEN "'.$nombreAlmacen.'"', 0, 1,'C');
 // Anchuras de las columnas
 $w = array(15,15,110,30);
 // Cabeceras
 $pdf->SetFillColor(50, 50, 50); // Color de la cabecera
 $pdf->SetTextColor(225, 225, 225);
 
-
+//Nombre de las columnas
 $pdf->Cell($w[0], 7, "");
 $pdf->Cell($w[1], 7, 'Nro.', 1, 0, 'C', true);
 $pdf->Cell($w[2], 7, 'Nombre del producto', 1, 0, 'C', true);
@@ -81,11 +78,7 @@ $pdf->Cell($w[3], 7, 'Stock', 1, 0, 'C', true);
 $pdf->Ln();
 $pdf->SetTextColor(0, 0, 0);
 // Datos
-if (session_status() == PHP_SESSION_NONE) {
-ob_start();
-session_start();
-}
-$reporte=array();
+$pdf->SetFont('Arial', '', 10);
 //$pdf->Cell($w[0], 6, 'hola', 'LR', 0, 'C');
 $conexion = new Conexion();
 $nombreAlmacen=$_GET['nombre'];
@@ -99,14 +92,15 @@ $nro=0;
         $pdf->Cell($w[2], 7, utf8_decode(pg_result($result,$i,0)), 1, 0, 'C');
         $pdf->Cell($w[3], 7, pg_result($result,$i,1), 1, 0, 'C');
         /*$pdf->Cell($w[3], 6, $row[3], 'LR', 0, 'C');
-        $pdf->Cell($w[4], 6, $row[4], 'LR', 0, 'C');
-        $pdf->Cell($w[5], 6, $row[5], 'LR', 0, 'C');
-        $pdf->Cell($w[6], 6, $row[6], 'LR', 0, 'C');
-        $pdf->Cell($w[7], 6, $row[7], 'LR', 0, 'C');
         $pdf->Cell($w[8], 6, '', 'T');*/
         $pdf->Ln();
     }
 
-    
+session_start();
+$fecha_hora = date('j-n-Y G:i:s', time());
+$username = $_SESSION['user'];
+$conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora)
+                    VALUES ('$username', 'Generó PDF del Reporte de Productos en el Almacen ($nombreAlmacen)', '$fecha_hora');");
+
 $pdf->Output();
 ?>

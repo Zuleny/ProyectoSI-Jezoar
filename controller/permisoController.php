@@ -7,6 +7,14 @@ if (isset($_GET['descripcion_permiso'])) {
         $permiso = new Permiso(0,$descripcion);
         $permiso->id_permiso = $permiso->getNewIdPermiso();
         if ($permiso->insertarPermiso()) {
+            session_start();
+            $hoy = getdate();
+            $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+            $name = $_SESSION['user'];
+            $codidgo = $permiso->id_permiso;
+            $nombre = $permiso->descripcion_permiso;
+            $permiso->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                     VALUES ('$name','Registro de Permiso nro $codidgo y descripcion: $nombre', '$fecha_hora');");
             header('Location: ../view/GestionDePermiso/gestionPermiso.php');
         }else{
             $errorMessage = "<b>Error en el registro de Permiso, Datos Invalidos.</b>";
@@ -21,6 +29,14 @@ if (isset($_GET['descripcion_permiso'])) {
         require '../model/PermisoModel.php';
         $permiso = new Permiso();
         if ($permiso->updatePermiso($_GET['codPermisoEditar'], $_GET['descripcionPermisoEditar'])) {
+            session_start();
+            $hoy = getdate();
+            $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+            $name = $_SESSION['user'];
+            $codidgo = $_GET['codPermisoEditar'];
+            $nombre = $_GET['descripcionPermisoEditar'];
+            $permiso->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                     VALUES ('$name','Modificacion de Permiso nro $codidgo y descripcion: $nombre', '$fecha_hora');");
             header('Location: ../view/GestionDePermiso/gestionPermiso.php');
         }else{
             header('Location: ../view/Exceptions/exceptions.php');

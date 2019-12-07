@@ -1,5 +1,5 @@
 <?php
-include "../../view/theme/AdminLTE/Additional/head.php";
+  include "../../view/theme/AdminLTE/Additional/head.php";
 ?>
 
 <!-- the fixed layout is not compatible with sidebar-mini -->
@@ -19,14 +19,13 @@ include "../../view/theme/AdminLTE/Additional/head.php";
             <div class="box-header">
                 <h3 class="box-title">Gestion de Propuesta</h3>
                 <div class="box-tools pull-right">
-                    <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                    <a href="../../index.php" class="btn btn-primary" title="Volver Atras">
                         <span class="glyphicon glyphicon-home"></span></a>
                 </div>
 
                 <!-- Inicia tu codigo aqui -->
                 <form role="form" method="post" action="../../controller/propuestaController.php">
                     <!--  Lugar de butons y label y textbox  -->
-
                     <div class="box-body">
                         <div class="col-lg-4">
                             <label>Fecha</label>
@@ -39,33 +38,43 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                         </div>
                         <div class="col-lg-3 form-group">
                             <label>Nombre Cliente</label>
-                            <select class="form-control" name="nombreCliente" >
-                                <?php
-                                require "../../controller/propuestaController.php";
-                                $result=getListaCliente();
-                                $nroFilas=pg_num_rows($result);
-                                for ($tupla=0; $tupla <$nroFilas ; $tupla++) {
-                                    echo '<option value="'.pg_result($result,$tupla,0).'">'.pg_result($result,$tupla,0).'</option>';
-                                }
-                                ?>
-                            </select>
+                            <div class="input-group margin-bottom-sm"> 
+                                <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                                <select class="form-control" name="nombreCliente" >
+                                    <?php
+                                    require "../../controller/propuestaController.php";
+                                    $result=getListaCliente();
+                                    $nroFilas=pg_num_rows($result);
+                                    for ($tupla=0; $tupla <$nroFilas ; $tupla++) {
+                                        echo '<option value="'.pg_result($result,$tupla,0).'">'.pg_result($result,$tupla,0).'</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
                         </div>
                         <div class="col-lg-2">
                             <label>Cant. Meses</label>
-                            <input type="number" id="cantidadMeses" name="cantidadMeses" min="1" class="form-control" placeholder="6" required>
+                            <div class="input-group margin-bottom-sm"> 
+                                <span class="input-group-addon"><i class="fa fa-calendar-plus-o fa-fw" aria-hidden="true"></i></span>
+                                <input type="number" id="cantidadMeses" name="cantidadMeses" min="1" class="form-control" placeholder="6" required>
+                            </div>
                         </div>
-
                         <div class="col-lg-2">
                             <label>Precio Total</label>
-                            <input type="text" class="form-control" step="0.01" placeholder="Precio Total" value="0.0 Bs." disabled>
+                            <div class="input-group margin-bottom-sm"> 
+                                <span class="input-group-addon"><i class="fa fa-dollar fa-fw" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" step="0.01" placeholder="Precio Total" value="0.0 Bs." disabled>
                             <input type="hidden" name="precio" value="0.0">
+                            </div>
                         </div>
-
+                    </div>
+                    <div class="box-body">
                         <div class="col-lg-12">
                             <label>Descripcion de Servicios</label>
                             <textarea class="form-control" name="descripcionServicio" id="descripcionServicio" required="" rows="2" placeholder="Descripcion de la Propuesta: ej. Incluye Materia o Incluye IVA"></textarea>
                         </div>
-
+                    </div>
+                    <div class="box-body">
                         <div class="col-lg-9 form-group" style="background-color: #D4EFDF;" required >
                             <label>Estado</label>
                             <br>
@@ -86,122 +95,121 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             </button>
                         </div>
                     </div>
-
                     <!--  Lugar de butons y label y textbox  -->
-
                 </form>
                 <!--Aqui Inicia Datatable-->
-                <div class="row">
-                    <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
-                        <div class="box-header">
-                            <h3 class="box-title">Lista de detalles</h3>
-                        </div>
-                        <div class="col-sm-offset-2 col-sm-8">
-                            <h3 class="text-center"> <small class="mensaje"></small></h3>
-                        </div>
-                        <div class="table-responsive col-sm-12">
-                            <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
-                                <thead>
-                                <tr>
-                                    <th >#</th>
-                                    <th >Fecha</th>
-                                    <th >Nombre Cliente</th>
-                                    <th >Cant Meses</th>
-                                    <th >Estado</th>
-                                    <th >Descripcion Servicio</th>
-                                    <th >Total</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                <div class="box box-success">
+                    <div class="box-header">
+                        <h3 class="box-title">Lista de detalles</h3>
+                    </div>  
+                    <div class="row">
+                        <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-sm-offset-2 col-sm-8">
+                                <h3 class="text-center"> <small class="mensaje"></small></h3>
+                            </div>
+                            <div class="table-responsive col-sm-12">
+                                <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th >#</th>
+                                        <th >Fecha</th>
+                                        <th >Nombre Cliente</th>
+                                        <th >Cant Meses</th>
+                                        <th >Estado</th>
+                                        <th >Descripcion Servicio</th>
+                                        <th >Total</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-
-                    <!-- Modal Update-->
-                    <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="modalUpdateLabel">Actualizar Propuesta</h4>
-                                </div>
-                                <!--Modal Body Here-->
-                                <div class="modal-body">
-                                    <form id="frmUpdatePropuesta" class="form-horizontal" action="" method="POST">
-                                        <input type="hidden"  id="idPropuesta" name="idPropuesta" value="">
-                                        <input type="hidden" id="opcion" name="opcion" value="actualizar">
-
-                                        <div class="form-group">
-                                            <label>Fecha</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon">
-                                                    <i class="fa fa-calendar"></i>
-                                                </div>
-                                                <input type="date" class="form-control" id="fecha" name="fecha">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="nombre" class="col-form-label">Nombre Cliente:</label>
-                                            <select class="form-control" name="nombre" id="nombre">
-                                            <?php
-                                            $result=getListaClientes();
-                                            $nroFilas=pg_num_rows($result);
-                                            for ($tupla=0; $tupla <$nroFilas ; $tupla++) {
-                                                echo '<option  value="'.pg_result($result,$tupla,0).'" >'.pg_result($result,$tupla,0).'</option>';
-                                            }
-                                            ?>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="cantidad" class="col-form-label">Cantidad:</label>
-                                            <input type="number"  min="1" class="form-control" id="cantidad" name="cantidad" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="descripcionServicio">Descripcion de Servicios</label>
-                                            <textarea class="form-control" name="descripcionServicio" id="descripcionServicio" required="" rows="2" placeholder="Descripcion de la Propuesta: ej. Incluye Materia o Incluye IVA"></textarea>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <select class="form-control" name="estado" id="estado">
-                                                <?php
-                                                   echo '<option  value="Aceptado" >Aceptado</option>';
-                                                   echo '<option  value="Espera" >Espera</option>';
-                                                   echo '<option  value="Denegado" >Denegado</option>';
-                                                ?>
-                                            </select>
-                                         </div>
-
-
-
-                                    </form>
-                                </div>
-                                <!--Modal Body-->
-                                <div class="modal-footer">
-                                    <button type="button" id="updatePropuesta" onclick="location.reload()" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
+                    <div>
 
-                </div>
+                        <!-- Modal Update-->
+                        <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="modalUpdateLabel">Actualizar Propuesta</h4>
+                                    </div>
+                                    <!--Modal Body Here-->
+                                    <div class="modal-body">
+                                        <form id="frmUpdatePropuesta" class="form-horizontal" action="" method="POST">
+                                            <input type="hidden"  id="idPropuesta" name="idPropuesta" value="">
+                                            <input type="hidden" id="opcion" name="opcion" value="actualizar">
 
-                <div>
-                    <form id="frmPropuesta" action="" method="POST">
-                        <input type="hidden" id="idFrmPropuestaInsumo" name="idFrmPropuestaInsumo" value="0">
-                        <input type="hidden" id="idFrmPropuestaServicio" name="idFrmPropuestaServicio" value="0">
-                        <input type="hidden" id="idFrmPropuestaContrato" name="idFrmPropuestaServicio" value="0">
-                        <input type="hidden" id="opcion" name="opcion" value="visualizar">
-                    </form>
+                                            <div class="form-group">
+                                                <label>Fecha</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </div>
+                                                    <input type="date" class="form-control" id="fecha" name="fecha">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nombre" class="col-form-label">Nombre Cliente:</label>
+                                                <select class="form-control" name="nombre" id="nombre">
+                                                <?php
+                                                $result=getListaClientes();
+                                                $nroFilas=pg_num_rows($result);
+                                                for ($tupla=0; $tupla <$nroFilas ; $tupla++) {
+                                                    echo '<option  value="'.pg_result($result,$tupla,0).'" >'.pg_result($result,$tupla,0).'</option>';
+                                                }
+                                                ?>
+                                                </select>
+                                            </div>
 
+                                            <div class="form-group">
+                                                <label for="cantidad" class="col-form-label">Cantidad:</label>
+                                                <input type="number"  min="1" class="form-control" id="cantidad" name="cantidad" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="descripcionServicio">Descripcion de Servicios</label>
+                                                <textarea class="form-control" name="descripcionServicio" id="descripcionServicio" required="" rows="2" placeholder="Descripcion de la Propuesta: ej. Incluye Materia o Incluye IVA"></textarea>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <select class="form-control" name="estado" id="estado">
+                                                    <?php
+                                                    echo '<option  value="Aceptado" >Aceptado</option>';
+                                                    echo '<option  value="Espera" >Espera</option>';
+                                                    echo '<option  value="Denegado" >Denegado</option>';
+                                                    ?>
+                                                </select>
+                                            </div>
+
+
+
+                                        </form>
+                                    </div>
+                                    <!--Modal Body-->
+                                    <div class="modal-footer">
+                                        <button type="button" id="updatePropuesta" onclick="location.reload()" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <form id="frmPropuesta" action="" method="POST">
+                            <input type="hidden" id="idFrmPropuestaInsumo" name="idFrmPropuestaInsumo" value="0">
+                            <input type="hidden" id="idFrmPropuestaServicio" name="idFrmPropuestaServicio" value="0">
+                            <input type="hidden" id="idFrmPropuestaContrato" name="idFrmPropuestaServicio" value="0">
+                            <input type="hidden" id="opcion" name="opcion" value="visualizar">
+                        </form>
+
+                    </div>
                 </div>
 
                 <?php

@@ -49,7 +49,7 @@ if (isset($_POST['nombreInsumo']) && isset($_POST['stock']) && isset($_POST['nro
         header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);  
     }   
 }else if (isset($_GET['nroNotaDetalle']) && isset($_GET['idDetalle'])) {
-    require '../model/NotaDevolucionModel.php';
+    require '../model/notaEgresoModel.php';
     $nota = new NotaEgreso();
     if ($nota->deleteDetalleInsumo($_GET['nroNotaDetalle'], $_GET['idDetalle'])) {
         $nroNota = $_GET['nroNotaDetalle'];

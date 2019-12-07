@@ -17,7 +17,7 @@
                     <div class="box-header">
                         <h3 class="box-title">Gestion de Herramienta</h3>
                         <div class="box-tools pull-right">
-                            <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                            <a href="../../index.php" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                     </div>
@@ -28,17 +28,19 @@
                         <div class="box-body">
                             <div class="col-lg-4">
                                 <label>Nombre Herramienta</label>
-                                <input type="text" class="form-control" name="nombre" placeholder="Nombre de la herramienta">
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="nombre" required placeholder="Nombre de la herramienta">
+                                </div>
                             </div>
-
                         </div>
                         <div class="box-body">
                             <div class="col-lg-7">
                                 <label>Descripcion</label>
-                                <textarea class="form-control" name="descripcion" rows="3" placeholder="Escriba una breve descripcion"></textarea>
-                            </div>
+                                <textarea class="form-control" name="descripcion" rows="3" required placeholder="Escriba una breve descripcion"></textarea>
+                            </div>  
 
-                            <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeAlmacen/asignacionProductoAlmacen.php" target="_blank" id="etiqueta1">
+                            <a href="../../view/gestionDeAlmacen/asignacionProductoAlmacen.php" target="_blank" id="etiqueta1">
                             Ir a: Registrar Herramienta en un almacen 
                             </a>
                         </div>
@@ -47,7 +49,7 @@
                                 <label>Estado</label>
                                 <br>
                                 <div class="col-md-4">
-                                    <p><input type="radio" name="estado" value="D"> Disponible</p>
+                                    <p><input type="radio" name="estado" value="D" checked> Disponible</p>
                                 </div>
                                 <div class="col-md-4">
                                     <p><input type="radio" name="estado" value="N"> No Disponible</p>

@@ -20,7 +20,7 @@
                     <div class="box-header">
                         <h3 class="box-title">Gestion de Productos</h3>
                         <div class="box-tools pull-right">
-                            <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
+                            <a href="../../index.php" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                     </div>
@@ -31,15 +31,24 @@
                             
                             <div class="col-lg-5">
                                 <label>Nombre de Producto</label>
-                                <input type="text" class="form-control" placeholder="Esponja" name="txtNombreProd" required>
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-cubes fa-fw" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" placeholder="Esponja" name="txtNombreProd" required>
+                                </div>
                             </div>
                             <div class="col-lg-5">
                                 <label>Marca</label>
-                                <input type="text" class="form-control" placeholder="Marca del producto" name="txtMarca" required>
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-meetup fa-fw" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" placeholder="Marca del producto" name="txtMarca" required>
+                                </div>
                             </div>
                             <div class="col-lg-2">
                                 <label>Precio Unitario</label>
-                                <input type="number" step="0.01" class="form-control" placeholder="7.50" name="txtPrecioUnitario" required>
+                                <div class="input-group margin-bottom-sm"> 
+                                    <span class="input-group-addon"><i class="fa fa-dollar fa-fw" aria-hidden="true"></i></span>
+                                    <input type="number" step="0.01" class="form-control" placeholder="7.50" name="txtPrecioUnitario" required>
+                                </div>
                             </div>
                         </div>
                         <div class="box-body">
@@ -48,24 +57,23 @@
                                 <textarea class="form-control" name="txtDescripcion" required rows="4" placeholder="Escriba una breve descripcion del la utilidad del producto"></textarea>
                             </div>
                             <div class="col-lg-4">
-                           <div class="form-group" data-select2-id="13">
-                               <label>Categoria</label>
-                               <select class="form-control select2 select2-hidden-accessible" name="listaDeCategoria">
-                               <?php
-                                      require "../../controller/productoController.php";
-                                      $printer=getListaDeCategoria();
-                                      echo $printer;      
-                                            
-                                ?>
-                                    
-                               </select>
-
+                                <div class="form-group" data-select2-id="13">
+                                    <label>Categoria</label>
+                                    <div class="input-group margin-bottom-sm"> 
+                                        <span class="input-group-addon"><i class="fa fa-cube fa-fw" aria-hidden="true"></i></span>
+                                        <select class="form-control select2 select2-hidden-accessible" name="listaDeCategoria">
+                                            <?php
+                                                require "../../controller/productoController.php";
+                                                $printer=getListaDeCategoria();
+                                                echo $printer;                          
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
                            </div>
-                           </div>
-                        <div class="col-lg-4" >
+                            <div class="col-lg-4" >
                                 <button type="submit" class="btn btn-block btn-success" id="button1" name="btnInsertarProducto" title="Agregar Servicio">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
-                        </div>
-                            
+                            </div>
                         </div>
                         <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeAlmacen/asignacionProductoAlmacen.php" target="_blank" id="etiqueta1">
                             Ir a: Registrar Producto en un almacen 
@@ -73,75 +81,76 @@
                         <!--  Lugar de butons y label y textbox  -->
 
                     </form>
-                    <div class="box-header">
-                        <h3 class="box-title">Lista de Productos</h3>
-                    </div>
+                    <div class="box box-success">
+                        <div class="box-header">
+                            <h3 class="box-title">Lista de Productos</h3>
+                        </div>
                     <!--Aqui Inicia Datatable-->
+                        <div class="row">
 
-                    <div class="row">
+                            <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="col-sm-offset-2 col-sm-8">
+                                    <h3 class="text-center"> <small class="mensaje"></small></h3>
+                                </div>
+                                <div class="table-responsive col-sm-12">
+                                    <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-lg-1">#</th>
+                                            <th class="col-lg-2">Nombre</th>
+                                            <th class="col-lg-4">Descripcion</th>
+                                            <th class="col-lg-1">Marca</th>
+                                            <th class="col-lg-1">Categoria</th>
+                                            <th class="col-lg-1">Precio</th>
+                                            <th class="col-lg-1"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
 
-                        <div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="col-sm-offset-2 col-sm-8">
-                                <h3 class="text-center"> <small class="mensaje"></small></h3>
-                            </div>
-                            <div class="table-responsive col-sm-12">
-                                <table id="tabla1" class="table table-bordered table-hover" cellspacing="0" width="100%">
-                                    <thead>
-                                    <tr>
-                                        <th class="col-lg-1">#</th>
-                                        <th class="col-lg-2">Nombre</th>
-                                        <th class="col-lg-4">Descripcion</th>
-                                        <th class="col-lg-1">Marca</th>
-                                        <th class="col-lg-1">Categoria</th>
-                                        <th class="col-lg-1">Precio</th>
-                                        <th class="col-lg-1"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
+                        <div>
 
-                        <!-- Modal Update-->
-                        <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="modalUpdateLabel">Actualizar Producto</h4>
-                                    </div>
-                                    <!--Modal Body Here-->
-                                    <div class="modal-body">
-                                        <form id="frmUpdateProducto" class="form-horizontal" action="" method="POST">
-                                            <input type="hidden" id="idProductoFrmUpdate" name="idProductoFrmUpdate" value="">
-                                            <input type="hidden" id="opcion" name="opcion" value="actualizar">
+                            <!-- Modal Update-->
+                            <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="modalUpdateLabel">Actualizar Producto</h4>
+                                        </div>
+                                        <!--Modal Body Here-->
+                                        <div class="modal-body">
+                                            <form id="frmUpdateProducto" class="form-horizontal" action="" method="POST">
+                                                <input type="hidden" id="idProductoFrmUpdate" name="idProductoFrmUpdate" value="">
+                                                <input type="hidden" id="opcion" name="opcion" value="actualizar">
 
-                                            <div class="form-group">
-                                                <label for="nombre" class="col-form-label">Nombre:</label>
-                                                <input type="text" class="form-control" id="nombre" name="nombre" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="descripcion" class="col-form-label">Descripcion:</label>
-                                                <textarea class="form-control" rows="4" id="descripcion" name="descripcion" required></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="marca" class="col-form-label">Marca:</label>
-                                                <input type="text" class="form-control" id="marca" name="marca" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="categoria" class="col-form-label">Categoria:</label>
-                                                <input type="text" class="form-control" id="categoria" name="categoria" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="precio" class="col-form-label">Precio:</label>
-                                                <input type="number" step="0.01" class="form-control" placeholder="7.50" id="precio" name="precio" required>
-                                            </div>
+                                                <div class="form-group">
+                                                    <label for="nombre" class="col-form-label">Nombre:</label>
+                                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="descripcion" class="col-form-label">Descripcion:</label>
+                                                    <textarea class="form-control" rows="4" id="descripcion" name="descripcion" required></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="marca" class="col-form-label">Marca:</label>
+                                                    <input type="text" class="form-control" id="marca" name="marca" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="categoria" class="col-form-label">Categoria:</label>
+                                                    <input type="text" class="form-control" id="categoria" name="categoria" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="precio" class="col-form-label">Precio:</label>
+                                                    <input type="number" step="0.01" class="form-control" placeholder="7.50" id="precio" name="precio" required>
+                                                </div>
 
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
                                     <!--Modal Body-->
                                     <div class="modal-footer">
