@@ -141,7 +141,7 @@ class NotaEgreso{
         }
     }
 
-    public function deleteNotaDevolucion($nroNota){
+    public function deleteNotaEgreso($nroNota){
         try {
             $this->conexion->execute("DELETE FROM detalle_nota WHERE nro_nota=$nroNota;");
             $this->conexion->execute("DELETE FROM nota WHERE nro_nota=$nroNota ;");

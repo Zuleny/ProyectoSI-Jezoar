@@ -87,7 +87,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $resultado = getListaNotasDevolucion();
+                                    $resultado = getListaNotasEgreso();
                                     $nroFilas = pg_num_rows($resultado);
                                     for ($fila=0; $fila < $nroFilas; $fila++) { 
                                         if (pg_result($resultado,$fila,4) == 'E') {

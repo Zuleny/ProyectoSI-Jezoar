@@ -26,7 +26,7 @@ function getNombreAlmacenes(){
     return $notaEgreso->getNombreAlmacen();
 }
 
-function getListaNotasDevolucion(){
+function getListaNotasEgreso(){
     $notaEgreso = new NotaEgreso();
     return $notaEgreso->getListaDeNotasEgreso();
 }
@@ -54,7 +54,7 @@ if (isset($_POST['fechaEgreso'])  &&  isset($_POST['personalEgreso'])  &&  isset
     if ($_GET['nota']!="") {
         require '../model/notaEgresoModel.php';
         $nota = new NotaEgreso();
-        if ($nota->deleteNotaDevolucion($_GET['nota'])) {
+        if ($nota->deleteNotaEgreso($_GET['nota'])) {
             session_start();
             $nroNota = $_GET['nota'];
             $fechaPhp = getDate();
