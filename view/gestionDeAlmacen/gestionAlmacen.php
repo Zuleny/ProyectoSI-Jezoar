@@ -30,7 +30,7 @@
                                 <label>Nombre de Almacen</label>
                                 <div class="input-group margin-bottom-sm"> 
                                     <span class="input-group-addon"><i class="fa fa-home fa-fw" aria-hidden="true"></i></span>
-                                    <input type="text" name ="Almacen"class="form-control" placeholder="nombre del almacen" method="post" method="post" >
+                                    <input type="text" name ="Almacen" required class="form-control" placeholder="nombre del almacen" method="post" method="post" >
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -39,7 +39,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
                                 </span>
-                                <input type="text" name="Dir" placeholder="Direccion del Almacen" class="form-control" >
+                                <input type="text" name="Dir" required placeholder="Direccion del Almacen" class="form-control" >
                             </div>
                             </div>
                         </div>
