@@ -34,7 +34,7 @@ create table Presentacion (
 	estado varchar(10) not null,	--Aceptado,Denegado,Rechazado
 	precio_total decimal(12,2) not null,
 	cod_cliente_presentacion int not null,
-	descripcion_servicios varchar(100) not null,
+	descripcion_servicios text not null,
 	tipo_presentacion char(1) not null,	--P:Propuesta;O:Cotizacion 
 	foreign key (cod_cliente_presentacion) references Cliente (cod_cliente)
 	on update cascade
@@ -60,7 +60,7 @@ create table Persona (
 create table Bitacora (
 	codigo serial not null primary key,
 	nombre_usuario varchar(25) not null,
-	descripcion varchar(200) not null,
+	descripcion text not null,
 	fecha_hora timestamp not null
 );
 

@@ -28,11 +28,17 @@
                         <div class="col-lg-4">
                             <label>Nombre</label>
                             <input type="text" class="form-control" placeholder="nombre del servicio" name="name" value="<?php echo $_GET['nombre']; ?>">
+                        </div>
+                        <div class="col-lg-4 pull-right">
+                            <br>
+                            <button type="submit" style="border-radius: 15px;" class="btn btn-block btn-success" title="Guardar Cambios">Guardar Cambios
+                                <i class="fa fa-fw fa-check"></i>
+                            </button>
                         </div>  
                         <div class="col-lg-4 pull-right">
                             <br>
-                            <button type="submit" style="border-radius: 15px;" class="btn btn-block btn-success" title="Agregar Servicio">Agregar Servicio
-                                <i class="fa fa-fw fa-check"></i>
+                            <button type="button" style="border-radius: 15px;" onclick="history.back();" class="btn btn-block btn-danger" title="Cancelar Cambios">Cancelar Cambios
+                                <i class="fa fa-fw fa-times"></i>
                             </button>
                         </div>
                     </div>

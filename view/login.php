@@ -17,12 +17,12 @@
         </div>
         <button type="submit" class="btn">
             <i class="fa fa-fw fa-unlock"></i>
-            &ThinSpace;  Sig In  &ThinSpace;     &ThinSpace;&ThinSpace;&ThinSpace;&ThinSpace;
+            &ThinSpace;  Sign In  &ThinSpace;     &ThinSpace;&ThinSpace;&ThinSpace;&ThinSpace;
         </button>
         <a href="gestionDeUsuario/forgotMyPassword.php">
             <button type="button" class="btn btn-block">
                 <i class="fa fa-fw fa-frown-o"></i>
-                    Forgot your password
+                    I forgot my password
             </button>
         </a>
         <a href="https://www.facebook.com/Jezoar-228770924276961/">
