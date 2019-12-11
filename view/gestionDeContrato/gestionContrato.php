@@ -14,7 +14,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
     <section class="content">
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title"></h3>
+                <h3 class="box-title">Administrar Contrato</h3>
                 <div class="box-tools pull-right">
 
                     <button type="button" class="btn btn-primary" title="Volver Atras">
@@ -31,12 +31,13 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                 <table class="table table-bordered table-hover" id="tabla1">
                     <thead>
                     <tr>
-                        <th>cod</th>
+                        <th>#</th>
                         <th>Cliente</th>
                         <th>Fecha</th>
                         <th>Fecha Inicial</th>
                         <th>Fecha Final</th>
                         <th>Tipo</th>
+                        <th>Codigo Presentacion</th>
                         <th>Acciones </th>
                     </tr>
                     </thead>
@@ -58,6 +59,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                         if (pg_result($resultado,$fila,3) == 'C') {
                             echo   "<td> Cotizacion</td>";
                         }
+                        echo   "<td>".pg_result($resultado,$fila,6) ."</td>";
                         echo '<td> 
                                                     <div class="btn-group">                                                        
                                                         <a href="editarcontrato.php?codigo_contrato='.pg_result($resultado,0,0).'">
