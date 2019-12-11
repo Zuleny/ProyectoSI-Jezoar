@@ -143,7 +143,7 @@ if ( isset($_GET['username']) && isset($_GET['password']) ) {
         session_start();
         $_SESSION['user'] = strtolower($username);
         $_SESSION['cod_usuario'] = $login->getCodigoUsuario();
-        $listaDePermisos = $login->getListaPermisos($username);
+        $listaDePermisos = $login->getListaPermisos(strtolower($username));
         $fecha_hora = date('j-n-Y G:i:s', time());
         $login->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                     VALUES ('$username', 'Inicio de Sesión de $username', '$fecha_hora');");
