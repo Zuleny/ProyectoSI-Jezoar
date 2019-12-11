@@ -8,9 +8,9 @@ class Contrato{
 
     public function __construct($inicial='', $final=''){
         $this->conexion = new Conexion();
-        $this->codContrato=$this->codContrato()+1;
         $this->fechaInicial=$inicial;
         $this->fechaFinal = $final;
+        $this->codContrato=$this->codContrato()+1;
     }
     public function codContrato(){
         $result = $this->conexion->execute("select max(cod_contrato) from contrato;");
@@ -29,19 +29,19 @@ class Contrato{
         return $resut;
     }*/
     public function getLitsContrato(){
-        $result = $this->conexion->execute("select cod_contrato, nombre,fecha,tipo_presentacion,fecha_inicio,fecha_fin from contrato,presentacion,cliente where cod_cliente = cod_cliente_presentacion and presentacion.cod_presentacion=contrato.cod_presentacion;");
+        $result = $this->conexion->execute("select cod_contrato, nombre,fecha,tipo_presentacion,fecha_inicio,fecha_fin, presentacion.cod_presentacion from contrato,presentacion,cliente where cod_cliente = cod_cliente_presentacion and presentacion.cod_presentacion=contrato.cod_presentacion;");
         return $result;
     }
     public function registrarContrato($codPresentacion){
         try{
-            $this->conexion->execute("insert into contrato(cod_contrato, fecha_inicio, fecha_fin, cod_presentacion) values($this->codContrato,'$this->fechaInicial','$this->fechaFinal',$codPresentacion;");
+            $this->conexion->execute("INSERT INTO contrato(cod_contrato, fecha_inicio, fecha_fin, cod_presentacion) values($this->codContrato,'$this->fechaInicial','$this->fechaFinal',$codPresentacion);");
             return true;
         }catch (\Throwable $th){
             return false;
         }
     }
     public function getNombreCliente($cod){
-        $result= $this->conexion->execute("select nombre from presentacion,cliente where cod_cliente=cod_cliente_presentacion and cod_cliente=$cod;");
+        $result= $this->conexion->execute("select nombre from presentacion,cliente where cod_cliente=cod_cliente_presentacion and cod_presentacion=$cod;");
         return pg_result($result,0,0);
     }
     public function eliminarContrato($cod_contrato){
@@ -86,6 +86,20 @@ class Contrato{
     public function nombreClientePorCodigoContrato($cod_contrato){
         $result = $this->conexion->execute("select nombre from contrato,presentacion,cliente where cod_cliente = cod_cliente_presentacion and presentacion.cod_presentacion=contrato.cod_presentacion and cod_contrato=$cod_contrato;");
         return pg_result($result,0,0);
+    }
+
+    public function tenemosSuContrato($codPresentacion){
+        $result = $this->conexion->execute("SELECT COUNT(*) FROM contrato WHERE cod_presentacion=$codPresentacion;");
+        if (pg_result($result,0,0)==1) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function getFechasPresentacion($codPresentacion){
+        $result = $this->conexion->execute("SELECT fecha_inicio, fecha_fin FROM contrato WHERE cod_presentacion = $codPresentacion;");
+        return array(pg_result($result,0,0), pg_result($result,0,1));
     }
 }
 ?>
