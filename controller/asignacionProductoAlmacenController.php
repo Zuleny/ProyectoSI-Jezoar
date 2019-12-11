@@ -36,7 +36,7 @@ if(isset($_POST["insumos"])&& isset($_POST["nombreAlmacen"])&& isset($_POST["sto
 function getListaInsumo(){
     require "../../model/productoModel.php"; 
     $producto1 =new Producto("","",0,"","");
-    $result=$producto1->getListaInsumo();
+    $result=$producto1->getListaInsumo($_POST["nombreAlmacen"]);
     $nroFilas=pg_num_rows($result);
     $s="";
     for ($tupla=0; $tupla <$nroFilas ; $tupla++) { 
