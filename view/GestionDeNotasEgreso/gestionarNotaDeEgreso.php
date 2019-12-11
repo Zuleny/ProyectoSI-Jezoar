@@ -38,7 +38,7 @@
                         </select>
                     </div>
                     <div class="col-lg-4">
-                        <label>Fecha de Devolución</label>
+                        <label>Fecha de Salida</label>
                         <div class="input-group date">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
