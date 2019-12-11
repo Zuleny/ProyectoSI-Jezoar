@@ -163,7 +163,7 @@ function getListaDeCotizaciones(){
                                         <i class="fa fa-fw fa-file-text-o"></i>
                                     </button>
                                 </a>
-                                <a href="../gestionDeContrato/gestionContrato.php?cod_presetacionC='.pg_result($result,$tupla,0).'">
+                                <a href="../gestionDeContrato/crearContrato.php?cod_presentacion='.pg_result($result,$tupla,0).'">
                                     <button type="button" style="border-radius: 3px;" class="btn bg-orange btn-flat btn-sm btn-xs" title="Registrar contrato">
                                         <i class="fa fa-fw fa-list-alt"></i>
                                     </button>

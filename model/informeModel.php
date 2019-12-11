@@ -35,7 +35,7 @@ class Informe{
         return $result;
     }
     public function getNewCode(){
-        $result = $this->conexion->execute("select count(*) from informe;");
+        $result = $this->conexion->execute("select max(cod_informe) from informe;");
         return pg_result($result,0,0);
     }
     public function registrarInforme($image1,$image2){

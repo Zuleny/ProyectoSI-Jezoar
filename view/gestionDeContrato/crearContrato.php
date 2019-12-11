@@ -5,11 +5,9 @@ include "../../view/theme/AdminLTE/Additional/head.php";
     <!-- Titulo de la cabecera -->
     <section class="content-header">
         <h1>
-            Editar contrato del cliente: <?php
+            Contrato de servicios para el cliente <?php
             require "../../controller/contratoController.php";
-            echo $result=nombreClientePorCodigoContrato($_GET['codigo_contrato']);
-            $resultado =listaParaEditarContrato($_GET['codigo_contrato']);
-            ?>
+            echo $result=nombreDeCliente($_GET['cod_presentacion']) ?>
             <!-- <small>Blank example to the fixed layout</small> -->
         </h1>
     </section>
@@ -25,13 +23,13 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                         <i class="fa fa-fw fa-arrow-circle-left"></i>
                     </button>
 
-                    <a href="../../index.php" class="btn btn-primary" title="Volver Atras">
+                    <a href="../view/index.php" class="btn btn-primary" title="Volver a menu">
                         <span class="glyphicon glyphicon-home"></span></a>
 
                 </div>
             </div>
             <!-- Inicia tu codigo aqui -->
-            <form role="form" action="../../controller/contratoController.php" method="get">
+            <form role="form" action="../../controller/contratoController.php" method="post">
                 <!--  Lugar de butons y label y textbox  -->
 
                 <div class="box-body">
@@ -41,7 +39,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="date" class="form-control" name="fecha_inicial" placeholder="<?php echo pg_result($resultado,0,1)?>">
+                            <input type="date" class="form-control" name="fecha_inicial">
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -50,18 +48,17 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="date" class="form-control" name="fecha_final" placeholder="<?php echo pg_result($resultado,0,2)?>">
+                            <input type="date" class="form-control" name="fecha_final">
                         </div>
                     </div>
                 </div>
                 <div class="box-body">
                     <div class="col-lg-2">
                         <br>
-                        <button type="submit" name ="codigo_contrato_editar" value="<?php echo pg_result($resultado,0,0)?>" style="border-radius: 15px;" class="btn btn-block btn-primary">Guardar contrato  <i class="fa fa-fw fa-save"></i></button>
+                        <button type="submit" name ="cod_presentacion" value="<?php $_GET['cod_presentacion'] ?>" style="border-radius: 15px;" class="btn btn-block btn-primary">Crear Contrato  <i class="fa fa-fw fa-file-pdf-o"></i></button>
                     </div>
                 </div>
             </form>
-
         </div>
     </section>
 

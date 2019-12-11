@@ -51,7 +51,7 @@ define('ARRAY_OF_PACKAGES',
  */
 $jezoarLocalhost = 'http://localhost/ProyectoSI-Jezoar/';
 $jezoarHeroku = 'http://jezoar.herokuapp.com/';
-if (true) {
+if (false) {
     $addres = $jezoarHeroku;
 }else{
     $addres = $jezoarLocalhost;
@@ -138,7 +138,7 @@ if ( isset($_GET['username']) && isset($_GET['password']) ) {
     echo $_GET['username'];
     echo '<br>';
     echo $_GET['password'];
-    $login = new Login(strtolower($username),sha1($password));
+    $login = new Login(strtolower($username),($password));
     if($login->existeUser()){
         session_start();
         $_SESSION['user'] = strtolower($username);
