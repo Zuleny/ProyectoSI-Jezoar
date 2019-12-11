@@ -51,7 +51,7 @@ define('ARRAY_OF_PACKAGES',
  */
 $jezoarLocalhost = 'http://localhost/ProyectoSI-Jezoar/';
 $jezoarHeroku = 'http://jezoar.herokuapp.com/';
-if (true) {
+if (false) {
     $addres = $jezoarHeroku;
 }else{
     $addres = $jezoarLocalhost;

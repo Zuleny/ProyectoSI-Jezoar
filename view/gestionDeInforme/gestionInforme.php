@@ -15,7 +15,12 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Detalles de la culminacion de una obra para el cliente: </h3>
+                    <h3 class="box-title">Detalles de la culminacion de una obra para el cliente:
+                        <?php
+                            require "../../controller/informeController.php";
+                            echo  getNombreClientePorcodigoCotizacion($_GET['codCotizacion']);
+                        ?>
+                    </h3>
                     <div class="box-tools pull-right">
                             <a href="../view/index.php" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
@@ -63,11 +68,12 @@
                                 <label>Descripcion del informe</label>
                                 <textarea class="form-control" rows="5" name = "descripcion"></textarea>
                             </div>
+
                         </div>
 
                         <div class="box-body">
                             <div class="col-lg-2" >                                
-                                <button type="submit" name ="agregar_pdf" class="btn btn-block btn-primary" title="Agregar Servicio">Crear informe <i class="fa fa-fw fa-file-pdf-o"></i></button>
+                                <button type="submit" name ="codCotizacion"  value="<?php echo $_GET['codCotizacion']?>" class="btn btn-block btn-primary" title="Agregar Servicio">Crear informe <i class="fa fa-fw fa-file-pdf-o"></i></button>
                             </div>
                         </div>
 
