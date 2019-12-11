@@ -50,7 +50,7 @@ function getListaServicios(){
         $printer.=      '<td>'.pg_result($result,$nroTupla,1).'</td>';
         $printer.=      '<td> <div class="btn-group">
                                     <a href="modificarServicio.php?codServicio='.pg_result($result,$nroTupla,0).'&nombre='.pg_result($result,$nroTupla,1).'">
-                                        <button type="button" class="btn bg-purple btn-sm btn-xs" data-toggle="modal" data-target="#modal-default">
+                                        <button type="button" class="btn bg-purple btn-sm btn-xs">
                                             <i class="fa fa-edit"></i>
                                         </button>
                                     </a>

@@ -34,7 +34,7 @@ create table Presentacion (
 	estado varchar(10) not null,	--Aceptado,Denegado,Rechazado
 	precio_total decimal(12,2) not null,
 	cod_cliente_presentacion int not null,
-	descripcion_servicios varchar(100) not null,
+	descripcion_servicios text not null,
 	tipo_presentacion char(1) not null,	--P:Propuesta;O:Cotizacion 
 	foreign key (cod_cliente_presentacion) references Cliente (cod_cliente)
 	on update cascade
@@ -60,7 +60,7 @@ create table Persona (
 create table Bitacora (
 	codigo serial not null primary key,
 	nombre_usuario varchar(25) not null,
-	descripcion varchar(200) not null,
+	descripcion text not null,
 	fecha_hora timestamp not null
 );
 
@@ -1558,21 +1558,6 @@ begin
 end;  
 $$ language 'plpgsql';
 
-/* 26.Funcion Auxiliar para el trigger*/
-create function Eliminar_DetalleI() returns trigger as $$
-begin
-    if(contarDetalle(old.nro_ingreso)=0) then
-	    delete from Nota_Ingreso where Nota_Ingreso.nro_ingreso=old.nro_ingreso;
-	end if;
-  return new;
-end; $$
-language plpgsql;
-
-/* 27.Trigger para eliminar un detalle_ingreso*/
-create trigger Eliminar_Ingreso after delete
-on Detalle_Ingreso
-for each row 
-    execute procedure Eliminar_DetalleI();
 
 /* 28.Funcion que suma los precios unitarios de la tabla Presentacion_Servicio*/
 create or replace FUNCTION Suma_Precio(codPresentacion integer) returns decimal(12,2) as $$

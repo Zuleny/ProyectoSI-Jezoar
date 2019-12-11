@@ -38,7 +38,7 @@
                         </select>
                     </div>
                     <div class="col-lg-4">
-                        <label>Fecha de Devolución</label>
+                        <label>Fecha de Salida</label>
                         <div class="input-group date">
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
@@ -87,7 +87,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                    $resultado = getListaNotasDevolucion();
+                                    $resultado = getListaNotasEgreso();
                                     $nroFilas = pg_num_rows($resultado);
                                     for ($fila=0; $fila < $nroFilas; $fila++) { 
                                         if (pg_result($resultado,$fila,4) == 'E') {

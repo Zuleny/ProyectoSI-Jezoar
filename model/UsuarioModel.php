@@ -99,7 +99,7 @@ class Usuario {
      * Retorna la cantidad de usuarios registrados en el sistema (BD)
      */
     public function getCantidadUsuarios(){
-        $result = $this->conexion->execute("SELECT COUNT(*) FROM usuario;");
+        $result = $this->conexion->execute("SELECT cod_usuario FROM usuario ORDER BY cod_usuario desc LIMIT 1;");
         return pg_result($result,0,0);
     }
  

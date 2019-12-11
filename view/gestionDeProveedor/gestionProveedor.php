@@ -28,7 +28,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                         <label>Empresa</label>
                         <div class="input-group margin-bottom-sm"> 
                             <span class="input-group-addon"><i class="fa fa-building-o fa-fw" aria-hidden="true"></i></span>
-                            <input type="text" name ="empresaProv"class="form-control" placeholder="Empresa para la que trabaja"method="post" >
+                            <input type="text" name ="empresaProv" required class="form-control" placeholder="Empresa para la que trabaja"method="post" >
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -42,7 +42,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                         <label>Telefono</label>
                         <div class="input-group margin-bottom-sm"> 
                             <span class="input-group-addon"><i class="fa fa-phone fa-fw" aria-hidden="true"></i></span>
-                            <input type="text" name = "telProv"class="form-control" placeholder="Telefono de la empresa">
+                            <input type="text" name = "telProv" required class="form-control" placeholder="Telefono de la empresa">
                         </div>
                     </div>
                 </div>
@@ -53,14 +53,14 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                                 <span class="input-group-addon">
                                     <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
                                 </span>
-                                <input type="text" name="dirProv" placeholder="Direccion" class="form-control" >
+                                <input type="text" name="dirProv" required placeholder="Direccion" class="form-control" >
                             </div>
                     </div>
                     <div class="col-lg-4">
                         <label>Nombre del Proveedor</label>
                         <div class="input-group margin-bottom-sm"> 
                             <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                            <input type="text" name = "nameProv" class="form-control" placeholder="nombre del proveedor" >
+                            <input type="text" name = "nameProv" required class="form-control" placeholder="nombre del proveedor" >
                         </div> 
                     </div>
                     <div class="col-lg-3">

@@ -11,27 +11,43 @@ if(isset($_POST["insumos"])&& isset($_POST["nombreAlmacen"])&& isset($_POST["sto
            $j=$j+1;
        }
     }
-    
+    $insumos1=implode($insumos);
     require "../model/productoModel.php";
     $producto =new Producto("","",0,"","");
     $b=$producto->insertarInsumo_Almacen($insumos,$almacen,$stocks);
-    if(!$b){
+    if($b){
+        session_start();
+        setlocale(LC_ALL, "es_ES");
+        date_default_timezone_set('America/La_Paz');
+        setlocale(LC_CTYPE, 'en_US');
+        $fecha_hora = date('j-n-Y G:i:s',gmmktime());
+        $username = $_SESSION['user'];
+        $producto->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                    VALUES ('$username', 'Asignacion de insumos Cod. : $insumos1 al almacen: $almacen', '$fecha_hora');");
+        header('Location: ../view/gestionDeAlmacen/asignacionProductoAlmacen.php');
+    }else{
         echo "Error al insertar Insumos";
+        $errorMessage = "<b>Error en proceso de Asignacion de productos a almacen</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
     }
-    header('Location: ../view/gestionDeAlmacen/asignacionProductoAlmacen.php');
+
 }
 
 function getListaInsumo(){
     require "../../model/productoModel.php"; 
     $producto1 =new Producto("","",0,"","");
-    $result=$producto1->getListaInsumo();
+    $result=$producto1->getListaInsumo($_POST["nombreAlmacen"]);
     $nroFilas=pg_num_rows($result);
     $s="";
     for ($tupla=0; $tupla <$nroFilas ; $tupla++) { 
          $s.='<tr> 
               <td>'.pg_result($result,$tupla,0).'</<td>';
          $s.='<td>'.pg_result($result,$tupla,1).'</td>';
-         $s.='<td>'.pg_result($result,$tupla,2).'</td>';
+         if (pg_result($result,$tupla,2)=='P') {
+            $s.=  '<td><span class="label label-danger">Producto</span></td>';
+         }else{
+            $s.=  '<td><span class="label label-primary">Herramienta</span></td>';
+         }
          $s.='<td><div class="input-group">
                     <span class="input-group-addon">
                      <input type="checkbox" name=insumos[] value="'.pg_result($result,$tupla,0).'">

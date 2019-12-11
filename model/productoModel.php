@@ -76,8 +76,10 @@ class Producto{
         return $this->conexion->execute("select nombre from almacen;");
     }
 
-    public function getListaInsumo(){
-        $result=$this->conexion->execute("select cod_insumo,nombre,tipo_insumo from Insumo;");
+    public function getListaInsumo($almacen){
+        $result=$this->conexion->execute("select cod_almacen from almacen where nombre='$almacen';");
+        $codAlmacen=pg_result($result,0,0);
+        $result=$this->conexion->execute("select cod_insumo,nombre,tipo_insumo from insumo where cod_insumo not in(select cod_insumo from insumo_almacen where cod_almacen=$codAlmacen);");
         return $result;
     }
 
@@ -89,6 +91,10 @@ class Producto{
             echo $codAlmacen;
             for($i=0;$i<$cant;$i++){
                $this->conexion->execute("insert into insumo_almacen values($cod_insumo[$i],$codAlmacen,$stock[$i]);");
+               echo $cod_insumo[$i];
+               echo $codAlmacen[$i];
+               echo $stock[$i];
+               echo '<br>';
             }
             return true;
         }catch(\Throwable $th){
