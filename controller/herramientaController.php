@@ -69,18 +69,13 @@ function getListaDeHerramientas(){
             $printer.=  '<td><span class="label label-warning">Mantenimiento</span></td>';
         }
         $printer.=      '<td> <div class="btn-group">
-                                         <a href ="editarHerramienta.php?codigo='.pg_result($result,$tupla,0).'">
-                                            <button type="button" class="btn bg-purple btn-xs btn-sm" title="Editar">
-                                                 <i class="fa fa-edit"></i>
-                                            </button>
-                                        </a>
-                                        <a href="../../controller/herramientaController.php?codigoHerramientaEliminar='.pg_result($result,$tupla,0).'">
-                                            <button type="button" class="btn bg-red btn-xs btn-sm" title="Eliminar">
-                                                 <i class="fa fa-fw fa-trash-o"></i>
-                                            </button>
-                                        </a> 
-                                      </div>
-                                 </td>';
+                                <a href ="editarHerramienta.php?codigo='.pg_result($result,$tupla,0).'">
+                                    <button type="button" class="btn bg-purple btn-xs btn-sm" title="Editar">
+                                            <i class="fa fa-edit"></i>
+                                    </button>
+                                </a> 
+                            </div>
+                        </td>';
     }
     return $printer;
 }
