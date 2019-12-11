@@ -31,7 +31,11 @@ function getListaInsumo(){
          $s.='<tr> 
               <td>'.pg_result($result,$tupla,0).'</<td>';
          $s.='<td>'.pg_result($result,$tupla,1).'</td>';
-         $s.='<td>'.pg_result($result,$tupla,2).'</td>';
+         if (pg_result($result,$tupla,2)=='P') {
+            $s.=  '<td><span class="label label-danger">Producto</span></td>';
+         }else{
+            $s.=  '<td><span class="label label-primary">Herramienta</span></td>';
+         }
          $s.='<td><div class="input-group">
                     <span class="input-group-addon">
                      <input type="checkbox" name=insumos[] value="'.pg_result($result,$tupla,0).'">

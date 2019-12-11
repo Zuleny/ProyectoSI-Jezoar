@@ -27,7 +27,7 @@
                                         
                                             <th>Cod</th>
                                             <th>Nombre Insumo</th>
-                                            <th>Prod=P/Herra=H</th>
+                                            <th>Tipo de Insumo</th>
                                             <th>Stock Insumo</th>
                                         
                                       </tr>
