@@ -89,6 +89,10 @@ class Producto{
             echo $codAlmacen;
             for($i=0;$i<$cant;$i++){
                $this->conexion->execute("insert into insumo_almacen values($cod_insumo[$i],$codAlmacen,$stock[$i]);");
+               echo $cod_insumo[$i];
+               echo $codAlmacen[$i];
+               echo $stock[$i];
+               echo '<br>';
             }
             return true;
         }catch(\Throwable $th){

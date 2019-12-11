@@ -11,7 +11,7 @@ if(isset($_POST["insumos"])&& isset($_POST["nombreAlmacen"])&& isset($_POST["sto
            $j=$j+1;
        }
     }
-    
+    $insumos1=implode($insumos);
     require "../model/productoModel.php";
     $producto =new Producto("","",0,"","");
     $b=$producto->insertarInsumo_Almacen($insumos,$almacen,$stocks);
@@ -23,7 +23,7 @@ if(isset($_POST["insumos"])&& isset($_POST["nombreAlmacen"])&& isset($_POST["sto
         $fecha_hora = date('j-n-Y G:i:s',gmmktime());
         $username = $_SESSION['user'];
         $producto->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
-                                    VALUES ('$username', 'Asignacion de insumos Cod. : $insumos al almacen: $almacen', '$fecha_hora');");
+                                    VALUES ('$username', 'Asignacion de insumos Cod. : $insumos1 al almacen: $almacen', '$fecha_hora');");
         header('Location: ../view/gestionDeAlmacen/asignacionProductoAlmacen.php');
     }else{
         echo "Error al insertar Insumos";
