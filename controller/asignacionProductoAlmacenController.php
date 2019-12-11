@@ -15,10 +15,22 @@ if(isset($_POST["insumos"])&& isset($_POST["nombreAlmacen"])&& isset($_POST["sto
     require "../model/productoModel.php";
     $producto =new Producto("","",0,"","");
     $b=$producto->insertarInsumo_Almacen($insumos,$almacen,$stocks);
-    if(!$b){
+    if($b){
+        session_start();
+        setlocale(LC_ALL, "es_ES");
+        date_default_timezone_set('America/La_Paz');
+        setlocale(LC_CTYPE, 'en_US');
+        $fecha_hora = date('j-n-Y G:i:s',gmmktime());
+        $username = $_SESSION['user'];
+        $producto->Conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                    VALUES ('$username', 'Asignacion de insumos Cod. : $insumos al almacen: $almacen', '$fecha_hora');");
+        header('Location: ../view/gestionDeAlmacen/asignacionProductoAlmacen.php');
+    }else{
         echo "Error al insertar Insumos";
+        $errorMessage = "<b>Error en proceso de Asignacion de productos a almacen</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
     }
-    header('Location: ../view/gestionDeAlmacen/asignacionProductoAlmacen.php');
+
 }
 
 function getListaInsumo(){
