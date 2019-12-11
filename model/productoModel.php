@@ -76,8 +76,10 @@ class Producto{
         return $this->conexion->execute("select nombre from almacen;");
     }
 
-    public function getListaInsumo(){
-        $result=$this->conexion->execute("select cod_insumo,nombre,tipo_insumo from Insumo;");
+    public function getListaInsumo($almacen){
+        $result=$this->conexion->execute("select cod_almacen from almacen where nombre='$almacen';");
+        $codAlmacen=pg_result($result,0,0);
+        $result=$this->conexion->execute("select cod_insumo,nombre,tipo_insumo from insumo where cod_insumo not in(select cod_insumo from insumo_almacen where cod_almacen=$codAlmacen);");
         return $result;
     }
 
