@@ -1558,21 +1558,6 @@ begin
 end;  
 $$ language 'plpgsql';
 
-/* 26.Funcion Auxiliar para el trigger*/
-create function Eliminar_DetalleI() returns trigger as $$
-begin
-    if(contarDetalle(old.nro_ingreso)=0) then
-	    delete from Nota_Ingreso where Nota_Ingreso.nro_ingreso=old.nro_ingreso;
-	end if;
-  return new;
-end; $$
-language plpgsql;
-
-/* 27.Trigger para eliminar un detalle_ingreso*/
-create trigger Eliminar_Ingreso after delete
-on Detalle_Ingreso
-for each row 
-    execute procedure Eliminar_DetalleI();
 
 /* 28.Funcion que suma los precios unitarios de la tabla Presentacion_Servicio*/
 create or replace FUNCTION Suma_Precio(codPresentacion integer) returns decimal(12,2) as $$
