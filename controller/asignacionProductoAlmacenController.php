@@ -22,7 +22,7 @@ if(isset($_POST["insumos"])&& isset($_POST["nombreAlmacen"])&& isset($_POST["sto
         setlocale(LC_CTYPE, 'en_US');
         $fecha_hora = date('j-n-Y G:i:s',gmmktime());
         $username = $_SESSION['user'];
-        $producto->Conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+        $producto->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                     VALUES ('$username', 'Asignacion de insumos Cod. : $insumos al almacen: $almacen', '$fecha_hora');");
         header('Location: ../view/gestionDeAlmacen/asignacionProductoAlmacen.php');
     }else{
