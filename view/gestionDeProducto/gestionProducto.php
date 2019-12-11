@@ -75,7 +75,7 @@
                                 <button type="submit" class="btn btn-block btn-success" id="button1" name="btnInsertarProducto" title="Agregar Servicio">Agregar Registro <i class="fa fa-fw fa-check"></i></button>
                             </div>
                         </div>
-                        <a href="http://localhost/ProyectoSI-Jezoar/view/gestionDeAlmacen/asignacionProductoAlmacen.php" target="_blank" id="etiqueta1">
+                        <a href="../../view/gestionDeAlmacen/asignacionProductoAlmacen.php" target="_blank" id="etiqueta1">
                             Ir a: Registrar Producto en un almacen 
                         </a>
                         <!--  Lugar de butons y label y textbox  -->
