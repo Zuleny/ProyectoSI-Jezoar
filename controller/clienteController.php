@@ -13,6 +13,12 @@ if (isset($_POST['nombre_cliente']) && isset($_POST['direccion_cliente']) && iss
     $cliente->cod_cliente = $cliente->getNewCodigoCliente();
     $result1 = $cliente->registrarCliente();
     if ($result1) {
+        session_start();
+        $fechaPhp = getDate();
+        $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
+        $user = $_SESSION['user'];
+        $cliente->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                            VALUES ('$user', 'Registro de Cliente $nombreCliente, Direccion: $direccion, Email: $email.', '$fecha_hora');");
         header('Location: ../view/GestionDeCliente/gestionCliente.php');
     } else {
         echo '<script language="javascript">alert("Error registrar cliente");</script>';
