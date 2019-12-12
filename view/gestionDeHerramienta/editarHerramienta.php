@@ -56,15 +56,40 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                         ?>
                         <label> <b>Estado: </b> <?php echo $printer; ?> </label>
                         <br>
-                        <div class="col-md-4">
-                            <p><input type="radio" name="estadoEditar" value="D" checked> Disponible </p>
-                        </div>
-                        <div class="col-md-4">
-                            <p><input type="radio" name="estadoEditar" value="N"> No Disponible </p>
-                        </div>
-                        <div class="col-md-4">
-                            <p><input type="radio" name="estadoEditar" value="M"> Mantenimiento </p>
-                        </div>
+
+                        <?php
+                                if (pg_result($result,0,2)=="N") {
+                                    echo    '<div class="col-md-4">
+                                                <p><input type="radio" name="estadoEditar" value="D"> Disponible</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p><input type="radio" name="estadoEditar" value="N" checked> No Disponible</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p><input type="radio" name="estadoEditar" value="M"> Mantenimiento</p>    
+                                            </div>';
+                                }else if (pg_result($result,0,2)=="D") {
+                                    echo    '<div class="col-md-4">
+                                                <p><input type="radio" name="estadoEditar" value="D" checked> Disponible</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p><input type="radio" name="estadoEditar" value="N"> No Disponible</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p><input type="radio" name="estadoEditar" value="M"> Mantenimiento</p>    
+                                            </div>';
+                                }else{
+                                    echo    '<div class="col-md-4">
+                                                <p><input type="radio" name="estadoEditar" value="D"> Disponible</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p><input type="radio" name="estadoEditar" value="N"> No Disponible</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p><input type="radio" name="estadoEditar" value="M" checked> Mantenimiento</p>    
+                                            </div>';
+                                }
+                            ?>
                     </div>
                     <div class="col-lg-4">
                         <div class="col-md-6">

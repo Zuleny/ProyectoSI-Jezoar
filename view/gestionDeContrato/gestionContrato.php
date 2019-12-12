@@ -16,12 +16,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
             <div class="box-header">
                 <h3 class="box-title">Administrar Contrato</h3>
                 <div class="box-tools pull-right">
-
-                    <button type="button" class="btn btn-primary" title="Volver Atras">
-                        <i class="fa fa-fw fa-arrow-circle-left"></i>
-                    </button>
-
-                    <a href="../view/index.php" class="btn btn-primary" title="Volver a menu">
+                    <a href="../../index.php" class="btn btn-primary" title="Volver a menu">
                         <span class="glyphicon glyphicon-home"></span></a>
 
                 </div>
