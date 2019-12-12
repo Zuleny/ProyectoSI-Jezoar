@@ -57,23 +57,25 @@ $pdf->SetFont('Arial', '', 12);
 $pdf->SetMargins(15, 30, 5);
 $pdf->Ln();
 
-$nombre = $_REQUEST['cliente'];
-
+require "../../controller/informeController.php";
+$nombre = getNombreClientePorCodInforme($_GET['cod_ver']);
+$datosDeInforme = datosParaPDF($_GET['cod_ver']);
 $pdf->SetFont('Times','',12);
 //$pdf->Write(5,'El cliete '.$nombre.' solicito los servicios de limpieza profunda');
     $pdf->SetFont('Times','',12);
     // Imprimimos el texto justificado
 $parte2 = '';
     $pdf->Write(7,'De mi consideracion, me dirijo a usted(es) '.$nombre);
-    $desc = $_REQUEST['des'];
-    $pdf->Write(7,' '.utf8_decode($desc));
+    //$desc = $_REQUEST['des'];
+    $pdf->Ln();
+    $pdf->Write(7,' '.utf8_decode(pg_result($datosDeInforme,0,2)));
+
     // Salto de línea
     $pdf->Ln();
 $pdf->cell(0, 10, 'Santa Cruz de la Sierra, ' . $hour, 0, 1);
 
-require "../../model/informeModel.php";
 session_start();
-$imagen = $_SESSION['image2'];
+$imagen = pg_result($datosDeInforme,0,4);
 if($imagen != null){
     $nuev = new Informe();
     $pic = $nuev->getImage($imagen);
@@ -84,9 +86,8 @@ if($imagen != null){
     }
 }
 session_abort();
-
 session_start();
-$imagen2 = $_SESSION['image3'];
+$imagen2 = pg_result($datosDeInforme,0,5);
 if($imagen2 != null){
     $pic2 = $nuev->getImage($imagen2);
     if ($pic!==false){

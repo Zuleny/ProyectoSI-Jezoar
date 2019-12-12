@@ -38,7 +38,7 @@
                                             <input type="hidden" name="image2" id="image22" >
                                                 <span class="input-group-btn">
                                                     <span class="btn btn-default btn-file btn-primary" >
-                                                        Agregar imagen <input type="file" id="imgInp" name="imageInforme"/>
+                                                        Agregar imagen <input type="file" id="imgInp" name="imageInforme" required/>
                                                     </span>
                                                 </span>
                                         </div><br>
@@ -53,7 +53,7 @@
                                         <input type="hidden" name="image3" id="imageAfter" >
                                         <span class="input-group-btn">
                                                     <span class="btn btn-default btn-file btn-primary">
-                                                        Agregar imagen <input type="file" id="imgInp2" name="imageInforme2"/>
+                                                        Agregar imagen <input type="file" id="imgInp2" name="imageInforme2" required/>
                                                     </span>
                                                 </span>
                                     </div><br>
@@ -66,7 +66,7 @@
                         <div class="box-body">
                             <div class="col-lg-9">
                                 <label>Descripcion del informe</label>
-                                <textarea class="form-control" rows="5" name = "descripcion"></textarea>
+                                <textarea class="form-control" rows="5" name = "descripcion" required></textarea>
                             </div>
 
                         </div>

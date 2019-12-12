@@ -40,12 +40,17 @@ class Informe{
     public function deleteInforme($cod){
         return $this->conexion->execute("delete from informe where cod_informe=$cod");
     }
-    public function visualizarDatosParaPDF(){
-        return $result = $this->conexion->execute("select nombre,descripcion,imagebefore,imageafter from cliente,informe, presentacion where cod_cliente=cod_cliente_presentacion and cod_presentacion=informe.cod_presentacion_cotizacion order by cod_informe;");
+    public function visualizarDatosParaPDF($codInforme){
+        return $result = $this->conexion->execute("select * from informe where cod_informe=$codInforme;");
 
     }
     public function getNombreClientePorcodigoCotizacion($codCotizacion){
         $result = $this->conexion->execute("select nombre from cotizacion,presentacion,cliente where cod_cliente=cod_cliente_presentacion and cod_presentacion=cod_presentacion_cotizacion and cod_presentacion_cotizacion=$codCotizacion;");
+        return pg_result($result,0,0);
+    }
+    public function getNombreClientePorCodInforme($codInforme){
+        $result = $this->conexion->execute("select nombre,direccion from cliente, presentacion, cotizacion,informe where cod_informe=$codInforme and cod_cliente = presentacion.cod_cliente_presentacion and presentacion.cod_presentacion = cotizacion.cod_presentacion_cotizacion
+        and cotizacion.cod_presentacion_cotizacion = informe.cod_presentacion_cotizacion;");
         return pg_result($result,0,0);
     }
 }

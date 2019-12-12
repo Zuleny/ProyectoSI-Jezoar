@@ -21,8 +21,6 @@ if(isset($_POST["image2"])  && isset($_POST["image3"]) && isset($_POST['descripc
     $_SESSION['image3'] = $result2;*/
 
 }else if (isset($_GET['cod'])) {
-    echo $_GET['cod'];
-    if ($_GET['cod'] != "") {
         require '../model/informeModel.php';
         $informe = new Informe();
         if ($informe->deleteInforme($_GET['cod'])) {
@@ -30,8 +28,8 @@ if(isset($_POST["image2"])  && isset($_POST["image3"]) && isset($_POST['descripc
         } else {
             header('Location: ../view/Exceptions/exceptions.php');
         }
-    }
-}       /*--- image after = 3 imageBefore =4*/
+
+}     /*--- image after = 3 imageBefore =4*/
     function getListaInforme(){
         require "../../model/informeModel.php";
         $informe = new Informe();
@@ -40,13 +38,22 @@ if(isset($_POST["image2"])  && isset($_POST["image3"]) && isset($_POST['descripc
     }
     function visualizarDatosParaPDF(){
         $informe =  new Informe();
-        $result = $informe->visualizarDatosParaPDF();
+        $result = $informe->getListInforme();
         return $result;
     }
     function getNombreClientePorcodigoCotizacion($codCotizacion){
         require "../../model/informeModel.php";
         $informe = new Informe();
         return $result= $informe->getNombreClientePorcodigoCotizacion($codCotizacion);
+    }
+    function datosParaPDF($codInforme){
+        $informe = new Informe();
+        return $result= $informe->visualizarDatosParaPDF($codInforme);
+    }
+    function getNombreClientePorCodInforme($codInforme){
+        require "../../model/informeModel.php";
+        $informe = new Informe();
+        return $result= $informe->getNombreClientePorCodInforme($codInforme);
     }
 
 ?>
