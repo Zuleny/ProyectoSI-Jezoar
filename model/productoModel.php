@@ -76,18 +76,14 @@ class Producto{
         return $this->conexion->execute("select nombre from almacen;");
     }
 
-    public function getListaInsumo($almacen){
-        $result=$this->conexion->execute("select cod_almacen from almacen where nombre='$almacen';");
-        $codAlmacen=pg_result($result,0,0);
+    public function getListaInsumo($codAlmacen){
         $result=$this->conexion->execute("select cod_insumo,nombre,tipo_insumo from insumo where cod_insumo not in(select cod_insumo from insumo_almacen where cod_almacen=$codAlmacen);");
         return $result;
     }
 
-    public function insertarInsumo_Almacen($cod_insumo,$almacen,$stock){
+    public function insertarInsumo_Almacen($cod_insumo,$codAlmacen,$stock){
         try{
             $cant=count($cod_insumo);
-            $result=$this->conexion->execute("select cod_almacen from almacen where nombre='$almacen';");
-            $codAlmacen=pg_result($result,0,0);
             echo $codAlmacen;
             for($i=0;$i<$cant;$i++){
                $this->conexion->execute("insert into insumo_almacen values($cod_insumo[$i],$codAlmacen,$stock[$i]);");
