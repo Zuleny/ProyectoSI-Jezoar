@@ -13,13 +13,18 @@
         <section class="content">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Asignacion de Insumo a Almacen</h3>
+                    <h3 class="box-title">Asignacion de Insumos del Almacen:
+                        <b><?php echo $_GET['cod_almacen']; ?></b>
+                    </h3>
                     <div class="box-tools pull-right">
                         <a href="http://localhost/ProyectoSI-Jezoar" class="btn btn-primary" title="Volver Atras">
                         <span class="glyphicon glyphicon-home"></span></a>
                     </div>
                     <form class="box-body" action="../../controller/asignacionProductoAlmacenController.php" method="post">
-                        
+                            <?php
+                            $cod_almacen=$_GET['cod_almacen'];
+                            echo '<input type="hidden" id="cod_almacen" name="cod_almacen" value="'.$cod_almacen.'">'
+                            ?>
                             <div class="box-body">
                                 <table class="table table-bordered table-hover" id="tabla1">
                                    <thead>
@@ -43,20 +48,9 @@
                             </div>
                         
                         <div class="col-lg-4">
-                            <div class="form-group col-md-12">
-                                
-                                <label>Nombre de Almacen</label>
-                                <select class="form-control" name="nombreAlmacen" >
-                                    <?php
-                                        $result=getListaAlmacenes();
-                                        echo $result;
-                                    ?>
-                                </select>
-                                <br>
-                                <button type="submit" class="btn btn-block btn-success" title="Registrar Nota de Ingreso">Registrar En Almacen
+                                <button type="submit" class="btn btn-block btn-success" title="Registrar Insumos">Registrar En Almacen
                                     <i class="fa fa-fw fa-street-view"></i>
                                 </button>
-                            </div>
                         </div>
                         
                     </form>

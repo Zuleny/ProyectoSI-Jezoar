@@ -22,20 +22,20 @@
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                     </div>
-                   <!-- Inicia tu codigo aqui -->          
+                   <!-- Inicia tu codigo aqui -->
                     <form role="form" action="../../controller/almacenController.php" method="post">
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box-body">
                             <div class="col-lg-4">
                                 <label>Nombre de Almacen</label>
-                                <div class="input-group margin-bottom-sm"> 
+                                <div class="input-group margin-bottom-sm">
                                     <span class="input-group-addon"><i class="fa fa-home fa-fw" aria-hidden="true"></i></span>
                                     <input type="text" name ="Almacen" required class="form-control" placeholder="nombre del almacen" method="post" method="post" >
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <label>Direccion</label>
-                                <div class="input-group margin-bottom-sm"> 
+                                <div class="input-group margin-bottom-sm">
                                 <span class="input-group-addon">
                                     <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
                                 </span>
@@ -49,8 +49,9 @@
                                 <button type="submit" class="btn btn-block btn-success" style="border-radius: 15px;" name=InsertarAlmacen" title="Agregar Almacen">Agregar Registro
                                     <i class="fa fa-fw fa-check"></i>
                                 </button>
-                            </div>     
+                            </div>
                         </div>
+                    </form>
                         <!--  Lugar de butons y label y textbox  -->
                         <div class="box box-success">
                             <div class="box-header">
@@ -79,32 +80,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <form id="frmDeleteAlmacen" action="" method="POST">
-                                    <input type="hidden" id="idAlmacen" name="idAlmacen" value="0">
-                                    <input type="hidden" id="opcion" name="opcion" value="eliminar">
-                                    <!-- Modal Delete-->
-                                    <div class="modal fade" data-backdrop=”static” id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="modalEliminarLabel">Eliminar Almacen</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    ¿Está seguro de eliminar el almacen?<strong data-name=""></strong>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" onclick="" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+
                         </div>
+
+
+
                         <div>
+
                             <!-- Modal Update-->
                             <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdateLabel">
                                 <div class="modal-dialog" role="document">
@@ -116,7 +98,7 @@
                                         <!--Modal Body Here-->
                                         <div class="modal-body">
                                             <form id="frmUpdateAlmacen" class="form-horizontal" action="" method="POST">
-                                                <input type="hidden" id="idAlmacenFrmUpdate" name="idAlmacenFrmUpdate" value="">
+                                                <input type="hidden" id="idAlmacen" name="idAlmacen" value="0">
                                                 <input type="hidden" id="opcion" name="opcion" value="actualizar">
 
                                                 <div class="form-group">
@@ -140,6 +122,8 @@
                                 </div>
                             </div>
                         </div>
+
+                        <input type="hidden" id="idAlmacen" name="idAlmacen" value="">
                         <?php
                             include "../../view/theme/AdminLTE/Additional/scripts.php";
                             ?>
@@ -147,7 +131,7 @@
                             $(document).ready(function(){
                                 listar();
                                 actualizar();
-                                
+
                             });
 
                             var listar= function(){
@@ -162,7 +146,8 @@
                                         {"data":"cod_almacen"}, //nombre del data del navegador del listar
                                         {"data":"nombre"},
                                         {"data":"direccion"},
-                                        {"defaultContent":"<button type='button' class='editar btn btn-primary' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square-o'></i></button>"}
+                                        {"defaultContent":"<button type='button' class='editar btn bg-purple btn-xs' data-toggle='modal' data-target='#modalUpdate' ><i class='fa fa-pencil-square-o'></i></button>"+
+                                        "<button type='button' class='insumo btn bg-aqua btn-xs' title='Agregar Insumos'><i class='fa fa-fw fa-cubes'></i></button>"}
 
                                     ],
                                     "language":idioma_espanol
@@ -177,26 +162,33 @@
                                     console.log("aqui");
                                     var data=table.row($(this).parents("tr")).data();
                                     console.log(data);
-                                    var codalmacen=$("#frmUpdateAlmacen #idAlmacenFrmUpdate").val(data.cod_almacen),
-                                        nombrealmacen=$("#frmUpdateAlmacen #nombre").val(data.nombre),
-                                        direccionalmacen=$("#frmUpdateAlmacen #direccion").val(data.direccion);
+                                    var codalmacen=$("#frmUpdateAlmacen #idAlmacen").val(data.cod_almacen);
+                                    var nombrealmacen=$("#frmUpdateAlmacen #nombre").val(data.nombre)
+                                    var  direccionalmacen=$("#frmUpdateAlmacen #direccion").val(data.direccion);
+                                    console.log(data.cod_almacen);
+                                    console.log(codalmacen.val());
+                                    console.log(nombrealmacen.val());
+                                    console.log(direccionalmacen.val());
                                 });
                             }
 
                             var getIdAlmacenRow=function (tbody,table) {
-                                $(tbody).on("click","button.eliminar",function () {
+                                $(tbody).on("click","button.insumo",function () {
                                     var data=table.row($(this).parents("tr")).data();
-                                    var id_personal=$("#frmDeleteAlmacen #idAlmacen").val(data.cod_almacen);
+                                    var id_almacen=$("#idAlmacen").val(data.cod_almacen);
+                                    var porId=document.getElementById("idAlmacen").value;
+                                    console.log(porId);
+                                    location.href = "asignacionProductoAlmacen.php?cod_almacen=" + porId;
                                 });
                             }
 
                             var actualizar=function () {
                                 $("#updateAlmacen").on("click",function () {
-                                    var codalmacen=$("#frmUpdateAlmacen #idAlmacenFrmUpdate").val(),
+                                    var codalmacen=$("#frmUpdateAlmacen #idAlmacen").val(),
                                         nombrealmacen=$("#frmUpdateAlmacen #nombre").val(),
                                         direccionalmacen=$("#frmUpdateAlmacen #direccion").val(),
                                         opcion=$("#frmUpdateAlmacen #opcion").val(); //actualizar o
-                                    console.log(opcion);
+                                    console.log("aaa");
                                     var row={codalmacen:codalmacen,nombrealmacen:nombrealmacen,direccionalmacen:direccionalmacen,opcion:opcion};
                                     $.ajax({
                                         method:"POST",
@@ -209,6 +201,7 @@
                                     listar();
                                 });
                             }
+
 
                             var idioma_espanol={
                                 "sProcessing":     "Procesando...",
@@ -240,7 +233,7 @@
                             }
 
                         </script>
-                    </form>
+
                 </div>
                     <!--Datatable termina aqui-->
                 <div>
@@ -249,8 +242,9 @@
                         Página de Facebook de Jezoar
                     </a>
                 </div>
-            </section>
+
             <!-- Termina tu codigo aqui -->
-    </div>
+            </section>
+        </div>
 
     ?>
