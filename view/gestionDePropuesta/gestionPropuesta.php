@@ -286,7 +286,7 @@
                             var cod_presentacion=$("#frmPropuesta #idFrmPropuestaContrato").val(data.cod_presentacion);
                             var porId=document.getElementById("idFrmPropuestaContrato").value;
                             console.log(porId);
-                            location.href = "../gestionDeContrato/gestionContrato.php?cod_presentacion=" + porId;
+                            location.href = "../gestionDeContrato/crearContrato.php?cod_presentacion=" + porId;
                         });
                     }
 

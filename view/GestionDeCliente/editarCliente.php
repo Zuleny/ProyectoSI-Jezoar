@@ -53,18 +53,19 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
+                                    <?php
+                                    $cantidadTel = pg_num_rows($resultado);
+                                    if($cantidadTel >1){
+                                    echo'                                  
                                     <label>Telefono(2)</label>
                                     <div class="input-group margin-bottom-sm">
-                                        <span class="input-group-addon"><i class="fa fa-phone fa-fw" aria-hidden="true"></i></span>
-                                        <?php
-                                            $cantidadTel = pg_num_rows($resultado);
-                                            if($cantidadTel >1){
-                                            echo '  <div>
-                                                    <input type="text" name = "telefono2_cliente" class="form-control" value="'.pg_result($resultado,1,5).'">
-                                                 </div>';
-                                            }
-                                        ?>
-                                    </div>
+                                        <span class="input-group-addon"><i class="fa fa-phone fa-fw" aria-hidden="true"></i></span>                                        
+                                              <div>
+                                                 <input type="text" name = "telefono2_cliente" class="form-control" value="'.pg_result($resultado,1,5).'">
+                                                 </div>
+                                    </div>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                             <div class="box-body">

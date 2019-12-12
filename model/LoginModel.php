@@ -21,7 +21,7 @@ class Login{
      * Verifica si existe el Usuario(Atributos De la Clase)
      */
     public function existeUser() {
-        $result=$this->conexion->execute("select count(*) from Usuario where nombre='$this->username' and contrasenia='$this->passwd'");
+        $result=$this->conexion->execute("select count(*) from Usuario where nombre='$this->username' and contrasenia='$this->passwd';");
         if (pg_result($result,0,0)>0) {
             return true;
         }else{

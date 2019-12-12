@@ -30,14 +30,14 @@
                             <label>Nombre del cliente</label>
                             <div class="input-group margin-bottom-sm"> 
                                 <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                <input type="text" name = "nombre_cliente" class="form-control" >
+                                <input type="text" name = "nombre_cliente" class="form-control" required>
                             </div>        
                         </div>
                         <div class="col-lg-2">
                             <label>Telefono </label>
                             <div class="input-group margin-bottom-sm"> 
                                 <span class="input-group-addon"><i class="fa fa-phone fa-fw" aria-hidden="true"></i></span>
-                                <input type="text" name = "telefono_cliente"class="form-control">
+                                <input type="text" name = "telefono_cliente"class="form-control" required>
                             </div>
                         </div>
                         <div class="col-lg-2">
@@ -51,7 +51,7 @@
                             <label>NIT / C.I.</label>
                             <div class="input-group margin-bottom-sm"> 
                                 <span class="input-group-addon"><i class="fa fa-id-card-o fa-fw" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control"name ="nit_cliente" placeholder="CI, solo si es persona">
+                                <input type="text" class="form-control"name ="nit_cliente" placeholder="CI, solo si es persona" required>
                             </div>
                         </div>                       
                     </div>
@@ -69,7 +69,7 @@
                                 <span class="input-group-addon">
                                     <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
                                 </span>
-                                <input type="text" name="direccion_cliente" class="form-control" >
+                                <input type="text" name="direccion_cliente" class="form-control" required >
                             </div>
                         </div>
                         <div class="col-lg-3">

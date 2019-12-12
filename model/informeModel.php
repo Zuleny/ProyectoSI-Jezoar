@@ -3,45 +3,26 @@ require 'Conexion.php';
 class Informe{
     public $cod_informe;
     public $fechaActual;
-    //public $cod_cliente;
     public $descripcion;
-    public $cod_cotizacion;
     public $conexion;
 
-    public function __construct($nameCliente="Yerba Buena",$descripcion="claro" )
+    public function __construct($descripcion="calidad" )
     {
         $this->conexion = new Conexion();
         $this->cod_informe = $this->getNewCode()+1;
         $fechaPhp=getdate();
         $this->fechaActual =$fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'];
-        //$this->cod_cliente= $this->getCodigoDeCliente($nameCliente);
-        $this->descripcion= "$descripcion";
-        $this->cod_cotizacion= $this->getCodCotizacion($nameCliente);
-    }
+        $this->descripcion= $descripcion;
 
-    public function getCodigoDeCliente($nameCliente){
-            $result = $this->conexion->execute("SELECT cod_cliente FROM cliente where nombre='$nameCliente';");
-            return $result;
-    }
-
-    public function getCodCotizacion($nombreCliente){
-            $result = $this->conexion->execute("select cliente.cod_cliente from cliente,presentacion, cotizacion where cliente.cod_cliente=presentacion.cod_cliente_presentacion and
-                                                                       tipo_presentacion='C'and estado='Aceptado' and nombre = '$nombreCliente';");
-
-            return pg_result($result,0,0);
-    }
-    public function listaCliente(){
-        $result = $this->conexion->execute("select nombre from Cliente,presentacion where cod_cliente=cod_cliente_presentacion and tipo_presentacion='C' and estado='Aceptado';");
-        return $result;
     }
     public function getNewCode(){
-        $result = $this->conexion->execute("select count(*) from informe;");
+        $result = $this->conexion->execute("select max(cod_informe) from informe;");
         return pg_result($result,0,0);
     }
-    public function registrarInforme($image1,$image2){
+    public function registrarInforme($codCotizacion,$image1,$image2){
         try{
-            $this->conexion->execute("insert into informe(cod_informe, fecha, descripcion, cod_presentacion_cotizacion, imagebefore, imageafter) values ($this->cod_informe,'$this->fechaActual','$this->descripcion',$this->cod_cotizacion,'$image1','$image2');");
-            return false;
+            $this->conexion->execute("insert into informe(cod_informe, fecha, descripcion, cod_presentacion_cotizacion, imageafter, imagebefore) values ($this->cod_informe,'$this->fechaActual','$this->descripcion',$codCotizacion,'$image1','$image2');");
+            return true;
         }catch (\Throwable $th) {
             return false;
         }
@@ -60,10 +41,13 @@ class Informe{
         return $this->conexion->execute("delete from informe where cod_informe=$cod");
     }
     public function visualizarDatosParaPDF(){
-        return $result = $this->conexion->execute("select nombre,descripcion from cliente,informe, presentacion where cod_cliente=cod_cliente_presentacion and cod_presentacion=informe.cod_presentacion_cotizacion order by cod_informe;");
+        return $result = $this->conexion->execute("select nombre,descripcion,imagebefore,imageafter from cliente,informe, presentacion where cod_cliente=cod_cliente_presentacion and cod_presentacion=informe.cod_presentacion_cotizacion order by cod_informe;");
 
     }
-
+    public function getNombreClientePorcodigoCotizacion($codCotizacion){
+        $result = $this->conexion->execute("select nombre from cotizacion,presentacion,cliente where cod_cliente=cod_cliente_presentacion and cod_presentacion=cod_presentacion_cotizacion and cod_presentacion_cotizacion=$codCotizacion;");
+        return pg_result($result,0,0);
+    }
 }
 
 ?>

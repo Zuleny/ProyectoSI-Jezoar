@@ -49,7 +49,7 @@
                                                 <i class="fa fa-trash-o"></i>
                                             </button>
                                         </a>   
-                                        <a href="../../view/gestionDeInforme/informe.php?cliente='.pg_result($datosParaPDF,$tupla,0).'&des='.pg_result($datosParaPDF,$tupla,1).'">
+                                        <a href="../../view/gestionDeInforme/informe.php?cod_ver='.pg_result($result,$tupla,0).'">
                                                                     <button type="button" class="btn bg-primary btn-sm btn-xs" title="Ver PDF">
                                                 <i class="fa fa-eye"></i>
                                             </button>
@@ -63,6 +63,9 @@
                                     ?>
                                     </tbody>
                                 </table>
+                                <h5> DESEA REGISTRAR UN INFORME?</h5>
+                                 <a href="../../view/gestionDeCotizacion/gestionCotizacion.php" target="_blank">Ir a Cotizacion</a>
+
                             </div>
                            
                         

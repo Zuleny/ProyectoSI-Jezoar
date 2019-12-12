@@ -1,33 +1,54 @@
 <?php
-if(isset($_POST["nombreCliente"]) && isset($_POST["fecha_inicial"]) && isset($_POST["fecha_final"]) && isset($_GET['cod_presetacionC']) ){
-    $nombre = $_POST["nombreCliente"];
-    //$codPresentacion = $_GET["codPresenacionC"];
+if(isset($_POST["fecha_inicial"]) && isset($_POST["fecha_final"]) && isset($_POST['codPresentacion']) && isset($_POST['contratos'])){
+    
+    echo $_POST['fecha_inicial'];
+    echo $_POST['fecha_final'];
+    echo $_POST['codPresentacion'];
+    echo $_POST['contratos'];
     require "../model/contratoModel.php";
     $contrato = new Contrato($_POST["fecha_inicial"],$_POST["fecha_final"]);
-    $contrato->registrarContrato($_GET['cod_presentacion']);
-    header('Location: ../view/gestionDeContrato/gestionContrato.php');
-}else{
-    //header('Location: ../view/Exceptions/exceptions.php');
-}
-/*else if (isset($_GET['codPresentacionC'])) {
-    if ($_GET['codPresentacionC']!="") {
-       // require '../model/NotaDevolucionModel.php';
-        $contrato = new Contrato();
-        if ($contrato->deleteNotaDevolucion($_GET['nota'])) {
-            session_start();
-            $fecha_hora = date('j-n-Y G:i:s', time());
-            $username = $_SESSION['user'];
-            $nroNota = $_GET['nota'];
-            $contrato->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora)
-                                                     VALUES ('$username', 'Eliminacion del contrato nro. $nroNota', '$fecha_hora');");
-            header('Location: ../view/GestionDeNotasDevolucion/gestionNotasDevolucion.php');
-        }else{
+    $codidgo = $_POST['codPresentacion'];
+    if($contrato->registrarContrato($_POST['codPresentacion'])){
+        session_start();
+        $hoy = getdate();
+        $fecha_hora = $hoy['year'].'-'.$hoy['mon'].'-'.$hoy['mday'].' '.$hoy['hours'].':'.$hoy['minutes'].':'.$hoy['seconds'];
+        $name = $_SESSION['user'];
+        $fechaI = $_POST['fecha_inicial'];
+        $fechaF = $_POST['fecha_final'];
+        $contrato->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                                 VALUES ('$name','Registro de Contrato para $codidgo con fecha $fechaI - $fechaF .', '$fecha_hora');");
+        echo '<br> Registrado hasta bitacora correctamente';
+        header('Location: ../view/gestionDeContrato/gestionContrato.php');
+    }else{
+        $errorMessage = "<b>Error en el proceso de registro del contrato</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
+    }
+    //EDITAR CONTRATO
+}else if(isset($_GET['codigo_contrato_editar']) && isset($_GET['fecha_inicial']) && isset($_GET['fecha_final'])){
+    require "../model/contratoModel.php";
+    $contrato = new Contrato('','');
+    $contrato->actualizarContrato($_GET['codigo_contrato_editar'],$_GET['fecha_inicial'],$_GET['fecha_final']);
+    if($contrato){
+        header('Location: ../view/gestionDeContrato/gestionContrato.php');
+    }else{
+        $errorMessage = "<b>Error al editar el contrato</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
+    }
+    //ELIMINAR CONTRATO
+}else if (isset($_GET['codigo_contrato_Eliminar'])) {
+    require "../../model/contratoModel.php";
+    $contrato = new Contrato();
+    if ($_GET['cod_presentacion'] != "") {
+        if ($contrato->eliminarContrato($_GET['cod_presentacion'])) {
+            header('Location: ../view/gestionDeContrato/gestionContrato.php');
+        } else {
             header('Location: ../view/Exceptions/exceptions.php');
         }
-    }*/
-require "../../model/contratoModel.php";
+    }
+}
+//require "../../model/contratoModel.php";
 function getClienteContrato(){
-
+    require "../../model/contratoModel.php";
     $contrato=new Contrato();
     $result1=$contrato->listaCliente();
     $rows=pg_num_rows($result1);
@@ -38,8 +59,34 @@ function getClienteContrato(){
     return $printer;
 }
 function getListaContratos(){
+    require "../../model/contratoModel.php";
     $contrato = new Contrato;
     return $contrato->getLitsContrato();
 }
+function nombreDeCliente($cod)
+{ require "../../model/contratoModel.php";
+    $contrato = new Contrato();
+    $result1 = $contrato->getNombreCliente($cod);
+    return $result1;
+}
+function listaParaEditarContrato($cod){
+    require "../../model/contratoModel.php";
+    $contrato = new Contrato();
+    return  $contrato->listaParaEditarContrato($cod);
+}
+function nombreClientePorCodigoContrato($cod_contrato){
+    require "../../model/contratoModel.php";
+    $contrato = new Contrato();
+    return  $contrato->nombreClientePorCodigoContrato($cod_contrato);
+}
 
+function getFechas($codPresentacion){
+    $contratoDePresentacion = new Contrato();
+    return $contratoDePresentacion->getFechasPresentacion($codPresentacion);
+}
+
+function tieneContrato($codPresentacion){
+    $contratoDePresentacion = new Contrato();
+    return $contratoDePresentacion->tenemosSuContrato($codPresentacion);
+}
 ?>

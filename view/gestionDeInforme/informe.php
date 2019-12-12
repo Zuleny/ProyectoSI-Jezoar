@@ -1,7 +1,5 @@
 <?php
 require_once('../fpdf/fpdf.php');
-//require_once('admin/Modelo/categoria.php');
-//require_once('admin/connection.php');
 
 
 class PDF extends FPDF
