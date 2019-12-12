@@ -13,6 +13,12 @@ if (isset($_POST['nombre_cliente']) && isset($_POST['direccion_cliente']) && iss
     $cliente->cod_cliente = $cliente->getNewCodigoCliente();
     $result1 = $cliente->registrarCliente();
     if ($result1) {
+        session_start();
+        $fechaPhp = getDate();
+        $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
+        $user = $_SESSION['user'];
+        $cliente->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                            VALUES ('$user', 'Registro de Cliente $nombreCliente, Direccion: $direccion, Email: $email.', '$fecha_hora');");
         header('Location: ../view/GestionDeCliente/gestionCliente.php');
     } else {
         echo '<script language="javascript">alert("Error registrar cliente");</script>';
@@ -20,8 +26,15 @@ if (isset($_POST['nombre_cliente']) && isset($_POST['direccion_cliente']) && iss
     }
     //EDITAR INFORMACION DE UN  CLIENTE
 }else if(isset($_GET['nombre_cliente']) && isset($_GET['telefono_cliente']) && isset($_GET['nit_cliente']) && isset($_GET['direccion_cliente'])  && isset($_GET['tipo']) && isset($_GET['cod']) ) {
+    echo $_GET['nombre_cliente'].'<br>';
+    echo $_GET['telefono_cliente'].'<br>';
+    echo $_GET['nit_cliente'].'<br>';
+    echo $_GET['direccion_cliente'].'<br>';
+    echo $_GET['tipo'].'<br>';
+    echo $_GET['cod'].'<br>';
+    
     require "../model/clienteModel.php";
-    $cliente2 = new Cliente('', '', '', '', '', '', '');
+    $cliente2 = new Cliente();
     $result = $cliente2->editarCliente($_GET['cod'], $_GET['nombre_cliente'], $_GET['direccion_cliente'], $_GET['correo_cliente'], $_GET['tipo'],$_GET['nit_cliente'] , $_GET['telefono_cliente'], $_GET['telefono2_cliente']);
     if ($result) {
         echo '<script language="javascript">alert("Cliente actualizado exitosamente");</script>';

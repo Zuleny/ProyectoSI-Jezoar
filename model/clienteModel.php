@@ -11,7 +11,7 @@ class Cliente{
     public $nit;
     public $conexion;
 
-    public function __construct($nombre,$direccion, $email,$tipo,$telefono,$telefono2,$nit) {
+    public function __construct($nombre = "",$direccion = "", $email = "",$tipo = 'E',$telefono = -1 ,$telefono2 = -1,$nit = -1) {
         $this->conexion = new Conexion();
         $this->cod_cliente = $this->getNewCodigoCliente();
         $this->nombre = $nombre;
@@ -73,7 +73,16 @@ class Cliente{
         }
     }
      public function getDatosClienteEditar($codCliente){
-        return $result = $this->conexion->execute("SELECT cliente.nombre,cliente.direccion,cliente.email, tipo, getNIT_CI_Cliente(cliente.cod_cliente),telefono, cod_cliente FROM cliente, telefono where cod_cliente = cod_cliente_telefono and cod_cliente= $codCliente;");
+        return $result = $this->conexion->execute("SELECT cliente.nombre,
+                                                          cliente.direccion,
+                                                          cliente.email,
+                                                          tipo, 
+                                                          getNIT_CI_Cliente(cliente.cod_cliente),
+                                                          telefono,
+                                                          cod_cliente 
+                                                    FROM cliente, telefono 
+                                                    WHERE cod_cliente = cod_cliente_telefono AND 
+                                                            cod_cliente= $codCliente;");
     }
 
 }

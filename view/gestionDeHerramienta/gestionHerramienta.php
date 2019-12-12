@@ -40,9 +40,7 @@
                                 <textarea class="form-control" name="descripcion" rows="3" required placeholder="Escriba una breve descripcion"></textarea>
                             </div>  
 
-                            <a href="../../view/gestionDeAlmacen/asignacionProductoAlmacen.php" target="_blank" id="etiqueta1">
-                            Ir a: Registrar Herramienta en un almacen 
-                            </a>
+
                         </div>
                         <div class="box-body">
                             <div class="col-lg-7" style="background-color: #D4EFDF;">

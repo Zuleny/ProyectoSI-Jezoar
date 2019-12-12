@@ -80,12 +80,23 @@
                                                       echo '<td><i class="fa fa-fw fa-remove"></i></td>';
                                                   }?></b></label>
                             <br>
-                            <div class="col-md-6">
-                                <p><input type="radio" name="estadoME" value="S"checked> Con Material</p>
-                            </div>
-                            <div class="col-md-6">
-                                <p><input type="radio" name="estadoME" value="N"> Sin Material</p>
-                            </div>
+                            <?php 
+                            if (pg_result($result,0,5)=='S') {
+                                echo    '<div class="col-md-6">
+                                            <p><input type="radio" name="estadoME" value="S"checked> Con Material</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><input type="radio" name="estadoME" value="N"> Sin Material</p>
+                                        </div>';
+                            }else{
+                                echo    '<div class="col-md-6">
+                                            <p><input type="radio" name="estadoME" value="S"> Con Material</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><input type="radio" name="estadoME" value="N" checked> Sin Material</p>
+                                        </div>';
+                            }
+                            ?>
                     </div>
                 </div>
                 <div class="box-body">
@@ -101,15 +112,39 @@
                                                 }
                                             ?></b></label>
                         <br>
-                            <div class="col-md-4">
-                                <p><input type="radio" name="estadoPE" value="Aceptado"> Cotización Aceptado</p>
-                            </div>
-                            <div class="col-md-3">
-                                <p><input type="radio" name="estadoPE" value="Espera" checked> En Espera</p>
-                            </div>
-                            <div class="col-md-4">
-                                <p><input type="radio" name="estadoPE" value="Denegado"> Cotización Denegado</p>    
-                            </div>
+                            <?php
+                                if (pg_result($result,0,6)=="Denegado") {
+                                    echo    '<div class="col-md-4">
+                                                <p><input type="radio" name="estadoPE" value="Aceptado"> Cotización Aceptado</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p><input type="radio" name="estadoPE" value="Espera"> En Espera</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p><input type="radio" name="estadoPE" value="Denegado" checked> Cotización Denegado</p>    
+                                            </div>';
+                                }else if (pg_result($result,0,6)=="Aceptado") {
+                                    echo    '<div class="col-md-4">
+                                                <p><input type="radio" name="estadoPE" value="Aceptado" checked> Cotización Aceptado</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p><input type="radio" name="estadoPE" value="Espera"> En Espera</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p><input type="radio" name="estadoPE" value="Denegado"> Cotización Denegado</p>    
+                                            </div>';
+                                }else{
+                                    echo    '<div class="col-md-4">
+                                                <p><input type="radio" name="estadoPE" value="Aceptado"> Cotización Aceptado</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <p><input type="radio" name="estadoPE" value="Espera" checked> En Espera</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p><input type="radio" name="estadoPE" value="Denegado"> Cotización Denegado</p>    
+                                            </div>';
+                                }
+                            ?>
                     </div>
                     <div class="col-lg-5">
                         <label>Descripcion de Servicios</label>

@@ -1,7 +1,7 @@
 <?php
-if(isset($_POST["insumos"])&& isset($_POST["nombreAlmacen"])&& isset($_POST["stocks"])){
+if(isset($_POST["insumos"])&& isset($_POST["stocks"])){
     $insumos=$_POST["insumos"];
-    $almacen=$_POST["nombreAlmacen"];
+    //$almacen=$_POST["nombreAlmacen"];
     $stocks1=$_POST["stocks"];
     $stocks=[];
     $j=0;
@@ -11,10 +11,11 @@ if(isset($_POST["insumos"])&& isset($_POST["nombreAlmacen"])&& isset($_POST["sto
            $j=$j+1;
        }
     }
-    $insumos1=implode($insumos);
+    $insumos1=implode($insumos,", ");
     require "../model/productoModel.php";
+    $cod_almacen=$_POST["cod_almacen"];
     $producto =new Producto("","",0,"","");
-    $b=$producto->insertarInsumo_Almacen($insumos,$almacen,$stocks);
+    $b=$producto->insertarInsumo_Almacen($insumos,$cod_almacen,$stocks);
     if($b){
         session_start();
         setlocale(LC_ALL, "es_ES");
@@ -23,8 +24,8 @@ if(isset($_POST["insumos"])&& isset($_POST["nombreAlmacen"])&& isset($_POST["sto
         $fecha_hora = date('j-n-Y G:i:s',gmmktime());
         $username = $_SESSION['user'];
         $producto->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
-                                    VALUES ('$username', 'Asignacion de insumos Cod. : $insumos1 al almacen: $almacen', '$fecha_hora');");
-        header('Location: ../view/gestionDeAlmacen/asignacionProductoAlmacen.php');
+                                    VALUES ('$username', 'Asignacion de insumos con Codigo: $insumos1 al almacen: $cod_almacen', '$fecha_hora');");
+        header("Location: ../view/gestionDeAlmacen/asignacionProductoAlmacen.php?cod_almacen=$cod_almacen");
     }else{
         echo "Error al insertar Insumos";
         $errorMessage = "<b>Error en proceso de Asignacion de productos a almacen</b>";
@@ -34,9 +35,10 @@ if(isset($_POST["insumos"])&& isset($_POST["nombreAlmacen"])&& isset($_POST["sto
 }
 
 function getListaInsumo(){
-    require "../../model/productoModel.php"; 
+    require "../../model/productoModel.php";
+    $cod_almacen=$_GET["cod_almacen"];
     $producto1 =new Producto("","",0,"","");
-    $result=$producto1->getListaInsumo($_POST["nombreAlmacen"]);
+    $result=$producto1->getListaInsumo($cod_almacen);
     $nroFilas=pg_num_rows($result);
     $s="";
     for ($tupla=0; $tupla <$nroFilas ; $tupla++) { 
@@ -59,20 +61,6 @@ function getListaInsumo(){
     return $s;
 }
 
-function getListaAlmacenes(){
-    $producto=new Producto("","",0,"","");
-    $result=$producto->getListaAlmacenes();
-    $lista="";
-    $nroFilas=pg_num_rows($result);
-    if ($nroFilas>0) {
-        for ($nroTupla=0; $nroTupla < $nroFilas; $nroTupla++){ 
-            $lista.='<div class="col-lg-6">
-                       <option>'.pg_result($result,$nroTupla,0).'</option>
-                     </div>';
-        }
-    }
-    return $lista;
-}
 
 
 ?>
