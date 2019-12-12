@@ -86,13 +86,14 @@ function getImage($dataURI){
     if ($type=="png"||$type=="jpeg"||$type=="gif") return array($pic, $type);
     return false;
 }
-
+//$posicionX = $pdf->GetX();
+$posicionY = $pdf->GetY();
 session_start();
 $imagen = pg_result($datosDeInforme,0,4);
 if($imagen != null){
     $pic = getImage($imagen);
     if ($pic!==false){
-        $pdf->Image($pic[0], 20,155,50,50, $pic[1]);
+        $pdf->Image($pic[0], 20,$posicionY,50,50, $pic[1]);
         $pdf->SetXY(-350,140);
         $pdf->Cell(0, 12, 'Antes', 0, 1, 'C');
     }
@@ -103,13 +104,15 @@ $imagen2 = pg_result($datosDeInforme,0,5);
 if($imagen2 != null){
     $pic2 = getImage($imagen2);
     if ($pic!==false){
-        $pdf->Image($pic2[0], 100,155,50,50, $pic2[1]);
+        $pdf->Image($pic2[0], 100,$posicionY,50,50, $pic2[1]);
         $pdf->SetXY(30,140);
         $pdf->Cell(0, 12, 'Despues', 0, 1, 'C');
 
     }
 }
 session_abort();
+session_start();
+$fecha_hora = date('j-n-Y G:i:s', time());
 $username = $_SESSION['user'];
 $conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora)
                     VALUES ('$username', 'Generó informe de entrega de un proyecto para el cliente($nombre)', '$fecha_hora');");

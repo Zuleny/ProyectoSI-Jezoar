@@ -64,7 +64,7 @@
                                     </tbody>
                                 </table>
                                 <h5> DESEA REGISTRAR UN INFORME?</h5>
-                                 <a href="../../view/gestionDeCotizacion/gestionCotizacion.php" target="_blank">Ir a Cotizacion</a>
+                                 <a href="../../view/gestionDeCotizacion/gestionCotizacion.php" >Ir a Cotizacion</a>
 
                             </div>
                            
