@@ -110,6 +110,8 @@ if($imagen2 != null){
     }
 }
 session_abort();
-
+$username = $_SESSION['user'];
+$conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora)
+                    VALUES ('$username', 'Generó informe de entrega de un proyecto para el cliente($nombre)', '$fecha_hora');");
 $pdf->Output();
 ?>
