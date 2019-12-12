@@ -15,7 +15,7 @@
                 <div class="box-header">
                     <h3 class="box-title"></h3>
                     <div class="box-tools pull-right">
-                            <a href="../view/index.php" class="btn btn-primary" title="Volver Atras">
+                            <a href="../../index.php" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                     </div>              
