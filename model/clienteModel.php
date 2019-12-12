@@ -11,7 +11,7 @@ class Cliente{
     public $nit;
     public $conexion;
 
-    public function __construct($nombre,$direccion, $email,$tipo,$telefono,$telefono2,$nit) {
+    public function __construct($nombre = "",$direccion = "", $email = "",$tipo = 'E',$telefono = -1 ,$telefono2 = -1,$nit = -1) {
         $this->conexion = new Conexion();
         $this->cod_cliente = $this->getNewCodigoCliente();
         $this->nombre = $nombre;

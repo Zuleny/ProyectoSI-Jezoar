@@ -32,15 +32,16 @@ if (isset($_POST['nombre_cliente']) && isset($_POST['direccion_cliente']) && iss
     echo $_GET['direccion_cliente'].'<br>';
     echo $_GET['tipo'].'<br>';
     echo $_GET['cod'].'<br>';
-    /*require "../model/clienteModel.php";
-    $cliente2 = new Cliente('', '', '', '', '', '', '');
+    
+    require "../model/clienteModel.php";
+    $cliente2 = new Cliente();
     $result = $cliente2->editarCliente($_GET['cod'], $_GET['nombre_cliente'], $_GET['direccion_cliente'], $_GET['correo_cliente'], $_GET['tipo'],$_GET['nit_cliente'] , $_GET['telefono_cliente'], $_GET['telefono2_cliente']);
     if ($result) {
         echo '<script language="javascript">alert("Cliente actualizado exitosamente");</script>';
         header('Location: ../view/GestionDeCliente/gestionCliente.php');
     } else {
         echo '<script language="javascript">alert("Error al actualizar el cliente");</script>';
-    }*/
+    }
 
 }
 
