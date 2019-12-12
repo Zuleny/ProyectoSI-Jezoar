@@ -73,7 +73,16 @@ class Cliente{
         }
     }
      public function getDatosClienteEditar($codCliente){
-        return $result = $this->conexion->execute("SELECT cliente.nombre,cliente.direccion,cliente.email, tipo, getNIT_CI_Cliente(cliente.cod_cliente),telefono, cod_cliente FROM cliente, telefono where cod_cliente = cod_cliente_telefono and cod_cliente= $codCliente;");
+        return $result = $this->conexion->execute("SELECT cliente.nombre,
+                                                          cliente.direccion,
+                                                          cliente.email,
+                                                          tipo, 
+                                                          getNIT_CI_Cliente(cliente.cod_cliente),
+                                                          telefono,
+                                                          cod_cliente 
+                                                    FROM cliente, telefono 
+                                                    WHERE cod_cliente = cod_cliente_telefono AND 
+                                                            cod_cliente= $codCliente;");
     }
 
 }
