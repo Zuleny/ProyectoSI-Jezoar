@@ -157,18 +157,13 @@
                             }
 
                             var getDataRow=function (tbody,table) {
-                                console.log("entro");
+
                                 $(tbody).on("click","button.editar",function () {
-                                    console.log("aqui");
                                     var data=table.row($(this).parents("tr")).data();
                                     console.log(data);
                                     var codalmacen=$("#frmUpdateAlmacen #idAlmacen").val(data.cod_almacen);
                                     var nombrealmacen=$("#frmUpdateAlmacen #nombre").val(data.nombre)
                                     var  direccionalmacen=$("#frmUpdateAlmacen #direccion").val(data.direccion);
-                                    console.log(data.cod_almacen);
-                                    console.log(codalmacen.val());
-                                    console.log(nombrealmacen.val());
-                                    console.log(direccionalmacen.val());
                                 });
                             }
 
