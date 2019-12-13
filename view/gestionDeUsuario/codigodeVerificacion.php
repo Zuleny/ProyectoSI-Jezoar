@@ -63,8 +63,8 @@
                 <input type="hidden" value="<?php echo $_GET['nombrePersonal']; ?>" name="nombrPersonal">
                 <div class="col-lg-6">
                     <p>
-                        Estimado(a) <?php echo $_GET['nombrePersonal']; ?>, se necesita un correo electronico para el envio de un codigo de verificación de que si es usted usuario de este sistema la reciba,y asi podrá restaurar su cuenta Jezoar.
-                        En esta dirección de correo electrónico, se le enviará un codigo de verificación.
+                        Estimado(a) <?php echo $_GET['nombrePersonal']; ?>, este proceso es por seguridad al sistema 
+                        para evitar el ingreso de personas ajenas a la empresa. Tenga paciencia por favor.
                     </p>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
