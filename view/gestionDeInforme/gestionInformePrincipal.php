@@ -51,7 +51,7 @@
                                                 <i class="fa fa-trash-o"></i>
                                             </button>
                                         </a>   
-                                        <a href="../../view/gestionDeInforme/informe.php?cod_ver='.pg_result($result,$tupla,0).'">
+                                        <a href="../../view/gestionDeInforme/informe.php?cod_ver='.pg_result($result,$tupla,0).'" target="_blank">
                                                                     <button type="button" class="btn bg-primary btn-sm btn-xs" title="Ver PDF">
                                                 <i class="fa fa-eye"></i>
                                             </button>

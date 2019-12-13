@@ -17,7 +17,7 @@
                         <b><?php echo $_GET['cod_almacen']; ?></b>
                     </h3>
                     <div class="box-tools pull-right">
-                        <a onclick="history.back();" class="btn btn-primary" title="Volver Atras">
+                        <a href="../gestionDeAlmacen/gestionAlmacen.php" class="btn btn-primary" title="Volver Atras">
                         <span class="fa fa-fw fa-mail-reply"></span></a>
                     </div>
                     <form class="box-body" action="../../controller/asignacionProductoAlmacenController.php" method="post">

@@ -57,7 +57,7 @@
                 <div class="box-header">
                     <h3 class="box-title">Tabla de Actividades en el Sistema Jezoar</h3>
                 </div>
-                <div class="box-body"  >
+                <div class="table-responsive col-sm-12"  >
                     <table class="table table-bordered table-hover" id="tabla1">
                         <thead>
                             <tr>

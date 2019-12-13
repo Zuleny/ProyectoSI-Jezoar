@@ -80,7 +80,7 @@
                     <br>
                     <div class="box-body">
                         <div class="col-lg-2" >
-                            <a href="reporteTablaP.php/?nombre=<?php echo $nombreAlmacen ?>" class="btn btn-primary">Exportar a PDF</a>
+                            <a href="reporteTablaP.php/?nombre=<?php echo $nombreAlmacen ?>" target="_blank" class="btn btn-primary">Exportar a PDF</a>
                         </div>
 
                     </div>
