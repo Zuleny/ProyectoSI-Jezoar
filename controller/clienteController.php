@@ -12,6 +12,7 @@ if (isset($_POST['nombre_cliente']) && isset($_POST['direccion_cliente']) && iss
     $cliente = new Cliente($nombreCliente, $direccion, $email, $tipo, $telefono, $telefono2, $nit);
     $cliente->cod_cliente = $cliente->getNewCodigoCliente();
     $result1 = $cliente->registrarCliente();
+    echo $nit;
     if ($result1) {
         session_start();
         $fechaPhp = getDate();
@@ -19,7 +20,8 @@ if (isset($_POST['nombre_cliente']) && isset($_POST['direccion_cliente']) && iss
         $user = $_SESSION['user'];
         $cliente->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                             VALUES ('$user', 'Registro de Cliente $nombreCliente, Direccion: $direccion, Email: $email.', '$fecha_hora');");
-        header('Location: ../view/GestionDeCliente/gestionCliente.php');
+
+         header('Location: ../view/GestionDeCliente/gestionCliente.php');
     } else {
         echo '<script language="javascript">alert("Error registrar cliente");</script>';
         echo 'Espacio blacos';
@@ -34,7 +36,8 @@ if (isset($_POST['nombre_cliente']) && isset($_POST['direccion_cliente']) && iss
     require "../model/clienteModel.php";
     $cliente2 = new Cliente();
     $tipo=$cliente2->getTipoPorCodigo($_GET['codigo_editar']);
-    $result = $cliente2->editarCliente($_GET['codigo_editar'], $_GET['nombre_cliente'], $_GET['direccion_cliente'], $_GET['correo_cliente'], $tipo,$_GET['nit_cliente'] , $_GET['telefono_cliente'], $_GET['telefono2_cliente']);
+    echo $tipo;
+    $result = $cliente2->editarCliente($_GET['codigo_editar'], $_GET['nombre_cliente'], $_GET['direccion_cliente'], $_GET['correo_cliente'], '$tipo',$_GET['nit_cliente'] , $_GET['telefono_cliente'], $_GET['telefono2_cliente']);
     if ($result) {
             session_start();
             $fechaPhp = getDate();
