@@ -11,7 +11,8 @@ if (  isset($_POST['registrar'])  ) {
             $errorMessage = "<b>Error en proceso de Registro de la cotizacion</b>";
             header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
         }else{
-            $fecha_hora = date('j-n-Y G:i:s', time());
+            $fechaPhp = getDate();
+            $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
             $username = $_SESSION['user'];
             $user->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                     VALUES ('$username', 'Registro de Cotizacion nro. $user->codCotizacion', '$fecha_hora');");
@@ -53,7 +54,8 @@ if (  isset($_POST['registrar'])  ) {
             session_start();
             $cotizacion = new Cotizacion();
             if ($cotizacion->updateCotizacion($_POST['codigo'], $_POST['fechaE'], $_POST['nombreClienteE'], $_POST['diasE'], $_POST['servicioE'], $_POST['estadoME'], $_POST['estadoPE'], $_POST['descripcionServicioE'])) {
-                $fecha_hora = date('j-n-Y G:i:s', time());
+                $fechaPhp = getDate();
+                $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
                 $username = $_SESSION['user'];
                 $nroCotizacion = $_POST['codigo'];
                 $cotizacion->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 

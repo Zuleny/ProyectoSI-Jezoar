@@ -154,7 +154,7 @@ if ( isset($_GET['username']) && isset($_GET['password']) ) {
                                     VALUES ('$username', 'Inicio de Sesión de $username', '$fecha_hora');");
         $_SESSION['listPermisos'] = getListProcess($listaDePermisos);
         echo 'deberias iniciar <br>';
-        //header('Location: ../index.php');
+        header('Location: ../index.php');
     }else{
         echo 'no login rechazado<br>';
        header('Location: ../view/login.php');

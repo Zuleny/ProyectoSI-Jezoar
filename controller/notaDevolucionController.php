@@ -27,7 +27,8 @@ if (isset($_POST['fecha']) && isset($_POST['personal']) && isset($_POST['almacen
         $notaDevolucion = new NotaDevolucion($_POST['fecha'], $_POST['personal'], $_POST['almacen']);
         if ($notaDevolucion->insertNotaDevolucion()) {
             session_start();
-            $fecha_hora = date('j-n-Y G:i:s', time());
+            $fechaPhp = getDate();
+            $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
             $username = $_SESSION['user'];
             $nroNota = $notaDevolucion->getNroNota();
             $notaDevolucion->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
@@ -46,7 +47,8 @@ if (isset($_POST['fecha']) && isset($_POST['personal']) && isset($_POST['almacen
         $nota = new NotaDevolucion();
         if ($nota->deleteNotaDevolucion($_GET['nota'])) {
             session_start();
-            $fecha_hora = date('j-n-Y G:i:s', time());
+            $fechaPhp = getDate();
+            $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
             $username = $_SESSION['user'];
             $nroNota = $_GET['nota'];
             $nota->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
@@ -62,7 +64,8 @@ if (isset($_POST['fecha']) && isset($_POST['personal']) && isset($_POST['almacen
     $nota = new NotaDevolucion();
     if ($nota->updateNotaDevolucion($_POST['nroNotaEditar'], $_POST['personalEditar'], $_POST['fechaEditar'], $_POST['almacenEditar'])) {
         session_start();
-        $fecha_hora = date('j-n-Y G:i:s', time());
+        $fechaPhp = getDate();
+        $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
         $username = $_SESSION['user'];
         $nroNota = $_POST['nroNotaEditar'];
         $nota->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 

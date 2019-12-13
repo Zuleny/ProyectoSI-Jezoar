@@ -19,7 +19,8 @@ if (isset($_POST['nombreInsumo']) && isset($_POST['stock']) && isset($_POST['nro
             $nroNota = $_POST['nroNota'];
             session_start();
             $insumo = $_POST['nombreInsumo'];
-            $fecha_hora = date('j-n-Y G:i:s', time());
+            $fechaPhp = getDate();
+            $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
             $username = $_SESSION['user'];
             $nota->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                                      VALUES ('$username', 'Inserción del insumo $insumo en Nota de Devolución nro. $nroNota', '$fecha_hora');");
@@ -39,7 +40,8 @@ if (isset($_POST['nombreInsumo']) && isset($_POST['stock']) && isset($_POST['nro
         $nroNota = $_GET['nroNotaDetalle'];
         session_start();
         $insumo = $_GET['idDetalle'];
-        $fecha_hora = date('j-n-Y G:i:s', time());
+        $fechaPhp = getDate();
+        $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
         $username = $_SESSION['user'];
         $nota->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                                      VALUES ('$username', 'Eliminacion del insumo $insumo en Nota de Devolución nro. $nroNota', '$fecha_hora');");
