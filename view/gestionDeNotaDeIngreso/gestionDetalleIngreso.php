@@ -17,7 +17,7 @@
                         <b><?php echo $_GET['nro_ingreso']; ?></b>
                     </h3>
                     <div class="box-tools pull-right">
-                        <a onclick="history.back();" class="btn btn-primary" title="Volver Atras">
+                        <a href="../gestionDeNotaDeIngreso/gestionNotaIngreso.php" class="btn btn-primary" title="Volver Atras">
                             <span class="fa fa-fw fa-mail-reply"></span></a>
                         <a href="../../index.php" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>

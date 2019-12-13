@@ -13,7 +13,7 @@
             <div class="box-header">
                 <h3 class="box-title">Roles de Usuario</h3>
                 <div class="box-tools pull-right">
-                    <a onclick="history.back();" class="btn btn-primary" title="Volver Atras">
+                    <a href="../gestionDeUsuario/asignacionRoles.php" class="btn btn-primary" title="Volver Atras">
                     <span class="fa fa-fw fa-arrow-circle-left"></span></a>
                     <a href="../../index.php" class="btn btn-primary" title="Menú Inicio">
                     <span class="glyphicon glyphicon-home"></span></a>

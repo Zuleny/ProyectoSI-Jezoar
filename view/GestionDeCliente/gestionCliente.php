@@ -17,7 +17,7 @@
                 <div class="box-header">
                     <h3 class="box-title">Gestion de Clientes</h3>
                     <div class="box-tools pull-right">
-                        <a href="../view/index.php" class="btn btn-primary" title="Volver Atras">
+                        <a href="../../index.php" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span>
                         </a>
                     </div>
@@ -74,8 +74,8 @@
                         </div>
                         <div class="col-lg-3">
                             <label>Tipo de cliente:</label>
-                            <p><input type="radio" name="tipo" value="P">Persona</p>
-                            <p><input type="radio" name="tipo" value="E">Empresa</p>
+                            <p><input type="radio" name="tipo"  value="P">Persona</p>
+                            <p><input type="radio" name="tipo" checked value="E">Empresa</p>
                         </div>
                     </div>
 

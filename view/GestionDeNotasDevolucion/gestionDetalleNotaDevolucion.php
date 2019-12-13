@@ -18,7 +18,7 @@
                         <b><?php echo $_GET['nroNotaDetalle']; ?></b>
                     </h3>
                     <div class="box-tools pull-right">
-                        <a onclick="history.back();" class="btn btn-primary" title="Volver Atras">
+                        <a href="../GestionDeNotasDevolucion/gestionNotasDevolucion.php" class="btn btn-primary" title="Volver Atras">
                         <span class="fa fa-fw fa-mail-reply"></span></a>
                         <a href="../../index.php" class="btn btn-primary" title="Menú Inicial">
                         <span class="glyphicon glyphicon-home"></span></a>

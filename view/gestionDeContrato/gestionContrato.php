@@ -16,12 +16,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
             <div class="box-header">
                 <h3 class="box-title">Administrar Contrato</h3>
                 <div class="box-tools pull-right">
-
-                    <button type="button" class="btn btn-primary" title="Volver Atras">
-                        <i class="fa fa-fw fa-arrow-circle-left"></i>
-                    </button>
-
-                    <a href="../view/index.php" class="btn btn-primary" title="Volver a menu">
+                    <a href="../../index.php" class="btn btn-primary" title="Volver a menu">
                         <span class="glyphicon glyphicon-home"></span></a>
 
                 </div>
@@ -81,12 +76,14 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     </tbody>
                 </table>
             </div>
-            <div class = col-lg-8>
-                <small>Desea registrar un contrato? </small>
-                <a href="../../view/gestionDePropuesta/gestionPropuesta.php" target="_blank" id="etiqueta1"> Ir a Propuesta
-                </a><br>
-                <a href="../../view/gestionDeCotizacion/gestionCotizacion.php" target="_blank" id="etiqueta2">Ir a Cotizacion
-                </a>
+            <div class = col-lg-10 >
+                <h4>Desea registrar un contrato? </h4>
+
+                <a href="../../view/gestionDeCotizacion/gestionCotizacion.php" id="etiqueta2">Ir a Cotizacion</a><br>
+
+                <div class="col-md-3">
+                    <a href="../../view/gestionDePropuesta/gestionPropuesta.php"  id="etiqueta1">           .  Ir a Propuesta </a>
+                </div>
             </div>
         </div>
     </section>

@@ -15,7 +15,7 @@
                 <div class="box-header">
                     <h3 class="box-title"></h3>
                     <div class="box-tools pull-right">
-                            <a href="../view/index.php" class="btn btn-primary" title="Volver Atras">
+                            <a href="../../index.php" class="btn btn-primary" title="Volver Atras">
                             <span class="glyphicon glyphicon-home"></span></a>
                         </div>
                     </div>              
@@ -26,9 +26,10 @@
                                 <table class="table table-bordered table-hover" id="tabla1">
                                     <thead>
                                     <tr>
-                                        <th>Codigo</th>
+                                        <th>#</th>
                                         <th>Cliente</th>
                                         <th>Fecha</th>
+                                        <th>Codigo Presentacion</th>
                                         <th>Acciones</th>
                                     </tr>
                                     </thead>
@@ -43,13 +44,14 @@
                                         $printer=$printer.'<tr> <td>'.pg_result($result,$tupla,0).'</td>';
                                         $printer=$printer.      '<td>'.pg_result($result,$tupla,1).'</td>';
                                         $printer=$printer.      '<td>'.pg_result($result,$tupla,2).'</td>';
+                                        $printer=$printer.      '<td>'.pg_result($result,$tupla,5).'</td>';
                                         $printer=$printer.'     <td> <div class="btn-group">
                                         <a href="../../controller/informeController.php?cod='.pg_result($result,$tupla,0).'">
                                             <button type="button" class="btn bg-red btn-sm btn-xs" title="Eliminar">
                                                 <i class="fa fa-trash-o"></i>
                                             </button>
                                         </a>   
-                                        <a href="../../view/gestionDeInforme/informe.php?cod_ver='.pg_result($result,$tupla,0).'">
+                                        <a href="../../view/gestionDeInforme/informe.php?cod_ver='.pg_result($result,$tupla,0).'" target="_blank">
                                                                     <button type="button" class="btn bg-primary btn-sm btn-xs" title="Ver PDF">
                                                 <i class="fa fa-eye"></i>
                                             </button>
@@ -64,7 +66,7 @@
                                     </tbody>
                                 </table>
                                 <h5> DESEA REGISTRAR UN INFORME?</h5>
-                                 <a href="../../view/gestionDeCotizacion/gestionCotizacion.php" target="_blank">Ir a Cotizacion</a>
+                                 <a href="../../view/gestionDeCotizacion/gestionCotizacion.php" >Ir a Cotizacion</a>
 
                             </div>
                            

@@ -24,11 +24,11 @@ if(isset($_POST["fecha_inicial"]) && isset($_POST["fecha_final"]) && isset($_POS
         header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
     }
     //EDITAR CONTRATO
-}else if(isset($_GET['codigo_contrato_editar']) && isset($_GET['fecha_inicial']) && isset($_GET['fecha_final'])){
+}else if( isset($_GET['fecha_inicial']) && isset($_GET['fecha_final'])&& isset($_GET['codigo_contrato_editar'])){
     require "../model/contratoModel.php";
-    $contrato = new Contrato('','');
-    $contrato->actualizarContrato($_GET['codigo_contrato_editar'],$_GET['fecha_inicial'],$_GET['fecha_final']);
-    if($contrato){
+    $contrato = new Contrato();
+    $result =$contrato->actualizarContrato($_GET['codigo_contrato_editar'],($_GET['fecha_final']),$_GET['fecha_final']);
+    if($result){
         header('Location: ../view/gestionDeContrato/gestionContrato.php');
     }else{
         $errorMessage = "<b>Error al editar el contrato</b>";
@@ -36,10 +36,10 @@ if(isset($_POST["fecha_inicial"]) && isset($_POST["fecha_final"]) && isset($_POS
     }
     //ELIMINAR CONTRATO
 }else if (isset($_GET['codigo_contrato_Eliminar'])) {
-    require "../../model/contratoModel.php";
+    require "../model/contratoModel.php";
     $contrato = new Contrato();
-    if ($_GET['cod_presentacion'] != "") {
-        if ($contrato->eliminarContrato($_GET['cod_presentacion'])) {
+    if ($_GET['codigo_contrato_Eliminar'] != "") {
+        if ($contrato->eliminarContrato($_GET['codigo_contrato_Eliminar'])) {
             header('Location: ../view/gestionDeContrato/gestionContrato.php');
         } else {
             header('Location: ../view/Exceptions/exceptions.php');
@@ -70,7 +70,7 @@ function nombreDeCliente($cod)
     return $result1;
 }
 function listaParaEditarContrato($cod){
-    require "../../model/contratoModel.php";
+    //require "../../model/contratoModel.php";
     $contrato = new Contrato();
     return  $contrato->listaParaEditarContrato($cod);
 }
