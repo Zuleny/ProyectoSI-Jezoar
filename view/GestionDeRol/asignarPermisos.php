@@ -15,7 +15,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                 <div class="box-header">
                     <h3 class="box-title">Asignacion de Permisos a Rol <b><?php echo $_GET['nombRol'];?></b></h3>
                     <div class="box-tools pull-right">
-                        <a onclick="history.back();" class="btn btn-primary" title="Volver Atras">
+                        <a href="../gestionDeUsuario/gestionUsuario.php" class="btn btn-primary" title="Volver Atras">
                             <span class="fa fa-fw fa-mail-reply"></span></a>
                         <a href="../../index.php" class="btn btn-primary" title="Menú Inicio">
                         <span class="glyphicon glyphicon-home"></span></a>

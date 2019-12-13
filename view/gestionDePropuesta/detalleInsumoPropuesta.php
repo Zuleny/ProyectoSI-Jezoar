@@ -17,7 +17,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     <b><?php echo $_GET['cod_presentacion']; ?></b>
                 </h3>
                 <div class="box-tools pull-right">
-                    <a onclick="history.back();" class="btn btn-primary" title="Volver Atras">
+                    <a href="../gestionDePropuesta/gestionPropuesta.php" class="btn btn-primary" title="Volver Atras">
                         <span class="fa fa-fw fa-mail-reply"></span></a>
                     <a href="../../index.php" class="btn btn-primary" title="Menu Inicio">
                         <span class="glyphicon glyphicon-home"></span></a>
