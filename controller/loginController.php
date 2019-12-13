@@ -162,7 +162,8 @@ if ( isset($_GET['username']) && isset($_GET['password']) ) {
 }else if ( isset($_GET['user']) ) {
     $username=$_GET['user'];
     $login=new Login($username,"");
-    $fecha_hora = date('j-n-Y G:i:s', time());
+    $fechaPhp = getDate();
+    $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
     $login->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                 VALUES ('$username', 'Cierre de Sesión de $username', '$fecha_hora');");
     header('Location: ../view/login.php');

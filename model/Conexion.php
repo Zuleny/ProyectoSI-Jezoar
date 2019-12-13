@@ -24,7 +24,7 @@ class Conexion {
         
             $result = pg_query($this->ConexionDB,$query);
             if (!$result) {
-                die("error en consulta".pg_last_error());
+                return null;
             }else{
                 return $result;
             }
