@@ -54,7 +54,7 @@ class Contrato{
     }
     public function actualizarContrato($cod_contrato,$fecha_inicial, $fecha_final){
         try{
-            $this->conexion->execute("update contrato set fecha_inicio=$fecha_inicial,fecha_fin=$fecha_final where cod_contrato = $cod_contrato");
+            $this->conexion->execute("update contrato set fecha_inicio='$fecha_inicial',fecha_fin='$fecha_final' where cod_contrato = $cod_contrato");
             return true;
         }catch (\Throwable $th){
             return false;

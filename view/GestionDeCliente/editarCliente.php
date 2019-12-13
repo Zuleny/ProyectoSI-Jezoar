@@ -42,14 +42,14 @@
                                     <label>Nombre del cliente</label>
                                     <div class="input-group margin-bottom-sm">
                                         <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                        <input type="text" name = "nombre_cliente" class="form-control" value="<?php echo pg_result($resultado,0,0) ?>" >
+                                        <input type="text" required name = "nombre_cliente" class="form-control" value="<?php echo pg_result($resultado,0,0) ?>" >
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
                                     <label>Telefono </label>
                                     <div class="input-group margin-bottom-sm">
                                         <span class="input-group-addon"><i class="fa fa-phone fa-fw" aria-hidden="true"></i></span>
-                                        <input type="text" name = "telefono_cliente"class="form-control" value="<?php echo pg_result($resultado,0,5) ?>">
+                                        <input type="text" required name = "telefono_cliente"class="form-control" value="<?php echo pg_result($resultado,0,5) ?>">
                                     </div>
                                 </div>
                                 <div class="col-lg-2">
@@ -61,7 +61,7 @@
                                     <div class="input-group margin-bottom-sm">
                                         <span class="input-group-addon"><i class="fa fa-phone fa-fw" aria-hidden="true"></i></span>                                        
                                               <div>
-                                                 <input type="text" name = "telefono2_cliente" class="form-control" value="'.pg_result($resultado,1,5).'">
+                                                 <input type="text"  name = "telefono2_cliente" class="form-control" value="'.pg_result($resultado,1,5).'">
                                                  </div>
                                     </div>';
                                     }
@@ -80,7 +80,7 @@
                                     <label>Nit / C.I.</label>
                                     <div class="input-group margin-bottom-sm">
                                         <span class="input-group-addon"><i class="fa fa-id-card-o fa-fw" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name ="nit_cliente"  value="<?php echo pg_result($resultado,0,4) ?>">
+                                        <input type="text"required class="form-control" name ="nit_cliente"  value="<?php echo pg_result($resultado,0,4) ?>">
                                     </div>
                                 </div>
                             </div>
@@ -89,25 +89,14 @@
                                     <label>Direccion</label>
                                     <div class="input-group margin-bottom-sm">
                                         <span class="input-group-addon"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i></span>
-                                        <input type="text" name="direccion_cliente" class="form-control" value="<?php echo pg_result($resultado,0,1) ?>">
+                                        <input type="text" required name="direccion_cliente" class="form-control" value="<?php echo pg_result($resultado,0,1) ?>">
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
-                                    <label>Tipo de cliente:</label>
-                                    <?php 
-                                        if(pg_result($resultado,0,3)=='E'){
-                                            echo '<p><input type="radio" name="tipo" value="P">Persona</p>
-                                                  <p><input type="radio" name="tipo" checked value="E">Empresa</p>';
-                                        }else{
-                                            echo '<p><input type="radio" name="tipo" checked value="P">Persona</p>
-                                                  <p><input type="radio" name="tipo" selected value="E">Empresa</p>';
-                                        }
-                                    ?>
-                                </div>
+
                             </div>
                             <div class="box-body">
                                 <div class="col-lg-3">
-                                    <button type="submit" name ="cod" value= "<?php echo pg_result($resultado,0,6)?>" class="btn btn-block btn-success" style="border-radius: 15px;" title="Registrar cambiod de cliente">Registrar cambios <i class="fa fa-fw fa-save"></i></button>
+                                    <button type="submit" name ="codigo_editar" value= "<?php echo pg_result($resultado,0,6)?>" class="btn btn-block btn-success" style="border-radius: 15px;" title="Registrar cambiod de cliente">Registrar cambios <i class="fa fa-fw fa-save"></i></button>
                                 </div>
                                 <div class="col-lg-3">
                                     <a href="gestionCliente.php">

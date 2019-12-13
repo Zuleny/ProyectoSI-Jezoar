@@ -41,7 +41,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="date" class="form-control" name="fecha_inicial" placeholder="<?php echo pg_result($resultado,0,1)?>">
+                            <input type="text" class="form-control" name="fecha_inicial" value="<?php echo pg_result($resultado,0,1)?>">
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -50,7 +50,7 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="date" class="form-control" name="fecha_final" placeholder="<?php echo pg_result($resultado,0,2)?>">
+                            <input type="text" class="form-control" name="fecha_final" value="<?php echo pg_result($resultado,0,2)?>">
                         </div>
                     </div>
                 </div>

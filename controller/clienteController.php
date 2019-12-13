@@ -25,20 +25,25 @@ if (isset($_POST['nombre_cliente']) && isset($_POST['direccion_cliente']) && iss
         echo 'Espacio blacos';
     }
     //EDITAR INFORMACION DE UN  CLIENTE
-}else if(isset($_GET['nombre_cliente']) && isset($_GET['telefono_cliente']) && isset($_GET['nit_cliente']) && isset($_GET['direccion_cliente'])  && isset($_GET['tipo']) && isset($_GET['cod']) ) {
+}else if(isset($_GET['nombre_cliente']) && isset($_GET['telefono_cliente']) && isset($_GET['nit_cliente']) && isset($_GET['direccion_cliente'])  && isset($_GET['codigo_editar']) ) {
     echo $_GET['nombre_cliente'].'<br>';
-    echo $_GET['telefono_cliente'].'<br>';
+    echo $_GET['telefono2_cliente'].'<br>';
     echo $_GET['nit_cliente'].'<br>';
     echo $_GET['direccion_cliente'].'<br>';
-    echo $_GET['tipo'].'<br>';
-    echo $_GET['cod'].'<br>';
-    
+    echo $_GET['codigo_editar'].'<br>';
     require "../model/clienteModel.php";
     $cliente2 = new Cliente();
-    $result = $cliente2->editarCliente($_GET['cod'], $_GET['nombre_cliente'], $_GET['direccion_cliente'], $_GET['correo_cliente'], $_GET['tipo'],$_GET['nit_cliente'] , $_GET['telefono_cliente'], $_GET['telefono2_cliente']);
+    $tipo=$cliente2->getTipoPorCodigo($_GET['codigo_editar']);
+    $result = $cliente2->editarCliente($_GET['codigo_editar'], $_GET['nombre_cliente'], $_GET['direccion_cliente'], $_GET['correo_cliente'], $tipo,$_GET['nit_cliente'] , $_GET['telefono_cliente'], $_GET['telefono2_cliente']);
     if ($result) {
-        echo '<script language="javascript">alert("Cliente actualizado exitosamente");</script>';
-        header('Location: ../view/GestionDeCliente/gestionCliente.php');
+            session_start();
+            $fechaPhp = getDate();
+            $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
+            $user = $_SESSION['user'];
+            $name =$_GET['nombre_cliente'];
+            $cliente2->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
+                                            VALUES ('$user', 'Registro de Cliente $name actulizado correctamente ', '$fecha_hora');");
+       header('Location: ../view/GestionDeCliente/gestionCliente.php');
     } else {
         echo '<script language="javascript">alert("Error al actualizar el cliente");</script>';
     }

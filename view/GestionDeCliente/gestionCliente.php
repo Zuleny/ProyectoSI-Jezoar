@@ -74,8 +74,8 @@
                         </div>
                         <div class="col-lg-3">
                             <label>Tipo de cliente:</label>
-                            <p><input type="radio" name="tipo" value="P">Persona</p>
-                            <p><input type="radio" name="tipo" value="E">Empresa</p>
+                            <p><input type="radio" name="tipo"  value="P">Persona</p>
+                            <p><input type="radio" name="tipo" checked value="E">Empresa</p>
                         </div>
                     </div>
 

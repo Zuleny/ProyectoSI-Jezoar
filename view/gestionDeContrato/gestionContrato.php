@@ -76,19 +76,13 @@ include "../../view/theme/AdminLTE/Additional/head.php";
                     </tbody>
                 </table>
             </div>
-            <div class = col-lg-8 >
-                <div class="row">
-                    <div class="col-md-4">
-                        <h4>Desea registrar un contrato? </h4>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="../../view/gestionDeCotizacion/gestionCotizacion.php" id="etiqueta2">Ir a Cotizacion
-                        </a>
-                    </div>
-                    <div class="col-md-4">
-                        <a href="../../view/gestionDePropuesta/gestionPropuesta.php"  id="etiqueta1"> Ir a Propuesta
-                        </a>
-                    </div>
+            <div class = col-lg-10 >
+                <h4>Desea registrar un contrato? </h4>
+
+                <a href="../../view/gestionDeCotizacion/gestionCotizacion.php" id="etiqueta2">Ir a Cotizacion</a><br>
+
+                <div class="col-md-3">
+                    <a href="../../view/gestionDePropuesta/gestionPropuesta.php"  id="etiqueta1">           .  Ir a Propuesta </a>
                 </div>
             </div>
         </div>

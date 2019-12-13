@@ -67,7 +67,7 @@ $nombre = pg_result($result,0,0);
 
 $datosDeInforme = $conexion->execute("select * from informe where cod_informe=$codInforme;");
 $pdf->SetFont('Times','',12);
-//$pdf->Write(5,'El cliete '.$nombre.' solicito los servicios de limpieza profunda');
+
     $pdf->SetFont('Times','',12);
     // Imprimimos el texto justificado
 	
@@ -79,6 +79,7 @@ $pdf->SetFont('Times','',12);
     // Salto de línea
     $pdf->Ln();
 $pdf->cell(0, 10, 'Santa Cruz de la Sierra, ' . $hour, 0, 1);
+$pdf->Ln();
 function getImage($dataURI){
     $img = explode(',',$dataURI,2);
     $pic = 'data://text/plain;base64,'.$img[1];
@@ -86,35 +87,32 @@ function getImage($dataURI){
     if ($type=="png"||$type=="jpeg"||$type=="gif") return array($pic, $type);
     return false;
 }
-//$posicionX = $pdf->GetX();
-$posicionY = $pdf->GetY();
+	$posicionY = $pdf->GetY();
+
 session_start();
+
 $imagen = pg_result($datosDeInforme,0,4);
 if($imagen != null){
     $pic = getImage($imagen);
     if ($pic!==false){
         $pdf->Image($pic[0], 20,$posicionY,50,50, $pic[1]);
-        $pdf->SetXY(-350,140);
-        $pdf->Cell(0, 12, 'Antes', 0, 1, 'C');
+        
     }
 }
 session_abort();
 session_start();
+
 $imagen2 = pg_result($datosDeInforme,0,5);
 if($imagen2 != null){
     $pic2 = getImage($imagen2);
     if ($pic!==false){
         $pdf->Image($pic2[0], 100,$posicionY,50,50, $pic2[1]);
-        $pdf->SetXY(30,140);
-        $pdf->Cell(0, 12, 'Despues', 0, 1, 'C');
+        
+        
 
     }
 }
 session_abort();
-session_start();
-$fecha_hora = date('j-n-Y G:i:s', time());
-$username = $_SESSION['user'];
-$conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora)
-                    VALUES ('$username', 'Generó informe de entrega de un proyecto para el cliente($nombre)', '$fecha_hora');");
 $pdf->Output();
+
 ?>

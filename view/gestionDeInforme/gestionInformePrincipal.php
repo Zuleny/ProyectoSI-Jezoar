@@ -26,9 +26,10 @@
                                 <table class="table table-bordered table-hover" id="tabla1">
                                     <thead>
                                     <tr>
-                                        <th>Codigo</th>
+                                        <th>#</th>
                                         <th>Cliente</th>
                                         <th>Fecha</th>
+                                        <th>Codigo Presentacion</th>
                                         <th>Acciones</th>
                                     </tr>
                                     </thead>
@@ -43,6 +44,7 @@
                                         $printer=$printer.'<tr> <td>'.pg_result($result,$tupla,0).'</td>';
                                         $printer=$printer.      '<td>'.pg_result($result,$tupla,1).'</td>';
                                         $printer=$printer.      '<td>'.pg_result($result,$tupla,2).'</td>';
+                                        $printer=$printer.      '<td>'.pg_result($result,$tupla,5).'</td>';
                                         $printer=$printer.'     <td> <div class="btn-group">
                                         <a href="../../controller/informeController.php?cod='.pg_result($result,$tupla,0).'">
                                             <button type="button" class="btn bg-red btn-sm btn-xs" title="Eliminar">

@@ -58,15 +58,14 @@ class Cliente{
     public function editarCliente($codCliente,$nombre,$direccion, $email, $tipo,$nit,$telefono1, $telefono2){
         try{
             $this->conexion->execute("update Cliente set  nombre='$nombre',direccion='$direccion', email='$email' where cod_cliente= $codCliente;");
-            if($tipo=='E'){
+            $this->conexion->execute("update Telefono set telefono='$telefono1' where cod_cliente_telefono= $codCliente;");
+
+            if($tipo=="E"){
                 $this->conexion->execute("update Empresa set  nit=$nit where cod_cliente_empresa= $codCliente;");
-            }else{
+            }else if($tipo=="P"){
                 $this->conexion->execute("update Persona set  nro_carnet=$nit where cod_cliente_persona= $codCliente;");
             }
-            $this->conexion->execute("update Telefono set telefono=$telefono1 where cod_cliente_telefono= $codCliente;");
-            if($telefono2 != null){
-                $this->conexion->execute("update Telefono set telefono=$telefono2 where cod_cliente_telefono= $codCliente;");
-            }
+
             return true;
         }catch (\Throwable $th){
             return false;
@@ -83,6 +82,9 @@ class Cliente{
                                                     FROM cliente, telefono 
                                                     WHERE cod_cliente = cod_cliente_telefono AND 
                                                             cod_cliente= $codCliente;");
+    }
+    public function getTipoPorCodigo($codCliente){
+        return $result = $this->conexion->execute("select tipo from cliente where cod_cliente =$codCliente");
     }
 
 }

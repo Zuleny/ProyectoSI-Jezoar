@@ -10,10 +10,17 @@ if(isset($_POST["image2"])  && isset($_POST["image3"]) && isset($_POST['descripc
     $insertado =$informe->registrarInforme($_POST['codCotizacion'],$result, $result2);
     echo $_POST['codCotizacion'];
     if($insertado){
+        session_start();
+        $fecha_hora = date('j-n-Y G:i:s', time());
+        $username = $_SESSION['user'];
+        $conexion = new Conexion();
+        $conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora)
+                    VALUES ('$username', 'Generó informe de entrega de un proyecto para el cliente', '$fecha_hora');");
+        
         header("Location: ../view/gestionDeInforme/gestionInformePrincipal.php");
-    }else{ echo 'mal';
-        /*$errorMessage = "<b>Error en el proceso de registro del informe</b>";
-        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);*/
+    }else{
+        $errorMessage = "<b>Error en el proceso de registro del informe</b>";
+        header('Location: ../view/Exceptions/exceptions.php?errorMessage='.$errorMessage);
     }
 
     /*session_start();
