@@ -7,7 +7,8 @@ if ( isset($_POST['nombre_servicio']) ) {
         $servicio = new Servicio(0,$nombre_serv);
         $servicio->id_servicio=$servicio->getNewIdServicio();
         if ($servicio->insertarServicio()) {
-            $fecha_hora = date('j-n-Y G:i:s', time());
+            $fechaPhp = getDate();
+            $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
             $username = $_SESSION['user'];
             $servicio->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                     VALUES ('$username', 'Insertando servicio con Id. $servicio->id_servicio', '$fecha_hora');");
@@ -26,7 +27,8 @@ if ( isset($_POST['nombre_servicio']) ) {
         if ($servicio->updateServicio()) {
             session_start();
             $id = $_GET['cod'];
-            $fecha_hora = date('j-n-Y G:i:s', time());
+            $fechaPhp = getDate();
+            $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
             $username = $_SESSION['user'];
             $servicio->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
                                                  VALUES ('$username', 'Actualizando servicio con Id. $id', '$fecha_hora');");

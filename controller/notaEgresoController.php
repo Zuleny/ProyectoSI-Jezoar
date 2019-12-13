@@ -74,7 +74,8 @@ if (isset($_POST['fechaEgreso'])  &&  isset($_POST['personalEgreso'])  &&  isset
     $nota = new NotaEgreso();
     if ($nota->updateNotaEgreso($_POST['nroNotaEditar'], $_POST['personalEditar'], $_POST['fechaEditar'], $_POST['almacenEditar'])) {
         session_start();
-        $fecha_hora = date('j-n-Y G:i:s', time());
+        $fechaPhp = getDate();
+        $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
         $username = $_SESSION['user'];
         $nroNota = $_POST['nroNotaEditar'];
         $nota->getConexion()->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
