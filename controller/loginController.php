@@ -146,7 +146,8 @@ if ( isset($_GET['username']) && isset($_GET['password']) ) {
         echo $_SESSION['user'].'<br>';
         $_SESSION['cod_usuario'] = $login->getCodigoUsuario();
         $listaDePermisos = $login->getListaPermisos(strtolower($username));
-        $fecha_hora = date('j-n-Y G:i:s', time());
+        $fechaPhp = getDate();
+        $fecha_hora = $fechaPhp['year'].'-'.$fechaPhp['mon'].'-'.$fechaPhp['mday'].' '.$fechaPhp['hours'].':'.$fechaPhp['minutes'].':'.$fechaPhp['seconds'];
         $username = strtolower($username);
         echo 'registrando bitacora';
         $login->conexion->execute("INSERT INTO bitacora(nombre_usuario, descripcion, fecha_hora) 
