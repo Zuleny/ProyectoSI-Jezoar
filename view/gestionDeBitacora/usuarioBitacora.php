@@ -28,7 +28,7 @@
                 <div class="box-header">
                     <h3 class="box-title">Tabla de Actividades</h3>
                 </div>
-                <div class="box-body">
+                <div class="table-responsive col-sm-12">
                     <br>
                     <p>Actividades registradas por el usuario: <? echo $_POST['nombreUser']; ?></p>
                     <table class="table table-bordered table-hover" id="tabla1">
