@@ -1,20 +1,8 @@
 
 #ProyectoSI-Jezoar
-
-xxxxxxxxxxxxxxxxxxxxxxxxxx.._____..xxxxx.___.xx.___.xxxx._____.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxx../|||||||\.xx./|||/.*./|||/.xx./|||||||\.xxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxx../|||/.\|||.x./|||/.*./|||/.xx./|||/\||||.xxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxx../||||||||/.x./|||||||||||/.xx./||||||||/.xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxx../|||/.....xx./|||/.*./|||/.xx./|||/...xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxx../|||/..xxxxx./|||/.*./|||/.xx./|||/.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxxxxxxxxxxxxxxxxxxxxx.......xxxxxx......xx......xxx......xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-xxx.___________.xxx.________.xx._________.xxxxxxxx._______.xxxxx.__________.xx.________.xxxxxxx
-xx./|||||||||||/.x./||||||||/../|||||||||/.xxxxxx./|||||||/.xx./||||||||||/.x./||||||||\.xxxxxx
-xxxxxxx./|||/.xxx./|||/___..xx....../|||/.xxxxxx./||/./||/.xx./|||/../|||/.x./|||/_\|||/.xxxxxx
-xxxxx../|||/.xxx./||||||||/.xxxxxx./|||/.xxxxxx./||/./||/.xx./|||/__/|||/.x./||||\_/||/.xxxxxxx
-.\|||\/|||/.xxx./|||/____.xxxxxxx./|||/_____.x./||/_/||/.xx./||||||||||/.x./|||||||||\.xxxxxxxx
-x.\||||||/.xxx./|||||||||/.xxxxx./|||||||||/../|||||||/.xx./|||/../|||/.x./|||/**\||||\.xxxxxxx
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+<br>
+<img src="https://seeklogo.com/images/P/PHP-logo-A28168CFD0-seeklogo.com.png">
+<img src="https://dangkyhosting.com/wp-content/uploads/2018/08/postgresql-card.png">
 
 Proyecto SI1 Sistema de Información para Gestionar Servicios de Limpieza e Inventarios para la empresa Jezoar
 Desarrollo en PHP 7.3 
