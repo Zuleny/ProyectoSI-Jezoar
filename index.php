@@ -9,6 +9,9 @@ if ( !isset($_SESSION['user'])  ) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Sistema de Información Jezoar Limpio y Claro">    <!-- descripcion de la web page -->
+  <meta name="author" content="Jezoar">                            <!-- author del web page -->
+  <meta name="keywords" content="Jezoar, Sistema de Información Jezoar">  <!-- palabras clave de la web page -->
   <title>Sistema Jezoar</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
