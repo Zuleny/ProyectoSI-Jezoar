@@ -12,8 +12,8 @@ function enviarEmail($emailToSend, $mensaje, $personal){
         $mail->isSMTP();
         $mail->Host='smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'ac8794572@gmail.com';
-        $mail->Password = 'crespo@123';
+        $mail->Username = 'XXXXXXXXXXXXXXXX@XXXXX.XXXX';
+        $mail->Password = 'XXXXXXXXXXX';
         $mail->SMTPSecure = 'TLS';
         $mail->Port = 587;
         $mail->setFrom($emailToSend,'Sistema Jezoar');
